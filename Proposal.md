@@ -27,7 +27,9 @@
   - [x] 擬定好類別的關係圖
   - [x] 玩法、流程圖確定
 
+[關係圖](https://docs.google.com/presentation/d/1LRtJiim9SSzsJNoMbAs_67hvLgeZrJg3lfTV078n47Q/edit?usp=sharing)
 > **產出**：初步的素材庫、類別設計草圖（UML）、首頁UI介面
+
 
 
 - Week 3 ～ Week 4：基礎專案架構
