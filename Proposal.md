@@ -32,6 +32,9 @@
 
 - Week 3 ～ Week 4：基礎專案架構
   - [ ] 撰寫最簡單的程式骨架：`main`、`GameLoop`、`SceneManager` 或者使用簡易的 state machine：`Start`、`Update`。
+    - [ ] `SceneManager`
+    - [ ] `Scene`
+    
   - [ ] 實作遊戲封面（主選單）：包含開始遊戲、離開遊戲等按鈕。
   - [ ] 實作關卡選單（即使目前只有 1～2 關，也先確立框架）。
   - [ ] 連結流程：點擊「開始遊戲」後可進入關卡選擇 → 進入遊戲主場景。
