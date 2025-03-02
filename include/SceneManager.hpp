@@ -1,10 +1,16 @@
-#pragma once
+#ifndef SCENE_HPP
+#define SCENE_HPP
+
 #include <memory>
 #include <stack>
 #include "Scene.hpp"
+#include "Util/Logger.hpp"
 
 class SceneManager {
 public:
+    SceneManager(){
+        LOG_INFO("SceneManager constructor called.");
+    }
     // 切換到新的場景（先把舊場景結束或暫存）
     void ChangeScene(std::unique_ptr<Scene> newScene) {
         if (!m_Scenes.empty()) {
@@ -43,6 +49,15 @@ public:
         }
     }
 
+    void Draw(){
+        if (!m_Scenes.empty()) {
+            m_Scenes.top()->Draw();
+        }
+    }
+
+
 private:
     std::stack<std::unique_ptr<Scene>> m_Scenes;
 };
+
+#endif // SCENE_HPP

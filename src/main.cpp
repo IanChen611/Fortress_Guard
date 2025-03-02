@@ -13,6 +13,7 @@ int main(int, char**) {
                 break;
 
             case App::State::UPDATE:
+                // LOG_INFO("Updating");
                 app.Update();
                 break;
 

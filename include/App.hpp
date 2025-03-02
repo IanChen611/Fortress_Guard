@@ -2,6 +2,8 @@
 #define APP_HPP
 
 #include "pch.hpp" // IWYU pragma: export
+#include "SceneManager.hpp"
+#include "Scene.hpp"
 
 class App {
 public:
@@ -23,6 +25,8 @@ private:
     void ValidTask();
 
 private:
+    SceneManager m_SceneManager;
+
     State m_CurrentState = State::START;
 };
 
