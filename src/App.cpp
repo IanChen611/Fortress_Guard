@@ -13,6 +13,11 @@ void App::Start() {
     m_CurrentState = State::UPDATE;
     auto startScene = std::make_unique<StartScene>();
     m_SceneManager.PushScene(std::move(startScene));
+
+    m_Grass = std::make_shared<Tile>("./output_images/Tiles/tile_0_0.png");
+    m_Grass->SetPosition({0.0f, 0.0f});
+    m_Grass->SetZIndex(0);
+    m_Grass->m_Transform.scale = {3, 3};
 }
 
 void App::Update() {
