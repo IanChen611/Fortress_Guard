@@ -1,5 +1,5 @@
-#ifndef SCENE_HPP
-#define SCENE_HPP
+#ifndef SCENEMANAGER_HPP
+#define SCENEMANAGER_HPP
 
 #include <memory>
 #include <stack>

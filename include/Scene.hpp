@@ -1,10 +1,11 @@
-# ifndef START_HPP
-# define START_HPP
+# ifndef SCENE_HPP
+# define SCENE_HPP
 
 
 class Scene{
 public:
-
+    Scene();
+    virtual ~Scene();
     virtual void Start() = 0; // 初始化
     virtual void Update() = 0; // 處理邏輯
     virtual void Draw() = 0; // 處理畫面
@@ -12,4 +13,4 @@ public:
 };
 
 
-#endif // START_HPP
+#endif // Scene_HPP

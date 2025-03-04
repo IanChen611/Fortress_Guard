@@ -5,6 +5,7 @@
 #include "Util/Keycode.hpp"
 #include "Util/Logger.hpp"
 
+#include "Scene.hpp"
 #include "SceneManager.hpp"
 #include "StartScene.hpp"
 

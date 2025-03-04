@@ -7,28 +7,21 @@
 
 class StartScene : public Scene {
 public:
-    void Start() override {
-        LOG_INFO("StartScene Start");
-        // 載入主選單資源、初始化介面
+    StartScene() {
+        LOG_INFO("StartScene built");
     }
-
-    void Update() override {
-        // 這裡放主選單場景的更新邏輯，如按下按鈕切換場景
-
-        // 假設你想按下某個按鍵就切換到新場景
-        // if (Util::Input::IsKeyUp(YOUR_KEY)) {
-        //     // 切換場景 (需取得 SceneManager 或其他機制)
-        // }
+    ~StartScene() override{
+        
     }
     
-    void Draw() override{
-        // LOG_INFO("StartScene Draewd");
-    }
+    void Start() override ;
 
-    void End() override {
-        LOG_INFO("StartScene End");
-        // 請求釋放資源
-    }
+    void Update() override ;
+    
+    void Draw() override ;
+
+    void End() override ;
 
 };
 # endif // STARTSCENE_HPP
+
