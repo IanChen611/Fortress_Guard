@@ -4,6 +4,8 @@
 #include "pch.hpp" // IWYU pragma: export
 #include "SceneManager.hpp"
 #include "Scene.hpp"
+#include "Tile.hpp"
+#include "TileSet.hpp"
 
 class App {
 public:
@@ -28,6 +30,8 @@ private:
     SceneManager m_SceneManager;
 
     State m_CurrentState = State::START;
+
+    std::shared_ptr<Tile> m_Grass;
 };
 
 #endif
