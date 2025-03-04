@@ -10,8 +10,10 @@
 
 class TileSet : public Util::GameObject {
 public:
-    explicit TileSet(const std::vector<Tile>& Tiles);
+    explicit TileSet(const Tile Tiles[30][20]);
+
 private:
+    Tile m_Tiles[30][20];
 };
 
 #endif
