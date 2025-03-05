@@ -5,20 +5,12 @@
 #include <string>
 
 #include "Util/GameObject.hpp"
-#include "Util/Logger.hpp"
 
 class Tile : public Util::GameObject {
 public:
-    // Tile(){
-    //     LOG_INFO("Tile built");
-    // }
     Tile(const std::string& ImagePath);
-    // Tile(const std::string& ImagePath){
-    //     this->SetImage(ImagePath);
-    // }
-    // explicit Tile(const std::string& ImagePath){
-    //     this->SetImage(ImagePath);
-    // }
+
+    ~Tile() = default;
 
     void SetImage(const std::string& ImagePath);
 
