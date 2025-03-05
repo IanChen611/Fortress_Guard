@@ -15,7 +15,8 @@ void App::Start() {
     m_CurrentState = State::UPDATE;
     auto m_startScene = std::make_unique<StartScene>();
     m_SceneManager.PushScene(std::move(m_startScene));
-    m_Grass = std::make_shared<Tile>("./output_images/Tiles/tile_0_0.png");
+
+    m_Grass = std::make_shared<Tile>(RESOURCE_DIR"/output_images/Tiles/tile_0_0.png");
     m_Grass->SetPosition({0.0f, 0.0f});
     m_Grass->SetZIndex(0);
     m_Grass->SetVisible(true);
