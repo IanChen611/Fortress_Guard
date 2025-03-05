@@ -4,7 +4,7 @@ import os
 # 原始圖片路徑
 input_path = "./Resources/Image/MiniWorld Sprites/Characters/Soldiers/Ranged/MageTemplate.png"
 # 輸出資料夾路徑
-output_folder = "output_images"
+output_folder = "./REsources/output_images"
 
 # 建立輸出資料夾（若尚未存在）
 if not os.path.exists(output_folder):
