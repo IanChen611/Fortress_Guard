@@ -4,8 +4,8 @@
 
 class Scene{
 public:
-    Scene();
-    virtual ~Scene();
+    Scene() = default;
+    virtual ~Scene() = default;
     virtual void Start() = 0; // 初始化
     virtual void Update() = 0; // 處理邏輯
     virtual void Draw() = 0; // 處理畫面

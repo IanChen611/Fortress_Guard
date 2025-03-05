@@ -8,7 +8,13 @@
 
 class Tile : public Util::GameObject {
 public:
-    explicit Tile(const std::string& ImagePath);
+    Tile(const std::string& ImagePath);
+    // Tile(const std::string& ImagePath){
+    //     this->SetImage(ImagePath);
+    // }
+    // explicit Tile(const std::string& ImagePath){
+    //     this->SetImage(ImagePath);
+    // }
 
     void SetImage(const std::string& ImagePath);
 
