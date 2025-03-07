@@ -2,6 +2,7 @@
 # define STARTSCENE_HPP
 
 #include "Scene.hpp"
+#include "Tile.hpp"
 #include "Util/Logger.hpp"
 #include "Util/Input.hpp"
 
@@ -18,6 +19,7 @@ public:
     void Draw() override ;
 
     void End() override ;
-
+private:
+    std::shared_ptr<Tile> m_Grass;
 };
 # endif // STARTSCENE_HPP

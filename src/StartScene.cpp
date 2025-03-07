@@ -1,4 +1,5 @@
 #include "StartScene.hpp"
+#include "Tile.hpp"
 
 #include "Util/Logger.hpp"
 #include "Util/Input.hpp"
