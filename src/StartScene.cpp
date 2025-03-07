@@ -9,7 +9,7 @@
 
 StartScene::StartScene() {
     LOG_INFO("StartScene built");
-    m_StartButton = std::make_shared<Button>(RESOURCE_DIR"/Resources/Image/UI/Button_StartGame.png", 0, 0, 1, 1, [this]() { this->OnClickStartGame(); });
+    m_StartButton = std::make_shared<Button>(RESOURCE_DIR"/Image/UI/Button_StartGame.png", 0, 0, 1, 1, [this]() { this->OnClickStartGame(); });
 }
 
 void StartScene::OnClickStartGame(){
