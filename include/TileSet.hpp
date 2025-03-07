@@ -10,10 +10,14 @@
 
 class TileSet : public Util::GameObject {
 public:
-    explicit TileSet(const Tile Tiles[30][20]);
+    explicit TileSet(const Tile Tiles[10][20]);
+
+    void Start();
+
+    void ResetPosition();
 
 private:
-    Tile m_Tiles[20][10];
+    Tile m_Tiles[10][20];
 };
 
 #endif

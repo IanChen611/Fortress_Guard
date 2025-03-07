@@ -10,6 +10,8 @@ class Tile : public Util::GameObject {
 public:
     Tile(const std::string& ImagePath);
 
+    Tile();
+
     ~Tile() = default;
 
     void SetImage(const std::string& ImagePath);
