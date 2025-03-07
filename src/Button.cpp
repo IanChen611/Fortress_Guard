@@ -3,8 +3,9 @@
 #include "Util/Logger.hpp"
 #include "Util/Image.hpp"
 #include "Util/Input.hpp"
+#include "Util/GameObject.hpp"
 
-Button::Button(const std::string& imagePath, int posX, int posY, int width, int height, OnClickCallback onClick){
+Button::Button(const std::string& imagePath, int posX, int posY, float width, float height, OnClickCallback onClick){
     m_X = posX;
     m_Y = posY;
     m_Transform.translation = glm::vec2(m_X, m_Y);
@@ -12,15 +13,19 @@ Button::Button(const std::string& imagePath, int posX, int posY, int width, int 
     m_Height = height;
     m_OnClick = onClick;
     SetImage(imagePath);
+    SetZIndex(5);
+    m_Transform.scale = glm::vec2(m_Width, m_Height);
 }
-
 void Button::Update()
 {
     // 取得滑鼠位置
     glm::vec2 mouse_pos = Util::Input::GetCursorPosition();	
 
-
+    // LOG_INFO("Mouse at " + std::to_string(mouse_pos.x) + ", " + std::to_string(mouse_pos.y));
     bool inside = IsMouseInside(mouse_pos);
+    // if(inside){
+    //     LOG_INFO("Mouse is inside the button");
+    // }
     bool mouseDown = Util::Input::IsKeyDown(Util::Keycode::MOUSE_LB);   // 0 代表左鍵，可視情況改變
     bool mouseUp   = Util::Input::IsKeyUp(Util::Keycode::MOUSE_LB);
 
@@ -46,10 +51,10 @@ void Button::Update()
 
 bool Button::IsMouseInside(glm::vec2 mousePos) const
 {
-    return (mousePos.x >= m_X &&
-            mousePos.x <= (m_X + m_Width) &&
-            mousePos.y >= m_Y &&
-            mousePos.y <= (m_Y + m_Height));
+    return (mousePos.x >= (m_X - m_Width * 8) &&
+            mousePos.x <= (m_X + m_Width * 8) &&
+            mousePos.y >= (m_Y - m_Height * 8) &&
+            mousePos.y <= (m_Y + m_Height * 8));
 }
 
 

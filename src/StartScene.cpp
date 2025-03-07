@@ -1,12 +1,21 @@
 #include "StartScene.hpp"
 #include "Tile.hpp"
+#include "Button.hpp"
 
 #include "Util/Logger.hpp"
 #include "Util/Input.hpp"
+#include "Util/Image.hpp"
+#include "Util/GameObject.hpp"
 
 StartScene::StartScene() {
     LOG_INFO("StartScene built");
+    m_StartButton = std::make_shared<Button>(RESOURCE_DIR"/Resources/Image/UI/Button_StartGame.png", 0, 0, 1, 1, [this]() { this->OnClickStartGame(); });
 }
+
+void StartScene::OnClickStartGame(){
+    LOG_INFO("Clicked Start Game");
+}
+
 StartScene::~StartScene() {
     LOG_INFO("StartScene destroyed");
 }
@@ -17,6 +26,7 @@ void StartScene::Start(){
 }
 
 void StartScene::Update() {
+    m_StartButton->Update();
     // 這裡放主選單場景的更新邏輯，如按下按鈕切換場景
 
     // // 假設你想按下某個按鍵就切換到新場景
@@ -26,6 +36,7 @@ void StartScene::Update() {
 }
 
 void StartScene::Draw() {
+    m_StartButton->Draw();
     // LOG_INFO("StartScene Draewd");
 }
 
