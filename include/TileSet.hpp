@@ -10,14 +10,20 @@
 
 class TileSet : public Util::GameObject {
 public:
-    explicit TileSet(const Tile Tiles[10][20]);
+    TileSet(const std::shared_ptr<Tile> tiles[10][20]);
+
+    TileSet() = default;
+
+    ~TileSet() = default;
 
     void Start();
 
     void ResetPosition();
 
+    void SetAllZIndex(int zindex);
+
 private:
-    Tile m_Tiles[10][20];
+    std::shared_ptr<Tile> m_tiles[10][20];
 };
 
 #endif

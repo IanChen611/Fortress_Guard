@@ -19,9 +19,6 @@ void App::Start() {
     for(int i=0; i<10; i++){
         for(int j=0; j<20; j++){
             m_ground1[i][j] = std::make_shared<Tile>(RESOURCE_DIR"/output_images/Tiles/tile_0_0.png");
-            m_ground1[i][j]->SetPosition({-480.0f+48*j, 240.0f-48*i});
-            m_ground1[i][j]->SetZIndex(0);
-            m_ground1[i][j]->m_Transform.scale = {3, 3};
         }
     }
     m_groundset1 = std::make_shared<TileSet>(m_ground1);
@@ -50,7 +47,7 @@ void App::Start() {
     m_path1[4][15] = std::make_shared<Tile>(RESOURCE_DIR"/output_images/Tiles/tile_3_5.png");
     m_path1[4][16] = std::make_shared<Tile>(RESOURCE_DIR"/output_images/Tiles/tile_3_6.png");
     m_path1[4][17] = std::make_shared<Tile>(RESOURCE_DIR"/output_images/Tiles/tile_26_14.png");
-    m_pathset1 = std::make_shared<TileSet>(m_path1);
+    // m_pathset1 = std::make_shared<TileSet>(m_path1);
 
     for(int i=0; i<10; i++){
         for(int j=0; j<20; j++){
