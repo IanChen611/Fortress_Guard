@@ -6,6 +6,7 @@
 #include "Scene.hpp"
 #include "Tile.hpp"
 #include "TileSet.hpp"
+#include "Scene1.hpp"
 
 class App {
 public:
@@ -31,11 +32,8 @@ private:
 
     State m_CurrentState = State::START;
 
-    std::shared_ptr<Tile> m_ground1[10][20];
-    std::shared_ptr<Tile> m_path1[10][20];
-    std::shared_ptr<TileSet> m_groundset1;
-    // std::shared_ptr<TileSet> m_pathset1;
-    // std::shared_ptr<TileSet> m_map1;
+    // std::shared_ptr<Scene1> m_Scene1;
+    std::unique_ptr<Scene1> m_Scene1;
 };
 
 #endif
