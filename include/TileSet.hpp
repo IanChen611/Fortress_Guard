@@ -13,7 +13,7 @@ public:
     explicit TileSet(const Tile Tiles[30][20]);
 
 private:
-    Tile m_Tiles[30][20];
+    Tile m_Tiles[20][10];
 };
 
 #endif
