@@ -1,10 +1,24 @@
-#include "Scene1.hpp"
+#include "pch.hpp"
+#include "Level.hpp"
 #include "Tile.hpp"
+#include "TileSet.hpp"
 
-#include "Util/Image.hpp"
 #include "Util/Logger.hpp"
+#include "Util/Input.hpp"
+#include "Util/Image.hpp"
+#include "Util/GameObject.hpp"
 
-Scene1::Scene1(){
+class Level1 : public Level{
+public:
+    Level1();
+    ~Level1();
+    void Start() override;
+    void Update() override;
+    void End() override;
+    void Draw() override;
+};
+
+Level1::Level1() {
     for(int i=0; i<10; i++){
         for(int j=0; j<20; j++){
             m_ground1[i][j] = std::make_shared<Tile>(RESOURCE_DIR"/output_images/Tiles/tile_0_0.png");
@@ -42,19 +56,19 @@ Scene1::Scene1(){
     LOG_INFO("Scene1 built");
 }
 
-Scene1::~Scene1(){
+Level1::~Level1(){
     LOG_INFO("Scene1 destroyed");
 }
 
-void Scene1::Start(){
+void Level1::Start(){
     LOG_INFO("Scene1 Start");
 }
 
-void Scene1::Update(){}
+void Level1::Update(){}
 
-void Scene1::End(){}
+void Level1::End(){}
 
-void Scene1::Draw(){
+void Level1::Draw(){
     for(int i=0; i<10; i++){
         for(int j=0; j<20; j++){
             m_ground1[i][j]->Draw();

@@ -6,7 +6,7 @@
 
 #include "App.hpp"
 #include "Scene.hpp"
-#include "Scene1.hpp"
+#include "Level.hpp"
 #include "SceneManager.hpp"
 #include "StartScene.hpp"
 #include "Tile.hpp"

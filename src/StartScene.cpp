@@ -9,15 +9,18 @@
 
 StartScene::StartScene() {
     LOG_INFO("StartScene built");
-    m_StartButton = std::make_shared<Button>(RESOURCE_DIR"/Image/UI/Button_StartGame.png", 0, -150, 236, 88, 1, 1, [this]() { this->OnClickStartGame(); });
+    m_StartButton = std::make_shared<Button>(RESOURCE_DIR"/Image/UI/Button_StartGame.png",
+                0, -150, 236, 88, 1, 1,
+                [this]() { this->OnClickStartGame(); });
 }
 
 StartScene::~StartScene() {
     LOG_INFO("StartScene destroyed");
 }
 
-void StartScene::OnClickStartGame(){
+void StartScene::OnClickStartGame() {
     LOG_INFO("Clicked Start Game");
+
 }
 
 
@@ -27,7 +30,7 @@ void StartScene::Start(){
     // 載入主選單資源、初始化介面
 }
 
-void StartScene::Update() {
+void StartScene::Update(){
     m_StartButton->Update();
     // 這裡放主選單場景的更新邏輯，如按下按鈕切換場景
 
@@ -42,7 +45,7 @@ void StartScene::Draw() {
     // LOG_INFO("StartScene Draewd");
 }
 
-void StartScene::End()  {
+void StartScene::End() {
     LOG_INFO("StartScene End");
     // 請求釋放資源
 }

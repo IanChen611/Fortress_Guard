@@ -6,7 +6,7 @@
 #include "Scene.hpp"
 #include "Tile.hpp"
 #include "TileSet.hpp"
-#include "Scene1.hpp"
+#include "Level.hpp"
 
 class App {
 public:
@@ -33,7 +33,7 @@ private:
     State m_CurrentState = State::START;
 
     // std::shared_ptr<Scene1> m_Scene1;
-    std::unique_ptr<Scene1> m_Scene1;
+    std::unique_ptr<Level> m_Level1;
 };
 
 #endif

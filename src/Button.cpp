@@ -21,7 +21,7 @@ void Button::Update()
     // 取得滑鼠位置
     glm::vec2 mouse_pos = Util::Input::GetCursorPosition();	
 
-    LOG_INFO("Mouse at " + std::to_string(mouse_pos.x) + ", " + std::to_string(mouse_pos.y));
+    // LOG_INFO("Mouse at " + std::to_string(mouse_pos.x) + ", " + std::to_string(mouse_pos.y));
     bool inside = IsMouseInside(mouse_pos);
     // if(inside){
     //     LOG_INFO("Mouse is inside the button");

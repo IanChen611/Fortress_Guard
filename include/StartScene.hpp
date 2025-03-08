@@ -11,16 +11,17 @@
 
 class StartScene : public Scene {
 public:
+
     StartScene();
-    ~StartScene() override ;
+    ~StartScene() ;
     
-    void Start() override ;
+    void Start() override;
 
     void Update() override;
     
-    void Draw() override ;
+    void Draw() override;
 
-    void End() override ;
+    void End() override;
 
     void OnClickStartGame();
 private:
