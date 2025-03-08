@@ -5,23 +5,23 @@
 #include "Util/Input.hpp"
 #include "Util/GameObject.hpp"
 
-Button::Button(const std::string& imagePath, int posX, int posY, float width, float height, OnClickCallback onClick){
+Button::Button(const std::string& imagePath, int posX, int posY, float width, float height, float scaleX, float scaleY, OnClickCallback onClick){
     m_X = posX;
     m_Y = posY;
     m_Transform.translation = glm::vec2(m_X, m_Y);
-    m_Width = width;
-    m_Height = height;
     m_OnClick = onClick;
     SetImage(imagePath);
     SetZIndex(5);
-    m_Transform.scale = glm::vec2(m_Width, m_Height);
+    m_Transform.scale = glm::vec2(scaleX, scaleX);
+    m_Width = width * m_Transform.scale.x;
+    m_Height = height * m_Transform.scale.y;
 }
 void Button::Update()
 {
     // 取得滑鼠位置
     glm::vec2 mouse_pos = Util::Input::GetCursorPosition();	
 
-    // LOG_INFO("Mouse at " + std::to_string(mouse_pos.x) + ", " + std::to_string(mouse_pos.y));
+    LOG_INFO("Mouse at " + std::to_string(mouse_pos.x) + ", " + std::to_string(mouse_pos.y));
     bool inside = IsMouseInside(mouse_pos);
     // if(inside){
     //     LOG_INFO("Mouse is inside the button");
@@ -51,10 +51,10 @@ void Button::Update()
 
 bool Button::IsMouseInside(glm::vec2 mousePos) const
 {
-    return (mousePos.x >= (m_X - m_Width * 8) &&
-            mousePos.x <= (m_X + m_Width * 8) &&
-            mousePos.y >= (m_Y - m_Height * 8) &&
-            mousePos.y <= (m_Y + m_Height * 8));
+    return (mousePos.x >= (m_X - m_Width/2) &&
+            mousePos.x <= (m_X + m_Width/2) &&
+            mousePos.y >= (m_Y - m_Height/2) &&
+            mousePos.y <= (m_Y + m_Height/2));
 }
 
 

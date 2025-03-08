@@ -19,6 +19,8 @@ public:
         int posY,
         float width,
         float height,
+        float scaleX,
+        float scaleY,
         OnClickCallback onClick);
     ~Button() = default;
     

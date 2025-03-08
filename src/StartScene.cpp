@@ -9,16 +9,18 @@
 
 StartScene::StartScene() {
     LOG_INFO("StartScene built");
-    m_StartButton = std::make_shared<Button>(RESOURCE_DIR"/Image/UI/Button_StartGame.png", 0, 0, 1, 1, [this]() { this->OnClickStartGame(); });
+    m_StartButton = std::make_shared<Button>(RESOURCE_DIR"/Image/UI/Button_StartGame.png", 0, -150, 236, 88, 1, 1, [this]() { this->OnClickStartGame(); });
+}
+
+StartScene::~StartScene() {
+    LOG_INFO("StartScene destroyed");
 }
 
 void StartScene::OnClickStartGame(){
     LOG_INFO("Clicked Start Game");
 }
 
-StartScene::~StartScene() {
-    LOG_INFO("StartScene destroyed");
-}
+
 
 void StartScene::Start(){
     LOG_INFO("StartScene Start");
