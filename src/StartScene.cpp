@@ -14,6 +14,12 @@ StartScene::StartScene() {
                 [this]() { this->OnClickStartGame(); });
 }
 
+void StartScene::SetSceneManager(SceneManager *m_SceneManager){
+    this->m_SceneManager = m_SceneManager;
+}
+
+
+
 StartScene::~StartScene() {
     LOG_INFO("StartScene destroyed");
 }

@@ -4,6 +4,7 @@
 #include "Scene.hpp"
 #include "Tile.hpp"
 #include "Button.hpp"
+#include "SceneManager.hpp"
 
 #include "Util/Logger.hpp"
 #include "Util/Input.hpp"
@@ -15,16 +16,16 @@ public:
     StartScene();
     ~StartScene() ;
     
+    void SetSceneManager(SceneManager *m_SceneManager);
+
     void Start() override;
-
     void Update() override;
-    
     void Draw() override;
-
     void End() override;
 
     void OnClickStartGame();
 private:
+    SceneManager *m_SceneManager;
     std::shared_ptr<Button> m_StartButton;
 };
 # endif // STARTSCENE_HPP

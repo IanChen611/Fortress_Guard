@@ -13,8 +13,12 @@ public:
     virtual void Update() = 0; // 處理邏輯
     virtual void Draw() = 0; // 處理畫面
     virtual void End() = 0;
+    void SetSceneManager(SceneManager *m_SceneManager){
+        this->m_SceneManager = m_SceneManager;
+    }
 
 protected:
+    SceneManager *m_SceneManager;
     std::shared_ptr<Tile> m_ground1[10][20];
     std::shared_ptr<Tile> m_path1[10][20];
     std::shared_ptr<TileSet> m_groundset1;
