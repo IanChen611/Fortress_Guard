@@ -25,6 +25,8 @@ public:
 
     void Draw();
 
+    void TestForBeCalled();
+
 private:
     std::stack<std::unique_ptr<Scene>> m_Scenes;
 };

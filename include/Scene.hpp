@@ -1,12 +1,13 @@
 # ifndef SCENE_HPP
 # define SCENE_HPP
-# include "SceneManager.hpp"
 
+class SceneManager;
 
 class Scene{
 public:
     Scene() = default;
-    Scene(SceneManager *m_SceneManager){
+    Scene(SceneManager* m_SceneManager) : m_SceneManager(m_SceneManager){}
+    void SetSceneManager(SceneManager* m_SceneManager){
         this->m_SceneManager = m_SceneManager;
     }
     ~Scene() = default;
@@ -15,8 +16,8 @@ public:
     virtual void Draw() = 0; // 處理畫面
     virtual void End() = 0;
 
-private:
-    SceneManager *m_SceneManager;
+protected:
+    SceneManager* m_SceneManager;
 };
 
 

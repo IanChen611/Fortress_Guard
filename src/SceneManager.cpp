@@ -11,6 +11,7 @@
 SceneManager::SceneManager(){
     LOG_INFO("SceneManager built");
     auto m_startScene = std::make_unique<StartScene>();
+    m_startScene->SetSceneManager(this);
     this->PushScene(std::move(m_startScene));
 }
 
@@ -27,6 +28,7 @@ void SceneManager::ChangeScene(std::unique_ptr<Scene> newScene) {
 
 // 在舊場景上疊加新場景（如果要同時保留上一個場景狀態，可用這種方式）
 void SceneManager::PushScene(std::unique_ptr<Scene> newScene) {
+    // LOG_INFO("PushScene be called");
     if (!m_Scenes.empty()) {
         // 也可以視需求暫停舊場景
     }
@@ -56,4 +58,8 @@ void SceneManager::Draw(){
     if (!m_Scenes.empty()) {
         m_Scenes.top()->Draw();
     }
+}
+
+void SceneManager::TestForBeCalled(){
+    LOG_INFO("SceneManager::TestForBeCalled() be called");
 }

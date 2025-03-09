@@ -26,7 +26,7 @@ StartScene::~StartScene() {
 
 void StartScene::OnClickStartGame() {
     LOG_INFO("Clicked Start Game");
-
+    m_SceneManager->TestForBeCalled();
 }
 
 
