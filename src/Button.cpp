@@ -12,7 +12,7 @@ Button::Button(const std::string& imagePath, int posX, int posY, float width, fl
     m_OnClick = onClick;
     SetImage(imagePath);
     SetZIndex(5);
-    m_Transform.scale = glm::vec2(scaleX, scaleX);
+    m_Transform.scale = glm::vec2(scaleX, scaleY);
     m_Width = width * m_Transform.scale.x;
     m_Height = height * m_Transform.scale.y;
 }

@@ -16,7 +16,7 @@ public:
     StartScene();
     ~StartScene() ;
     
-    void SetSceneManager(SceneManager *m_SceneManager);
+    void SetSceneManager(SceneManager *scenemanager);
 
     void Start() override;
     void Update() override;

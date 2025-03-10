@@ -1,5 +1,8 @@
 #ifndef CHOSELEVELSCENE_HPP
 #define CHOSELEVELSCENE_HPP
+#include <memory>
+#include <vector>
+#include <string>
 
 #include "Scene.hpp"
 #include "Tile.hpp"
@@ -12,18 +15,24 @@
 
 class ChoseLevelScene : public Scene {
 public:
-    ChoseLevelScene(){
-        for(int i=1;i<=15;i++){
-            vec_Button.push_back(std::make_share<Button>(RESOURCE_DIR"/Image/UI/" + i.to_string() + ".png"), 48, 48, 1, 1, );
-        }
-        
+    ChoseLevelScene();
+    ~ChoseLevelScene() = default;
+
+    void Start() override;
+    void Update() override;
+    void Draw() override;
+    void End() override;
+
+    void OnClickLevelButton(int i);
+
+    void SetSceneManager(SceneManager *scenemanager){
+        this->m_SceneManager = scenemanager;
     }
-
-
 private:
+    SceneManager *m_SceneManager;
     std::vector<std::shared_ptr<Button>> vec_Button;
-};
 
+};
 
 
 #endif

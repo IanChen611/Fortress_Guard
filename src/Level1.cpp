@@ -1,4 +1,5 @@
 #include "pch.hpp"
+
 #include "Level.hpp"
 #include "Tile.hpp"
 #include "TileSet.hpp"
@@ -8,15 +9,7 @@
 #include "Util/Image.hpp"
 #include "Util/GameObject.hpp"
 
-class Level1 : public Level{
-public:
-    Level1();
-    ~Level1();
-    void Start() override;
-    void Update() override;
-    void End() override;
-    void Draw() override;
-};
+
 
 Level1::Level1() {
     for(int i=0; i<10; i++){
@@ -56,19 +49,19 @@ Level1::Level1() {
     LOG_INFO("Scene1 built");
 }
 
-Level1::~Level1(){
+Level1::~Level1() {
     LOG_INFO("Scene1 destroyed");
 }
 
-void Level1::Start(){
+void Level1::Start() {
     LOG_INFO("Scene1 Start");
 }
 
-void Level1::Update(){}
+void Level1::Update()  {}
 
-void Level1::End(){}
+void Level1::End()  {}
 
-void Level1::Draw(){
+void Level1::Draw()  {
     for(int i=0; i<10; i++){
         for(int j=0; j<20; j++){
             m_ground1[i][j]->Draw();
