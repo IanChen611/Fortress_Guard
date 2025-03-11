@@ -9,7 +9,7 @@ ChooseLevelScene::ChooseLevelScene() {
     LOG_INFO("ChoseLevelScene built");
     for(int i=1; i<=15; i++){
         std::shared_ptr<Button> tem = std::make_shared<Button>(RESOURCE_DIR"/Image/UI/" + std::to_string(i) + ".png",
-            ((((i - 1) % 5)*4)+2)*48 - 480, 240 - 48 * 3 * int(((i-1)/5)), 110, 110, 0.43f, 0.43f,
+            ((((i - 1) % 5)*4)+2)*48 - 480, 240 - 48 * (3 * int(((i-1)/5)) + 2), 110, 110, 0.6f, 0.6f,
             [this, i]() { this->OnClickLevelButton(i); });
         vec_Button.push_back(tem);
     }
