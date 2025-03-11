@@ -15,7 +15,8 @@ void App::Start() {
     LOG_TRACE("Start");
     m_CurrentState = State::UPDATE;
     
-    m_Slime = std::make_shared<Enemy>();
+    std::vector<glm::vec2> waypoints = [()];
+    m_Slime = std::make_shared<Enemy>(RESOURCE_DIR"/output_images/Slime/tile_0_0.png", waypoints, 8, 1);
     // m_Scene1 = std::make_unique<Scene1>();
 }
 
