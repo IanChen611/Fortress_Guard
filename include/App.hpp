@@ -7,6 +7,7 @@
 #include "Tile.hpp"
 #include "TileSet.hpp"
 #include "Level.hpp"
+#include "Enemy.hpp"
 
 class App {
 public:
