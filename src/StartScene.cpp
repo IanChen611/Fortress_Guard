@@ -19,8 +19,6 @@ void StartScene::SetSceneManager(SceneManager *m_SceneManager){
     this->m_SceneManager = m_SceneManager;
 }
 
-
-
 StartScene::~StartScene() {
     LOG_INFO("StartScene destroyed");
 }
@@ -29,7 +27,7 @@ void StartScene::OnClickStartGame() {
     LOG_INFO("Clicked Start Game");
     std::unique_ptr<ChooseLevelScene> tem = std::make_unique<ChooseLevelScene>();
     tem->SetSceneManager(m_SceneManager);
-    m_SceneManager->ChangeScene(std::move(tem));
+    m_SceneManager->PushScene(std::move(tem));
 }
 
 

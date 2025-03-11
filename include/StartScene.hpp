@@ -24,6 +24,7 @@ public:
     void End() override;
 
     void OnClickStartGame();
+    void OnClickBackPreScene() override {}
 private:
     SceneManager *m_SceneManager;
     std::shared_ptr<Button> m_StartButton;

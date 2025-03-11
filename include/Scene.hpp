@@ -15,6 +15,7 @@ public:
     virtual void Update() = 0; // 處理邏輯
     virtual void Draw() = 0; // 處理畫面
     virtual void End() = 0;
+    virtual void OnClickBackPreScene() = 0;
 
 protected:
     SceneManager* m_SceneManager;

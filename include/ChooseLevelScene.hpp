@@ -28,6 +28,10 @@ public:
     void SetSceneManager(SceneManager *scenemanager){
         this->m_SceneManager = scenemanager;
     }
+
+    void OnClickBackPreScene() override;
+
+
 private:
     SceneManager *m_SceneManager;
     std::vector<std::shared_ptr<Button>> vec_Button;

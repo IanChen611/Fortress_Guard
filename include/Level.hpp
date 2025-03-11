@@ -2,8 +2,10 @@
 # define Level_HPP
 
 #include "Scene.hpp"
+#include "SceneManager.hpp"
 #include "Tile.hpp"
 #include "TileSet.hpp"
+#include "Button.hpp"
 
 class Level : public Scene{
 public:
@@ -16,6 +18,11 @@ public:
     void SetSceneManager(SceneManager *m_SceneManager){
         this->m_SceneManager = m_SceneManager;
     }
+    void OnClickBackPreScene() override{
+        m_SceneManager->PopScene();
+    }
+   
+
 
 protected:
     SceneManager *m_SceneManager;
@@ -36,6 +43,13 @@ public:
     void SetSceneManager(SceneManager *m_SceneManager){
         this->m_SceneManager = m_SceneManager;
     }
+    void OnClickBackPreScene() override{
+        m_SceneManager->PopScene();
+    }
+
+protected:
+    std::vector<std::shared_ptr<Button>> UI;
+    SceneManager *m_SceneManager;
 };
 
 
