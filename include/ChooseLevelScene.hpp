@@ -1,5 +1,5 @@
-#ifndef CHOSELEVELSCENE_HPP
-#define CHOSELEVELSCENE_HPP
+#ifndef CHOOSELEVELSCENE_HPP
+#define CHOOSELEVELSCENE_HPP
 #include <memory>
 #include <vector>
 #include <string>
@@ -13,10 +13,10 @@
 #include "Util/Input.hpp"
 
 
-class ChoseLevelScene : public Scene {
+class ChooseLevelScene : public Scene {
 public:
-    ChoseLevelScene();
-    ~ChoseLevelScene() = default;
+    ChooseLevelScene() ;
+    ~ChooseLevelScene() = default;
 
     void Start() override;
     void Update() override;

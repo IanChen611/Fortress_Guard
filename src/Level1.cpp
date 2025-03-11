@@ -46,7 +46,7 @@ Level1::Level1() {
     m_path1[4][17] = std::make_shared<Tile>(RESOURCE_DIR"/output_images/Tiles/tile_26_14.png");
     m_pathset1 = std::make_shared<TileSet>(m_path1);
     m_pathset1->SetAllZIndex(1);
-    LOG_INFO("Scene1 built");
+    LOG_INFO("Level1 built");
 }
 
 Level1::~Level1() {

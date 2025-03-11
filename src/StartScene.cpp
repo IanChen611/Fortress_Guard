@@ -1,7 +1,7 @@
 #include "StartScene.hpp"
 #include "Tile.hpp"
 #include "Button.hpp"
-#include "ChoseLevelScene.hpp"
+#include "ChooseLevelScene.hpp"
 
 #include "Util/Logger.hpp"
 #include "Util/Input.hpp"
@@ -27,7 +27,7 @@ StartScene::~StartScene() {
 
 void StartScene::OnClickStartGame() {
     LOG_INFO("Clicked Start Game");
-    std::unique_ptr<ChoseLevelScene> tem = std::make_unique<ChoseLevelScene>();
+    std::unique_ptr<ChooseLevelScene> tem = std::make_unique<ChooseLevelScene>();
     tem->SetSceneManager(m_SceneManager);
     m_SceneManager->ChangeScene(std::move(tem));
 }
@@ -51,7 +51,7 @@ void StartScene::Update(){
 
 void StartScene::Draw() {
     m_StartButton->Draw();
-    // LOG_INFO("StartScene Draewd");
+    // LOG_INFO("StartScene Drawed");
 }
 
 void StartScene::End() {

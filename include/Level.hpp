@@ -9,10 +9,10 @@ class Level : public Scene{
 public:
     Level() = default;
     ~Level() = default;
-    virtual void Start() = 0; // 初始化
+    // virtual void Start() = 0; // 初始化
     virtual void Update() = 0; // 處理邏輯
     virtual void Draw() = 0; // 處理畫面
-    virtual void End() = 0;
+    // virtual void End() = 0;
     void SetSceneManager(SceneManager *m_SceneManager){
         this->m_SceneManager = m_SceneManager;
     }

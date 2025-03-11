@@ -1,21 +1,21 @@
-#include "ChoseLevelScene.hpp"
+#include "ChooseLevelScene.hpp"
 
 #include "Util/Logger.hpp"
 #include "Util/Input.hpp"
 
 #include "Level.hpp"
 
-ChoseLevelScene::ChoseLevelScene() {
+ChooseLevelScene::ChooseLevelScene() {
     LOG_INFO("ChoseLevelScene built");
     for(int i=1; i<=15; i++){
         std::shared_ptr<Button> tem = std::make_shared<Button>(RESOURCE_DIR"/Image/UI/" + std::to_string(i) + ".png",
-            (i % 5)*48-24 - 480, 240 - 48 * 3 * int(((i-1)/5)), 48, 48, 1.0f, 1.0f,
+            ((((i - 1) % 5)*4)+2)*48 - 480, 240 - 48 * 3 * int(((i-1)/5)), 110, 110, 0.43f, 0.43f,
             [this, i]() { this->OnClickLevelButton(i); });
         vec_Button.push_back(tem);
     }
 }
 
-void ChoseLevelScene::OnClickLevelButton(int i){
+void ChooseLevelScene::OnClickLevelButton(int i){
     if(i == 1){
         LOG_INFO("Clicked the Level one");
         std::unique_ptr<Level1> tem = std::make_unique<Level1>();
@@ -24,14 +24,23 @@ void ChoseLevelScene::OnClickLevelButton(int i){
     }
 }
 
-void ChoseLevelScene::Update(){
+void ChooseLevelScene::Start(){
+    LOG_INFO("ChoseLevelScene Start");
+}
+
+
+void ChooseLevelScene::Update(){
     for(auto button : vec_Button){
         button->Update();
     }
 }
 
-void ChoseLevelScene::Draw(){
+void ChooseLevelScene::Draw(){
     for(auto button : vec_Button){
         button->Draw();
     }
+}
+
+void ChooseLevelScene::End(){
+    LOG_INFO("ChoseLevelScene end");
 }
