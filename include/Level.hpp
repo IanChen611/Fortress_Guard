@@ -7,9 +7,29 @@
 #include "TileSet.hpp"
 #include "Button.hpp"
 
+#include "Util/Logger.hpp"
+#include "Util/Input.hpp"
+#include "Util/GameObject.hpp"
+
 class Level : public Scene{
 public:
-    Level() = default;
+    Level(){
+        // -----UI------
+        // 返回前頁之按鈕
+        UI.push_back(std::make_shared<Button>(RESOURCE_DIR"/Image/UI/back.png",
+        -437, 298, 170, 116, 0.5f, 0.5f,
+        [this]() { 
+            this->OnClickBackPreScene();
+        }));
+        // 血量顯示
+        m_castlehealth_ori = 5;
+        m_castlehealth_now = m_castlehealth_ori;
+        // UI.push_back(std::make_shared<Util::GameObject>());
+
+
+
+        //
+    }
     ~Level() = default;
     // virtual void Start() = 0; // 初始化
     virtual void Update() = 0; // 處理邏輯
@@ -26,6 +46,9 @@ public:
 
 protected:
     SceneManager *m_SceneManager;
+    int m_castlehealth_ori;
+    int m_castlehealth_now;
+    std::vector<std::shared_ptr<Button>> UI;
     std::shared_ptr<Tile> m_ground1[10][20];
     std::shared_ptr<Tile> m_path1[10][20];
     std::shared_ptr<TileSet> m_groundset1;
@@ -40,16 +63,6 @@ public:
     void Update() override; // 處理邏輯
     void Draw() override; // 處理畫面
     void End() override;
-    void SetSceneManager(SceneManager *m_SceneManager){
-        this->m_SceneManager = m_SceneManager;
-    }
-    void OnClickBackPreScene() override{
-        m_SceneManager->PopScene();
-    }
-
-protected:
-    std::vector<std::shared_ptr<Button>> UI;
-    SceneManager *m_SceneManager;
 };
 
 
