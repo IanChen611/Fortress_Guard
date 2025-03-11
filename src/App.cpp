@@ -15,6 +15,7 @@ void App::Start() {
     LOG_TRACE("Start");
     m_CurrentState = State::UPDATE;
     
+    m_Slime = std::make_shared<Enemy>();
     // m_Scene1 = std::make_unique<Scene1>();
 }
 

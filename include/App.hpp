@@ -33,7 +33,7 @@ private:
 
     State m_CurrentState = State::START;
 
-    // std::shared_ptr<Scene1> m_Scene1;
+    std::shared_ptr<Enemy> m_Slime;
     std::unique_ptr<Level> m_Level1;
 };
 
