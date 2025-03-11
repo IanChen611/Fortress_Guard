@@ -14,8 +14,6 @@ public:
 
     void Update();
 
-    void Draw();
-
     void SetImage(const std::string& ImagePath);
 
     void SetPosition(const glm::vec2& Position) { m_Transform.translation = Position; }
@@ -23,6 +21,8 @@ public:
     void SetHealth(const int health) {m_health = health;}
 
     void setMoveSpeed(const float moveSpeed) {m_moveSpeed = moveSpeed;}
+
+    void Move();
 
 private:
     std::string m_ImagePath;
