@@ -16,7 +16,9 @@ Enemy::Enemy(const std::string& ImagePath, const std::vector<glm::vec2> waypoint
 }
 
 void Enemy::Update(){
-    Move();
+    if(m_waypoints[0].x != 99999 && m_waypoints[0].y != 99999){
+        Move();
+    }
 }
 
 void Enemy::SetImage(const std::string& ImagePath) {
@@ -28,23 +30,22 @@ void Enemy::SetImage(const std::string& ImagePath) {
 void Enemy::Move(){
     if(m_Transform.translation.x == -480.0f+48*m_waypoints[0].y && m_Transform.translation.y == 240.0f-48*m_waypoints[0].x){
         m_waypoints.erase(m_waypoints.begin());
-        LOG_INFO(m_waypoints[0]);
     }
     else{
         if(m_Transform.translation.x == -480.0f+48*m_waypoints[0].y){
             if(m_Transform.translation.y < 240.0f-48*m_waypoints[0].x){
-                m_Transform.translation.y += 5*m_moveSpeed;
+                m_Transform.translation.y += 1*m_moveSpeed;
             }
             else{
-                m_Transform.translation.y -= 5*m_moveSpeed;
+                m_Transform.translation.y -= 1*m_moveSpeed;
             }
         }
         else{
             if(m_Transform.translation.x < -480.0f+48*m_waypoints[0].y){
-                m_Transform.translation.x += 5*m_moveSpeed;
+                m_Transform.translation.x += 1*m_moveSpeed;
             }
             else{
-                m_Transform.translation.x -= 5*m_moveSpeed;
+                m_Transform.translation.x -= 1*m_moveSpeed;
             }
              
         }

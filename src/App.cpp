@@ -22,6 +22,7 @@ void App::Start() {
     waypoints.push_back({7, 13});
     waypoints.push_back({4, 13});
     waypoints.push_back({4, 17});
+    waypoints.push_back({99999, 99999});
     m_Slime = std::make_shared<Enemy>(RESOURCE_DIR"/output_images/Slime/tile_0_0.png", waypoints, 8, 1);
     // m_Scene1 = std::make_unique<Scene1>();
 }
