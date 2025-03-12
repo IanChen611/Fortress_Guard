@@ -9,11 +9,13 @@ set(SRC_FILES
     StartScene.cpp
     Tile.cpp
     TileSet.cpp
+    Heart.cpp
 )
 
 set(INCLUDE_FILES
     App.hpp
     Button.hpp
+    Ui.hpp
     ChooseLevelScene.hpp
     Enemy.hpp
     Level.hpp
@@ -21,6 +23,7 @@ set(INCLUDE_FILES
     StartScene.hpp
     Tile.hpp
     TileSet.hpp
+    Heart.hpp
 )
 
 set(TEST_FILES

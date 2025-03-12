@@ -8,15 +8,15 @@
 #include "Button.hpp"
 #include "Enemy.hpp"
 #include "Heart.hpp"
+#include "Ui.hpp"
 
 #include "Util/Logger.hpp"
 #include "Util/Input.hpp"
-#include "Util/GameObject.hpp"
 
 class Level : public Scene{
 public:
     Level(){
-        // -----UI------
+        // -----UI------ => 到時候要移植到Level.cpp
         // 返回前頁之按鈕
         UI.push_back(std::make_shared<Button>(RESOURCE_DIR"/Image/UI/back.png",
         -437, 298, 170, 116, 0.5f, 0.5f,
@@ -33,7 +33,7 @@ public:
 
 
 
-        //
+        //--------
     }
     ~Level() = default;
     // virtual void Start() = 0; // 初始化
@@ -54,7 +54,7 @@ protected:
     SceneManager *m_SceneManager;
     int m_castlehealth_ori;
     int m_castlehealth_now;
-    std::vector<std::shared_ptr<Util::GameObject>> UI;
+    std::vector<std::shared_ptr<Ui>> UI;
     std::shared_ptr<Tile> m_ground1[10][20];
     std::shared_ptr<Tile> m_path1[10][20];
     std::shared_ptr<TileSet> m_groundset1;

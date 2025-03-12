@@ -2,10 +2,10 @@
 #define HEART_HPP
 
 
-#include "Util/GameObject.hpp"
+#include "Ui.hpp"
 
 
-class Heart : public Util::GameObject {
+class Heart : public Ui {
 public:
     Heart(int pos_X, int pos_Y, int index, int* castlehealth_now);
     ~Heart() = default;

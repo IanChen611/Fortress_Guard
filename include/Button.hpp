@@ -5,12 +5,14 @@
 #include <functional>
 #include <string>
 
+#include "Ui.hpp"
+
 #include "Util/Image.hpp"
 #include "Util/Input.hpp"    
 #include "Util/Keycode.hpp"
-#include "Util/GameObject.hpp"
 
-class Button : public Util::GameObject{
+
+class Button : public Ui{
 public:
     using OnClickCallback = std::function<void()>;
     Button() = default;
