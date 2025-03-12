@@ -7,6 +7,7 @@
 #include "TileSet.hpp"
 #include "Button.hpp"
 #include "Enemy.hpp"
+#include "Heart.hpp"
 
 #include "Util/Logger.hpp"
 #include "Util/Input.hpp"
@@ -23,9 +24,12 @@ public:
             this->OnClickBackPreScene();
         }));
         // 血量顯示
-        m_castlehealth_ori = 5;
-        m_castlehealth_now = m_castlehealth_ori;
-        // UI.push_back(std::make_shared<Util::GameObject>());
+        m_castlehealth_ori = 5; // 若要調整血量，改這裡
+        m_castlehealth_now = m_castlehealth_ori - 1;
+        for(int i=0;i<m_castlehealth_ori;i++){
+            UI.push_back(std::make_shared<Heart>(448 - i * 64, 280, i+1, &m_castlehealth_now));
+        }
+        
 
 
 
@@ -50,7 +54,7 @@ protected:
     SceneManager *m_SceneManager;
     int m_castlehealth_ori;
     int m_castlehealth_now;
-    std::vector<std::shared_ptr<Button>> UI;
+    std::vector<std::shared_ptr<Util::GameObject>> UI;
     std::shared_ptr<Tile> m_ground1[10][20];
     std::shared_ptr<Tile> m_path1[10][20];
     std::shared_ptr<TileSet> m_groundset1;

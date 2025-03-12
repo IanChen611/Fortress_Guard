@@ -79,17 +79,19 @@ void Level1::Start() {
 }
 
 void Level1::Update()  {
-    for(auto ui:UI)
+    // LOG_INFO("Level1 Updated");
+    for(auto ui : UI)
     {
         ui->Update();
     }
-    m_Slime->Draw();
     m_Slime->Update();
 }
 
 void Level1::End()  {}
 
 void Level1::Draw()  {
+
+    m_Slime->Draw();
     for(int i=0; i<10; i++){
         for(int j=0; j<20; j++){
             m_ground1[i][j]->Draw();

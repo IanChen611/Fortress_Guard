@@ -24,7 +24,7 @@ public:
         OnClickCallback onClick);
     ~Button() = default;
     
-    void Update();
+    void Update() override;
     void SetImage(const std::string& ImagePath);
 
 
