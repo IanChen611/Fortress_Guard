@@ -57,8 +57,7 @@ Level1::Level1() {
     m_pathset1 = std::make_shared<TileSet>(m_path1);
     m_pathset1->SetAllZIndex(1);
     LOG_INFO("Level1 built");
-
-    std::vector<glm::vec2> waypoints;
+    
     waypoints.push_back({2, 2});
     waypoints.push_back({2, 7});
     waypoints.push_back({7, 7});
@@ -66,7 +65,8 @@ Level1::Level1() {
     waypoints.push_back({4, 13});
     waypoints.push_back({4, 17});
     waypoints.push_back({99999, 99999});
-    m_Slime = std::make_shared<Enemy>(RESOURCE_DIR"/output_images/Slime/tile_0_0.png", waypoints, 8, 1);
+
+    SpawnEnemies();
 }
 
 Level1::~Level1() {
@@ -102,4 +102,8 @@ void Level1::Draw()  {
     {
         ui->Draw();
     }
+}
+
+void Level1::SpawnEnemies(){
+    m_Slime = std::make_shared<Enemy>(RESOURCE_DIR"/output_images/Slime/tile_0_0.png", waypoints, 8, 1);
 }

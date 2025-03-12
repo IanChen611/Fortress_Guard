@@ -3,7 +3,6 @@
 #include "Util/Logger.hpp"
 
 Enemy::Enemy(const std::string& ImagePath, const std::vector<glm::vec2> waypoints, const int health, const float moveSpeed) {
-    LOG_INFO("Tile built");
     SetImage(ImagePath);
     SetHealth(health);
     setMoveSpeed(moveSpeed);

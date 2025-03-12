@@ -36,6 +36,7 @@ public:
     virtual void Update() = 0; // 處理邏輯
     virtual void Draw() = 0; // 處理畫面
     // virtual void End() = 0;
+    virtual void SpawnEnemies() = 0; // 生怪
     void SetSceneManager(SceneManager *m_SceneManager){
         this->m_SceneManager = m_SceneManager;
     }
@@ -64,9 +65,11 @@ public:
     void Update() override; // 處理邏輯
     void Draw() override; // 處理畫面
     void End() override;
+    void SpawnEnemies() override;
 
 private:
     std::shared_ptr<Enemy> m_Slime;
+    std::vector<glm::vec2> waypoints;
 };
 
 
