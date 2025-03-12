@@ -15,15 +15,15 @@ void App::Start() {
     LOG_TRACE("Start");
     m_CurrentState = State::UPDATE;
 
-    std::vector<glm::vec2> waypoints;
-    waypoints.push_back({2, 2});
-    waypoints.push_back({2, 7});
-    waypoints.push_back({7, 7});
-    waypoints.push_back({7, 13});
-    waypoints.push_back({4, 13});
-    waypoints.push_back({4, 17});
-    waypoints.push_back({99999, 99999});
-    m_Slime = std::make_shared<Enemy>(RESOURCE_DIR"/output_images/Slime/tile_0_0.png", waypoints, 8, 1);
+    // std::vector<glm::vec2> waypoints;
+    // waypoints.push_back({2, 2});
+    // waypoints.push_back({2, 7});
+    // waypoints.push_back({7, 7});
+    // waypoints.push_back({7, 13});
+    // waypoints.push_back({4, 13});
+    // waypoints.push_back({4, 17});
+    // waypoints.push_back({99999, 99999});
+    // m_Slime = std::make_shared<Enemy>(RESOURCE_DIR"/output_images/Slime/tile_0_0.png", waypoints, 8, 1);
     // m_Scene1 = std::make_unique<Scene1>();
 }
 
@@ -31,8 +31,8 @@ void App::Update() {
     //TODO: do your things here and delete this line <3
     m_SceneManager.Update();// 更新場景
     m_SceneManager.Draw();
-    m_Slime->Draw();
-    m_Slime->Update();
+    // m_Slime->Draw();
+    // m_Slime->Update();
     // m_Scene1->Draw();
     /*
      * Do not touch the code below as they serve the purpose for

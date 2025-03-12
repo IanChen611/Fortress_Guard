@@ -10,7 +10,7 @@ class Enemy : public Util::GameObject {
 public:
     Enemy(const std::string& ImagePath, const std::vector<glm::vec2> waypoints, const int health, const float moveSpeed);
 
-    ~Enemy() = default;
+    // ~Enemy() = default;
 
     void Update();
 
@@ -29,6 +29,7 @@ private:
     std::vector<glm::vec2> m_waypoints;
     int m_health;
     float m_moveSpeed;
+    bool m_isDead = false;
 };
 
 #endif

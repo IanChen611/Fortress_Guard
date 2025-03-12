@@ -6,6 +6,7 @@
 #include "Tile.hpp"
 #include "TileSet.hpp"
 #include "Button.hpp"
+#include "Enemy.hpp"
 
 #include "Util/Logger.hpp"
 #include "Util/Input.hpp"
@@ -63,6 +64,9 @@ public:
     void Update() override; // 處理邏輯
     void Draw() override; // 處理畫面
     void End() override;
+
+private:
+    std::shared_ptr<Enemy> m_Slime;
 };
 
 

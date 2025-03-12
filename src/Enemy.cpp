@@ -10,14 +10,21 @@ Enemy::Enemy(const std::string& ImagePath, const std::vector<glm::vec2> waypoint
     m_waypoints = waypoints;
     m_Transform.scale = {3, 3};
     SetZIndex(5);
-    LOG_INFO("Enemy built");
     SetPosition({-480.0f+48*m_waypoints[0].x, 240.0f-48*m_waypoints[0].y});
     m_waypoints.erase(m_waypoints.begin());
+    LOG_INFO("Enemy built");
 }
 
 void Enemy::Update(){
+    if(m_isDead){
+        this->SetVisible(false);
+    }
+
     if(m_waypoints[0].x != 99999 && m_waypoints[0].y != 99999){
         Move();
+    }
+    else{
+        m_isDead = true;
     }
 }
 
