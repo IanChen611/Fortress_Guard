@@ -26,6 +26,8 @@ public:
 
     void SetSceneManager(SceneManager *m_SceneManager);
     void OnClickBackPreScene() override ;
+
+    void EnemyHitCastle();
    
 
 

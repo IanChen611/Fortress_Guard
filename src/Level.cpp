@@ -46,3 +46,7 @@ void Level::SetSceneManager(SceneManager *m_SceneManager){
 void Level::OnClickBackPreScene(){
     m_SceneManager->PopScene();
 }
+
+void Level::EnemyHitCastle(){
+    m_castlehealth_now -= 1;
+}
