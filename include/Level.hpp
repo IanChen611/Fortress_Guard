@@ -28,7 +28,7 @@ public:
         m_castlehealth_ori = 5; // 若要調整血量，改這裡
         m_castlehealth_now = m_castlehealth_ori - 1;
         for(int i=0;i<m_castlehealth_ori;i++){
-            UI.push_back(std::make_shared<Heart>(448 - i * 64, 280, i+1, &m_castlehealth_now));
+            UI.push_back(std::make_shared<Heart>(448 - i * 64, 300, i+1, &m_castlehealth_now));
         }
         LOG_INFO("Finish build Heart");
         
@@ -37,7 +37,7 @@ public:
         m_player_money_now = m_player_money_ori;
         std::shared_ptr<Money> m_money = std::make_shared<Money>(-100, 300, &m_player_money_now);
         UI.push_back(m_money);
-        //--------
+        //--------------
     }
     ~Level() = default;
     // virtual void Start() = 0; // 初始化
