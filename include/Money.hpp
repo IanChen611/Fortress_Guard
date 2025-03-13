@@ -18,7 +18,7 @@ private:
     int m_index;
     int *m_player_money;
 
-    // std::shared_ptr<Util>
+    std::shared_ptr<Util::Text> m_number;
 };
 
 #endif
