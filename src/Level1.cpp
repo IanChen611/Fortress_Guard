@@ -12,16 +12,10 @@
 
 
 Level1::Level1() {
-    // // UI 
-    // UI.push_back(std::make_shared<Button>(RESOURCE_DIR"/Image/UI/back.png",
-    // -437, 298, 170, 116, 0.5f, 0.5f,
-    // [this]() { 
-    //     LOG_INFO("Clicked Back Button in Level1");
-    //     this->OnClickBackPreScene();
-    // }));
+    
 
-    // //
-
+    
+    // ----取圖-----
     for(int i=0; i<10; i++){
         for(int j=0; j<20; j++){
             m_ground1[i][j] = std::make_shared<Tile>(RESOURCE_DIR"/output_images/Tiles/tile_0_0.png");

@@ -11,6 +11,7 @@ set(SRC_FILES
     TileSet.cpp
     Heart.cpp
     Money.cpp
+    Level.cpp
 )
 
 set(INCLUDE_FILES
