@@ -30,6 +30,8 @@ public:
             UI.push_back(std::make_shared<Heart>(448 - i * 64, 280, i+1, &m_castlehealth_now));
         }
         
+        // 錢幣
+        // std::shared_ptr<Ui> m_money = std::make_shared<Ui>()
 
 
 

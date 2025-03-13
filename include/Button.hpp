@@ -27,7 +27,7 @@ public:
     ~Button() = default;
     
     void Update() override;
-    void SetImage(const std::string& ImagePath);
+    
 
 
 private:

@@ -58,8 +58,8 @@ bool Button::IsMouseInside(glm::vec2 mousePos) const
 }
 
 
-void Button::SetImage(const std::string& ImagePath){
-    m_ImagePath = ImagePath;
+// void Button::SetImage(const std::string& ImagePath){
+//     m_ImagePath = ImagePath;
 
-    m_Drawable = std::make_shared<Util::Image>(m_ImagePath);
-}
+//     m_Drawable = std::make_shared<Util::Image>(m_ImagePath);
+// }

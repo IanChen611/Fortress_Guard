@@ -11,7 +11,7 @@ public:
     ~Heart() = default;
 
     void Update() override;
-    void SetImage(const std::string& ImagePath);
+    
 private:
     std::string m_heart_full_imgpath;
     std::string m_heart_empty_imgpath;

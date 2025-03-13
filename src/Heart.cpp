@@ -25,7 +25,7 @@ void Heart::Update(){
     }
 }
 
-void Heart::SetImage(const std::string& ImagePath){
-    m_Drawable = std::make_shared<Util::Image>(ImagePath);
-}
+// void Heart::SetImage(const std::string& ImagePath){
+//     m_Drawable = std::make_shared<Util::Image>(ImagePath);
+// }
 
