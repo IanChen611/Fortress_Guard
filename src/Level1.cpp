@@ -60,7 +60,9 @@ Level1::Level1() {
     waypoints.push_back({4, 17});
     waypoints.push_back({99999, 99999});
 
-    SpawnEnemies();
+    EnemyList.push_back(std::make_shared<Enemy>(RESOURCE_DIR"/output_images/Slime/tile_0_0.png", waypoints, 8, 1));
+    EnemyList.push_back(std::make_shared<Enemy>(RESOURCE_DIR"/output_images/Slime/tile_0_0.png", waypoints, 8, 1));
+    EnemyList.push_back(std::make_shared<Enemy>(RESOURCE_DIR"/output_images/Slime/tile_0_0.png", waypoints, 8, 1));
 }
 
 Level1::~Level1() {
@@ -78,14 +80,21 @@ void Level1::Update()  {
     {
         ui->Update();
     }
-    m_Slime->Update();
+
+    enemyTimeCounter += 1;
+    int index = enemyTimeCounter/spawnTime;
+    if(index > EnemyList.size()){
+        index = EnemyList.size();
+    }
+    for(int i=0; i<index; i++){
+        EnemyList[i]->Update();
+        EnemyList[i]->Draw();
+    }
 }
 
 void Level1::End()  {}
 
 void Level1::Draw()  {
-
-    m_Slime->Draw();
     for(int i=0; i<10; i++){
         for(int j=0; j<20; j++){
             m_ground1[i][j]->Draw();
@@ -98,8 +107,4 @@ void Level1::Draw()  {
     {
         ui->Draw();
     }
-}
-
-void Level1::SpawnEnemies(){
-    m_Slime = std::make_shared<Enemy>(RESOURCE_DIR"/output_images/Slime/tile_0_0.png", waypoints, 8, 1);
 }

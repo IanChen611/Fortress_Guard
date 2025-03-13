@@ -22,14 +22,11 @@ public:
     virtual void Update() = 0; // 處理邏輯
     virtual void Draw() = 0; // 處理畫面
     // virtual void End() = 0;
-    virtual void SpawnEnemies() = 0; // 生怪
 
     void SetSceneManager(SceneManager *m_SceneManager);
     void OnClickBackPreScene() override ;
 
     void EnemyHitCastle();
-   
-
 
 protected:
     SceneManager *m_SceneManager;
@@ -38,10 +35,11 @@ protected:
     int m_player_money_ori;
     int m_player_money_now;
     std::vector<std::shared_ptr<Ui>> UI;
-    std::shared_ptr<Tile> m_ground1[10][20];
-    std::shared_ptr<Tile> m_path1[10][20];
-    std::shared_ptr<TileSet> m_groundset1;
-    std::shared_ptr<TileSet> m_pathset1;
+    std::vector<glm::vec2> waypoints;
+    std::vector<std::shared_ptr<Enemy>> EnemyList;
+    int enemyTimeCounter = 0;
+    int spawnTime = 100;
+    int enemyDropMoneyAmount = 30;
 };
 
 class Level1 : public Level {
@@ -52,15 +50,12 @@ public:
     void Update() override; // 處理邏輯
     void Draw() override; // 處理畫面
     void End() override;
-    void SpawnEnemies() override;
 
 private:
-    std::shared_ptr<Enemy> m_Slime;
-    std::vector<glm::vec2> waypoints;
+    std::shared_ptr<Tile> m_ground1[10][20];
+    std::shared_ptr<Tile> m_path1[10][20];
+    std::shared_ptr<TileSet> m_groundset1;
+    std::shared_ptr<TileSet> m_pathset1;
 };
-
-
-
-
 
 #endif
