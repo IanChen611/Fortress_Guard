@@ -9,6 +9,7 @@
 #include "Enemy.hpp"
 #include "Heart.hpp"
 #include "Ui.hpp"
+#include "Money.hpp"
 
 #include "Util/Logger.hpp"
 #include "Util/Input.hpp"
@@ -29,12 +30,13 @@ public:
         for(int i=0;i<m_castlehealth_ori;i++){
             UI.push_back(std::make_shared<Heart>(448 - i * 64, 280, i+1, &m_castlehealth_now));
         }
+        LOG_INFO("Finish build Heart");
         
         // 錢幣
-        // std::shared_ptr<Ui> m_money = std::make_shared<Ui>()
-
-
-
+        m_player_money_ori = 30;
+        m_player_money_now = m_player_money_ori;
+        std::shared_ptr<Money> m_money = std::make_shared<Money>(-100, 300, &m_player_money_now);
+        UI.push_back(m_money);
         //--------
     }
     ~Level() = default;
@@ -56,6 +58,8 @@ protected:
     SceneManager *m_SceneManager;
     int m_castlehealth_ori;
     int m_castlehealth_now;
+    int m_player_money_ori;
+    int m_player_money_now;
     std::vector<std::shared_ptr<Ui>> UI;
     std::shared_ptr<Tile> m_ground1[10][20];
     std::shared_ptr<Tile> m_path1[10][20];
