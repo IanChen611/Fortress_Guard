@@ -68,7 +68,7 @@ Level1::Level1() {
 }
 
 Level1::~Level1() {
-    LOG_INFO("Scene1 destroyed");
+    LOG_INFO("Level1 destroyed");
 }
 
 

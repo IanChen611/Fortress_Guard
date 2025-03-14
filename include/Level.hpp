@@ -27,12 +27,15 @@ public:
     void OnClickBackPreScene() override ;
 
     void EnemyHitCastle();
+    
+    void CountDown();
+    void GameStart();
 
 protected:
     SceneManager *m_SceneManager;
-    int m_castlehealth_ori;
+    int m_castlehealth_ori = 5;
     int m_castlehealth_now;
-    int m_player_money_ori;
+    int m_player_money_ori = 30;
     int m_player_money_now;
     std::vector<std::shared_ptr<Ui>> UI;
     std::vector<glm::vec2> waypoints;
