@@ -94,6 +94,8 @@ void Level1::Update()  {
         EnemyList[i]->Update();
         EnemyList[i]->Draw();
         if(EnemyList[i]->IsDead()){
+            m_player_money_now += EnemyList[i]->GiveMoney();
+            EnemyHitCastle();
             EnemyList.erase(EnemyList.begin()+i);
             enemyTimeCounter -= 100;
             i -= 1;
