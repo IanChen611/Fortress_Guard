@@ -7,7 +7,7 @@
 
 class Swordsman : public Guard {
 public:
-    Swordsman(const std::string& myselfImagePath);
+    Swordsman();
 
     void Update();
 
