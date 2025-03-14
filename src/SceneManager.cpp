@@ -38,9 +38,11 @@ void SceneManager::PushScene(std::unique_ptr<Scene> newScene) {
 
 // 回到上一個場景
 void SceneManager::PopScene() {
+    LOG_INFO("Called SceneManager::PopScene()");
     if (!m_Scenes.empty()) {
         // m_Scenes.top()->End();
         m_Scenes.pop();
+        LOG_INFO("Already pop now scene");
     }
     if (!m_Scenes.empty()) {
         // 回到上一個場景，可以視需求恢復它

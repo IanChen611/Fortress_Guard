@@ -4,7 +4,7 @@
 #include "Util/Input.hpp"
 
 Tile::Tile(const std::string& ImagePath) {
-    // LOG_INFO("Tile built");
+    LOG_INFO("Tile built");
     SetImage(ImagePath);
     m_Img_Translucent = std::make_shared<Util::GameObject>();
     std::shared_ptr<Util::Image> img = std::make_shared<Util::Image>(RESOURCE_DIR"/output_images/Tiles/tile_5_22.png");
@@ -13,7 +13,7 @@ Tile::Tile(const std::string& ImagePath) {
     // m_Img_Translucent->m_Transform.translation.x = m_Transform.translation.x;
     // m_Img_Translucent->m_Transform.translation.y = m_Transform.translation.y;
     m_Img_Translucent->SetDrawable(img);
-    // LOG_INFO("m_Img_Translucent already set image");
+    LOG_INFO("m_Img_Translucent already set image");
 }
 
 void Tile::SetImage(const std::string& ImagePath) {

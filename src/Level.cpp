@@ -50,6 +50,7 @@ void Level::SetSceneManager(SceneManager *m_SceneManager){
 }
 
 void Level::OnClickBackPreScene(){
+    LOG_INFO("Called Level::OnClickBackPreScene()");
     m_SceneManager->PopScene();
 }
 
