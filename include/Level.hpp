@@ -46,10 +46,10 @@ class Level1 : public Level {
 public:
     Level1() ;
     ~Level1() ;
-    void Start() override; // 初始化
+    // void Start() override; // 初始化
     void Update() override; // 處理邏輯
     void Draw() override; // 處理畫面
-    void End() override;
+    // void End() override;
 
 private:
     std::shared_ptr<Tile> m_ground1[10][20];

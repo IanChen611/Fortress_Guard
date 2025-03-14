@@ -18,10 +18,10 @@ public:
     ChooseLevelScene() ;
     ~ChooseLevelScene() = default;
 
-    void Start() override;
+    // void Start() override;
     void Update() override;
     void Draw() override;
-    void End() override;
+    // void End() override;
 
     void OnClickLevelButton(int i);
 

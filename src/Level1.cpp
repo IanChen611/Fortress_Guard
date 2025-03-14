@@ -13,8 +13,6 @@
 
 Level1::Level1() {
     
-
-    
     // ----取圖-----
     for(int i=0; i<10; i++){
         for(int j=0; j<20; j++){
@@ -51,7 +49,9 @@ Level1::Level1() {
     m_pathset1 = std::make_shared<TileSet>(m_path1);
     m_pathset1->SetAllZIndex(1);
     LOG_INFO("Level1 built");
-    
+    // ----圖載入結束-----
+
+    //----道路-----
     waypoints.push_back({2, 2});
     waypoints.push_back({2, 7});
     waypoints.push_back({7, 7});
@@ -59,7 +59,9 @@ Level1::Level1() {
     waypoints.push_back({4, 13});
     waypoints.push_back({4, 17});
     waypoints.push_back({99999, 99999});
-
+    //----------
+    
+    //----生成敵人---放入道路----
     EnemyList.push_back(std::make_shared<Enemy>(RESOURCE_DIR"/output_images/Slime/tile_0_0.png", waypoints, 8, 1));
     EnemyList.push_back(std::make_shared<Enemy>(RESOURCE_DIR"/output_images/Slime/tile_0_0.png", waypoints, 8, 1));
     EnemyList.push_back(std::make_shared<Enemy>(RESOURCE_DIR"/output_images/Slime/tile_0_0.png", waypoints, 8, 1));
@@ -70,9 +72,9 @@ Level1::~Level1() {
 }
 
 
-void Level1::Start() {
-    LOG_INFO("Scene1 Start");
-}
+// void Level1::Start() {
+//     LOG_INFO("Scene1 Start");
+// }
 
 void Level1::Update()  {
     // LOG_INFO("Level1 Updated");
@@ -92,7 +94,7 @@ void Level1::Update()  {
     }
 }
 
-void Level1::End()  {}
+// void Level1::End()  {}
 
 void Level1::Draw()  {
     for(int i=0; i<10; i++){

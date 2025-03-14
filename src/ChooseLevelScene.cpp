@@ -35,9 +35,9 @@ void ChooseLevelScene::OnClickBackPreScene(){
 }
 
 
-void ChooseLevelScene::Start(){
-    LOG_INFO("ChoseLevelScene Start");
-}
+// void ChooseLevelScene::Start(){
+//     LOG_INFO("ChoseLevelScene Start");
+// }
 
 
 void ChooseLevelScene::Update(){
@@ -52,6 +52,6 @@ void ChooseLevelScene::Draw(){
     }
 }
 
-void ChooseLevelScene::End(){
-    LOG_INFO("ChoseLevelScene end");
-}
+// void ChooseLevelScene::End(){
+//     LOG_INFO("ChoseLevelScene end");
+// }

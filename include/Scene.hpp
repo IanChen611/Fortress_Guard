@@ -11,10 +11,10 @@ public:
         this->m_SceneManager = m_SceneManager;
     }
     ~Scene() = default;
-    virtual void Start() = 0; // 初始化
+    // virtual void Start() = 0; // 初始化
     virtual void Update() = 0; // 處理邏輯
     virtual void Draw() = 0; // 處理畫面
-    virtual void End() = 0;
+    // virtual void End() = 0;
     virtual void OnClickBackPreScene() = 0;
 
 protected:

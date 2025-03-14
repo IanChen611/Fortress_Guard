@@ -18,10 +18,10 @@ public:
     
     void SetSceneManager(SceneManager *scenemanager);
 
-    void Start() override;
+    // void Start() override;
     void Update() override;
     void Draw() override;
-    void End() override;
+    // void End() override;
 
     void OnClickStartGame();
     void OnClickBackPreScene() override {}

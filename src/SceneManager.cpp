@@ -19,11 +19,11 @@ SceneManager::SceneManager(){
 void SceneManager::ChangeScene(std::unique_ptr<Scene> newScene) {
     if (!m_Scenes.empty()) {
         // 如果想要直接換場，先把頂端場景結束並清除
-        m_Scenes.top()->End();
+        // m_Scenes.top()->End();
         m_Scenes.pop();
     }
     m_Scenes.push(std::move(newScene));
-    m_Scenes.top()->Start();
+    // m_Scenes.top()->Start();
 }
 
 // 在舊場景上疊加新場景（如果要同時保留上一個場景狀態，可用這種方式）
@@ -33,13 +33,13 @@ void SceneManager::PushScene(std::unique_ptr<Scene> newScene) {
         // 也可以視需求暫停舊場景
     }
     m_Scenes.push(std::move(newScene));
-    m_Scenes.top()->Start();
+    // m_Scenes.top()->Start();
 }
 
 // 回到上一個場景
 void SceneManager::PopScene() {
     if (!m_Scenes.empty()) {
-        m_Scenes.top()->End();
+        // m_Scenes.top()->End();
         m_Scenes.pop();
     }
     if (!m_Scenes.empty()) {
