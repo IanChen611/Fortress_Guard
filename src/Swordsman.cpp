@@ -29,7 +29,7 @@ void Swordsman::Update(){
         m_coordinate.x = (((int)mouse_pos.x+480+24)/48-10)*48;
         m_coordinate.y = (((int)mouse_pos.y+240+24)/48-5)*48;
         SetPosition(m_coordinate);
-        for(int i=0; i<m_rangeCoordinate.size(); i++){
+        for(int i=0; static_cast<std::size_t>(i) < m_rangeCoordinate.size(); i++){
             glm::vec2 tempCoordinate = {m_rangeCoordinate[i].x+m_coordinate.x, m_rangeCoordinate[i].y+m_coordinate.y};
             m_rangeTile[i]->SetZIndex(10);
             m_rangeTile[i]->SetPosition(tempCoordinate);
