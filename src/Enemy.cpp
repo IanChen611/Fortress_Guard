@@ -24,8 +24,9 @@ void Enemy::Update(){
     }
     else{
         if(!m_isDead){
-            m_isDead = true;
             LOG_INFO("Enemy hit castle");
+            m_isDead = true;
+            // 城堡扣血
         }
     }
 }
