@@ -1,5 +1,5 @@
 #ifndef GUARD_HPP
-#define GUARD
+#define GUARD_HPP
 
 #include <string>
 
@@ -7,7 +7,7 @@
 
 class Guard : public Util::GameObject {
 public:
-    Guard(const std::string& myselfImagePath);
+    Guard() = default;
 
     void SetImage(const std::string& ImagePath);
 
