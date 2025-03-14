@@ -24,12 +24,15 @@ public:
 
     void Move();
 
+    bool IsDead(){return m_isDead;}
+
 private:
     std::string m_ImagePath;
     std::vector<glm::vec2> m_waypoints;
     int m_health;
     float m_moveSpeed;
     bool m_isDead = false;
+    int enemyDropMoneyAmount = 30;
 };
 
 #endif

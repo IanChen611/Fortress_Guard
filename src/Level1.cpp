@@ -92,6 +92,12 @@ void Level1::Update()  {
     for(int i=0; i<index; i++){
         EnemyList[i]->Update();
         EnemyList[i]->Draw();
+        if(EnemyList[i]->IsDead()){
+            EnemyList.erase(EnemyList.begin()+i);
+            enemyTimeCounter -= 100;
+            i -= 1;
+            index -= 1;
+        }
     }
 }
 

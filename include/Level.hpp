@@ -29,7 +29,7 @@ public:
     void EnemyHitCastle();
     
     void CountDown();
-    virtual void GameStart() = 0;
+    // virtual void GameStart() = 0;
 
 protected:
     SceneManager *m_SceneManager;
@@ -46,7 +46,6 @@ protected:
 
     int enemyTimeCounter = 0;
     int spawnTime = 100;
-    int enemyDropMoneyAmount = 30;
 };
 
 class Level1 : public Level {
