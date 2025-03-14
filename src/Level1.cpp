@@ -47,6 +47,13 @@ Level1::Level1() {
     m_path1[4][15] = std::make_shared<Tile>(RESOURCE_DIR"/output_images/Tiles/tile_3_5.png");
     m_path1[4][16] = std::make_shared<Tile>(RESOURCE_DIR"/output_images/Tiles/tile_3_6.png");
     m_path1[4][17] = std::make_shared<Tile>(RESOURCE_DIR"/output_images/Tiles/tile_26_14.png");
+    for(int i=0;i<10;i++){
+        for(int j=0;j<20;j++){
+            if(m_path1[i][j] != nullptr){
+                m_ground1[i][j]->SetTouchable(false);
+            }
+        }
+    }
     m_pathset1 = std::make_shared<TileSet>(m_path1);
     m_pathset1->SetAllZIndex(1);
     LOG_INFO("Level1 built");
@@ -102,6 +109,9 @@ void Level1::Update()  {
             index -= 1;
         }
     }
+    // 地圖更新
+    m_groundset1->Update();
+    m_pathset1->Update();
 }
 
 // void Level1::End()  {}

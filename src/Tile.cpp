@@ -6,6 +6,14 @@
 Tile::Tile(const std::string& ImagePath) {
     LOG_INFO("Tile built");
     SetImage(ImagePath);
+    m_Img_Translucent = std::make_shared<Util::GameObject>();
+    std::shared_ptr<Util::Image> img = std::make_shared<Util::Image>(RESOURCE_DIR"/output_images/Tiles/tile_5_22.png");
+    m_Img_Translucent->SetZIndex(0);
+    m_Img_Translucent->m_Transform.scale = {3, 3};
+    // m_Img_Translucent->m_Transform.translation.x = m_Transform.translation.x;
+    // m_Img_Translucent->m_Transform.translation.y = m_Transform.translation.y;
+    m_Img_Translucent->SetDrawable(img);
+    LOG_INFO("m_Img_Translucent already set image");
 }
 
 void Tile::SetImage(const std::string& ImagePath) {
@@ -19,8 +27,10 @@ void Tile::SetTouchable(bool touchable){
 }
 
 void Tile::Update(){
-    if(IsMouseInside()){
-
+    // LOG_INFO("Tile Updating");
+    if(IsMouseInside() && m_Touchable){
+        // LOG_INFO("Mouse is inside");
+        m_Img_Translucent->Draw();
     }
 }
 
