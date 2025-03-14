@@ -18,9 +18,6 @@
 Level::Level(){
     // -----UI------ 
 
-    
-
-
     // 返回前頁之按鈕
     UI.push_back(std::make_shared<Button>(RESOURCE_DIR"/Image/UI/back.png",
     -437, 298, 170, 116, 0.5f, 0.5f,
@@ -41,8 +38,8 @@ Level::Level(){
     UI.push_back(m_money);
     //----------------
 
-    //開始遊戲倒數
-    CountDown();
+    // 開始遊戲倒數
+    // Update()那邊負責倒數
 }
 
 void Level::SetSceneManager(SceneManager *m_SceneManager){
@@ -55,9 +52,6 @@ void Level::OnClickBackPreScene(){
 }
 
 
-void Level::CountDown(){
-    gameStart = true;
-}
 
 void Level::EnemyHitCastle(){
     m_castlehealth_now -= 1;

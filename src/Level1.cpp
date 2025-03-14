@@ -85,35 +85,45 @@ Level1::~Level1() {
 // }
 
 void Level1::Update()  {
+    if(startGameCounter < 500 && !gameStart) startGameCounter += 1;
+    else if(!gameStart){
+        gameStart = true;
+        LOG_INFO("Finish Countdown");
+    }
     // LOG_INFO("Level1 Updated");
+
+    // 地圖更新
+    m_groundset1->Update();
+    m_pathset1->Update();
+
+    // UI更新
     for(auto ui : UI)
     {
         ui->Update();
     }
-    startGameCounter += 1;
-    
-    enemyTimeCounter += 1;
-    int index = enemyTimeCounter/spawnTime;
-    if(static_cast<std::size_t>(index) >= EnemyList.size()){
-        index = EnemyList.size();
-    }
-    for(int i=0; i<index; i++){
-        EnemyList[i]->Update();
-        EnemyList[i]->Draw();
-        if(EnemyList[i]->IsDead()){
-            m_player_money_now += EnemyList[i]->GiveMoney();
-            EnemyHitCastle();
-            EnemyList.erase(EnemyList.begin()+i);
-            enemyTimeCounter -= 100;
-            i -= 1;
-            index -= 1;
+
+    if(gameStart){
+        enemyTimeCounter += 1;
+        int index = enemyTimeCounter/spawnTime;
+        if(static_cast<std::size_t>(index) >= EnemyList.size()){
+            index = EnemyList.size();
+        }
+        for(int i=0; i<index; i++){
+            EnemyList[i]->Update();
+            EnemyList[i]->Draw();
+            if(EnemyList[i]->IsDead()){
+                m_player_money_now += EnemyList[i]->GiveMoney();
+                EnemyHitCastle();
+                EnemyList.erase(EnemyList.begin()+i);
+                enemyTimeCounter -= 100;
+                i -= 1;
+                index -= 1;
+            }
         }
     }
-    // 地圖更新
-    m_groundset1->Update();
-    m_pathset1->Update();
     //update swordsman
     sm->Update();
+    
 }
 
 // void Level1::End()  {}
