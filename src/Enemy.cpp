@@ -23,7 +23,10 @@ void Enemy::Update(){
         Move();
     }
     else{
-        m_isDead = true;
+        if(!m_isDead){
+            m_isDead = true;
+            LOG_INFO("Enemy hit castle");
+        }
     }
 }
 
