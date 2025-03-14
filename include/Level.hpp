@@ -42,9 +42,13 @@ protected:
     std::vector<glm::vec2> waypoints;
     std::vector<std::shared_ptr<Enemy>> EnemyList;
     
+    // --倒數的部分--
     int startGameCounter = 0;
     bool gameStart = false;
-
+    std::shared_ptr<Util::GameObject> m_countdown_number; 
+    std::shared_ptr<Util::Text> m_countdown_text; 
+    
+    // --生成敵人的計時器--
     int enemyTimeCounter = 0;
     int spawnTime = 100;
 };

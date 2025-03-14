@@ -39,6 +39,16 @@ Level::Level(){
     //----------------
 
     // 開始遊戲倒數
+    // ---倒數的數字---
+    m_countdown_number = std::make_shared<Util::GameObject>();
+    m_countdown_number->SetZIndex(5);
+    // m_countdown_text->m_Transform.translation = {0.0f, 0.0f};
+    LOG_INFO("Test");
+    m_countdown_text = std::make_shared<Util::Text>(
+        RESOURCE_DIR"/Font/Inter.ttf",
+        200, std::to_string(5),
+        Util::Color(127, 127, 127));
+        m_countdown_number->SetDrawable(m_countdown_text);
     // Update()那邊負責倒數
 }
 

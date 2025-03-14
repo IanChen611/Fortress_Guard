@@ -85,9 +85,14 @@ Level1::~Level1() {
 // }
 
 void Level1::Update()  {
-    if(startGameCounter < 500 && !gameStart) startGameCounter += 1;
+    if(startGameCounter < 300 && !gameStart){
+        startGameCounter += 1;
+        m_countdown_text->SetText(std::to_string(5 - startGameCounter/60));
+        m_countdown_number->Draw();
+    }
     else if(!gameStart){
         gameStart = true;
+        m_countdown_number->SetVisible(false);
         LOG_INFO("Finish Countdown");
     }
     // LOG_INFO("Level1 Updated");
