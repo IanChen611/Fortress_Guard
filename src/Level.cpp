@@ -28,7 +28,7 @@ Level::Level(){
         this->OnClickBackPreScene();
     }));
     // -----血量顯示-----
-    m_castlehealth_now = m_castlehealth_ori - 1;
+    m_castlehealth_now = m_castlehealth_ori;
     for(int i=0;i<m_castlehealth_ori;i++){
         UI.push_back(std::make_shared<Heart>(448 - i * 64, 300, i+1, &m_castlehealth_now));
     }

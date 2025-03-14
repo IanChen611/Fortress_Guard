@@ -26,6 +26,8 @@ public:
 
     bool IsDead(){return m_isDead;}
 
+    int GiveMoney(){return enemyDropMoneyAmount;}
+
 private:
     std::string m_ImagePath;
     std::vector<glm::vec2> m_waypoints;
