@@ -10,6 +10,7 @@
 #include "Heart.hpp"
 #include "Ui.hpp"
 #include "Money.hpp"
+#include "Swordsman.hpp"
 
 #include "Util/Logger.hpp"
 #include "Util/Input.hpp"
@@ -62,6 +63,8 @@ private:
     std::shared_ptr<Tile> m_path1[10][20];
     std::shared_ptr<TileSet> m_groundset1;
     std::shared_ptr<TileSet> m_pathset1;
+
+    std::shared_ptr<Swordsman> sm;
 };
 
 #endif

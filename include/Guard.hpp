@@ -5,6 +5,8 @@
 
 #include "Util/GameObject.hpp"
 
+#include "Tile.hpp"
+
 class Guard : public Util::GameObject {
 public:
     Guard() = default;
@@ -21,7 +23,8 @@ protected:
     float m_attackSpeed;
     bool m_isDeployed = false;
     int m_cost;
-    std::vector<glm::vec2> m_range;
+    std::vector<glm::vec2> m_rangeCoordinate;
+    std::vector<std::shared_ptr<Tile>> m_rangeTile;
 };
 
 #endif

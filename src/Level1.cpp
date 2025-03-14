@@ -58,7 +58,7 @@ Level1::Level1() {
     m_pathset1->SetAllZIndex(1);
     LOG_INFO("Level1 built");
     // ----圖載入結束-----
-
+    
     //----道路-----
     waypoints.push_back({2, 2});
     waypoints.push_back({2, 7});
@@ -67,8 +67,8 @@ Level1::Level1() {
     waypoints.push_back({4, 13});
     waypoints.push_back({4, 17});
     waypoints.push_back({99999, 99999});
-    //----------
-    
+    //-----swordsman test-----
+    sm = std::make_shared<Swordsman>();
     //----生成敵人---放入道路----
     EnemyList.push_back(std::make_shared<Enemy>(RESOURCE_DIR"/output_images/Slime/tile_0_0.png", waypoints, 8, 1));
     EnemyList.push_back(std::make_shared<Enemy>(RESOURCE_DIR"/output_images/Slime/tile_0_0.png", waypoints, 8, 1));
@@ -112,6 +112,8 @@ void Level1::Update()  {
     // 地圖更新
     m_groundset1->Update();
     m_pathset1->Update();
+    //update swordsman
+    sm->Update();
 }
 
 // void Level1::End()  {}
@@ -125,4 +127,6 @@ void Level1::Draw()  {
     {
         ui->Draw();
     }
+    //draw swordsman
+    sm->Draw();
 }
