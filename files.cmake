@@ -12,6 +12,7 @@ set(SRC_FILES
     Heart.cpp
     Money.cpp
     Level.cpp
+    Guard.cpp
 )
 
 set(INCLUDE_FILES
@@ -27,6 +28,7 @@ set(INCLUDE_FILES
     TileSet.hpp
     Heart.hpp
     Money.hpp
+    Guard.hpp
 )
 
 set(TEST_FILES

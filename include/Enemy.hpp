@@ -34,7 +34,7 @@ private:
     int m_health;
     float m_moveSpeed;
     bool m_isDead = false;
-    int enemyDropMoneyAmount = 30;
+    int enemyDropMoneyAmount = 10;
 };
 
 #endif
