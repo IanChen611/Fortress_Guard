@@ -22,7 +22,7 @@ Money::Money(int pos_X, int pos_Y, int* player_money){
     m_number->SetZIndex(5);
     m_number->m_Transform.scale = glm::vec2(0.25f, 0.25f);
     m_number->m_Transform.translation = {pos_X + 60, pos_Y};
-    LOG_INFO("Test for Money built");
+    // LOG_INFO("Test for Money built");
     m_number->SetDrawable(m_number_text);
 }
 
