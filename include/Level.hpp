@@ -29,7 +29,7 @@ public:
     void EnemyHitCastle();
     
     void CountDown();
-    void GameStart();
+    virtual void GameStart() = 0;
 
 protected:
     SceneManager *m_SceneManager;
@@ -40,6 +40,10 @@ protected:
     std::vector<std::shared_ptr<Ui>> UI;
     std::vector<glm::vec2> waypoints;
     std::vector<std::shared_ptr<Enemy>> EnemyList;
+    
+    int startGameCounter = 0;
+    bool gameStart = false;
+
     int enemyTimeCounter = 0;
     int spawnTime = 100;
     int enemyDropMoneyAmount = 30;

@@ -16,7 +16,11 @@
 
 
 Level::Level(){
-    // -----UI------ => 到時候要移植到Level.cpp
+    // -----UI------ 
+
+    
+
+
     // 返回前頁之按鈕
     UI.push_back(std::make_shared<Button>(RESOURCE_DIR"/Image/UI/back.png",
     -437, 298, 170, 116, 0.5f, 0.5f,
@@ -51,7 +55,7 @@ void Level::OnClickBackPreScene(){
 
 
 void Level::CountDown(){
-    
+    gameStart = true;
 }
 
 void Level::EnemyHitCastle(){

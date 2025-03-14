@@ -82,7 +82,8 @@ void Level1::Update()  {
     {
         ui->Update();
     }
-
+    startGameCounter += 1;
+    
     enemyTimeCounter += 1;
     int index = enemyTimeCounter/spawnTime;
     if(static_cast<std::size_t>(index) >= EnemyList.size()){
