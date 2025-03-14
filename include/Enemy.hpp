@@ -18,7 +18,7 @@ public:
 
     void SetPosition(const glm::vec2& Position) { m_Transform.translation = Position; }
 
-    void SetHealth(const int health) {m_health = health;}
+    void SetHealth(const int health) {m_health_ori = health;m_health_now = health;}
 
     void setMoveSpeed(const float moveSpeed) {m_moveSpeed = moveSpeed;}
 
@@ -31,7 +31,9 @@ public:
 private:
     std::string m_ImagePath;
     std::vector<glm::vec2> m_waypoints;
-    int m_health;
+    std::shared_ptr<Util::GameObject> m_healthbar;
+    int m_health_ori;
+    int m_health_now;
     float m_moveSpeed;
     bool m_isDead = false;
     int enemyDropMoneyAmount = 10;
