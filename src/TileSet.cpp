@@ -38,3 +38,25 @@ void TileSet::SetAllZIndex(int zindex){
         }
     }
 }
+
+void TileSet::Draw(){
+    for(int i=0; i<10; i++){
+        for(int j=0; j<20; j++){
+            if(m_tiles[i][j] != nullptr){
+                m_tiles[i][j]->Draw();
+            }
+        }
+    }
+}
+
+void TileSet::Update(){
+    for(int i=0; i<10; i++){
+        for(int j=0; j<20; j++){
+            if(m_tiles[i][j] != nullptr){
+                m_tiles[i][j]->Update();
+            }
+        }
+    }
+}
+
+

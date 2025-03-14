@@ -22,6 +22,9 @@ public:
 
     void SetAllZIndex(int zindex);
 
+    void Draw();
+    void Update();
+
 private:
     std::shared_ptr<Tile> m_tiles[10][20];
 };

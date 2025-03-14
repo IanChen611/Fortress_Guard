@@ -17,6 +17,7 @@ Level1::Level1() {
     for(int i=0; i<10; i++){
         for(int j=0; j<20; j++){
             m_ground1[i][j] = std::make_shared<Tile>(RESOURCE_DIR"/output_images/Tiles/tile_0_0.png");
+            m_ground1[i][j]->SetTouchable(true);
         }
     }
     m_groundset1 = std::make_shared<TileSet>(m_ground1);
@@ -104,14 +105,10 @@ void Level1::Update()  {
 // void Level1::End()  {}
 
 void Level1::Draw()  {
-    for(int i=0; i<10; i++){
-        for(int j=0; j<20; j++){
-            m_ground1[i][j]->Draw();
-            if(m_path1[i][j] != nullptr){
-                m_path1[i][j]->Draw();
-            }
-        }
-    }
+    // 繪製地圖、路徑
+    m_groundset1->Draw();
+    m_pathset1->Draw();
+    // UI繪製
     for(auto ui:UI)
     {
         ui->Draw();
