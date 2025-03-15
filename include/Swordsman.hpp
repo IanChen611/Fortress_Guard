@@ -9,7 +9,7 @@ class Swordsman : public Guard {
 public:
     Swordsman();
 
-    void Update();
+    void Update() override;
 
 private:
     std::string m_rangeImagePath;

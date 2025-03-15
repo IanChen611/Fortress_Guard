@@ -85,6 +85,7 @@ Level1::~Level1() {
 // }
 
 void Level1::Update()  {
+    // 遊戲開始的倒數
     if(startGameCounter < 300 && !gameStart){
         startGameCounter += 1;
         m_countdown_text->SetText(std::to_string(5 - startGameCounter/60));
@@ -107,6 +108,25 @@ void Level1::Update()  {
         ui->Update();
     }
 
+    // 購買Guard的部分 更新
+    if(buying) bt_cancelBuy->Update(); // 取消按鈕
+    if(tem != nullptr){
+        if(cancelBuy){
+            tem->~Guard();
+            LOG_INFO("delete tem.");
+            cancelBuy = false;
+            buying = false;
+            tem = nullptr;
+        }
+        else tem->Update();
+    }
+
+    //Guard 更新
+    for(auto guard : GuardList){
+        guard->Update();
+    }
+
+    // 倒數結束後
     if(gameStart){
         enemyTimeCounter += 1;
         int index = enemyTimeCounter/spawnTime;
@@ -126,8 +146,12 @@ void Level1::Update()  {
             }
         }
     }
+
+
+
+    // ---  Test for sm  ---
     //update swordsman
-    sm->Update();
+    // sm->Update();
     
 }
 
@@ -137,11 +161,24 @@ void Level1::Draw()  {
     // 繪製地圖、路徑
     m_groundset1->Draw();
     m_pathset1->Draw();
+
     // UI繪製
     for(auto ui:UI)
     {
         ui->Draw();
     }
+
+    
+    // 購買Guard的部分 繪製
+    if(buying) bt_cancelBuy->Draw();
+    if(tem != nullptr) tem->Draw();
+
+    //Guard 繪製
+    for(auto guard : GuardList){
+        guard->Draw();
+    }
+
+    // ---  Test for sm  ---
     //draw swordsman
-    sm->Draw();
+    // sm->Draw();
 }

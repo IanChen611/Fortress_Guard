@@ -9,6 +9,8 @@
 #include "Heart.hpp"
 #include "Ui.hpp"
 #include "Money.hpp"
+#include "Guard.hpp"
+#include "Swordsman.hpp"
 
 
 #include "Util/Logger.hpp"
@@ -24,6 +26,7 @@ Level::Level(){
     [this]() { 
         this->OnClickBackPreScene();
     }));
+
     // -----血量顯示-----
     m_castlehealth_now = m_castlehealth_ori;
     for(int i=0;i<m_castlehealth_ori;i++){
@@ -37,6 +40,26 @@ Level::Level(){
     std::shared_ptr<Money> m_money = std::make_shared<Money>(-100, 300, &m_player_money_now);
     UI.push_back(m_money);
     //----------------
+
+    // -----選角色的按鈕------
+    // 取消購買的按鈕
+    bt_cancelBuy = std::make_shared<Button>(RESOURCE_DIR"/Image/UI/cancelbuy.png",
+        301, -290, 238, 87, 0.75f, 0.75f,
+        [this]() { 
+            this->OnClickCancelBuy();
+        });
+    bt_cancelBuy->SetVisible(false);
+    
+    // Swordman的按鈕
+    UI.push_back(std::make_shared<Button>(RESOURCE_DIR"/output_images/Swordsman/tile_0_0.png",
+        -432, -288, 16, 16, 3.0f, 3.0f,
+        [this]() { 
+            this->OnClickBuyGuard("Swordsman");
+        }));
+
+
+
+
 
     // 開始遊戲倒數
     // ---倒數的數字---
@@ -65,4 +88,18 @@ void Level::OnClickBackPreScene(){
 
 void Level::EnemyHitCastle(){
     m_castlehealth_now -= 1;
+}
+
+void Level::OnClickBuyGuard(std::string characterName){
+    buying = true;
+    cancelBuy = false;
+    bt_cancelBuy->SetVisible(true);
+    if(characterName == "Swordsman"){
+        tem = std::make_shared<Swordsman>();
+    }
+}
+
+void Level::OnClickCancelBuy(){
+    cancelBuy = true;
+    buying = false;
 }

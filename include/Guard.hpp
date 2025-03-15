@@ -10,10 +10,14 @@
 class Guard : public Util::GameObject {
 public:
     Guard() = default;
+    ~Guard() = default;
 
     void SetImage(const std::string& ImagePath);
 
     void SetPosition(const glm::vec2& Position) { m_Transform.translation = Position; }
+
+    // 為了讓子類別(Swordsman之類的)可以Update
+    virtual void Update(){}
 
 protected:
     std::string m_myselfImagePath;
