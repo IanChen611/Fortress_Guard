@@ -91,7 +91,7 @@ private:
     std::shared_ptr<TileSet> m_groundset1;
     std::shared_ptr<TileSet> m_pathset1;
 
-    std::shared_ptr<Swordsman> sm;
+    // std::shared_ptr<Swordsman> sm;
 };
 
 #endif

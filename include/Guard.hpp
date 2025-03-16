@@ -6,6 +6,7 @@
 #include "Util/GameObject.hpp"
 
 #include "Tile.hpp"
+#include "Enemy.hpp"
 
 class Guard : public Util::GameObject {
 public:
@@ -19,6 +20,8 @@ public:
     // 為了讓子類別(Swordsman之類的)可以Update
     virtual void Update(){}
 
+    virtual bool IsEnemyInRange(const std::shared_ptr<Enemy> enemy){}
+
 protected:
     std::string m_myselfImagePath;
     std::string m_rangeImagePath;
@@ -29,6 +32,7 @@ protected:
     int m_cost;
     std::vector<glm::vec2> m_rangeCoordinate;
     std::vector<std::shared_ptr<Tile>> m_rangeTile;
+    std::vector<std::shared_ptr<Enemy>> m_enemyInRange;
 };
 
 #endif

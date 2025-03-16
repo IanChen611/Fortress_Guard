@@ -11,15 +11,9 @@ public:
 
     void Update() override;
 
+    bool IsEnemyInRange(const std::shared_ptr<Enemy> enemy) override {}
+
 private:
-    std::string m_rangeImagePath;
-    glm::vec2 m_coordinate;
-    int m_damage;
-    float m_attackSpeed;
-    bool m_isDeployed = false;
-    int m_cost;
-    std::vector<glm::vec2> m_rangeCoordinate;
-    std::vector<std::shared_ptr<Tile>> m_rangeTile;
 };
 
 #endif
