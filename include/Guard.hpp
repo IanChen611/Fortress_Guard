@@ -20,7 +20,7 @@ public:
     // 為了讓子類別(Swordsman之類的)可以Update
     virtual void Update(){}
 
-    virtual bool IsEnemyInRange(const std::shared_ptr<Enemy> enemy){}
+    virtual bool IsEnemyInRange(const std::shared_ptr<Enemy> enemy) = 0;
 
 protected:
     std::string m_myselfImagePath;

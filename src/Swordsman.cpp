@@ -38,6 +38,6 @@ void Swordsman::Update(){
     }
 }
 
-// bool Swordsman::IsEnemyInRange(const std::shared_ptr<Enemy> enemy){
-//     return abs(enemy->m_Transform.translation.x - m_Transform.translation.x) <= 1 && abs(enemy->m_Transform.translation.y - m_Transform.translation.y) <= 1;
-// }
+bool Swordsman::IsEnemyInRange(const std::shared_ptr<Enemy> enemy){
+    return abs(enemy->m_Transform.translation.x - m_Transform.translation.x) <= 1 && abs(enemy->m_Transform.translation.y - m_Transform.translation.y) <= 1;
+}
