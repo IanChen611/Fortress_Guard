@@ -30,7 +30,7 @@ public:
 
     bool IsEnemyInEnemyInRange(std::shared_ptr<Enemy> enemy){return std::find(m_enemyInRange.begin(), m_enemyInRange.end(), enemy) == m_enemyInRange.end();};
 
-    void PopFrontEnemyInRange(std::shared_ptr<Enemy> enemy){m_enemyInRange.erase(m_enemyInRange.begin());}
+    void PopFrontEnemyInRange(){m_enemyInRange.erase(m_enemyInRange.begin());}
 
 protected:
     std::string m_myselfImagePath;
@@ -39,6 +39,7 @@ protected:
     int m_damage;
     float m_attackSpeed;
     bool m_isDeployed = false;
+    bool m_clickMe = false;
     int m_cost;
     std::vector<glm::vec2> m_rangeCoordinate;
     std::vector<std::shared_ptr<Tile>> m_rangeTile;

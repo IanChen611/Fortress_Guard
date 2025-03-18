@@ -144,7 +144,7 @@ void Level1::Update()  {
                 guard->SetEnemyInRange(enemy);
             }
             else if(!guard->IsEnemyInRange(enemy) && !guard->IsEnemyInEnemyInRange(enemy)){
-                guard->PopFrontEnemyInRange(enemy);
+                guard->PopFrontEnemyInRange();
             }
         }
         guard->Update();
@@ -170,8 +170,6 @@ void Level1::Update()  {
             }
         }
     }
-
-
 
     // ---  Test for sm  ---
     //update swordsman

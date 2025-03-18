@@ -25,15 +25,33 @@ Swordsman::Swordsman() {
 
 void Swordsman::Update(){
     if(!m_isDeployed){
+        //change myself coordinates and range coordinates
         glm::vec2 mouse_pos = Util::Input::GetCursorPosition();
         m_coordinate.x = (((int)mouse_pos.x+480+24)/48-10)*48;
         m_coordinate.y = (((int)mouse_pos.y+240+24)/48-5)*48;
         SetPosition(m_coordinate);
         for(int i=0; static_cast<std::size_t>(i) < m_rangeCoordinate.size(); i++){
             glm::vec2 tempCoordinate = {m_rangeCoordinate[i].x+m_coordinate.x, m_rangeCoordinate[i].y+m_coordinate.y};
-            m_rangeTile[i]->SetZIndex(10);
+            m_rangeTile[i]->SetZIndex(3);
             m_rangeTile[i]->SetPosition(tempCoordinate);
             m_rangeTile[i]->Draw();
+        }
+    }
+    else{
+        //show range
+        glm::vec2 mouse_pos = Util::Input::GetCursorPosition();
+        mouse_pos.x = (((int)mouse_pos.x+480+24)/48-10)*48;
+        mouse_pos.y = (((int)mouse_pos.y+240+24)/48-5)*48;
+        if(Util::Input::IsKeyDown(Util::Keycode::MOUSE_LB)){
+            m_clickMe = true;
+        }
+        if(Util::Input::IsKeyUp(Util::Keycode::MOUSE_LB)){
+            m_clickMe = false;
+        }
+        if(mouse_pos.x == m_coordinate.x && mouse_pos.y == m_coordinate.y && m_clickMe){
+            for(int i=0; static_cast<std::size_t>(i) < m_rangeCoordinate.size(); i++){
+                m_rangeTile[i]->Draw();
+            }
         }
     }
 }
