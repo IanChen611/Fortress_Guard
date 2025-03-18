@@ -49,7 +49,7 @@ protected:
     // UI介面存放的vector
     std::vector<std::shared_ptr<Ui>> UI;
     
-    //角色的清單
+    // 買角色跟角色vector
     std::shared_ptr<Button> bt_cancelBuy;
     std::shared_ptr<Guard> tem;
     bool buying = false;
@@ -74,6 +74,9 @@ protected:
     // --生成敵人的計時器--
     int enemyTimeCounter = 0;
     int spawnTime = 100;
+
+    // 遊戲結束的部分
+    bool gameOver = false;
 };
 
 class Level1 : public Level {
