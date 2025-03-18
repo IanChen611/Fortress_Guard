@@ -76,7 +76,9 @@ protected:
     int spawnTime = 100;
 
     // 遊戲結束的部分
-    bool gameOver = false;
+    bool gameLose = false;
+    bool gameWin = false;
+    std::shared_ptr<Util::GameObject> img_gameFinish;
 };
 
 class Level1 : public Level {

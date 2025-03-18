@@ -119,77 +119,94 @@ void Level1::Update()  {
     {
         ui->Update();
     }
-
-    // 購買Guard的部分 更新
-    if(buying){
-        bt_cancelBuy->Update(); // 取消按鈕
-        glm::vec2 mouse_pos = Util::Input::GetCursorPosition();
-        int m_ground1_i = -(((int)mouse_pos.y+240+24)/48-10);
-        int m_ground1_j = (((int)mouse_pos.x+480+24)/48);
-        if(0 <= m_ground1_i && m_ground1_i < 10 && 0 <= m_ground1_j && m_ground1_j < 20){
-            if(Util::Input::IsKeyDown(Util::Keycode::MOUSE_LB) && m_ground1[m_ground1_i][m_ground1_j]->IsTouchable()){
-                if(m_player_money_now-tem->GetCost() >= 0){
-                    m_player_money_now -= tem->GetCost();
-                    buying = false;
-                    tem->SetDeployed(true);
-                    GuardList.push_back(tem);
-                    tem = nullptr;
-                }
-            }
-        }
-    }
-    if(tem != nullptr){
-        if(cancelBuy){
-            tem->~Guard();
-            LOG_INFO("delete tem.");
-            cancelBuy = false;
-            buying = false;
-            tem = nullptr;
-        }
-        else tem->Update();
-    }
-
-    //Guard 更新
-    for(auto guard : GuardList){
-        for(auto enemy : EnemyList){
-            if(guard->IsEnemyInRange(enemy) && guard->IsEnemyInEnemyInRange(enemy)){
-                guard->SetEnemyInRange(enemy);
-            }
-            else if(!guard->IsEnemyInRange(enemy) && !guard->IsEnemyInEnemyInRange(enemy)){
-                guard->PopFrontEnemyInRange();
-            }
-        }
-        guard->Update();
-    }
-
-    // 倒數結束後
-    if(gameStart){
-        enemyTimeCounter += 1;
-        int index = enemyTimeCounter/spawnTime;
-        if(static_cast<std::size_t>(index) >= EnemyList.size()){
-            index = EnemyList.size();
-        }
-        //生怪
-        for(int i=0; i<index; i++){
-            EnemyList[i]->Update();
-            EnemyList[i]->Draw();
-            if(EnemyList[i]->IsDead()){
-                if(EnemyList[i]->GetHealth() > 0){
-                    EnemyHitCastle();
-                }
-                m_player_money_now += EnemyList[i]->GiveMoney();
-                EnemyList.erase(EnemyList.begin()+i);
-                enemyTimeCounter -= 100;
-                i -= 1;
-                index -= 1;
-            }
-        }
-    }
-
-    // ---  Test for sm  ---
-    //update swordsman
-    // sm->Update();
     
+    // 遊戲沒有輸(城堡扣完血) 且 遊戲沒有贏(敵人出動全部且沒有存在場上)
+    if(!gameLose && !gameWin){
+
+        // 購買Guard的部分 更新
+        if(buying){
+            bt_cancelBuy->Update(); // 取消按鈕
+            glm::vec2 mouse_pos = Util::Input::GetCursorPosition();
+            int m_ground1_i = -(((int)mouse_pos.y+240+24)/48-10);
+            int m_ground1_j = (((int)mouse_pos.x+480+24)/48);
+            if(0 <= m_ground1_i && m_ground1_i < 10 && 0 <= m_ground1_j && m_ground1_j < 20){
+                if(Util::Input::IsKeyDown(Util::Keycode::MOUSE_LB) && m_ground1[m_ground1_i][m_ground1_j]->IsTouchable()){
+                    if(m_player_money_now-tem->GetCost() >= 0){
+                        m_player_money_now -= tem->GetCost();
+                        buying = false;
+                        tem->SetDeployed(true);
+                        GuardList.push_back(tem);
+                        tem = nullptr;
+                    }
+                }
+            }
+        }
+        if(tem != nullptr){
+            if(cancelBuy){
+                tem->~Guard();
+                LOG_INFO("delete tem.");
+                cancelBuy = false;
+                buying = false;
+                tem = nullptr;
+            }
+            else tem->Update();
+        }
+
+        //Guard 更新
+        for(auto guard : GuardList){
+            for(auto enemy : EnemyList){
+                if(guard->IsEnemyInRange(enemy) && guard->IsEnemyInEnemyInRange(enemy)){
+                    guard->SetEnemyInRange(enemy);
+                }
+                else if(!guard->IsEnemyInRange(enemy) && !guard->IsEnemyInEnemyInRange(enemy)){
+                    guard->PopFrontEnemyInRange();
+                }
+            }
+            guard->Update();
+        }
+
+        // 倒數結束後
+        if(gameStart){
+            enemyTimeCounter += 1;
+            int index = enemyTimeCounter/spawnTime;
+            if(static_cast<std::size_t>(index) >= EnemyList.size()){
+                index = EnemyList.size();
+            }
+            // 各個怪物 Update
+            for(int i=0; i<index; i++){
+                EnemyList[i]->Update();
+                EnemyList[i]->Draw();
+                if(EnemyList[i]->IsDead()){
+                    if(EnemyList[i]->GetHealth() > 0){
+                        EnemyHitCastle();
+                        if(!gameLose && !gameWin && m_castlehealth_now == 0) gameLose = true;
+                    }
+                    m_player_money_now += EnemyList[i]->GiveMoney();
+                    EnemyList.erase(EnemyList.begin()+i);
+                    enemyTimeCounter -= 100;
+                    i -= 1;
+                    index -= 1;
+                }
+            }
+        }
+
+        // ---  Test for sm  ---
+        //update swordsman
+        // sm->Update();
+    }
+    if(gameLose){
+        img_gameFinish = std::make_shared<Util::GameObject>();
+        img_gameFinish->SetZIndex(15);
+        img_gameFinish->m_Transform.scale = {1.5f, 1.5f};
+        img_gameFinish->SetDrawable(std::make_shared<Util::Image>(RESOURCE_DIR"/Image/UI/GameLose.png"));
+    }
+    if(gameWin){
+        img_gameFinish = std::make_shared<Util::GameObject>();
+        img_gameFinish->SetZIndex(15);
+        img_gameFinish->m_Transform.scale = {1.5f, 1.5f};
+        img_gameFinish->SetDrawable(std::make_shared<Util::Image>(RESOURCE_DIR"/Image/UI/GameWin.png"));
+    }
+
 }
 
 // void Level1::End()  {}
@@ -214,6 +231,13 @@ void Level1::Draw()  {
     for(auto guard : GuardList){
         guard->Draw();
     }
+
+    // 遊戲結束(贏、輸)的圖片
+    if(img_gameFinish != nullptr){
+        img_gameFinish->Draw();
+    }
+
+
 
     // ---  Test for sm  ---
     //draw swordsman
