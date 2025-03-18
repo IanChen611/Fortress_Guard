@@ -139,6 +139,14 @@ void Level1::Update()  {
 
     //Guard 更新
     for(auto guard : GuardList){
+        for(auto enemy : EnemyList){
+            if(guard->IsEnemyInRange(enemy) && guard->IsEnemyInEnemyInRange(enemy)){
+                guard->SetEnemyInRange(enemy);
+            }
+            else if(!guard->IsEnemyInRange(enemy) && !guard->IsEnemyInEnemyInRange(enemy)){
+                guard->PopFrontEnemyInRange(enemy);
+            }
+        }
         guard->Update();
     }
 

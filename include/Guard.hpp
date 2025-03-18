@@ -26,6 +26,12 @@ public:
 
     int GetCost(){return m_cost;}
 
+    void SetEnemyInRange(std::shared_ptr<Enemy> enemy){m_enemyInRange.push_back(enemy);}
+
+    bool IsEnemyInEnemyInRange(std::shared_ptr<Enemy> enemy){return std::find(m_enemyInRange.begin(), m_enemyInRange.end(), enemy) == m_enemyInRange.end();};
+
+    void PopFrontEnemyInRange(std::shared_ptr<Enemy> enemy){m_enemyInRange.erase(m_enemyInRange.begin());}
+
 protected:
     std::string m_myselfImagePath;
     std::string m_rangeImagePath;
