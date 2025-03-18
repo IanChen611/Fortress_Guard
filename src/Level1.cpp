@@ -112,11 +112,18 @@ void Level1::Update()  {
     if(buying){
         bt_cancelBuy->Update(); // 取消按鈕
         glm::vec2 mouse_pos = Util::Input::GetCursorPosition();
-        if(Util::Input::IsKeyDown(Util::Keycode::MOUSE_LB) && m_ground1[-(((int)mouse_pos.y+240+24)/48-10)][(((int)mouse_pos.x+480+24)/48)]->IsTouchable()){
-            buying = false;
-            tem->SetDeployed(true);
-            GuardList.push_back(tem);
-            tem = nullptr;
+        int m_ground1_i = -(((int)mouse_pos.y+240+24)/48-10);
+        int m_ground1_j = (((int)mouse_pos.x+480+24)/48);
+        if(0 <= m_ground1_i && m_ground1_i < 10 && 0 <= m_ground1_j && m_ground1_j < 20){
+            if(Util::Input::IsKeyDown(Util::Keycode::MOUSE_LB) && m_ground1[m_ground1_i][m_ground1_j]->IsTouchable()){
+                if(m_player_money_now-tem->GetCost() >= 0){
+                    m_player_money_now -= tem->GetCost();
+                    buying = false;
+                    tem->SetDeployed(true);
+                    GuardList.push_back(tem);
+                    tem = nullptr;
+                }
+            }
         }
     }
     if(tem != nullptr){

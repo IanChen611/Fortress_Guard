@@ -24,6 +24,8 @@ public:
 
     void SetDeployed(bool isDeployed){m_isDeployed = isDeployed;}
 
+    int GetCost(){return m_cost;}
+
 protected:
     std::string m_myselfImagePath;
     std::string m_rangeImagePath;
