@@ -109,7 +109,16 @@ void Level1::Update()  {
     }
 
     // 購買Guard的部分 更新
-    if(buying) bt_cancelBuy->Update(); // 取消按鈕
+    if(buying){
+        bt_cancelBuy->Update(); // 取消按鈕
+        glm::vec2 mouse_pos = Util::Input::GetCursorPosition();
+        if(Util::Input::IsKeyDown(Util::Keycode::MOUSE_LB) && m_ground1[-(((int)mouse_pos.y+240+24)/48-10)][(((int)mouse_pos.x+480+24)/48)]->IsTouchable()){
+            buying = false;
+            tem->SetDeployed(true);
+            GuardList.push_back(tem);
+            tem = nullptr;
+        }
+    }
     if(tem != nullptr){
         if(cancelBuy){
             tem->~Guard();

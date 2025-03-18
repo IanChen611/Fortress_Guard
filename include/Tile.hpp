@@ -26,6 +26,8 @@ public:
 
     bool IsMouseInside();
 
+    bool IsTouchable(){return m_Touchable;}
+
 private:
     std::string m_ImagePath;
     bool m_Touchable = false;

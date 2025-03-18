@@ -22,6 +22,8 @@ public:
 
     virtual bool IsEnemyInRange(const std::shared_ptr<Enemy> enemy) = 0;
 
+    void SetDeployed(bool isDeployed){m_isDeployed = isDeployed;}
+
 protected:
     std::string m_myselfImagePath;
     std::string m_rangeImagePath;
