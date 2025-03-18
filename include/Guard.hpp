@@ -37,7 +37,9 @@ protected:
     std::string m_rangeImagePath;
     glm::vec2 m_coordinate;
     int m_damage;
+    float m_attackTime = 100;
     float m_attackSpeed;
+    bool m_attackable = false;
     bool m_isDeployed = false;
     bool m_clickMe = false;
     int m_cost;

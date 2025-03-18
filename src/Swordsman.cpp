@@ -53,6 +53,17 @@ void Swordsman::Update(){
                 m_rangeTile[i]->Draw();
             }
         }
+        //attack
+        if(m_attackTime <= 0 && !m_attackable){
+            m_attackable = true;
+            m_attackTime += 100;
+        }
+        if(m_attackTime > 0){
+            m_attackTime -= m_attackSpeed;
+        }
+        if(m_attackable && static_cast<int>(m_enemyInRange.size()) >= 1){
+            m_enemyInRange[0]->GetHurt(m_damage);
+        }
     }
 }
 

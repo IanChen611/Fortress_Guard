@@ -28,6 +28,10 @@ public:
 
     int GiveMoney(){return enemyDropMoneyAmount;}
 
+    void GetHurt(int damage);
+
+    int GetHealth(){return m_health_now;}
+
 private:
     std::string m_ImagePath;
     std::vector<glm::vec2> m_waypoints;

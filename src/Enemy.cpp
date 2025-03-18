@@ -42,6 +42,9 @@ void Enemy::Update(){
             // 城堡扣血
         }
     }
+    if(m_health_now <= 0){
+        m_isDead = true;
+    }
 }
 
 void Enemy::SetImage(const std::string& ImagePath) {
@@ -70,7 +73,10 @@ void Enemy::Move(){
             else{
                 m_Transform.translation.x -= 1*m_moveSpeed;
             }
-             
         }
     }
+}
+
+void Enemy::GetHurt(int damage){
+    m_health_now -= damage;
 }
