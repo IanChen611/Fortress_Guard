@@ -205,7 +205,17 @@ void Level1::Update()  {
                     i -= 1;
                     enemyListIndex -= 1;
                 }
+                
             }
+            // 判斷是不是全部敵人都是dead
+            bool allDead = true;
+            for(auto enemy : EnemyList){
+                allDead = enemy->IsDead();
+            }
+            if(allDead){
+                gameWin = true;
+            }
+
         }
 
         // ---  Test for sm  ---
