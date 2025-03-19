@@ -132,6 +132,7 @@ void Level1::Update()  {
             if(0 <= m_ground1_i && m_ground1_i < 10 && 0 <= m_ground1_j && m_ground1_j < 20){
                 if(Util::Input::IsKeyDown(Util::Keycode::MOUSE_LB) && m_ground1[m_ground1_i][m_ground1_j]->IsTouchable()){
                     if(m_player_money_now-tem->GetCost() >= 0){
+                        m_ground1[m_ground1_i][m_ground1_j]->SetTouchable(false);
                         m_player_money_now -= tem->GetCost();
                         buying = false;
                         tem->SetDeployed(true);
