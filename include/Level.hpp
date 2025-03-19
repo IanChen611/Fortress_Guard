@@ -72,8 +72,13 @@ protected:
     std::shared_ptr<Util::Text> m_countdown_text; 
     
     // --生成敵人的計時器--
-    int enemyTimeCounter = 0;
+    int enemySpawnCounter = 0;
+    int intervalCounter = 0;
+    int EnemyCounter = 0;
     int spawnTime = 100;
+    int intervalTime = 500;
+    int decreaseSpawnTimePerWaves = 20;
+    int enemyListIndex = 0;
 
     // 遊戲結束的部分
     bool gameLose = false;

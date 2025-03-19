@@ -167,15 +167,33 @@ void Level1::Update()  {
 
         // 倒數結束後
         if(gameStart){
-            enemyTimeCounter += 1;
-            int index = enemyTimeCounter/spawnTime;
-            if(static_cast<std::size_t>(index) >= EnemyList.size()){
-                index = EnemyList.size();
+            //interval time after the third and the seventh enemy spawn 
+            if(EnemyCounter != 3 && EnemyCounter != 7) {
+                enemySpawnCounter += 1;
+            }
+            else{
+                intervalCounter += 1;
+                if(intervalCounter%intervalTime == 0){
+                    EnemyCounter += 1;
+                    enemyListIndex += 1;
+                    spawnTime -= decreaseSpawnTimePerWaves;
+                }
+            }
+            //spawn enemy after spawnTime
+            if(enemySpawnCounter%spawnTime == 0) {
+                EnemyCounter += 1;
+                enemyListIndex += 1;
+                enemySpawnCounter = 1;
+            }
+            //
+            if(static_cast<std::size_t>(enemyListIndex) >= EnemyList.size()){
+                enemyListIndex = EnemyList.size();
             }
             // 各個怪物 Update
-            for(int i=0; i<index; i++){
+            for(int i=0; i<enemyListIndex; i++){
                 EnemyList[i]->Update();
                 EnemyList[i]->Draw();
+                //enemy died
                 if(EnemyList[i]->IsDead()){
                     if(EnemyList[i]->GetHealth() > 0){
                         EnemyHitCastle();
@@ -183,9 +201,8 @@ void Level1::Update()  {
                     }
                     m_player_money_now += EnemyList[i]->GiveMoney();
                     EnemyList.erase(EnemyList.begin()+i);
-                    enemyTimeCounter -= 100;
                     i -= 1;
-                    index -= 1;
+                    enemyListIndex -= 1;
                 }
             }
         }
