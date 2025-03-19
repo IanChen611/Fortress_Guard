@@ -16,6 +16,7 @@
 #include "Util/Logger.hpp"
 #include "Util/Input.hpp"
 
+class Swordsman;
 
 Level::Level(){
     // -----UI------ 
@@ -56,6 +57,15 @@ Level::Level(){
         [this]() { 
             this->OnClickBuyGuard("Swordsman");
         }));
+    // Swordsman的錢幣顯示
+    std::shared_ptr<Ui> number_money = std::make_shared<Ui>();
+    number_money->m_Transform.translation = {-425, -240};
+    std::shared_ptr<Util::Text> number_money_text = std::make_shared<Util::Text>(
+        RESOURCE_DIR"/Font/Inter.ttf",
+        30, std::to_string(15),
+        Util::Color(254, 254, 0));
+    number_money->SetDrawable(number_money_text);
+    UI.push_back(number_money);
 
 
 
@@ -66,12 +76,12 @@ Level::Level(){
     m_countdown_number = std::make_shared<Util::GameObject>();
     m_countdown_number->SetZIndex(5);
     // m_countdown_text->m_Transform.translation = {0.0f, 0.0f};
-    LOG_INFO("Test");
+    // LOG_INFO("Test");
     m_countdown_text = std::make_shared<Util::Text>(
         RESOURCE_DIR"/Font/Inter.ttf",
         200, std::to_string(5),
         Util::Color(127, 127, 127));
-        m_countdown_number->SetDrawable(m_countdown_text);
+    m_countdown_number->SetDrawable(m_countdown_text);
     // Update()那邊負責倒數
 }
 

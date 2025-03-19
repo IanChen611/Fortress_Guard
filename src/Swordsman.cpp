@@ -42,10 +42,10 @@ void Swordsman::Update(){
         glm::vec2 mouse_pos = Util::Input::GetCursorPosition();
         mouse_pos.x = (((int)mouse_pos.x+480+24)/48-10)*48;
         mouse_pos.y = (((int)mouse_pos.y+240+24)/48-5)*48;
-        if(Util::Input::IsKeyDown(Util::Keycode::MOUSE_LB)){
+        if(Util::Input::IsKeyDown(Util::Keycode::MOUSE_RB)){
             m_clickMe = true;
         }
-        if(Util::Input::IsKeyUp(Util::Keycode::MOUSE_LB)){
+        if(Util::Input::IsKeyUp(Util::Keycode::MOUSE_RB)){
             m_clickMe = false;
         }
         if(mouse_pos.x == m_coordinate.x && mouse_pos.y == m_coordinate.y && m_clickMe){
