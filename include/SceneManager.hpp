@@ -29,6 +29,7 @@ public:
 
 private:
     std::stack<std::unique_ptr<Scene>> m_Scenes;
+    bool popingScene = false;
 };
 
 #endif // SCENE_HPP

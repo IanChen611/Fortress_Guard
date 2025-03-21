@@ -38,19 +38,21 @@ void SceneManager::PushScene(std::unique_ptr<Scene> newScene) {
 
 // 回到上一個場景
 void SceneManager::PopScene() {
-    LOG_INFO("Called SceneManager::PopScene()");
+    popingScene = true;
+    // LOG_INFO("SceneManager::PopScene() be called");
     if (!m_Scenes.empty()) {
         // m_Scenes.top()->End();
         m_Scenes.pop();
-        LOG_INFO("Already pop now scene");
+        // LOG_INFO("Already pop now scene");
     }
-    LOG_INFO("Finish pop scene");
+    // LOG_INFO("Finish pop scene");
+    popingScene = false;
 }
 
 // 每次遊戲/程式主迴圈呼叫，用於更新當前的場景
 void SceneManager::Update() {
     // LOG_INFO("Updating First Scene");
-    if (!m_Scenes.empty()) {
+    if (!m_Scenes.empty() && !popingScene) {
         m_Scenes.top()->Update();
     }
 }

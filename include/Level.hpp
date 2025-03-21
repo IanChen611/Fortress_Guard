@@ -57,6 +57,7 @@ protected:
     
     // UI介面存放的vector
     std::vector<std::shared_ptr<Ui>> UI;
+    bool pop_scene_next_frame = false;
     
     // 買角色跟角色vector
     std::shared_ptr<Button> bt_cancelBuy;
