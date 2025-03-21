@@ -1,7 +1,13 @@
 #include "pch.hpp"
-#include <string>
 
 #include "Level.hpp"
+#include "Tile.hpp"
+#include "TileSet.hpp"
+
+#include "Util/Logger.hpp"
+#include "Util/Input.hpp"
+#include "Util/Image.hpp"
+#include "Util/GameObject.hpp"
 
 Level2::Level2(){
     // ----取圖-----
