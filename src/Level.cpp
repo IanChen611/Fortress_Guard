@@ -11,12 +11,15 @@
 #include "Money.hpp"
 #include "Guard.hpp"
 #include "Swordsman.hpp"
+#include "Mage.hpp"
 
 
 #include "Util/Logger.hpp"
 #include "Util/Input.hpp"
 
 class Swordsman;
+
+class Mage;
 
 Level::Level(){
     // -----UI------ 
@@ -58,14 +61,32 @@ Level::Level(){
             this->OnClickBuyGuard("Swordsman");
         }));
     // Swordsman的錢幣顯示
-    std::shared_ptr<Ui> number_money = std::make_shared<Ui>();
-    number_money->m_Transform.translation = {-425, -240};
-    std::shared_ptr<Util::Text> number_money_text = std::make_shared<Util::Text>(
+    std::shared_ptr<Ui> number_money_Swordsman = std::make_shared<Ui>();
+    number_money_Swordsman->m_Transform.translation = {-425, -240};
+    std::shared_ptr<Util::Text> number_money_text_swordsman = std::make_shared<Util::Text>(
         RESOURCE_DIR"/Font/Inter.ttf",
         30, std::to_string(15),
         Util::Color(254, 254, 0));
-    number_money->SetDrawable(number_money_text);
-    UI.push_back(number_money);
+    number_money_Swordsman->SetDrawable(number_money_text_swordsman);
+    UI.push_back(number_money_Swordsman);
+
+    // Mage的按鈕
+    UI.push_back(std::make_shared<Button>(RESOURCE_DIR"/output_images/Mage/tile_0_0.png",
+        -364, -288, 16, 16, 3.0f, 3.0f,
+        [this]() { 
+            this->OnClickBuyGuard("Mage");
+        }));
+    // Mage的錢幣顯示
+    std::shared_ptr<Ui> number_money_Mage = std::make_shared<Ui>();
+    number_money_Mage->m_Transform.translation = {-357, -240};
+    std::shared_ptr<Util::Text> number_money_text_Mage = std::make_shared<Util::Text>(
+        RESOURCE_DIR"/Font/Inter.ttf",
+        30, std::to_string(20),
+        Util::Color(254, 254, 0));
+        number_money_Mage->SetDrawable(number_money_text_Mage);
+    UI.push_back(number_money_Mage);
+
+    
 
 
 
@@ -105,6 +126,10 @@ void Level::OnClickBuyGuard(std::string characterName){
     if(characterName == "Swordsman"){
         tem = std::make_shared<Swordsman>();
     }
+    if(characterName == "Mage"){
+        tem = std::make_shared<Mage>();
+    }
+
 }
 
 void Level::OnClickCancelBuy(){
