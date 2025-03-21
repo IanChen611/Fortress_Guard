@@ -11,7 +11,7 @@ Enemy::Enemy(const std::string& ImagePath, const std::vector<glm::vec2> waypoint
     m_waypoints = waypoints;
     m_Transform.scale = {3, 3};
     SetZIndex(5);
-    SetPosition({-480.0f+48*m_waypoints[0].x, 240.0f-48*m_waypoints[0].y});
+    SetPosition({-480.0f+48*m_waypoints[0].y, 240.0f-48*m_waypoints[0].x});
     m_waypoints.erase(m_waypoints.begin());
     LOG_INFO("Enemy built");
 

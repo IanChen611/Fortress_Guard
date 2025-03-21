@@ -68,7 +68,6 @@ Level1::Level1(){
     // sm = std::make_shared<Swordsman>();
     // mage = std::make_shared<Mage>();
     //----生成敵人---放入道路----
-    // std::vector<std::vector<Enemy>> SumEnemy;
     EnemyList.push_back(std::make_shared<Enemy>(RESOURCE_DIR"/output_images/Slime/tile_0_0.png", waypoints, 8, 1));
     EnemyList.push_back(std::make_shared<Enemy>(RESOURCE_DIR"/output_images/Slime/tile_0_0.png", waypoints, 8, 1));
     EnemyList.push_back(std::make_shared<Enemy>(RESOURCE_DIR"/output_images/Slime/tile_0_0.png", waypoints, 8, 1));
@@ -81,8 +80,6 @@ Level1::Level1(){
     EnemyList.push_back(std::make_shared<Enemy>(RESOURCE_DIR"/output_images/Slime/tile_0_0.png", waypoints, 8, 1));
     EnemyList.push_back(std::make_shared<Enemy>(RESOURCE_DIR"/output_images/Slime/tile_0_0.png", waypoints, 8, 1));
     EnemyList.push_back(std::make_shared<Enemy>(RESOURCE_DIR"/output_images/Slime/tile_0_0.png", waypoints, 8, 1));
-    // int wave = 1;
-    // now_enemyList = SumEnemy[i-1];
 }
 
 Level1::~Level1() {
