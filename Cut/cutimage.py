@@ -2,7 +2,7 @@ from PIL import Image
 import os
 
 # 原始圖片路徑
-input_path = ".\Resources\Image\MiniWorld Sprites\Characters\Soldiers\Ranged\LimeRanged\MusketeerLime.png"
+input_path = ".\Resources\Image\MiniWorld Sprites\Objects\Bullet.png"
 # 輸出資料夾路徑
 output_folder = "./REsources/output_images/Musketeer"
 
