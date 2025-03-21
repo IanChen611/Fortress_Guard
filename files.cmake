@@ -16,6 +16,7 @@ set(SRC_FILES
     Guard.cpp
     Swordsman.cpp
     Mage.cpp
+    Musketeer.cpp
 )
 
 set(INCLUDE_FILES
@@ -34,6 +35,7 @@ set(INCLUDE_FILES
     Guard.hpp
     Swordsman.hpp
     Mage.hpp
+    Musketeer.hpp
 )
 
 set(TEST_FILES

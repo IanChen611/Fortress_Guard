@@ -2,9 +2,9 @@ from PIL import Image
 import os
 
 # 原始圖片路徑
-input_path = ".\Resources\Image\MiniWorld Sprites\Characters\Soldiers\Melee\CyanMelee\SwordsmanCyan.png"
+input_path = ".\Resources\Image\MiniWorld Sprites\Characters\Soldiers\Ranged\LimeRanged\MusketeerLime.png"
 # 輸出資料夾路徑
-output_folder = "./REsources/output_images"
+output_folder = "./REsources/output_images/Musketeer"
 
 # 建立輸出資料夾（若尚未存在）
 if not os.path.exists(output_folder):
