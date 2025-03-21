@@ -18,7 +18,7 @@ public:
 
     void SetImage(const std::string& ImagePath);
 
-    void SetPosition(const glm::vec2& Position) { m_Transform.translation = Position;m_Img_Translucent->m_Transform.translation =  m_Transform.translation;}
+    void SetPosition(const glm::vec2& Position);
 
     void SetTouchable(bool touchable);
     
@@ -33,7 +33,9 @@ private:
     bool m_Touchable = false;
     float m_Width = 48.0f;
     float m_Height = 48.0f;
-    std::shared_ptr<Util::GameObject> m_Img_Translucent;
+    std::shared_ptr<Util::GameObject> m_Img_Translucent_Gray;
+    std::shared_ptr<Util::GameObject> m_Img_Translucent_Red;
+    
 };
 
 #endif

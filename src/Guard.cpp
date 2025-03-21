@@ -30,14 +30,17 @@ void Guard::Update(){
         m_coordinate.x = (((int)mouse_pos.x+480+24)/48-10)*48;
         m_coordinate.y = (((int)mouse_pos.y+240+24)/48-5)*48;
         SetPosition(m_coordinate);
-        for(int i=0; static_cast<std::size_t>(i) < m_rangeCoordinate.size(); i++){
-            glm::vec2 tempCoordinate = {m_rangeCoordinate[i].x+m_coordinate.x, m_rangeCoordinate[i].y+m_coordinate.y};
-            m_rangeTile[i]->SetZIndex(3);
-            m_rangeTile[i]->SetPosition(tempCoordinate);
-            m_rangeTile[i]->Draw();
+        // 放在路徑上 => m_canDeployed = false => 不顯示range
+        if(m_canDeployed){
+            for(int i=0; static_cast<std::size_t>(i) < m_rangeCoordinate.size(); i++){
+                glm::vec2 tempCoordinate = {m_rangeCoordinate[i].x+m_coordinate.x, m_rangeCoordinate[i].y+m_coordinate.y};
+                m_rangeTile[i]->SetZIndex(3);
+                m_rangeTile[i]->SetPosition(tempCoordinate);
+                m_rangeTile[i]->Draw();
+            }
         }
     }
-    else{
+    else if(m_isDeployed){
         //show range
         glm::vec2 mouse_pos = Util::Input::GetCursorPosition();
         mouse_pos.x = (((int)mouse_pos.x+480+24)/48-10)*48;

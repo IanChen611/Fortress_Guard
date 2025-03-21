@@ -34,6 +34,10 @@ public:
 
     void PopFrontEnemyInRange();
 
+    void SetCanDeployed(bool canDeployed){m_canDeployed = canDeployed;}
+
+
+
 protected:
     std::string m_myselfImagePath;
     std::string m_rangeImagePath;
@@ -44,6 +48,7 @@ protected:
     bool m_attackable = false;
     bool m_isDeployed = false;
     bool m_clickMe = false;
+    bool m_canDeployed = false;
     int m_cost;
     std::vector<glm::vec2> m_rangeCoordinate;
     std::vector<std::shared_ptr<Tile>> m_rangeTile;

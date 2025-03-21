@@ -141,7 +141,7 @@ void Level::Update(){
     if(!gameLose && !gameWin){
         
         // call 自己special Update
-        // Update_for_speccial_Level();
+        Update_for_speccial_Level();
 
         // 購買Guard的部分 更新
         if(buying){
@@ -150,6 +150,15 @@ void Level::Update(){
             int m_ground_i = -(((int)mouse_pos.y+240+24)/48-10);
             int m_ground_j = (((int)mouse_pos.x+480+24)/48);
             if(0 <= m_ground_i && m_ground_i < 10 && 0 <= m_ground_j && m_ground_j < 20){
+                
+                // 判斷現在可不可以放上去，不行的話要告訴Guard中的canDeployed
+                if(m_ground[m_ground_i][m_ground_j]->IsTouchable()){
+                    tem->SetCanDeployed(true);
+                }
+                if(!m_ground[m_ground_i][m_ground_j]->IsTouchable()){
+                    tem->SetCanDeployed(false);
+                }
+
                 if(Util::Input::IsKeyDown(Util::Keycode::MOUSE_LB) && m_ground[m_ground_i][m_ground_j]->IsTouchable()){
                     if(m_player_money_now-tem->GetCost() >= 0){
                         m_ground[m_ground_i][m_ground_j]->SetTouchable(false);
@@ -254,8 +263,9 @@ void Level::Update(){
 }
 
 void Level::Draw(){
+
     // call 自己special Draw
-    // Draw_for_speccial_Level();
+    Draw_for_speccial_Level();
 
     // 繪製地圖、路徑
     m_groundset->Draw();
