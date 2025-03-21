@@ -12,6 +12,7 @@
 #include "Money.hpp"
 #include "Guard.hpp"
 #include "Swordsman.hpp"
+#include "Mage.hpp"
 
 #include "Util/Logger.hpp"
 #include "Util/Input.hpp"
@@ -23,11 +24,11 @@ public:
     // virtual void Start() = 0; // 初始化
     
     // 處理每關通用邏輯
-    void Update(); 
+    void Update() override; 
     // 處理特別需要的邏輯
     virtual void Update_for_speccial_Level() = 0;
     // 處理每關通用畫面
-    void Draw(); 
+    void Draw() override; 
     // 處理個別需要之畫面
     virtual void Draw_for_speccial_Level() = 0;
 
@@ -119,6 +120,7 @@ private:
     // std::shared_ptr<TileSet> m_pathset1;
 
     // std::shared_ptr<Swordsman> sm;
+    std::shared_ptr<Mage> mage;
 };
 
 #endif

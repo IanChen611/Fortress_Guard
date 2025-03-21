@@ -14,6 +14,7 @@ set(SRC_FILES
     Level.cpp
     Guard.cpp
     Swordsman.cpp
+    Mage.cpp
 )
 
 set(INCLUDE_FILES
@@ -31,6 +32,7 @@ set(INCLUDE_FILES
     Money.hpp
     Guard.hpp
     Swordsman.hpp
+    Mage.hpp
 )
 
 set(TEST_FILES

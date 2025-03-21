@@ -67,8 +67,9 @@ Level1::Level1() {
     waypoints.push_back({4, 13});
     waypoints.push_back({4, 17});
     waypoints.push_back({99999, 99999});
-    //-----swordsman test-----
+    //-----guard test-----
     // sm = std::make_shared<Swordsman>();
+    mage = std::make_shared<Mage>();
     //----生成敵人---放入道路----
     // std::vector<std::vector<Enemy>> SumEnemy;
     EnemyList.push_back(std::make_shared<Enemy>(RESOURCE_DIR"/output_images/Slime/tile_0_0.png", waypoints, 8, 1));
@@ -102,7 +103,7 @@ Level1::~Level1() {
 
 // 處理這關特別邏輯
 void Level1::Update_for_speccial_Level() {
-    
+    mage->Draw();
 }
 
 // 處理這關特別需要的畫面

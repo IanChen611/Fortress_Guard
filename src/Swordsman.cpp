@@ -16,10 +16,9 @@ Swordsman::Swordsman() {
     m_rangeCoordinate.push_back({0, -48});
     m_rangeCoordinate.push_back({-48, 0});
     m_rangeCoordinate.push_back({48, 0});
-    m_rangeTile.push_back(std::make_shared<Tile>(m_rangeImagePath));
-    m_rangeTile.push_back(std::make_shared<Tile>(m_rangeImagePath));
-    m_rangeTile.push_back(std::make_shared<Tile>(m_rangeImagePath));
-    m_rangeTile.push_back(std::make_shared<Tile>(m_rangeImagePath));
+    for(int _=0; _<4; _++){
+        m_rangeTile.push_back(std::make_shared<Tile>(m_rangeImagePath));
+    }
     LOG_INFO("Swordsman built");
 }
 
@@ -32,5 +31,5 @@ bool Swordsman::IsEnemyInRange(const std::shared_ptr<Enemy> enemy){
 }
 
 void Swordsman::Update_for_speccial_guard(){
-    
+
 }
