@@ -38,6 +38,7 @@ void Button::Update()
     if (m_IsPressed && mouseUp) {
         m_IsPressed = false;
         if (inside && m_OnClick) {
+            LOG_INFO("OnClick");
             // 呼叫 callback
             m_OnClick();
         }

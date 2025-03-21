@@ -125,6 +125,7 @@ void Level::Update(){
         m_countdown_number->SetVisible(false);
         LOG_INFO("Finish Countdown");
     }
+    // ------
 
     // 地圖更新
     m_groundset->Update();
