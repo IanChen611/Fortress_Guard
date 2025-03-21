@@ -120,7 +120,26 @@ private:
     // std::shared_ptr<TileSet> m_pathset1;
 
     // std::shared_ptr<Swordsman> sm;
-    std::shared_ptr<Mage> mage;
+    // std::shared_ptr<Mage> mage;
 };
+
+class Level2 : public Level {
+    public:
+        Level2() ;
+        ~Level2() ;
+        // void Start() override; // 初始化
+        
+        // 處理這關特別需要的邏輯
+        void Update_for_speccial_Level() override;
+        // 處理這關特別需要的畫面
+        void Draw_for_speccial_Level() override; // 處理畫面
+        // void End() override;
+    
+    private:
+        // std::shared_ptr<Tile> m_ground1[10][20];
+        // std::shared_ptr<Tile> m_path1[10][20];
+        // std::shared_ptr<TileSet> m_groundset1;
+        // std::shared_ptr<TileSet> m_pathset1;
+    };
 
 #endif

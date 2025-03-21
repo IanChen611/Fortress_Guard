@@ -24,6 +24,8 @@ void Guard::PopFrontEnemyInRange(){
 }
 
 void Guard::Update(){
+    //something special
+    Update_for_speccial_guard();
     if(!m_isDeployed){
         //change myself coordinates and range coordinates
         glm::vec2 mouse_pos = Util::Input::GetCursorPosition();

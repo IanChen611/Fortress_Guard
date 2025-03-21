@@ -50,10 +50,5 @@ bool Mage::IsEnemyInRange(const std::shared_ptr<Enemy> enemy){
 }
 
 void Mage::Update_for_speccial_guard(){
-    for(int i=0; static_cast<std::size_t>(i) < m_rangeCoordinate.size(); i++){
-        glm::vec2 tempCoordinate = {m_rangeCoordinate[i].x+m_coordinate.x, m_rangeCoordinate[i].y+m_coordinate.y};
-        m_rangeTile[i]->SetZIndex(3);
-        m_rangeTile[i]->SetPosition(tempCoordinate);
-        m_rangeTile[i]->Draw();
-    }
+    
 }
