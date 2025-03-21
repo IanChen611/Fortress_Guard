@@ -80,8 +80,8 @@ void Mage::Update_for_speccial_guard(){
         float firstenmy_y = firstenemy->GetTransform().translation.y;
         float bullet_x = bullet->GetTransform().translation.x;
         float bullet_y = bullet->GetTransform().translation.y;
-        LOG_INFO("bullet_x = " + std::to_string(bullet_x));
-        LOG_INFO("bullet_y = " + std::to_string(bullet_y));
+        // LOG_INFO("bullet_x = " + std::to_string(bullet_x));
+        // LOG_INFO("bullet_y = " + std::to_string(bullet_y));
         float delta_x = firstenmy_x - bullet_x;
         float delta_y = firstenmy_y - bullet_y;
         float bullet_velocity = 10;
@@ -90,8 +90,8 @@ void Mage::Update_for_speccial_guard(){
         float now_dx = bullet->m_Transform.translation.x - firstenmy_x;
         float now_dy = bullet->m_Transform.translation.y - firstenmy_y;
         
-        LOG_INFO(now_dx);
-        LOG_INFO(now_dy);
+        // LOG_INFO(now_dx);
+        // LOG_INFO(now_dy);
         if(now_dx * now_dx + now_dy * now_dy <= 150){
             bullet->SetVisible(false);
             m_enemyInRange[0]->GetHurt(m_damage);
