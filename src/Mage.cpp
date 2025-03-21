@@ -9,7 +9,7 @@ Mage::Mage(){
     m_Transform.scale = {3, 3};
     SetZIndex(10);
     m_rangeImagePath = RESOURCE_DIR"/output_images/Tiles/tile_5_21.png";
-    m_damage = 8;
+    m_damage = 4;
     m_attackSpeed = 1.5;
     m_cost = 20;
     m_rangeCoordinate.push_back({0, 144});

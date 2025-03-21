@@ -26,10 +26,11 @@ Enemy::Enemy(const std::string& ImagePath, const std::vector<glm::vec2> waypoint
 void Enemy::Update(){
     m_healthbar->m_Transform.translation = {m_Transform.translation.x - 5, m_Transform.translation.y + 34};
     // m_health_now -= 1;
-    m_healthbar->m_Transform.scale = {float(m_health_now / m_health_ori), 1.0f};
+    // m_healthbar->m_Transform.scale = {float(m_health_now / m_health_ori), 1.0f};
     m_healthbar->Draw();
     if(m_isDead){
         this->SetVisible(false);
+        // m_healthbar->SetVisible(false);
     }
 
     if(m_waypoints[0].x != 99999 && m_waypoints[0].y != 99999){
@@ -79,6 +80,10 @@ void Enemy::Move(){
 
 void Enemy::GetHurt(int damage){
     m_health_now -= damage;
+    m_healthbar->m_Transform.scale = {float(m_health_now) / float(m_health_ori), 1.0f};
+    m_healthbar->Draw();
+    LOG_INFO(m_health_now);
+    LOG_INFO(m_healthbar->m_Transform.scale);
     if(m_health_now <= 0){
         m_isDead = true;
     }
