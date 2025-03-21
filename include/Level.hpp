@@ -21,16 +21,24 @@ public:
     Level();
     ~Level() = default;
     // virtual void Start() = 0; // 初始化
-    virtual void Update() = 0; // 處理邏輯
-    virtual void Draw() = 0; // 處理畫面
+    
+    // 處理每關通用邏輯
+    void Update(); 
+    // 處理特別需要的邏輯
+    virtual void Update_for_speccial_Level() = 0;
+    // 處理每關通用畫面
+    void Draw(); 
+    // 處理個別需要之畫面
+    virtual void Draw_for_speccial_Level() = 0;
+
     // virtual void End() = 0;
+
 
     void SetSceneManager(SceneManager *m_SceneManager);
     void OnClickBackPreScene() override ;
 
     void EnemyHitCastle();
     
-    void CountDown();
     // virtual void GameStart() = 0;
 
     //按按鈕->角色跟著滑鼠動 1.->再按在地圖上一下放置角色(+扣錢)
@@ -84,6 +92,12 @@ protected:
     bool gameLose = false;
     bool gameWin = false;
     std::shared_ptr<Util::GameObject> img_gameFinish;
+    
+    // 地圖跟路徑
+    std::shared_ptr<Tile> m_ground[10][20];
+    std::shared_ptr<Tile> m_path[10][20];
+    std::shared_ptr<TileSet> m_groundset;
+    std::shared_ptr<TileSet> m_pathset;
 };
 
 class Level1 : public Level {
@@ -91,15 +105,18 @@ public:
     Level1() ;
     ~Level1() ;
     // void Start() override; // 初始化
-    void Update() override; // 處理邏輯
-    void Draw() override; // 處理畫面
+    
+    // 處理這關特別需要的邏輯
+    void Update_for_speccial_Level() override;
+    // 處理這關特別需要的畫面
+    void Draw_for_speccial_Level() override; // 處理畫面
     // void End() override;
 
 private:
-    std::shared_ptr<Tile> m_ground1[10][20];
-    std::shared_ptr<Tile> m_path1[10][20];
-    std::shared_ptr<TileSet> m_groundset1;
-    std::shared_ptr<TileSet> m_pathset1;
+    // std::shared_ptr<Tile> m_ground1[10][20];
+    // std::shared_ptr<Tile> m_path1[10][20];
+    // std::shared_ptr<TileSet> m_groundset1;
+    // std::shared_ptr<TileSet> m_pathset1;
 
     // std::shared_ptr<Swordsman> sm;
 };
