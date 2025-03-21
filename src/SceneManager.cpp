@@ -44,13 +44,12 @@ void SceneManager::PopScene() {
         m_Scenes.pop();
         LOG_INFO("Already pop now scene");
     }
-    if (!m_Scenes.empty()) {
-        // 回到上一個場景，可以視需求恢復它
-    }
+    LOG_INFO("Finish pop scene");
 }
 
 // 每次遊戲/程式主迴圈呼叫，用於更新當前的場景
 void SceneManager::Update() {
+    // LOG_INFO("Updating First Scene");
     if (!m_Scenes.empty()) {
         m_Scenes.top()->Update();
     }

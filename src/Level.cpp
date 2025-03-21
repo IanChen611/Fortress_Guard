@@ -113,6 +113,7 @@ void Level::OnClickCancelBuy(){
 }
 
 void Level::Update(){
+
     // 遊戲開始的倒數
     if(startGameCounter < 300 && !gameStart){
         startGameCounter += 1;
@@ -137,6 +138,9 @@ void Level::Update(){
 
     // 遊戲沒有輸(城堡扣完血) 且 遊戲沒有贏(敵人出動全部且沒有存在場上)
     if(!gameLose && !gameWin){
+        
+        // call 自己special Update
+        // Update_for_speccial_Level();
 
         // 購買Guard的部分 更新
         if(buying){
@@ -249,6 +253,9 @@ void Level::Update(){
 }
 
 void Level::Draw(){
+    // call 自己special Draw
+    // Draw_for_speccial_Level();
+
     // 繪製地圖、路徑
     m_groundset->Draw();
     m_pathset->Draw();
