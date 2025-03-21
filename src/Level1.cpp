@@ -9,10 +9,7 @@
 #include "Util/Image.hpp"
 #include "Util/GameObject.hpp"
 
-
-
-Level1::Level1() {
-    
+Level1::Level1(){
     // ----取圖-----
     for(int i=0; i<10; i++){
         for(int j=0; j<20; j++){

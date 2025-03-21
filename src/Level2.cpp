@@ -19,18 +19,22 @@ Level2::Level2(){
     }
     m_groundset = std::make_shared<TileSet>(m_ground);
     m_groundset->SetAllZIndex(0);
+
+    m_path[2][3] = std::make_shared<Tile>(RESOURCE_DIR"/output_images/Tiles/tile_26_6.png");
+    
+    m_path[4][17] = std::make_shared<Tile>(RESOURCE_DIR"/output_images/Tiles/tile_26_14.png");
 }
 
-Level1::~Level1() {
+Level2::~Level2() {
     LOG_INFO("Level1 destroyed");
 }
 
 // 處理這關特別邏輯
-void Level1::Update_for_speccial_Level() {
+void Level2::Update_for_speccial_Level() {
     
 }
 
 // 處理這關特別需要的畫面
-void Level1::Draw_for_speccial_Level(){
+void Level2::Draw_for_speccial_Level(){
 
 }
