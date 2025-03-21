@@ -9,7 +9,7 @@ class Swordsman : public Guard {
 public:
     Swordsman();
 
-    void Update() override;
+    void Update_for_speccial_guard() override;
 
     bool IsEnemyInRange(const std::shared_ptr<Enemy> enemy) override;
 

@@ -18,7 +18,9 @@ public:
     void SetPosition(const glm::vec2& Position) { m_Transform.translation = Position; }
 
     // 為了讓子類別(Swordsman之類的)可以Update
-    virtual void Update(){}
+    void Update();
+
+    virtual void Update_for_speccial_guard() = 0;
 
     virtual bool IsEnemyInRange(const std::shared_ptr<Enemy> enemy) = 0;
 
@@ -26,11 +28,11 @@ public:
 
     int GetCost(){return m_cost;}
 
-    void SetEnemyInRange(std::shared_ptr<Enemy> enemy){m_enemyInRange.push_back(enemy);}
+    void SetEnemyInRange(std::shared_ptr<Enemy> enemy);
 
     bool IsEnemyInEnemyInRange(std::shared_ptr<Enemy> enemy){return std::find(m_enemyInRange.begin(), m_enemyInRange.end(), enemy) == m_enemyInRange.end();};
 
-    void PopFrontEnemyInRange(){m_enemyInRange.erase(m_enemyInRange.begin());}
+    void PopFrontEnemyInRange();
 
 protected:
     std::string m_myselfImagePath;

@@ -79,4 +79,7 @@ void Enemy::Move(){
 
 void Enemy::GetHurt(int damage){
     m_health_now -= damage;
+    if(m_health_now <= 0){
+        m_isDead = true;
+    }
 }
