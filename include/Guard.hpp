@@ -53,6 +53,10 @@ protected:
     std::vector<glm::vec2> m_rangeCoordinate;
     std::vector<std::shared_ptr<Tile>> m_rangeTile;
     std::vector<std::shared_ptr<Enemy>> m_enemyInRange;
+
+    // 子彈
+    std::shared_ptr<Util::GameObject> bullet;
+    bool bullet_flying = false;
 };
 
 #endif

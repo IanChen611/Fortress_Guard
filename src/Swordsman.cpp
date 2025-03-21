@@ -10,7 +10,7 @@ Swordsman::Swordsman() {
     SetZIndex(10);
     m_rangeImagePath = RESOURCE_DIR"/output_images/Tiles/tile_5_21.png";
     m_damage = 10;
-    m_attackSpeed = 1.5;
+    m_attackSpeed = 1;
     m_cost = 15;
     m_rangeCoordinate.push_back({0, 48});
     m_rangeCoordinate.push_back({0, -48});
@@ -31,5 +31,11 @@ bool Swordsman::IsEnemyInRange(const std::shared_ptr<Enemy> enemy){
 }
 
 void Swordsman::Update_for_speccial_guard(){
-
+    if(m_attackable && static_cast<int>(m_enemyInRange.size()) >= 1){
+        m_enemyInRange[0]->GetHurt(m_damage);
+        if(m_enemyInRange[0]->IsDead()){
+            PopFrontEnemyInRange();
+        }
+        m_attackable = false;
+    }
 }

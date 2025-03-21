@@ -58,23 +58,25 @@ void Guard::Update(){
                 m_rangeTile[i]->Draw();
             }
         }
-        //attack
+        // 判斷攻擊冷卻好了沒
         if(m_attackTime <= 0 && !m_attackable){
             m_attackable = true;
             m_attackTime += 100;
             // LOG_INFO("attackable is true");
         }
+        // 不能攻擊，冷卻中
         if(m_attackTime > 0 && !m_attackable){
             m_attackTime -= m_attackSpeed/2;
             // LOG_INFO(m_attackTime);
         }
-        if(m_attackable && static_cast<int>(m_enemyInRange.size()) >= 1){
-            m_enemyInRange[0]->GetHurt(m_damage);
-            if(m_enemyInRange[0]->IsDead()){
-                PopFrontEnemyInRange();
-            }
-            m_attackable = false;
-        }
+        // 攻擊交給special_Update()
+        // if(m_attackable && static_cast<int>(m_enemyInRange.size()) >= 1){
+        //     m_enemyInRange[0]->GetHurt(m_damage);
+        //     if(m_enemyInRange[0]->IsDead()){
+        //         PopFrontEnemyInRange();
+        //     }
+        //     m_attackable = false;
+        // }
         // LOG_INFO(m_enemyInRange.size());
     }
 }
