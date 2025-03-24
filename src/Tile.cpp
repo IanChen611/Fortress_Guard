@@ -6,7 +6,7 @@
 Tile::Tile(const std::string& ImagePath) {
     m_Transform.scale = {3, 3};
 
-    LOG_INFO("Tile built");
+    // LOG_INFO("Tile built");
     SetImage(ImagePath);
     m_Img_Translucent_Gray = std::make_shared<Util::GameObject>();
     std::shared_ptr<Util::Image> img_gray = std::make_shared<Util::Image>(RESOURCE_DIR"/output_images/Tiles/tile_5_22.png");
@@ -23,7 +23,7 @@ Tile::Tile(const std::string& ImagePath) {
     m_Img_Translucent_Gray->SetDrawable(img_gray);
     m_Img_Translucent_Red->SetDrawable(img_red);
 
-    LOG_INFO("m_Img_Translucent already set image");
+    // LOG_INFO("m_Img_Translucent already set image");
 }
 
 
