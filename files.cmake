@@ -18,6 +18,7 @@ set(SRC_FILES
     Mage.cpp
     Musketeer.cpp
     ReadMap.cpp
+    ReadEnemy.cpp
 )
 
 set(INCLUDE_FILES
@@ -37,7 +38,8 @@ set(INCLUDE_FILES
     Swordsman.hpp
     Mage.hpp
     Musketeer.hpp
-    ReadMap.cpp
+    ReadMap.hpp
+    ReadEnemy.hpp
 )
 
 set(TEST_FILES
