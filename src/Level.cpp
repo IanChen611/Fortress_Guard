@@ -13,6 +13,8 @@
 #include "Swordsman.hpp"
 #include "Mage.hpp"
 
+#include "ReadMap.hpp"
+
 
 #include "Util/Logger.hpp"
 #include "Util/Input.hpp"

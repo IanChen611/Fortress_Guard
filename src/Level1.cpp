@@ -11,6 +11,7 @@
 
 Level1::Level1(){
     // ----取圖-----
+    // --取草地--
     for(int i=0; i<10; i++){
         for(int j=0; j<20; j++){
             m_ground[i][j] = std::make_shared<Tile>(RESOURCE_DIR"/output_images/Tiles/tile_0_0.png");
@@ -19,38 +20,20 @@ Level1::Level1(){
     }
     m_groundset = std::make_shared<TileSet>(m_ground);
     m_groundset->SetAllZIndex(0);
-
-    m_path[2][2] = std::make_shared<Tile>(RESOURCE_DIR"/output_images/Tiles/tile_26_6.png");
-    m_path[2][3] = std::make_shared<Tile>(RESOURCE_DIR"/output_images/Tiles/tile_3_4.png");
-    m_path[2][4] = std::make_shared<Tile>(RESOURCE_DIR"/output_images/Tiles/tile_3_5.png");
-    m_path[2][5] = std::make_shared<Tile>(RESOURCE_DIR"/output_images/Tiles/tile_3_5.png");
-    m_path[2][6] = std::make_shared<Tile>(RESOURCE_DIR"/output_images/Tiles/tile_3_5.png");
-    m_path[2][7] = std::make_shared<Tile>(RESOURCE_DIR"/output_images/Tiles/tile_0_6.png");
-    m_path[3][7] = std::make_shared<Tile>(RESOURCE_DIR"/output_images/Tiles/tile_1_3.png");
-    m_path[4][7] = std::make_shared<Tile>(RESOURCE_DIR"/output_images/Tiles/tile_1_3.png");
-    m_path[5][7] = std::make_shared<Tile>(RESOURCE_DIR"/output_images/Tiles/tile_1_3.png");
-    m_path[6][7] = std::make_shared<Tile>(RESOURCE_DIR"/output_images/Tiles/tile_1_3.png");
-    m_path[7][7] = std::make_shared<Tile>(RESOURCE_DIR"/output_images/Tiles/tile_2_4.png");
-    m_path[7][8] = std::make_shared<Tile>(RESOURCE_DIR"/output_images/Tiles/tile_3_5.png");
-    m_path[7][9] = std::make_shared<Tile>(RESOURCE_DIR"/output_images/Tiles/tile_3_5.png");
-    m_path[7][10] = std::make_shared<Tile>(RESOURCE_DIR"/output_images/Tiles/tile_3_5.png");
-    m_path[7][11] = std::make_shared<Tile>(RESOURCE_DIR"/output_images/Tiles/tile_3_5.png");
-    m_path[7][12] = std::make_shared<Tile>(RESOURCE_DIR"/output_images/Tiles/tile_3_5.png");
-    m_path[7][13] = std::make_shared<Tile>(RESOURCE_DIR"/output_images/Tiles/tile_2_6.png");
-    m_path[6][13] = std::make_shared<Tile>(RESOURCE_DIR"/output_images/Tiles/tile_1_3.png");
-    m_path[5][13] = std::make_shared<Tile>(RESOURCE_DIR"/output_images/Tiles/tile_1_3.png");
-    m_path[4][13] = std::make_shared<Tile>(RESOURCE_DIR"/output_images/Tiles/tile_0_4.png");
-    m_path[4][14] = std::make_shared<Tile>(RESOURCE_DIR"/output_images/Tiles/tile_3_5.png");
-    m_path[4][15] = std::make_shared<Tile>(RESOURCE_DIR"/output_images/Tiles/tile_3_5.png");
-    m_path[4][16] = std::make_shared<Tile>(RESOURCE_DIR"/output_images/Tiles/tile_3_6.png");
-    m_path[4][17] = std::make_shared<Tile>(RESOURCE_DIR"/output_images/Tiles/tile_26_14.png");
+    // --取道路--
+    ReadMap readmap(1);
+    LOG_INFO("Now enter iterator");
     for(int i=0;i<10;i++){
         for(int j=0;j<20;j++){
-            if(m_path[i][j] != nullptr){
+            std::string tem = readmap.GiveTileName(i, j);
+            // LOG_INFO(std::to_string(i) + ", " + std::to_string(j) + ":" + tem);
+            if(tem.length() != 0){
+                m_path[i][j] = std::make_shared<Tile>(tem);
                 m_ground[i][j]->SetTouchable(false);
             }
         }
     }
+    
     m_pathset = std::make_shared<TileSet>(m_path);
     m_pathset->SetAllZIndex(1);
     LOG_INFO("Level1 built");

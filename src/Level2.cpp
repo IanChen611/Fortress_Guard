@@ -3,7 +3,6 @@
 #include "Level.hpp"
 #include "Tile.hpp"
 #include "TileSet.hpp"
-#include "ReadMap.hpp"
 
 #include "Util/Logger.hpp"
 #include "Util/Input.hpp"
@@ -27,58 +26,14 @@ Level2::Level2(){
     for(int i=0;i<10;i++){
         for(int j=0;j<20;j++){
             std::string tem = readmap.GiveTileName(i, j);
-            LOG_INFO(std::to_string(i) + ", " + std::to_string(j) + ":" + tem);
+            // LOG_INFO(std::to_string(i) + ", " + std::to_string(j) + ":" + tem);
             if(tem.length() != 0){
                 m_path[i][j] = std::make_shared<Tile>(tem);
                 m_ground[i][j]->SetTouchable(false);
             }
         }
     }
-    // m_path[6][2] = std::make_shared<Tile>(RESOURCE_DIR"/output_images/Tiles/tile_26_6.png");
-    // m_path[6][3] = std::make_shared<Tile>(RESOURCE_DIR"/output_images/Tiles/tile_3_4.png");
-    // m_path[6][4] = std::make_shared<Tile>(RESOURCE_DIR"/output_images/Tiles/tile_3_5.png");
-    // m_path[6][5] = std::make_shared<Tile>(RESOURCE_DIR"/output_images/Tiles/tile_3_5.png");
-    // m_path[6][6] = std::make_shared<Tile>(RESOURCE_DIR"/output_images/Tiles/tile_3_5.png");
-    // m_path[6][7] = std::make_shared<Tile>(RESOURCE_DIR"/output_images/Tiles/tile_3_5.png");
-    // m_path[6][8] = std::make_shared<Tile>(RESOURCE_DIR"/output_images/Tiles/tile_3_5.png");
-    // m_path[6][9] = std::make_shared<Tile>(RESOURCE_DIR"/output_images/Tiles/tile_3_5.png");
-    // m_path[6][10] = std::make_shared<Tile>(RESOURCE_DIR"/output_images/Tiles/tile_3_5.png");
-    // m_path[6][11] = std::make_shared<Tile>(RESOURCE_DIR"/output_images/Tiles/tile_2_6.png");
-    // m_path[5][11] = std::make_shared<Tile>(RESOURCE_DIR"/output_images/Tiles/tile_1_3.png");
-    // m_path[4][11] = std::make_shared<Tile>(RESOURCE_DIR"/output_images/Tiles/tile_0_4.png");
-    // m_path[4][12] = std::make_shared<Tile>(RESOURCE_DIR"/output_images/Tiles/tile_3_5.png");
-    // m_path[4][13] = std::make_shared<Tile>(RESOURCE_DIR"/output_images/Tiles/tile_3_5.png");
-    // m_path[4][14] = std::make_shared<Tile>(RESOURCE_DIR"/output_images/Tiles/tile_3_5.png");
-    // m_path[4][15] = std::make_shared<Tile>(RESOURCE_DIR"/output_images/Tiles/tile_3_5.png");
-    // m_path[4][16] = std::make_shared<Tile>(RESOURCE_DIR"/output_images/Tiles/tile_3_5.png");
-    // m_path[4][17] = std::make_shared<Tile>(RESOURCE_DIR"/output_images/Tiles/tile_2_6.png");
-    // m_path[3][17] = std::make_shared<Tile>(RESOURCE_DIR"/output_images/Tiles/tile_1_3.png");
-    // m_path[2][17] = std::make_shared<Tile>(RESOURCE_DIR"/output_images/Tiles/tile_1_3.png");
-    // m_path[1][17] = std::make_shared<Tile>(RESOURCE_DIR"/output_images/Tiles/tile_0_6.png");
-    // m_path[1][16] = std::make_shared<Tile>(RESOURCE_DIR"/output_images/Tiles/tile_3_5.png");
-    // m_path[1][15] = std::make_shared<Tile>(RESOURCE_DIR"/output_images/Tiles/tile_3_5.png");
-    // m_path[1][14] = std::make_shared<Tile>(RESOURCE_DIR"/output_images/Tiles/tile_3_5.png");
-    // m_path[1][13] = std::make_shared<Tile>(RESOURCE_DIR"/output_images/Tiles/tile_3_5.png");
-    // m_path[1][12] = std::make_shared<Tile>(RESOURCE_DIR"/output_images/Tiles/tile_0_4.png");
-    // m_path[2][12] = std::make_shared<Tile>(RESOURCE_DIR"/output_images/Tiles/tile_1_3.png");
-    // m_path[3][12] = std::make_shared<Tile>(RESOURCE_DIR"/output_images/Tiles/tile_2_6.png");
-    // m_path[3][11] = std::make_shared<Tile>(RESOURCE_DIR"/output_images/Tiles/tile_3_5.png");
-    // m_path[3][10] = std::make_shared<Tile>(RESOURCE_DIR"/output_images/Tiles/tile_3_5.png");
-    // m_path[3][9] = std::make_shared<Tile>(RESOURCE_DIR"/output_images/Tiles/tile_3_5.png");
-    // m_path[3][8] = std::make_shared<Tile>(RESOURCE_DIR"/output_images/Tiles/tile_3_5.png");
-    // m_path[3][7] = std::make_shared<Tile>(RESOURCE_DIR"/output_images/Tiles/tile_3_5.png");
-    // m_path[3][6] = std::make_shared<Tile>(RESOURCE_DIR"/output_images/Tiles/tile_3_5.png");
-    // m_path[3][5] = std::make_shared<Tile>(RESOURCE_DIR"/output_images/Tiles/tile_3_5.png");
-    // m_path[3][4] = std::make_shared<Tile>(RESOURCE_DIR"/output_images/Tiles/tile_3_5.png");
-    // m_path[3][3] = std::make_shared<Tile>(RESOURCE_DIR"/output_images/Tiles/tile_3_4.png");
-    // m_path[3][2] = std::make_shared<Tile>(RESOURCE_DIR"/output_images/Tiles/tile_26_14.png");
-    // for(int i=0;i<10;i++){
-    //     for(int j=0;j<20;j++){
-    //         if(m_path[i][j] != nullptr){
-    //             m_ground[i][j]->SetTouchable(false);
-    //         }
-    //     }
-    // }
+    
     m_pathset = std::make_shared<TileSet>(m_path);
     m_pathset->SetAllZIndex(1);
     LOG_INFO("Level1 built");
