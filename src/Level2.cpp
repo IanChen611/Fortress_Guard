@@ -50,7 +50,7 @@ Level2::Level2(){
     waypoints.push_back({3, 2});
     waypoints.push_back({99999, 99999});
     //----生成敵人---放入道路----
-    EnemyList.push_back(std::make_shared<Enemy>(RESOURCE_DIR"/output_images/Slime/tile_0_0.png", waypoints, 8, 1));
+    // EnemyList.push_back(std::make_shared<Enemy>(RESOURCE_DIR"/output_images/Slime/tile_0_0.png", waypoints, 8, 1));
 }
 
 Level2::~Level2() {

@@ -241,7 +241,7 @@ void Level::Update(){
 
             //Guard 更新
             for(auto guard : GuardList){
-                for(auto enemy : EnemyList){
+                for(auto enemy : enemyList){
                     if(guard->IsEnemyInRange(enemy) && guard->IsEnemyInEnemyInRange(enemy)){
                         guard->SetEnemyInRange(enemy);
                     }
@@ -254,7 +254,34 @@ void Level::Update(){
 
             // 倒數結束後
             if(gameStart){
-                EnemyList = m_readenemy->GetEnemy();
+                if(int(enemyPerWave.size()) == 0){
+                    enemyPerWave = m_readenemy->GetEnemy();
+                }
+                if(intervalCounter <= 0 && int(enemyPerWave.size()) != 0){
+                    intervalCounter = enemyPerWave[0].second;
+                    enemyCounter += 1;
+                    enemyList.push_back(enemyPerWave[0].first);
+                    enemyPerWave.erase(enemyPerWave.begin());
+                }
+                else if(intervalCounter > 0){
+                    intervalCounter -= 1;
+                }
+                //enemy update
+                for(int i=0; i<enemyCounter; i++){
+                    enemyList[i]->Update();
+                    enemyList[i]->Draw();
+                    //enemy died
+                    if(enemyList[i]->IsDead()){
+                        if(enemyList[i]->GetHealth() > 0){
+                            EnemyHitCastle();
+                            if(!gameLose && !gameWin && m_castlehealth_now == 0) gameLose = true;
+                        }
+                        m_player_money_now += enemyList[i]->GiveMoney();
+                        enemyList.erase(enemyList.begin()+i);
+                        i -= 1;
+                        enemyCounter -= 1;
+                    }
+                }
                 //interval time after the third and the seventh enemy spawn 
                 // if(EnemyCounter != 3 && EnemyCounter != 7) {
                 //     enemySpawnCounter += 1;
@@ -278,7 +305,7 @@ void Level::Update(){
                 //     enemyListIndex = EnemyList.size();
                 // }
                 // 各個怪物 Update
-                for(int i=0; i<enemyListIndex; i++){
+                // for(int i=0; i<enemyListIndex; i++){
                     // EnemyList[i]->Update();
                     // EnemyList[i]->Draw();
                     // //enemy died
@@ -292,15 +319,15 @@ void Level::Update(){
                     //     i -= 1;
                     //     enemyListIndex -= 1;
                     // }
-                }
+                // }
                 // 判斷是不是全部敵人都是dead
-                // bool allDead = true;
-                // for(auto enemy : EnemyList){
-                //     allDead = enemy->IsDead();
-                // }
-                // if(allDead){
-                //     gameWin = true;
-                // }
+                bool allDead = true;
+                for(auto enemy : enemyList){
+                    allDead = enemy->IsDead();
+                }
+                if(allDead){
+                    gameWin = true;
+                }
             }
         }
 

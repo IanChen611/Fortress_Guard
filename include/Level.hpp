@@ -15,6 +15,7 @@
 #include "Mage.hpp"
 #include "Musketeer.hpp"
 #include "ReadMap.hpp"
+#include "ReadEnemy.hpp"
 
 #include "Util/Logger.hpp"
 #include "Util/Input.hpp"
@@ -72,9 +73,12 @@ protected:
 
     // 敵人路線
     std::vector<glm::vec2> waypoints;
+    std::vector<std::vector<glm::vec2>> ways;
+    std::shared_ptr<ReadEnemy> m_readenemy;
 
     // 敵人清單
-    std::vector<std::shared_ptr<Enemy>> EnemyList;
+    std::vector<std::shared_ptr<Enemy>> enemyList;
+    std::vector<std::pair<std::shared_ptr<Enemy>, int>> enemyPerWave;
 
 
     // --倒數的部分--
@@ -84,13 +88,13 @@ protected:
     std::shared_ptr<Util::Text> m_countdown_text; 
     
     // --生成敵人的計時器--
-    int enemySpawnCounter = 0;
+    // int enemySpawnCounter = 0;
     int intervalCounter = 0;
-    int EnemyCounter = 0;
-    int spawnTime = 100;
-    int intervalTime = 500;
-    int decreaseSpawnTimePerWaves = 20;
-    int enemyListIndex = 0;
+    int enemyCounter = 0;
+    // int spawnTime = 100;
+    // int intervalTime = 500;
+    // int decreaseSpawnTimePerWaves = 20;
+    // int enemyListIndex = 0;
 
     // 遊戲結束的部分
     bool gameLose = false;
@@ -127,22 +131,22 @@ private:
 };
 
 class Level2 : public Level {
-    public:
-        Level2() ;
-        ~Level2() ;
-        // void Start() override; // 初始化
-        
-        // 處理這關特別需要的邏輯
-        void Update_for_speccial_Level() override;
-        // 處理這關特別需要的畫面
-        void Draw_for_speccial_Level() override; // 處理畫面
-        // void End() override;
+public:
+    Level2() ;
+    ~Level2() ;
+    // void Start() override; // 初始化
     
-    private:
-        // std::shared_ptr<Tile> m_ground1[10][20];
-        // std::shared_ptr<Tile> m_path1[10][20];
-        // std::shared_ptr<TileSet> m_groundset1;
-        // std::shared_ptr<TileSet> m_pathset1;
-    };
+    // 處理這關特別需要的邏輯
+    void Update_for_speccial_Level() override;
+    // 處理這關特別需要的畫面
+    void Draw_for_speccial_Level() override; // 處理畫面
+    // void End() override;
+
+private:
+    // std::shared_ptr<Tile> m_ground1[10][20];
+    // std::shared_ptr<Tile> m_path1[10][20];
+    // std::shared_ptr<TileSet> m_groundset1;
+    // std::shared_ptr<TileSet> m_pathset1;
+};
 
 #endif

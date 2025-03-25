@@ -9,7 +9,7 @@ class Enemy;
 
 class ReadEnemy{
 public:
-    ReadEnemy(std::vector<std::vector<glm::vec2>> waypoints, int level);
+    ReadEnemy(std::vector<std::vector<glm::vec2>> ways, int level);
 
     std::vector<std::pair<std::shared_ptr<Enemy>, int>> GetEnemy();
 
@@ -21,7 +21,7 @@ private:
     int wave = 0;
     std::vector<std::vector<std::pair<std::shared_ptr<Enemy>, int>>> EnemyList;
 
-    std::vector<std::vector<glm::vec2>> m_waypoints;
+    std::vector<std::vector<glm::vec2>> m_ways;
     
 };
 

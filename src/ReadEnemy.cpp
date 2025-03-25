@@ -6,8 +6,8 @@
 
 #include "ReadEnemy.hpp"
 
-ReadEnemy::ReadEnemy(std::vector<std::vector<glm::vec2>> waypoints, int level){
-    m_waypoints = waypoints;
+ReadEnemy::ReadEnemy(std::vector<std::vector<glm::vec2>> ways, int level){
+    m_ways = ways;
     
     std::string fileName = RESOURCE_DIR"/Enemy_Wave/Level" + std::to_string(level) + ".csv";
     file.open(fileName);
@@ -34,7 +34,7 @@ ReadEnemy::ReadEnemy(std::vector<std::vector<glm::vec2>> waypoints, int level){
                 // 史萊姆
                 if(cell[0] == 'S'){
                     int num = cell[1] - '0';
-                    tem_enemy = std::make_shared<Enemy>(RESOURCE_DIR"/output_images/Slime/tile_0_0.png", m_waypoints[num-1], 8, 1);
+                    tem_enemy = std::make_shared<Enemy>(RESOURCE_DIR"/output_images/Slime/tile_0_0.png", m_ways[num-1], 8, 1);
                 }
                 else{
                     LOG_INFO("Enemy type error in Slime");
