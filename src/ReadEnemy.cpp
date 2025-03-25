@@ -6,7 +6,11 @@
 
 #include "ReadEnemy.hpp"
 
-ReadEnemy::ReadEnemy(int level){
+ReadEnemy::ReadEnemy(std::vector<glm::vec2> waypoint1, std::vector<glm::vec2> waypoint2, std::vector<glm::vec2> waypoint3, int level){
+    m_waypoint1 = waypoint1;
+    m_waypoint2 = waypoint2;
+    m_waypoint3 = waypoint3;
+    
     std::string fileName = RESOURCE_DIR"/Enemy_Wave/Level" + std::to_string(level) + ".csv";
     file.open(fileName);
     if (!file.is_open()) {
@@ -32,13 +36,13 @@ ReadEnemy::ReadEnemy(int level){
                 // 史萊姆
                 if(cell[0] == 'S'){
                     if(cell[1] == '1'){
-                        tem_enemy = std::make_shared<Enemy>(RESOURCE_DIR"/output_images/Slime/tile_0_0.png", waypoint1, 8, 1);
+                        tem_enemy = std::make_shared<Enemy>(RESOURCE_DIR"/output_images/Slime/tile_0_0.png", m_waypoint1, 8, 1);
                     }
                     else if(cell[1] == '2'){
-                        tem_enemy = std::make_shared<Enemy>(RESOURCE_DIR"/output_images/Slime/tile_0_0.png", waypoint2, 8, 1);
+                        tem_enemy = std::make_shared<Enemy>(RESOURCE_DIR"/output_images/Slime/tile_0_0.png", m_waypoint2, 8, 1);
                     }
                     else if(cell[1] == '3'){
-                        tem_enemy = std::make_shared<Enemy>(RESOURCE_DIR"/output_images/Slime/tile_0_0.png", waypoint3, 8, 1);
+                        tem_enemy = std::make_shared<Enemy>(RESOURCE_DIR"/output_images/Slime/tile_0_0.png", m_waypoint3, 8, 1);
                     }
                 }
             }
@@ -64,14 +68,14 @@ std::vector<std::pair<std::shared_ptr<Enemy>, int>> ReadEnemy::GetEnemy(){
     wave += 1;
 }
 
-void ReadEnemy::SetWayPoint(int number, std::vector<glm::vec2> waypoints){
-    if(number == 1){
-        waypoint1 = waypoints;
-    }
-    else if(number == 2){
-        waypoint2 = waypoints;
-    }
-    else if(number == 3){
-        waypoint3 = waypoints;
-    }
-}
+// void ReadEnemy::SetWayPoint(int number, std::vector<glm::vec2> waypoints){
+//     if(number == 1){
+//         waypoint1 = waypoints;
+//     }
+//     else if(number == 2){
+//         waypoint2 = waypoints;
+//     }
+//     else if(number == 3){
+//         waypoint3 = waypoints;
+//     }
+// }
