@@ -81,7 +81,10 @@ void Musketeer::Update_for_speccial_guard(){
         // LOG_INFO(now_dy);
         if(now_dx * now_dx + now_dy * now_dy <= 150){
             bullet->SetVisible(false);
-            m_enemyInRange[0]->GetHurt(m_damage);
+            // 為了怕同時造成傷害時，第二次傷害對nullptr造成傷害
+            if(m_enemyInRange[0]->GetHealth() > 0){
+                m_enemyInRange[0]->GetHurt(m_damage);
+            }
             if(m_enemyInRange[0]->IsDead()){
                 PopFrontEnemyInRange();
             }

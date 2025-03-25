@@ -32,7 +32,10 @@ bool Swordsman::IsEnemyInRange(const std::shared_ptr<Enemy> enemy){
 
 void Swordsman::Update_for_speccial_guard(){
     if(m_attackable && static_cast<int>(m_enemyInRange.size()) >= 1){
-        m_enemyInRange[0]->GetHurt(m_damage);
+        // 為了怕同時造成傷害時，第二次傷害對nullptr造成傷害
+        if(m_enemyInRange[0]->GetHealth() > 0){
+            m_enemyInRange[0]->GetHurt(m_damage);
+        }
         if(m_enemyInRange[0]->IsDead()){
             PopFrontEnemyInRange();
         }
