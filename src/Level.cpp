@@ -87,6 +87,21 @@ Level::Level(){
         Util::Color(254, 254, 0));
         number_money_Mage->SetDrawable(number_money_text_Mage);
     UI.push_back(number_money_Mage);
+    // Musketeer的按鈕
+    UI.push_back(std::make_shared<Button>(RESOURCE_DIR"/output_images/Musketeer/tile_0_0.png",
+        -296, -288, 16, 16, 3.0f, 3.0f,
+        [this]() { 
+            this->OnClickBuyGuard("Musketeer");
+        }));
+    // Musketeer的錢幣顯示
+    std::shared_ptr<Ui> number_money_Musketeer = std::make_shared<Ui>();
+    number_money_Musketeer->m_Transform.translation = {-289, -240};
+    std::shared_ptr<Util::Text> number_money_text_Musketeer = std::make_shared<Util::Text>(
+        RESOURCE_DIR"/Font/Inter.ttf",
+        30, std::to_string(20),
+        Util::Color(254, 254, 0));
+        number_money_Musketeer->SetDrawable(number_money_text_Musketeer);
+    UI.push_back(number_money_Musketeer);
 
     
 
@@ -134,6 +149,9 @@ void Level::OnClickBuyGuard(std::string characterName){
     }
     if(characterName == "Mage"){
         tem = std::make_shared<Mage>();
+    }
+    if(characterName == "Musketeer"){
+        tem = std::make_shared<Musketeer>();
     }
 
 }

@@ -13,6 +13,7 @@
 #include "Guard.hpp"
 #include "Swordsman.hpp"
 #include "Mage.hpp"
+#include "Musketeer.hpp"
 #include "ReadMap.hpp"
 
 #include "Util/Logger.hpp"
