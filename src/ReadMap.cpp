@@ -104,6 +104,9 @@ ReadMap::ReadMap(int level){
                     temp = RESOURCE_DIR"/output_images/Tiles/tile_3_4.png";
             
                 }
+                if(cell[1] == 'L'){
+                    temp = RESOURCE_DIR"/output_images/Tiles/tile_3_6.png";
+                }
             }
             row.push_back(temp);
         }
