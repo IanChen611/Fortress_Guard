@@ -34,7 +34,7 @@ Musketeer::Musketeer(){
     bullet = std::make_shared<Util::GameObject>(); 
     bullet->SetDrawable(bulletImage);
     bullet->SetZIndex(5);
-    bullet->m_Transform.scale = {1.5f, 1.5f};
+    bullet->m_Transform.scale = {3.0f, 3.0f};
     bullet->SetVisible(false);
 
     LOG_INFO("Musketeer built");
