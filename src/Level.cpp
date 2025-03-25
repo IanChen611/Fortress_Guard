@@ -98,7 +98,7 @@ Level::Level(){
     number_money_Musketeer->m_Transform.translation = {-289, -240};
     std::shared_ptr<Util::Text> number_money_text_Musketeer = std::make_shared<Util::Text>(
         RESOURCE_DIR"/Font/Inter.ttf",
-        30, std::to_string(20),
+        30, std::to_string(17),
         Util::Color(254, 254, 0));
         number_money_Musketeer->SetDrawable(number_money_text_Musketeer);
     UI.push_back(number_money_Musketeer);
