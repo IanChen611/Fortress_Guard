@@ -31,7 +31,7 @@ ReadMap::ReadMap(int level){
     S2 => 鉛直的直走
     SR => 起點向右
     SU => 起點向上 *
-    SL => 起點向左 *
+    SL => 起點向左
     SD => 起點向下 *
     */
     std::string line;
@@ -104,6 +104,7 @@ ReadMap::ReadMap(int level){
                     temp = RESOURCE_DIR"/output_images/Tiles/tile_3_4.png";
             
                 }
+                // 起點向左
                 if(cell[1] == 'L'){
                     temp = RESOURCE_DIR"/output_images/Tiles/tile_3_6.png";
                 }
