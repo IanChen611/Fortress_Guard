@@ -59,13 +59,13 @@ ReadEnemy::ReadEnemy(std::vector<glm::vec2> waypoint1, std::vector<glm::vec2> wa
 
 
 std::vector<std::pair<std::shared_ptr<Enemy>, int>> ReadEnemy::GetEnemy(){
-    if (wave >= EnemyList.size()) {
+    if (wave >= int(EnemyList.size())) {
         // size 為 0
         std::vector<std::pair<std::shared_ptr<Enemy>, int>> a;
         return a;
     }
-    return EnemyList[wave];
     wave += 1;
+    return EnemyList[wave-1];
 }
 
 // void ReadEnemy::SetWayPoint(int number, std::vector<glm::vec2> waypoints){
