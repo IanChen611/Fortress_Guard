@@ -6,10 +6,8 @@
 
 #include "ReadEnemy.hpp"
 
-ReadEnemy::ReadEnemy(std::vector<glm::vec2> waypoint1, std::vector<glm::vec2> waypoint2, std::vector<glm::vec2> waypoint3, int level){
-    m_waypoint1 = waypoint1;
-    m_waypoint2 = waypoint2;
-    m_waypoint3 = waypoint3;
+ReadEnemy::ReadEnemy(std::vector<std::vector<glm::vec2>> waypoints, int level){
+    m_waypoints = waypoints;
     
     std::string fileName = RESOURCE_DIR"/Enemy_Wave/Level" + std::to_string(level) + ".csv";
     file.open(fileName);
@@ -35,15 +33,11 @@ ReadEnemy::ReadEnemy(std::vector<glm::vec2> waypoint1, std::vector<glm::vec2> wa
             if(Now_is_detect_Enemy){
                 // 史萊姆
                 if(cell[0] == 'S'){
-                    if(cell[1] == '1'){
-                        tem_enemy = std::make_shared<Enemy>(RESOURCE_DIR"/output_images/Slime/tile_0_0.png", m_waypoint1, 8, 1);
-                    }
-                    else if(cell[1] == '2'){
-                        tem_enemy = std::make_shared<Enemy>(RESOURCE_DIR"/output_images/Slime/tile_0_0.png", m_waypoint2, 8, 1);
-                    }
-                    else if(cell[1] == '3'){
-                        tem_enemy = std::make_shared<Enemy>(RESOURCE_DIR"/output_images/Slime/tile_0_0.png", m_waypoint3, 8, 1);
-                    }
+                    int num = cell[1] - '0';
+                    tem_enemy = std::make_shared<Enemy>(RESOURCE_DIR"/output_images/Slime/tile_0_0.png", m_waypoints[num-1], 8, 1);
+                }
+                else{
+                    LOG_INFO("Enemy type error in Slime");
                 }
             }
             else if(!Now_is_detect_Enemy){
