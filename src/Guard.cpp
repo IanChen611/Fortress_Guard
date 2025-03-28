@@ -48,16 +48,46 @@ void Guard::Update(){
         mouse_pos.x = (((int)mouse_pos.x+480+24)/48-10)*48;
         mouse_pos.y = (((int)mouse_pos.y+240+24)/48-5)*48;
         if(Util::Input::IsKeyDown(Util::Keycode::MOUSE_RB)){
-            m_clickMe = true;
+            m_clickMe_RB = true;
         }
         if(Util::Input::IsKeyUp(Util::Keycode::MOUSE_RB)){
-            m_clickMe = false;
+            m_clickMe_RB = false;
         }
-        if(mouse_pos.x == m_coordinate.x && mouse_pos.y == m_coordinate.y && m_clickMe){
+        // 滑鼠右鍵按下 + 範圍內
+        if(mouse_pos.x == m_coordinate.x && mouse_pos.y == m_coordinate.y && m_clickMe_RB){
             for(int i=0; static_cast<std::size_t>(i) < m_rangeCoordinate.size(); i++){
                 m_rangeTile[i]->Draw();
             }
         }
+        // -------升級按鈕-------
+        // 消除放置以為升級之問題
+        if(!eliminated_deployed_problem){
+            eliminated_deployed_problem = Util::Input::IsKeyUp(Util::Keycode::MOUSE_LB);
+        }
+        // 以消除放置之問題
+        if(eliminated_deployed_problem){
+            // 滑鼠左鍵按下 + 範圍內
+            if(!m_clickMe_LB_down && Util::Input::IsKeyDown(Util::Keycode::MOUSE_LB) && mouse_pos.x == m_coordinate.x && mouse_pos.y == m_coordinate.y){
+                m_clickMe_LB_down = true;
+                LOG_INFO("m_clickMe_LB_down = " + std::to_string(m_clickMe_LB_down));
+            }
+            // 剛剛滑鼠左鍵按下過 + 滑鼠左鍵鬆開 + 範圍內
+            if(m_clickMe_LB_down && Util::Input::IsKeyUp(Util::Keycode::MOUSE_LB) && mouse_pos.x == m_coordinate.x && mouse_pos.y == m_coordinate.y){
+                m_clickMe_LB_down = false;
+                m_clickMe_LB = !m_clickMe_LB;
+                LOG_INFO("m_clickMe_LB = " + std::to_string(m_clickMe_LB));
+                m_upgradeButton->SetVisible(m_clickMe_LB);
+            }
+        }
+        
+        if(m_clickMe_LB){
+            m_upgradeButton->Draw();
+            m_upgradeButton->Update();
+        }
+        // --------------------
+
+
+
         // 判斷攻擊冷卻好了沒
         if(m_attackTime <= 0 && !m_attackable){
             m_attackable = true;

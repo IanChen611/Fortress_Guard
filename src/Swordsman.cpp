@@ -1,4 +1,6 @@
 #include "Swordsman.hpp"
+#include "Button.hpp"
+
 #include "Util/Image.hpp"
 #include "Util/Logger.hpp"
 #include "Util/Input.hpp"
@@ -19,6 +21,20 @@ Swordsman::Swordsman() {
     for(int _=0; _<4; _++){
         m_rangeTile.push_back(std::make_shared<Tile>(m_rangeImagePath));
     }
+    // 升級按鈕
+    m_upgradeButton = std::make_shared<Button>(
+        RESOURCE_DIR"/Image/UI/upgrade_button.png",
+        this->m_Transform.translation.x,
+        this->m_Transform.translation.y,
+        32, 332,
+        1.0f, 1.0f,
+        [this]() { 
+            this->Upgrade();
+        }
+    );
+    m_upgradeButton->SetZIndex(6);
+    m_upgradeButton->SetVisible(false);
+
     LOG_INFO("Swordsman built");
 }
 
