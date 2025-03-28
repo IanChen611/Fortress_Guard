@@ -45,6 +45,8 @@ public:
 
     int GetRank(){return m_rank;}
 
+    void SetCanUpgrade(bool canUpgrade){m_canUpgrade = canUpgrade;}
+
 protected:
     std::string m_myselfImagePath;
     std::string m_rangeImagePath;
@@ -68,6 +70,7 @@ protected:
     bool m_clickMe_LB_down = false;
     int m_rank = 1;
     bool m_isUpgraded = false;
+    bool m_canUpgrade = false;
 
     // 子彈
     std::shared_ptr<Util::GameObject> bullet;

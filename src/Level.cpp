@@ -249,9 +249,15 @@ void Level::Update(){
                         guard->PopFrontEnemyInRange();
                     }
                 }
+                if(m_player_money_now - 10*(guard->GetRank()) >= 0){
+                    guard->SetCanUpgrade(true);
+                }
+                else{
+                    guard->SetCanUpgrade(false);
+                }
                 if(guard->IsUpgraded()){
                     guard->SetIsUpgraded(false);
-                    m_player_money_now -= 10*guard->GetRank();
+                    m_player_money_now -= 10*(guard->GetRank() - 1);
                 }
                 guard->Update();
             }
@@ -291,7 +297,7 @@ void Level::Update(){
                 for(auto enemy : enemyList){
                     allDead = enemy->IsDead();
                 }
-                if(allDead){
+                if(allDead && int(enemyPerWave.size()) == 0){
                     gameWin = true;
                 }
             }

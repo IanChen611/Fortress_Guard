@@ -42,7 +42,7 @@ Musketeer::Musketeer(){
         RESOURCE_DIR"/Image/UI/upgrade_button.png",
         this->m_Transform.translation.x,
         this->m_Transform.translation.y,
-        32, 332,
+        32, 32,
         1.0f, 1.0f,
         [this]() { 
             this->Upgrade();
@@ -109,11 +109,14 @@ void Musketeer::Update_for_speccial_guard(){
 }
 
 void Musketeer::Upgrade(){
-    if(m_rank <= 3){
+    if(m_rank <= 3 && m_canUpgrade){
         m_damage += 2;
         m_attackSpeed *= 1.2;
         m_rank += 1;
         LOG_INFO("Musketeer upgraded");
         m_isUpgraded = true;
+    }
+    else{
+        LOG_INFO("upgrade fail");
     }
 }
