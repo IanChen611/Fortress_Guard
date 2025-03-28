@@ -82,8 +82,8 @@ void Enemy::GetHurt(int damage){
     m_health_now -= damage;
     m_healthbar->m_Transform.scale = {float(m_health_now) / float(m_health_ori), 1.0f};
     m_healthbar->Draw();
-    LOG_INFO(m_health_now);
-    LOG_INFO(m_healthbar->m_Transform.scale);
+    // LOG_INFO(m_health_now);
+    // LOG_INFO(m_healthbar->m_Transform.scale);
     if(m_health_now <= 0){
         m_isDead = true;
     }
