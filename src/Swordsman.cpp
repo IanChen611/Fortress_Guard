@@ -32,7 +32,7 @@ Swordsman::Swordsman() {
             this->Upgrade();
         }
     );
-    m_upgradeButton->SetZIndex(6);
+    m_upgradeButton->SetZIndex(15);
     m_upgradeButton->SetVisible(false);
 
     LOG_INFO("Swordsman built");

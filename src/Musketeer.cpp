@@ -37,6 +37,20 @@ Musketeer::Musketeer(){
     bullet->m_Transform.scale = {3.0f, 3.0f};
     bullet->SetVisible(false);
 
+    // 升級按鈕
+    m_upgradeButton = std::make_shared<Button>(
+        RESOURCE_DIR"/Image/UI/upgrade_button.png",
+        this->m_Transform.translation.x,
+        this->m_Transform.translation.y,
+        32, 332,
+        1.0f, 1.0f,
+        [this]() { 
+            this->Upgrade();
+        }
+    );
+    m_upgradeButton->SetZIndex(15);
+    m_upgradeButton->SetVisible(false);
+
     LOG_INFO("Musketeer built");
 }
 
