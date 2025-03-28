@@ -88,7 +88,10 @@ void Mage::Update_for_speccial_guard(){
         bullet->m_Transform.translation.y = m_coordinate.y;
     }
     if(bullet_flying){
-        
+        if(int(m_enemyInRange.size()) == 0){
+            bullet->SetVisible(false);
+            return;
+        }
         std::shared_ptr<Enemy> firstenemy = m_enemyInRange[0];
         float firstenmy_x = firstenemy->GetTransform().translation.x;
         float firstenmy_y = firstenemy->GetTransform().translation.y;
