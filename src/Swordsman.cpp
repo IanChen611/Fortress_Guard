@@ -60,7 +60,6 @@ void Swordsman::Update_for_speccial_guard(){
 }
 
 void Swordsman::Upgrade(){
-    LOG_INFO("Swordsman upgraded");
     if(m_rank <= 3){
         m_damage += 2;
         m_attackSpeed *= 1.2;
