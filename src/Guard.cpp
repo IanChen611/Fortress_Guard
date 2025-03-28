@@ -47,7 +47,7 @@ void Guard::Update(){
         glm::vec2 mouse_pos = Util::Input::GetCursorPosition();
         mouse_pos.x = (((int)mouse_pos.x+480+24)/48-10)*48;
         mouse_pos.y = (((int)mouse_pos.y+240+24)/48-5)*48;
-        bool mouse_inside = mouse_pos.x == m_coordinate.x && mouse_pos.y == m_coordinate.y;
+        bool mouse_inside = (mouse_pos.x == m_coordinate.x && mouse_pos.y == m_coordinate.y);
         if(Util::Input::IsKeyDown(Util::Keycode::MOUSE_RB)){
             m_clickMe_RB = true;
         }
@@ -70,14 +70,21 @@ void Guard::Update(){
             // 滑鼠左鍵按下 + 範圍內
             if(!m_clickMe_LB_down && Util::Input::IsKeyDown(Util::Keycode::MOUSE_LB) && mouse_inside){
                 m_clickMe_LB_down = true;
-                LOG_INFO("m_clickMe_LB_down = " + std::to_string(m_clickMe_LB_down));
+                // LOG_INFO("m_clickMe_LB_down = " + std::to_string(m_clickMe_LB_down));
             }
             // 剛剛滑鼠左鍵按下過 + 滑鼠左鍵鬆開 + 範圍內
             if(m_clickMe_LB_down && Util::Input::IsKeyUp(Util::Keycode::MOUSE_LB) && mouse_inside){
                 m_clickMe_LB_down = false;
                 m_clickMe_LB = !m_clickMe_LB;
-                LOG_INFO("m_clickMe_LB = " + std::to_string(m_clickMe_LB));
+                // LOG_INFO("m_clickMe_LB = " + std::to_string(m_clickMe_LB));
                 m_upgradeButton->SetVisible(m_clickMe_LB);
+            }
+            // 按下但不在物件上
+            bool mouse_on_upgrade_button = (mouse_pos.y == m_coordinate.y + 48 && mouse_pos.x == m_coordinate.x);
+            // LOG_INFO(mouse_on_upgrade_button);
+            if(m_clickMe_LB && Util::Input::IsKeyDown(Util::Keycode::MOUSE_LB) && !(mouse_inside || mouse_on_upgrade_button)){
+                m_clickMe_LB = false;
+                m_upgradeButton->SetVisible(false);
             }
         }
         
