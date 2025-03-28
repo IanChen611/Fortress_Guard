@@ -47,6 +47,7 @@ void Guard::Update(){
         glm::vec2 mouse_pos = Util::Input::GetCursorPosition();
         mouse_pos.x = (((int)mouse_pos.x+480+24)/48-10)*48;
         mouse_pos.y = (((int)mouse_pos.y+240+24)/48-5)*48;
+        bool mouse_inside = mouse_pos.x == m_coordinate.x && mouse_pos.y == m_coordinate.y;
         if(Util::Input::IsKeyDown(Util::Keycode::MOUSE_RB)){
             m_clickMe_RB = true;
         }
@@ -54,7 +55,7 @@ void Guard::Update(){
             m_clickMe_RB = false;
         }
         // 滑鼠右鍵按下 + 範圍內
-        if(mouse_pos.x == m_coordinate.x && mouse_pos.y == m_coordinate.y && m_clickMe_RB){
+        if(mouse_inside && m_clickMe_RB){
             for(int i=0; static_cast<std::size_t>(i) < m_rangeCoordinate.size(); i++){
                 m_rangeTile[i]->Draw();
             }
@@ -67,12 +68,12 @@ void Guard::Update(){
         // 以消除放置之問題
         if(eliminated_deployed_problem){
             // 滑鼠左鍵按下 + 範圍內
-            if(!m_clickMe_LB_down && Util::Input::IsKeyDown(Util::Keycode::MOUSE_LB) && mouse_pos.x == m_coordinate.x && mouse_pos.y == m_coordinate.y){
+            if(!m_clickMe_LB_down && Util::Input::IsKeyDown(Util::Keycode::MOUSE_LB) && mouse_inside){
                 m_clickMe_LB_down = true;
                 LOG_INFO("m_clickMe_LB_down = " + std::to_string(m_clickMe_LB_down));
             }
             // 剛剛滑鼠左鍵按下過 + 滑鼠左鍵鬆開 + 範圍內
-            if(m_clickMe_LB_down && Util::Input::IsKeyUp(Util::Keycode::MOUSE_LB) && mouse_pos.x == m_coordinate.x && mouse_pos.y == m_coordinate.y){
+            if(m_clickMe_LB_down && Util::Input::IsKeyUp(Util::Keycode::MOUSE_LB) && mouse_inside){
                 m_clickMe_LB_down = false;
                 m_clickMe_LB = !m_clickMe_LB;
                 LOG_INFO("m_clickMe_LB = " + std::to_string(m_clickMe_LB));
