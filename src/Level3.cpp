@@ -31,11 +31,18 @@ Level3::Level3(){
     // ----圖載入結束-----
     
     //----道路-----
-    waypoints.push_back({2, 2});
+    // 一號路線
+    waypoints.push_back({2, 1});
     waypoints.push_back({2, 7});
+    waypoints.push_back({4, 7});
+    waypoints.push_back({4, 17});
+    waypoints.push_back({99999, 99999});
+    ways.push_back(waypoints);
+    waypoints.clear();
+    // 二號路線
+    waypoints.push_back({7, 11});
     waypoints.push_back({7, 7});
-    waypoints.push_back({7, 13});
-    waypoints.push_back({4, 13});
+    waypoints.push_back({4, 7});
     waypoints.push_back({4, 17});
     waypoints.push_back({99999, 99999});
     ways.push_back(waypoints);
@@ -44,7 +51,7 @@ Level3::Level3(){
     // sm = std::make_shared<Swordsman>();
     // mage = std::make_shared<Mage>();
     //----生成敵人---放入道路----
-    m_readenemy = std::make_shared<ReadEnemy>(ways, 1);
+    m_readenemy = std::make_shared<ReadEnemy>(ways, 3);
 }
 
 Level3::~Level3() {
