@@ -121,4 +121,12 @@ void Mage::Update_for_speccial_guard(){
     }
 }
 
-void Mage::Upgrade(){}
+void Mage::Upgrade(){
+    if(m_rank <= 3){
+        m_damage += 2;
+        m_attackSpeed *= 1.2;
+        m_rank += 1;
+        LOG_INFO("Mage upgraded");
+        m_isUpgraded = true;
+    }
+}

@@ -249,6 +249,10 @@ void Level::Update(){
                         guard->PopFrontEnemyInRange();
                     }
                 }
+                if(guard->IsUpgraded()){
+                    guard->SetIsUpgraded(false);
+                    m_player_money_now -= 10*guard->GetRank();
+                }
                 guard->Update();
             }
 

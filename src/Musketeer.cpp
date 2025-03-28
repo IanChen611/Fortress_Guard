@@ -108,4 +108,12 @@ void Musketeer::Update_for_speccial_guard(){
     }
 }
 
-void Musketeer::Upgrade(){}
+void Musketeer::Upgrade(){
+    if(m_rank <= 3){
+        m_damage += 2;
+        m_attackSpeed *= 1.2;
+        m_rank += 1;
+        LOG_INFO("Musketeer upgraded");
+        m_isUpgraded = true;
+    }
+}

@@ -39,7 +39,11 @@ public:
 
     virtual void Upgrade() = 0;
 
+    bool IsUpgraded(){return m_isUpgraded;}
 
+    void SetIsUpgraded(bool isUpgraded){m_isUpgraded = isUpgraded;}
+
+    int GetRank(){return m_rank;}
 
 protected:
     std::string m_myselfImagePath;
@@ -62,6 +66,8 @@ protected:
     std::shared_ptr<Button> m_upgradeButton;
     bool m_clickMe_LB = false;
     bool m_clickMe_LB_down = false;
+    int m_rank = 1;
+    bool m_isUpgraded = false;
 
     // 子彈
     std::shared_ptr<Util::GameObject> bullet;
