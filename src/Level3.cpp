@@ -1,15 +1,6 @@
-#include "pch.hpp"
-
 #include "Level.hpp"
-#include "Tile.hpp"
-#include "TileSet.hpp"
 
-#include "Util/Logger.hpp"
-#include "Util/Input.hpp"
-#include "Util/Image.hpp"
-#include "Util/GameObject.hpp"
-
-Level2::Level2(){
+Level3::Level3(){
     // ----取圖-----
     // --取草地--
     for(int i=0; i<10; i++){
@@ -21,7 +12,7 @@ Level2::Level2(){
     m_groundset = std::make_shared<TileSet>(m_ground);
     m_groundset->SetAllZIndex(0);
     // --取道路--
-    ReadMap readmap(2);
+    ReadMap readmap(3);
     LOG_INFO("Now enter iterator");
     for(int i=0;i<10;i++){
         for(int j=0;j<20;j++){
@@ -36,35 +27,36 @@ Level2::Level2(){
     
     m_pathset = std::make_shared<TileSet>(m_path);
     m_pathset->SetAllZIndex(1);
-    LOG_INFO("Level2 built");
+    LOG_INFO("Level3 built");
     // ----圖載入結束-----
-
+    
     //----道路-----
-    waypoints.push_back({6, 2});
-    waypoints.push_back({6, 11});
-    waypoints.push_back({4, 11});
+    waypoints.push_back({2, 2});
+    waypoints.push_back({2, 7});
+    waypoints.push_back({7, 7});
+    waypoints.push_back({7, 13});
+    waypoints.push_back({4, 13});
     waypoints.push_back({4, 17});
-    waypoints.push_back({1, 17});
-    waypoints.push_back({1, 12});
-    waypoints.push_back({3, 12});
-    waypoints.push_back({3, 2});
     waypoints.push_back({99999, 99999});
     ways.push_back(waypoints);
     waypoints.clear();
+    //-----guard test-----
+    // sm = std::make_shared<Swordsman>();
+    // mage = std::make_shared<Mage>();
     //----生成敵人---放入道路----
-    m_readenemy = std::make_shared<ReadEnemy>(ways, 2);
+    m_readenemy = std::make_shared<ReadEnemy>(ways, 1);
 }
 
-Level2::~Level2() {
-    LOG_INFO("Level2 destroyed");
+Level3::~Level3() {
+    LOG_INFO("Level3 destroyed");
 }
 
 // 處理這關特別邏輯
-void Level2::Update_for_speccial_Level() {
+void Level3::Update_for_speccial_Level() {
     
 }
 
 // 處理這關特別需要的畫面
-void Level2::Draw_for_speccial_Level(){
+void Level3::Draw_for_speccial_Level(){
 
 }

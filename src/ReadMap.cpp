@@ -27,6 +27,11 @@ ReadMap::ReadMap(int level){
     T2 => 下到右的轉彎
     T3 => 右到上的轉彎
     T4 => 上到左的轉彎
+    RL => 沒有向左的三岔路
+    RR => 沒有向右的三岔路
+    RU => 沒有向上的三岔路
+    RD => 沒有向下的三岔路
+    RA => 十字路口
     S1 => 水平的直走
     S2 => 鉛直的直走
     SR => 起點向右
@@ -87,6 +92,29 @@ ReadMap::ReadMap(int level){
                 // 上到左轉彎
                 else if(cell[1] == '4'){
                     temp = RESOURCE_DIR"/output_images/Tiles/tile_2_6.png";
+                }
+            }
+            //路口
+            else if(cell[0] == 'R'){
+                //no left
+                if(cell[1] == 'L'){
+                    temp = RESOURCE_DIR"/output_images/Tiles/tile_1_4.png";
+                }
+                //no right
+                else if(cell[1] == 'R'){
+                    temp = RESOURCE_DIR"/output_images/Tiles/tile_1_6.png";
+                }
+                //no up
+                else if(cell[1] == 'U'){
+                    temp = RESOURCE_DIR"/output_images/Tiles/tile_0_5.png";
+                }
+                //no down
+                else if(cell[1] == 'D'){
+                    temp = RESOURCE_DIR"/output_images/Tiles/tile_2_5.png";
+                }
+                //cross-road
+                else if(cell[1] == 'A'){
+                    temp = RESOURCE_DIR"/output_images/Tiles/tile_1_5.png";
                 }
             }
             // 直走

@@ -282,44 +282,6 @@ void Level::Update(){
                         enemyCounter -= 1;
                     }
                 }
-                //interval time after the third and the seventh enemy spawn 
-                // if(EnemyCounter != 3 && EnemyCounter != 7) {
-                //     enemySpawnCounter += 1;
-                // }
-                // else{
-                //     intervalCounter += 1;
-                //     if(intervalCounter%intervalTime == 0){
-                //         EnemyCounter += 1;
-                //         enemyListIndex += 1;
-                //         spawnTime -= decreaseSpawnTimePerWaves;
-                //     }
-                // }
-                //spawn enemy after spawnTime
-                // if(enemySpawnCounter%spawnTime == 0) {
-                //     EnemyCounter += 1;
-                //     enemyListIndex += 1;
-                //     enemySpawnCounter = 1;
-                // }
-                //
-                // if(static_cast<std::size_t>(enemyListIndex) >= EnemyList.size()){
-                //     enemyListIndex = EnemyList.size();
-                // }
-                // 各個怪物 Update
-                // for(int i=0; i<enemyListIndex; i++){
-                    // EnemyList[i]->Update();
-                    // EnemyList[i]->Draw();
-                    // //enemy died
-                    // if(EnemyList[i]->IsDead()){
-                    //     if(EnemyList[i]->GetHealth() > 0){
-                    //         EnemyHitCastle();
-                    //         if(!gameLose && !gameWin && m_castlehealth_now == 0) gameLose = true;
-                    //     }
-                    //     m_player_money_now += EnemyList[i]->GiveMoney();
-                    //     EnemyList.erase(EnemyList.begin()+i);
-                    //     i -= 1;
-                    //     enemyListIndex -= 1;
-                    // }
-                // }
                 // 判斷是不是全部敵人都是dead
                 bool allDead = true;
                 for(auto enemy : enemyList){

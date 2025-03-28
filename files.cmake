@@ -5,6 +5,7 @@ set(SRC_FILES
     Enemy.cpp
     Level1.cpp
     Level2.cpp
+    Level3.cpp
     main.cpp
     SceneManager.cpp
     StartScene.cpp

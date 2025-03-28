@@ -88,13 +88,8 @@ protected:
     std::shared_ptr<Util::Text> m_countdown_text; 
     
     // --生成敵人的計時器--
-    // int enemySpawnCounter = 0;
     int intervalCounter = 0;
     int enemyCounter = 0;
-    // int spawnTime = 100;
-    // int intervalTime = 500;
-    // int decreaseSpawnTimePerWaves = 20;
-    // int enemyListIndex = 0;
 
     // 遊戲結束的部分
     bool gameLose = false;
@@ -121,13 +116,6 @@ public:
     // void End() override;
 
 private:
-    // std::shared_ptr<Tile> m_ground1[10][20];
-    // std::shared_ptr<Tile> m_path1[10][20];
-    // std::shared_ptr<TileSet> m_groundset1;
-    // std::shared_ptr<TileSet> m_pathset1;
-
-    // std::shared_ptr<Swordsman> sm;
-    // std::shared_ptr<Mage> mage;
 };
 
 class Level2 : public Level {
@@ -143,10 +131,21 @@ public:
     // void End() override;
 
 private:
-    // std::shared_ptr<Tile> m_ground1[10][20];
-    // std::shared_ptr<Tile> m_path1[10][20];
-    // std::shared_ptr<TileSet> m_groundset1;
-    // std::shared_ptr<TileSet> m_pathset1;
 };
+
+class Level3 : public Level {
+    public:
+        Level3() ;
+        ~Level3() ;
+        // void Start() override; // 初始化
+        
+        // 處理這關特別需要的邏輯
+        void Update_for_speccial_Level() override;
+        // 處理這關特別需要的畫面
+        void Draw_for_speccial_Level() override; // 處理畫面
+        // void End() override;
+    
+    private:
+    };
 
 #endif
