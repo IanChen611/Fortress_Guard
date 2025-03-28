@@ -106,3 +106,5 @@ void Mage::Update_for_speccial_guard(){
         
     }
 }
+
+void Mage::Upgrade(){}

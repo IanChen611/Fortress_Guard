@@ -42,3 +42,5 @@ void Swordsman::Update_for_speccial_guard(){
         m_attackable = false;
     }
 }
+
+void Swordsman::Upgrade(){}

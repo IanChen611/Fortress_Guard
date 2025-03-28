@@ -93,3 +93,5 @@ void Musketeer::Update_for_speccial_guard(){
         
     }
 }
+
+void Musketeer::Upgrade(){}

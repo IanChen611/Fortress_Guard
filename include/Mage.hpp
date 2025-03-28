@@ -6,14 +6,16 @@
 #include "Guard.hpp"
 
 class Mage : public Guard {
-    public:
-        Mage();
-    
-        void Update_for_speccial_guard() override;
-    
-        bool IsEnemyInRange(const std::shared_ptr<Enemy> enemy) override;
-    
-    private:
-    };
+public:
+    Mage();
+
+    void Update_for_speccial_guard() override;
+
+    bool IsEnemyInRange(const std::shared_ptr<Enemy> enemy) override;
+
+    void Upgrade() override;
+
+private:
+};
 
 #endif

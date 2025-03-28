@@ -36,6 +36,8 @@ public:
 
     void SetCanDeployed(bool canDeployed){m_canDeployed = canDeployed;}
 
+    virtual void Upgrade() = 0;
+
 
 
 protected:
