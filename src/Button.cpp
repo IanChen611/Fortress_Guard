@@ -18,6 +18,9 @@ Button::Button(const std::string& imagePath, int posX, int posY, float width, fl
 }
 void Button::Update()
 {
+    m_X = m_Transform.translation.x;
+    m_Y = m_Transform.translation.y;
+    
     // 取得滑鼠位置
     glm::vec2 mouse_pos = Util::Input::GetCursorPosition();	
 
