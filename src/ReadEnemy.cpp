@@ -36,8 +36,16 @@ ReadEnemy::ReadEnemy(std::vector<std::vector<glm::vec2>> ways, int level){
                     int num = cell[1] - '0';
                     tem_enemy = std::make_shared<Enemy>(RESOURCE_DIR"/output_images/Slime/tile_0_0.png", m_ways[num-1], 8, 1);
                 }
+                else if(cell[0] == 'O'){
+                    int num  = cell[1] - '0';
+                    tem_enemy = std::make_shared<Enemy>(RESOURCE_DIR"/output_images/Orc/tile_0_0.png", m_ways[num-1], 50, 0.5);
+                }
+                else if(cell[0] == 'M'){
+                    int num  = cell[1] - '0';
+                    tem_enemy = std::make_shared<Enemy>(RESOURCE_DIR"/output_images/Mammoth/tile_0_0.png", m_ways[num-1], 30, 2);
+                }
                 else{
-                    LOG_INFO("Enemy type error in Slime");
+                    LOG_INFO("Enemy type error");
                 }
             }
             else if(!Now_is_detect_Enemy){
