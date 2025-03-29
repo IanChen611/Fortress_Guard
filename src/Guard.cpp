@@ -130,6 +130,12 @@ void Guard::Update(){
             m_attackTime -= m_attackSpeed/2;
             // LOG_INFO(m_attackTime);
         }
+        //detect enemy is dead or not
+        if(static_cast<int>(m_enemyInRange.size()) >= 1){
+            if(m_enemyInRange[0]->IsDead()){
+                PopFrontEnemyInRange();
+            }
+        }
         // 攻擊交給special_Update()
         // if(m_attackable && static_cast<int>(m_enemyInRange.size()) >= 1){
         //     m_enemyInRange[0]->GetHurt(m_damage);

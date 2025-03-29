@@ -33,7 +33,7 @@ public:
 
     void SetEnemyInRange(std::shared_ptr<Enemy> enemy);
 
-    bool IsEnemyInEnemyInRange(std::shared_ptr<Enemy> enemy){return std::find(m_enemyInRange.begin(), m_enemyInRange.end(), enemy) == m_enemyInRange.end();};
+    bool IsEnemyInEnemyInRange(std::shared_ptr<Enemy> enemy){return std::find(m_enemyInRange.begin(), m_enemyInRange.end(), enemy) != m_enemyInRange.end();};
 
     void PopFrontEnemyInRange();
 
