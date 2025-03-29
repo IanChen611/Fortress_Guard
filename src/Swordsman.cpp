@@ -4,6 +4,7 @@
 #include "Util/Image.hpp"
 #include "Util/Logger.hpp"
 #include "Util/Input.hpp"
+#include "Util/Text.hpp"
 
 Swordsman::Swordsman() {
     // m_myselfImagePath = RESOURCE_DIR"/output_images/Swordsman/tile_0_0.png";
@@ -34,6 +35,24 @@ Swordsman::Swordsman() {
     );
     m_upgradeButton->SetZIndex(15);
     m_upgradeButton->SetVisible(false);
+    // 升級花費
+    m_upgradeCost = std::make_shared<Util::GameObject>();
+    m_upgradeCost->SetZIndex(15);
+    m_upgradeCost->SetVisible(false);
+    m_upgradeCost_text = std::make_shared<Util::Text>(
+        RESOURCE_DIR"/Font/Inter.ttf",
+        15, std::to_string(10),
+        Util::Color(254, 254, 0));
+    m_upgradeCost->SetDrawable(m_upgradeCost_text);
+    //等級UI
+    m_ranknumber = std::make_shared<Util::GameObject>();
+    m_ranknumber->SetZIndex(15);
+    m_ranknumber->SetVisible(false);
+    m_ranknumber_text = std::make_shared<Util::Text>(
+        RESOURCE_DIR"/Font/Inter.ttf",
+        16, std::to_string(m_rank),
+        Util::Color(0, 0, 0));
+    m_ranknumber->SetDrawable(m_ranknumber_text);
 
     LOG_INFO("Swordsman built");
 }

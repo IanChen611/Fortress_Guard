@@ -4,10 +4,12 @@
 #include <string>
 
 #include "Util/GameObject.hpp"
+#include "Util/Text.hpp"
 
 #include "Tile.hpp"
 #include "Enemy.hpp"
 #include "Button.hpp"
+
 
 class Guard : public Util::GameObject {
 public:
@@ -16,7 +18,7 @@ public:
 
     void SetImage(const std::string& ImagePath);
 
-    void SetPosition(const glm::vec2& Position) { m_Transform.translation = Position; m_upgradeButton->m_Transform.translation = {Position.x, Position.y + 48};}
+    void SetPosition(const glm::vec2& Position);
 
     // 為了讓子類別(Swordsman之類的)可以Update
     void Update();
@@ -63,7 +65,7 @@ protected:
     std::vector<std::shared_ptr<Tile>> m_rangeTile;
     std::vector<std::shared_ptr<Enemy>> m_enemyInRange;
 
-    // 升級按鈕
+    // ------升級相關-------
     bool eliminated_deployed_problem = false;
     std::shared_ptr<Button> m_upgradeButton;
     bool m_clickMe_LB = false;
@@ -71,6 +73,13 @@ protected:
     int m_rank = 1;
     bool m_isUpgraded = false;
     bool m_canUpgrade = false;
+    // 升級花費
+    std::shared_ptr<Util::GameObject> m_upgradeCost;
+    std::shared_ptr<Util::Text> m_upgradeCost_text;
+    // 顯示等級的UI
+    std::shared_ptr<Util::GameObject> m_ranknumber;
+    std::shared_ptr<Util::Text> m_ranknumber_text;
+    // ---------------------
 
     // 子彈
     std::shared_ptr<Util::GameObject> bullet;

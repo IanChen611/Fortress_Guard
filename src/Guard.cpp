@@ -23,6 +23,13 @@ void Guard::PopFrontEnemyInRange(){
     m_enemyInRange.erase(m_enemyInRange.begin());
 }
 
+void Guard::SetPosition(const glm::vec2& Position) {
+    m_Transform.translation = Position;
+    m_upgradeButton->m_Transform.translation = {Position.x, Position.y + 48};
+    m_upgradeCost->m_Transform.translation = {Position.x + 7, Position.y + 20};
+    m_ranknumber->m_Transform.translation = {Position.x + 7, Position.y - 25};
+}
+
 void Guard::Update(){
     //something special
     Update_for_speccial_guard();
@@ -78,6 +85,8 @@ void Guard::Update(){
                 m_clickMe_LB = !m_clickMe_LB;
                 // LOG_INFO("m_clickMe_LB = " + std::to_string(m_clickMe_LB));
                 m_upgradeButton->SetVisible(m_clickMe_LB);
+                m_upgradeCost->SetVisible(m_clickMe_LB);
+                m_ranknumber->SetVisible(m_clickMe_LB);
             }
             // 按下但不在物件上
             bool mouse_on_upgrade_button = (mouse_pos.y == m_coordinate.y + 48 && mouse_pos.x == m_coordinate.x);
@@ -85,12 +94,26 @@ void Guard::Update(){
             if(m_clickMe_LB && Util::Input::IsKeyDown(Util::Keycode::MOUSE_LB) && !(mouse_inside || mouse_on_upgrade_button)){
                 m_clickMe_LB = false;
                 m_upgradeButton->SetVisible(false);
+                m_upgradeCost->SetVisible(false);
+                m_ranknumber->SetVisible(false);
             }
         }
-        
+        // 判定查看該位Guard
         if(m_clickMe_LB){
-            m_upgradeButton->Draw();
-            m_upgradeButton->Update();
+            // 可以升級的時候
+            if(m_rank < 3){
+                m_ranknumber_text->SetText("Lv." + std::to_string(m_rank));
+                // 花費
+                m_upgradeCost_text->SetText(std::to_string(10*(m_rank)));
+                m_upgradeCost->Draw();
+                // 升級按鈕
+                m_upgradeButton->Draw();
+                m_upgradeButton->Update();
+            }
+            else{
+                m_ranknumber_text->SetText("Lv.Max");
+            }
+            m_ranknumber->Draw();
         }
         // --------------------
 
