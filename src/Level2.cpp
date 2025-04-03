@@ -45,8 +45,8 @@ Level2::Level2(){
     waypoints.push_back({4, 11});
     waypoints.push_back({4, 17});
     waypoints.push_back({1, 17});
-    waypoints.push_back({1, 12});
-    waypoints.push_back({3, 12});
+    waypoints.push_back({1, 11});
+    waypoints.push_back({3, 11});
     waypoints.push_back({3, 2});
     waypoints.push_back({99999, 99999});
     ways.push_back(waypoints);
