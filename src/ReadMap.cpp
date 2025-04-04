@@ -47,10 +47,10 @@ ReadMap::ReadMap(int level){
     W3 => 水 + 上面左邊邊界 
     W4 => 水 + 下面右邊邊界 
     W5 => 水 + 下面左邊邊界 
-    W6 => 水 + 右上一點島嶼 * 
-    W6 => 水 + 左上一點島嶼 *
-    W6 => 水 + 右下一點島嶼 *
-    W6 => 水 + 右下一點島嶼 *
+    W6 => 水 + 右上一點島嶼
+    W6 => 水 + 左上一點島嶼
+    W6 => 水 + 右下一點島嶼
+    W6 => 水 + 右下一點島嶼
     WI => 水上面有島 
 
     */
@@ -189,6 +189,22 @@ ReadMap::ReadMap(int level){
                 // 水 + 下面右邊邊界 
                 if(cell[1] == '5'){
                     temp = RESOURCE_DIR"/output_images/Tiles/tile_16_10.png";
+                }
+                // 水 + 右上一點島嶼 
+                if(cell[1] == '6'){
+                    temp = RESOURCE_DIR"/output_images/Tiles/tile_15_11.png";
+                }
+                // 水 + 右下一點島嶼 
+                if(cell[1] == '7'){
+                    temp = RESOURCE_DIR"/output_images/Tiles/tile_14_11.png";
+                }
+                // 水 + 左上一點島嶼 
+                if(cell[1] == '8'){
+                    temp = RESOURCE_DIR"/output_images/Tiles/tile_15_10.png";
+                }
+                // 水 + 左下一點島嶼 
+                if(cell[1] == '9'){
+                    temp = RESOURCE_DIR"/output_images/Tiles/tile_14_10.png";
                 }
                 
 

@@ -41,6 +41,12 @@ void ChooseLevelScene::OnClickLevelButton(int i){
         tem->SetSceneManager(m_SceneManager);
         m_SceneManager->PushScene(std::move(tem));
     }
+    if(i == 4){
+        LOG_INFO("Clicked the Level four");
+        std::unique_ptr<Level4> tem = std::make_unique<Level4>();
+        tem->SetSceneManager(m_SceneManager);
+        m_SceneManager->PushScene(std::move(tem));
+    }
 }
 void ChooseLevelScene::OnClickBackPreScene(){
     m_SceneManager->PopScene();

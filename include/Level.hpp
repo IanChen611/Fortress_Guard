@@ -134,18 +134,48 @@ private:
 };
 
 class Level3 : public Level {
-    public:
-        Level3() ;
-        ~Level3() ;
-        // void Start() override; // 初始化
-        
-        // 處理這關特別需要的邏輯
-        void Update_for_speccial_Level() override;
-        // 處理這關特別需要的畫面
-        void Draw_for_speccial_Level() override; // 處理畫面
-        // void End() override;
+public:
+    Level3() ;
+    ~Level3() ;
+    // void Start() override; // 初始化
     
-    private:
-    };
+    // 處理這關特別需要的邏輯
+    void Update_for_speccial_Level() override;
+    // 處理這關特別需要的畫面
+    void Draw_for_speccial_Level() override; // 處理畫面
+    // void End() override;
+    
+private:
+};
+
+class Level4 : public Level {
+public:
+    Level4() ;
+    ~Level4() ;
+    // void Start() override; // 初始化
+    
+    // 處理這關特別需要的邏輯
+    void Update_for_speccial_Level() override;
+    // 處理這關特別需要的畫面
+    void Draw_for_speccial_Level() override; // 處理畫面
+    // void End() override;
+    
+private:
+};
+
+// class Level5 : public Level {
+// public:
+//     Level5() ;
+//     ~Level5() ;
+//     // void Start() override; // 初始化
+    
+//     // 處理這關特別需要的邏輯
+//     void Update_for_speccial_Level() override;
+//     // 處理這關特別需要的畫面
+//     void Draw_for_speccial_Level() override; // 處理畫面
+//     // void End() override;
+    
+// private:
+// };
 
 #endif

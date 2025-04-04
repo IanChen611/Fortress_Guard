@@ -1,6 +1,6 @@
 #include "Level.hpp"
 
-Level3::Level3(){
+Level4::Level4(){
     // ----取圖-----
     // --取草地--
     for(int i=0; i<10; i++){
@@ -54,16 +54,16 @@ Level3::Level3(){
     m_readenemy = std::make_shared<ReadEnemy>(ways, 3);
 }
 
-Level3::~Level3() {
+Level4::~Level4() {
     LOG_INFO("Level3 destroyed");
 }
 
 // 處理這關特別邏輯
-void Level3::Update_for_speccial_Level() {
+void Level4::Update_for_speccial_Level() {
     
 }
 
 // 處理這關特別需要的畫面
-void Level3::Draw_for_speccial_Level(){
+void Level4::Draw_for_speccial_Level(){
 
 }
