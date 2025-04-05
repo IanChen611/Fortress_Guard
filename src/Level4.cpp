@@ -27,7 +27,7 @@ Level4::Level4(){
     
     m_pathset = std::make_shared<TileSet>(m_path);
     m_pathset->SetAllZIndex(1);
-    LOG_INFO("Level3 built");
+    LOG_INFO("Level4 built");
     // ----圖載入結束-----
     
     //----道路-----
