@@ -156,55 +156,55 @@ ReadMap::ReadMap(int level){
             else if(cell[0] == 'W'){
                 // 單純水
                 if(cell[1] == '1'){
-                    temp = RESOURCE_DIR"/output_images/Tiles/tile_15_8.png";
+                    temp = RESOURCE_DIR"/output_images/Tiles/tile_14_8.png";
                 }
                 // 水 + 上面邊界
                 if(cell[1] == 'U'){
-                    temp = RESOURCE_DIR"/output_images/Tiles/tile_14_8.png";
+                    temp = RESOURCE_DIR"/output_images/Tiles/tile_13_8.png";
                 }
                 // 水 + 下面邊界
                 if(cell[1] == 'D'){
-                    temp = RESOURCE_DIR"/output_images/Tiles/tile_16_8.png";
+                    temp = RESOURCE_DIR"/output_images/Tiles/tile_15_8.png";
                 }
                 // 水 + 右邊邊界
                 if(cell[1] == 'R'){
-                    temp = RESOURCE_DIR"/output_images/Tiles/tile_15_9.png";
+                    temp = RESOURCE_DIR"/output_images/Tiles/tile_14_9.png";
                 }
                 // 水 + 左邊邊界
                 if(cell[1] == 'L'){
-                    temp = RESOURCE_DIR"/output_images/Tiles/tile_15_7.png";
+                    temp = RESOURCE_DIR"/output_images/Tiles/tile_14_7.png";
                 }
                 // 水 + 上面右邊邊界 
                 if(cell[1] == '2'){
-                    temp = RESOURCE_DIR"/output_images/Tiles/tile_14_8.png";
+                    temp = RESOURCE_DIR"/output_images/Tiles/tile_13_9.png";
                 }
                 // 水 + 上面左邊邊界 
                 if(cell[1] == '3'){
-                    temp = RESOURCE_DIR"/output_images/Tiles/tile_14_10.png";
+                    temp = RESOURCE_DIR"/output_images/Tiles/tile_13_7.png";
                 }
                 // 水 + 下面右邊邊界 
                 if(cell[1] == '4'){
-                    temp = RESOURCE_DIR"/output_images/Tiles/tile_16_8.png";
+                    temp = RESOURCE_DIR"/output_images/Tiles/tile_15_9.png";
                 }
-                // 水 + 下面右邊邊界 
+                // 水 + 下面左邊邊界 
                 if(cell[1] == '5'){
-                    temp = RESOURCE_DIR"/output_images/Tiles/tile_16_10.png";
+                    temp = RESOURCE_DIR"/output_images/Tiles/tile_15_7.png";
                 }
                 // 水 + 右上一點島嶼 
                 if(cell[1] == '6'){
-                    temp = RESOURCE_DIR"/output_images/Tiles/tile_15_11.png";
+                    temp = RESOURCE_DIR"/output_images/Tiles/tile_14_11.png";
                 }
                 // 水 + 右下一點島嶼 
                 if(cell[1] == '7'){
-                    temp = RESOURCE_DIR"/output_images/Tiles/tile_14_11.png";
+                    temp = RESOURCE_DIR"/output_images/Tiles/tile_13_11.png";
                 }
                 // 水 + 左上一點島嶼 
                 if(cell[1] == '8'){
-                    temp = RESOURCE_DIR"/output_images/Tiles/tile_15_10.png";
+                    temp = RESOURCE_DIR"/output_images/Tiles/tile_14_10.png";
                 }
                 // 水 + 左下一點島嶼 
                 if(cell[1] == '9'){
-                    temp = RESOURCE_DIR"/output_images/Tiles/tile_14_10.png";
+                    temp = RESOURCE_DIR"/output_images/Tiles/tile_13_10.png";
                 }
                 
 

@@ -32,18 +32,20 @@ Level4::Level4(){
     
     //----道路-----
     // 一號路線
-    waypoints.push_back({2, 1});
-    waypoints.push_back({2, 7});
-    waypoints.push_back({4, 7});
-    waypoints.push_back({4, 17});
+    waypoints.push_back({3, 0});
+    waypoints.push_back({3, 13});
+    waypoints.push_back({1, 13});
+    waypoints.push_back({1, 19});
     waypoints.push_back({99999, 99999});
     ways.push_back(waypoints);
     waypoints.clear();
     // 二號路線
-    waypoints.push_back({7, 11});
-    waypoints.push_back({7, 7});
-    waypoints.push_back({4, 7});
-    waypoints.push_back({4, 17});
+    waypoints.push_back({7, 17});
+    waypoints.push_back({7, 9});
+    waypoints.push_back({3, 9});
+    waypoints.push_back({3, 13});
+    waypoints.push_back({1, 13});
+    waypoints.push_back({1, 19});
     waypoints.push_back({99999, 99999});
     ways.push_back(waypoints);
     waypoints.clear();
@@ -51,11 +53,11 @@ Level4::Level4(){
     // sm = std::make_shared<Swordsman>();
     // mage = std::make_shared<Mage>();
     //----生成敵人---放入道路----
-    m_readenemy = std::make_shared<ReadEnemy>(ways, 3);
+    m_readenemy = std::make_shared<ReadEnemy>(ways, 4);
 }
 
 Level4::~Level4() {
-    LOG_INFO("Level3 destroyed");
+    LOG_INFO("Level4 destroyed");
 }
 
 // 處理這關特別邏輯
