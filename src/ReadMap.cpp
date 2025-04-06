@@ -66,12 +66,11 @@ ReadMap::ReadMap(int level){
             std::string temp;
             j++;
             //  Work!!
-            LOG_INFO(std::to_string(i) + ", " + std::to_string(j)+ ": " + cell);
+            // LOG_INFO(std::to_string(i) + ", " + std::to_string(j)+ ": " + cell);
             if(cell == "N"){
                 temp = "";
             }
             // LOG_INFO(cell);
-            // LOG_INFO(cell)
             // 草地
             else if(cell[0] == 'G'){
                 if(cell[1] == '1'){

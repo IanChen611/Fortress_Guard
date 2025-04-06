@@ -19,6 +19,10 @@ Level3::Level3(){
             std::string tem = readmap.GiveTileName(i, j);
             // LOG_INFO(std::to_string(i) + ", " + std::to_string(j) + ":" + tem);
             if(tem.length() != 0){
+                if(tem == RESOURCE_DIR"/output_images/Tiles/tile_14_5.png"){
+                    m_ground[i][j]->SetImage(tem);
+                    continue;
+                }
                 m_path[i][j] = std::make_shared<Tile>(tem);
                 m_ground[i][j]->SetTouchable(false);
             }
