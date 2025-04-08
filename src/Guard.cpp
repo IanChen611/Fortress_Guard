@@ -35,6 +35,14 @@ Guard::Guard(){
         16, std::to_string(m_rank),
         Util::Color(0, 0, 0));
     m_ranknumber->SetDrawable(m_ranknumber_text);
+
+    // 攻擊冷卻UI
+    m_cooldown_bar = std::make_shared<Util::GameObject>();
+    m_cooldown_bar_IMG = std::make_shared<Util::Image>(RESOURCE_DIR"/Image/UI/cooldown_bar.png");
+    m_cooldown_bar->SetDrawable(m_cooldown_bar_IMG);
+    m_cooldown_bar->SetPivot({0, -24});
+    m_cooldown_bar->SetZIndex(15);
+    m_cooldown_bar->SetVisible(false);
 }
 
 void Guard::SetImage(const std::string& myselfImagePath) {
@@ -56,6 +64,7 @@ void Guard::SetPosition(const glm::vec2& Position) {
     m_upgradeButton->m_Transform.translation = {Position.x, Position.y + 48};
     m_upgradeCost->m_Transform.translation = {Position.x + 7, Position.y + 20};
     m_ranknumber->m_Transform.translation = {Position.x + 7, Position.y - 25};
+    m_cooldown_bar->m_Transform.translation = {Position.x + 21, Position.y - 24};
 }
 
 void Guard::Update(){
@@ -147,6 +156,12 @@ void Guard::Update(){
 
 
         // -----攻擊冷卻相關-------
+        if(cooldown_bar_scale > 0 || !m_attackable) cooldown_bar_scale = m_attackTime;
+        else cooldown_bar_scale = 0;
+        m_cooldown_bar->m_Transform.scale.y = cooldown_bar_scale * 0.01;
+        m_cooldown_bar->SetVisible(true);
+        // LOG_INFO("Drawing cooldown_bar");
+        m_cooldown_bar->Draw();
         // 判斷攻擊冷卻好了沒
         if(m_attackTime <= 0 && !m_attackable){
             m_attackable = true;
