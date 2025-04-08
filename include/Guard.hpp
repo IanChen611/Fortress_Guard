@@ -53,10 +53,7 @@ protected:
     std::string m_myselfImagePath;
     std::string m_rangeImagePath;
     glm::vec2 m_coordinate;
-    int m_damage;
-    float m_attackTime = 100;
-    float m_attackSpeed;
-    bool m_attackable = false;
+    
     bool m_isDeployed = false;
     bool m_clickMe_RB = false;
     bool m_canDeployed = false;
@@ -81,6 +78,15 @@ protected:
     std::shared_ptr<Util::Text> m_ranknumber_text;
     // ---------------------
 
+
+    // 攻擊相關
+    int m_damage;
+    float m_attackTime = 100;
+    float m_attackSpeed;
+    bool m_attackable = false;
+    std::shared_ptr<Util::GameObject> m_cooldown_bar;
+    std::shared_ptr<Util::Image> m_cooldown_bar_IMG;
+    float cooldown_bar_scale;
     // 子彈
     std::shared_ptr<Util::GameObject> bullet;
     bool bullet_flying = false;
