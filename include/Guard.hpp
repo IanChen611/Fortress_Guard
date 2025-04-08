@@ -13,7 +13,7 @@
 
 class Guard : public Util::GameObject {
 public:
-    Guard() = default;
+    Guard();
     ~Guard() = default;
 
     void SetImage(const std::string& ImagePath);

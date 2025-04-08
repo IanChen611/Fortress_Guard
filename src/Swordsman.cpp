@@ -22,37 +22,39 @@ Swordsman::Swordsman() {
     for(int _=0; _<4; _++){
         m_rangeTile.push_back(std::make_shared<Tile>(m_rangeImagePath));
     }
-    // 升級按鈕
-    m_upgradeButton = std::make_shared<Button>(
-        RESOURCE_DIR"/Image/UI/upgrade_button.png",
-        this->m_Transform.translation.x,
-        this->m_Transform.translation.y,
-        32, 32,
-        1.0f, 1.0f,
-        [this]() { 
-            this->Upgrade();
-        }
-    );
-    m_upgradeButton->SetZIndex(15);
-    m_upgradeButton->SetVisible(false);
+    // // 升級按鈕
+    // m_upgradeButton = std::make_shared<Button>(
+    //     RESOURCE_DIR"/Image/UI/upgrade_button.png",
+    //     this->m_Transform.translation.x,
+    //     this->m_Transform.translation.y,
+    //     32, 32,
+    //     1.0f, 1.0f,
+    //     [this]() { 
+    //         this->Upgrade();
+    //     }
+    // );
+    // m_upgradeButton->SetZIndex(15);
+    // m_upgradeButton->SetVisible(false);
+
     // 升級花費
-    m_upgradeCost = std::make_shared<Util::GameObject>();
-    m_upgradeCost->SetZIndex(15);
-    m_upgradeCost->SetVisible(false);
-    m_upgradeCost_text = std::make_shared<Util::Text>(
-        RESOURCE_DIR"/Font/Inter.ttf",
-        15, std::to_string(10),
-        Util::Color(254, 254, 0));
-    m_upgradeCost->SetDrawable(m_upgradeCost_text);
+    // m_upgradeCost = std::make_shared<Util::GameObject>();
+    // m_upgradeCost->SetZIndex(15);
+    // m_upgradeCost->SetVisible(false);
+    // m_upgradeCost_text = std::make_shared<Util::Text>(
+    //     RESOURCE_DIR"/Font/Inter.ttf",
+    //     15, std::to_string(10),
+    //     Util::Color(254, 254, 0));
+    // m_upgradeCost->SetDrawable(m_upgradeCost_text);
+
     //等級UI
-    m_ranknumber = std::make_shared<Util::GameObject>();
-    m_ranknumber->SetZIndex(15);
-    m_ranknumber->SetVisible(false);
-    m_ranknumber_text = std::make_shared<Util::Text>(
-        RESOURCE_DIR"/Font/Inter.ttf",
-        16, std::to_string(m_rank),
-        Util::Color(0, 0, 0));
-    m_ranknumber->SetDrawable(m_ranknumber_text);
+    // m_ranknumber = std::make_shared<Util::GameObject>();
+    // m_ranknumber->SetZIndex(15);
+    // m_ranknumber->SetVisible(false);
+    // m_ranknumber_text = std::make_shared<Util::Text>(
+    //     RESOURCE_DIR"/Font/Inter.ttf",
+    //     16, std::to_string(m_rank),
+    //     Util::Color(0, 0, 0));
+    // m_ranknumber->SetDrawable(m_ranknumber_text);
 
     LOG_INFO("Swordsman built");
 }
