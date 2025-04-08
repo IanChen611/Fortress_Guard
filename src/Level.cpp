@@ -203,6 +203,40 @@ Level::Level(int level){
         ways.push_back(waypoints);
         waypoints.clear();
     }
+    else if(m_level == 5){
+        waypoints.push_back({2, 0});
+        waypoints.push_back({2, 6});
+        waypoints.push_back({8, 6});
+        waypoints.push_back({8, 8});
+        waypoints.push_back({5, 8});
+        waypoints.push_back({5, 13});
+        waypoints.push_back({1, 13});
+        waypoints.push_back({1, 17});
+        waypoints.push_back({8, 17});
+        waypoints.push_back({99999, 99999});
+        ways.push_back(waypoints);
+        waypoints.clear();
+
+        waypoints.push_back({8, 0});
+        waypoints.push_back({8, 8});
+        waypoints.push_back({5, 8});
+        waypoints.push_back({5, 13});
+        waypoints.push_back({1, 13});
+        waypoints.push_back({1, 17});
+        waypoints.push_back({8, 17});
+        waypoints.push_back({99999, 99999});
+        ways.push_back(waypoints);
+        waypoints.clear();
+
+        waypoints.push_back({8, 9});
+        waypoints.push_back({8, 13});
+        waypoints.push_back({1, 13});
+        waypoints.push_back({1, 17});
+        waypoints.push_back({8, 17});
+        waypoints.push_back({99999, 99999});
+        ways.push_back(waypoints);
+        waypoints.clear();
+    }
     // 放入路線
     m_readenemy = std::make_shared<ReadEnemy>(ways, m_level);
     // ----------怪物路線設置結束-----------
