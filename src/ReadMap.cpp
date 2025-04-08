@@ -35,9 +35,9 @@ ReadMap::ReadMap(int level){
     S1 => 水平的直走
     S2 => 鉛直的直走
     SR => 起點向右
-    SU => 起點向上 *
+    SU => 起點向上 
     SL => 起點向左
-    SD => 起點向下 *
+    SD => 起點向下 
     W1 => 水
     WU => 水 + 上面邊界 
     WD => 水 + 下面邊界 
@@ -149,6 +149,14 @@ ReadMap::ReadMap(int level){
                 // 起點向左
                 if(cell[1] == 'L'){
                     temp = RESOURCE_DIR"/output_images/Tiles/tile_3_6.png";
+                }
+                // 起點向上
+                if(cell[1] == 'U'){
+                    temp = RESOURCE_DIR"/output_images/Tiles/tile_2_3.png";
+                }
+                // 起點向下
+                if(cell[1] == 'D'){
+                    temp = RESOURCE_DIR"/output_images/Tiles/tile_0_3.png";
                 }
             }
             // 水相關

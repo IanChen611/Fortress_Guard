@@ -22,18 +22,18 @@
 
 class Level : public Scene{
 public:
-    Level();
+    Level(int level);
     ~Level() = default;
     // virtual void Start() = 0; // 初始化
     
     // 處理每關通用邏輯
     void Update() override; 
     // 處理特別需要的邏輯
-    virtual void Update_for_speccial_Level() = 0;
+    // virtual void Update_for_speccial_Level() = 0;
     // 處理每關通用畫面
     void Draw() override; 
     // 處理個別需要之畫面
-    virtual void Draw_for_speccial_Level() = 0;
+    // virtual void Draw_for_speccial_Level() = 0;
 
     // virtual void End() = 0;
 
@@ -57,6 +57,8 @@ protected:
     int m_castlehealth_now;
     int m_player_money_ori = 30;
     int m_player_money_now;
+    // 自身是第幾關
+    int m_level;
     
     // UI介面存放的vector
     std::vector<std::shared_ptr<Ui>> UI;
@@ -103,65 +105,65 @@ protected:
     std::shared_ptr<TileSet> m_pathset;
 };
 
-class Level1 : public Level {
-public:
-    Level1() ;
-    ~Level1() ;
-    // void Start() override; // 初始化
+// class Level1 : public Level {
+// public:
+//     Level1() ;
+//     ~Level1() ;
+//     // void Start() override; // 初始化
     
-    // 處理這關特別需要的邏輯
-    void Update_for_speccial_Level() override;
-    // 處理這關特別需要的畫面
-    void Draw_for_speccial_Level() override; // 處理畫面
-    // void End() override;
+//     // 處理這關特別需要的邏輯
+//     void Update_for_speccial_Level() override;
+//     // 處理這關特別需要的畫面
+//     void Draw_for_speccial_Level() override; // 處理畫面
+//     // void End() override;
 
-private:
-};
+// private:
+// };
 
-class Level2 : public Level {
-public:
-    Level2() ;
-    ~Level2() ;
-    // void Start() override; // 初始化
+// class Level2 : public Level {
+// public:
+//     Level2() ;
+//     ~Level2() ;
+//     // void Start() override; // 初始化
     
-    // 處理這關特別需要的邏輯
-    void Update_for_speccial_Level() override;
-    // 處理這關特別需要的畫面
-    void Draw_for_speccial_Level() override; // 處理畫面
-    // void End() override;
+//     // 處理這關特別需要的邏輯
+//     void Update_for_speccial_Level() override;
+//     // 處理這關特別需要的畫面
+//     void Draw_for_speccial_Level() override; // 處理畫面
+//     // void End() override;
 
-private:
-};
+// private:
+// };
 
-class Level3 : public Level {
-public:
-    Level3() ;
-    ~Level3() ;
-    // void Start() override; // 初始化
+// class Level3 : public Level {
+// public:
+//     Level3() ;
+//     ~Level3() ;
+//     // void Start() override; // 初始化
     
-    // 處理這關特別需要的邏輯
-    void Update_for_speccial_Level() override;
-    // 處理這關特別需要的畫面
-    void Draw_for_speccial_Level() override; // 處理畫面
-    // void End() override;
+//     // 處理這關特別需要的邏輯
+//     void Update_for_speccial_Level() override;
+//     // 處理這關特別需要的畫面
+//     void Draw_for_speccial_Level() override; // 處理畫面
+//     // void End() override;
     
-private:
-};
+// private:
+// };
 
-class Level4 : public Level {
-public:
-    Level4() ;
-    ~Level4() ;
-    // void Start() override; // 初始化
+// class Level4 : public Level {
+// public:
+//     Level4() ;
+//     ~Level4() ;
+//     // void Start() override; // 初始化
     
-    // 處理這關特別需要的邏輯
-    void Update_for_speccial_Level() override;
-    // 處理這關特別需要的畫面
-    void Draw_for_speccial_Level() override; // 處理畫面
-    // void End() override;
+//     // 處理這關特別需要的邏輯
+//     void Update_for_speccial_Level() override;
+//     // 處理這關特別需要的畫面
+//     void Draw_for_speccial_Level() override; // 處理畫面
+//     // void End() override;
     
-private:
-};
+// private:
+// };
 
 // class Level5 : public Level {
 // public:
@@ -177,5 +179,21 @@ private:
     
 // private:
 // };
+
+
+// class Level6 : public Level {
+// public:
+//     Level6() ;
+//     ~Level6() ;
+//     // void Start() override; // 初始化
+    
+//     // 處理這關特別需要的邏輯
+//     void Update_for_speccial_Level() override;
+//     // 處理這關特別需要的畫面
+//     void Draw_for_speccial_Level() override; // 處理畫面
+//     // void End() override;
+        
+//     private:
+//     };
 
 #endif

@@ -118,7 +118,7 @@ void Guard::Update(){
         // --------------------
 
 
-
+        // -----攻擊冷卻相關-------
         // 判斷攻擊冷卻好了沒
         if(m_attackTime <= 0 && !m_attackable){
             m_attackable = true;
@@ -145,5 +145,6 @@ void Guard::Update(){
         //     m_attackable = false;
         // }
         // LOG_INFO(m_enemyInRange.size());
+        // --------------------
     }
 }

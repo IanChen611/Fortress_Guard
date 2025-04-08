@@ -23,30 +23,41 @@ ChooseLevelScene::ChooseLevelScene() {
 }
 
 void ChooseLevelScene::OnClickLevelButton(int i){
-    if(i == 1){
-        LOG_INFO("Clicked the Level one");
-        std::unique_ptr<Level1> tem = std::make_unique<Level1>();
-        tem->SetSceneManager(m_SceneManager);
-        m_SceneManager->PushScene(std::move(tem));
-    }
-    if(i == 2){
-        LOG_INFO("Clicked the Level two");
-        std::unique_ptr<Level2> tem = std::make_unique<Level2>();
-        tem->SetSceneManager(m_SceneManager);
-        m_SceneManager->PushScene(std::move(tem));
-    }
-    if(i == 3){
-        LOG_INFO("Clicked the Level three");
-        std::unique_ptr<Level3> tem = std::make_unique<Level3>();
-        tem->SetSceneManager(m_SceneManager);
-        m_SceneManager->PushScene(std::move(tem));
-    }
-    if(i == 4){
-        LOG_INFO("Clicked the Level four");
-        std::unique_ptr<Level4> tem = std::make_unique<Level4>();
-        tem->SetSceneManager(m_SceneManager);
-        m_SceneManager->PushScene(std::move(tem));
-    }
+    LOG_INFO("Clicked the Level " + std::to_string(i));
+    std::unique_ptr<Level> tem = std::make_unique<Level>(i);
+    tem->SetSceneManager(m_SceneManager);
+    m_SceneManager->PushScene(std::move(tem));
+    
+    // if(i == 1){
+    //     LOG_INFO("Clicked the Level " + std::to_string(i));
+    //     std::unique_ptr<Level> tem = std::make_unique<Level>(i);
+    //     tem->SetSceneManager(m_SceneManager);
+    //     m_SceneManager->PushScene(std::move(tem));
+    // }
+    // if(i == 2){
+    //     LOG_INFO("Clicked the Level two");
+    //     std::unique_ptr<Level2> tem = std::make_unique<Level2>();
+    //     tem->SetSceneManager(m_SceneManager);
+    //     m_SceneManager->PushScene(std::move(tem));
+    // }
+    // if(i == 3){
+    //     LOG_INFO("Clicked the Level three");
+    //     std::unique_ptr<Level3> tem = std::make_unique<Level3>();
+    //     tem->SetSceneManager(m_SceneManager);
+    //     m_SceneManager->PushScene(std::move(tem));
+    // }
+    // if(i == 4){
+    //     LOG_INFO("Clicked the Level four");
+    //     std::unique_ptr<Level4> tem = std::make_unique<Level4>();
+    //     tem->SetSceneManager(m_SceneManager);
+    //     m_SceneManager->PushScene(std::move(tem));
+    // }
+    // if(i == 5){
+    //     LOG_INFO("Clicked the Level five");
+    //     std::unique_ptr<Level5> tem = std::make_unique<Level5>();
+    //     tem->SetSceneManager(m_SceneManager);
+    //     m_SceneManager->PushScene(std::move(tem));
+    // }
 }
 void ChooseLevelScene::OnClickBackPreScene(){
     m_SceneManager->PopScene();

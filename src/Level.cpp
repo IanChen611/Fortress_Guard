@@ -23,7 +23,9 @@ class Swordsman;
 
 class Mage;
 
-Level::Level(){
+Level::Level(int level){
+    m_level = level;
+
     // -----UI------ 
 
     // 返回前頁之按鈕
@@ -47,7 +49,10 @@ Level::Level(){
     UI.push_back(m_money);
     //----------------
 
-    // -----選角色的按鈕------
+
+
+
+    // -------------------選角色的按鈕-----------------
     // 取消購買的按鈕
     bt_cancelBuy = std::make_shared<Button>(RESOURCE_DIR"/Image/UI/cancelbuy.png",
         301, -290, 238, 87, 0.75f, 0.75f,
@@ -102,17 +107,111 @@ Level::Level(){
         Util::Color(254, 254, 0));
         number_money_Musketeer->SetDrawable(number_money_text_Musketeer);
     UI.push_back(number_money_Musketeer);
-
+    // ----------------------------------------------------------------------------------
     
+    // -----------地圖載入------------
+    // --取草地--
+    for(int i=0; i<10; i++){
+        for(int j=0; j<20; j++){
+            m_ground[i][j] = std::make_shared<Tile>(RESOURCE_DIR"/output_images/Tiles/tile_0_0.png");
+            m_ground[i][j]->SetTouchable(true);
+        }
+    }
+    m_groundset = std::make_shared<TileSet>(m_ground);
+    m_groundset->SetAllZIndex(0);
+    // --取道路--
+    ReadMap readmap(m_level);
+    for(int i=0;i<10;i++){
+        for(int j=0;j<20;j++){
+            std::string tem = readmap.GiveTileName(i, j);
+            if(tem.length() != 0){
+                if(tem == RESOURCE_DIR"/output_images/Tiles/tile_14_5.png"){
+                    m_ground[i][j]->SetImage(tem);
+                    continue;
+                }
+                m_path[i][j] = std::make_shared<Tile>(tem);
+                m_ground[i][j]->SetTouchable(false);
+            }
+        }
+    }
+    
+    m_pathset = std::make_shared<TileSet>(m_path);
+    m_pathset->SetAllZIndex(1);
+    LOG_INFO("Level" + std::to_string(m_level) + " built");
+    // -----------地圖載入結束----------------
 
+    // ----------怪物路線---------------
+    if(m_level == 1){
+        waypoints.push_back({2, 2});
+        waypoints.push_back({2, 7});
+        waypoints.push_back({7, 7});
+        waypoints.push_back({7, 13});
+        waypoints.push_back({4, 13});
+        waypoints.push_back({4, 17});
+        waypoints.push_back({99999, 99999});
+        ways.push_back(waypoints);
+        waypoints.clear();
+    }
+    else if(m_level == 2){
+        waypoints.push_back({6, 2});
+        waypoints.push_back({6, 11});
+        waypoints.push_back({4, 11});
+        waypoints.push_back({4, 17});
+        waypoints.push_back({1, 17});
+        waypoints.push_back({1, 11});
+        waypoints.push_back({3, 11});
+        waypoints.push_back({3, 2});
+        waypoints.push_back({99999, 99999});
+        ways.push_back(waypoints);
+        waypoints.clear();
+    }
+    else if(m_level == 3){
+        // 一號路線
+        waypoints.push_back({2, 1});
+        waypoints.push_back({2, 7});
+        waypoints.push_back({4, 7});
+        waypoints.push_back({4, 17});
+        waypoints.push_back({99999, 99999});
+        ways.push_back(waypoints);
+        waypoints.clear();
+        // 二號路線
+        waypoints.push_back({7, 11});
+        waypoints.push_back({7, 7});
+        waypoints.push_back({4, 7});
+        waypoints.push_back({4, 17});
+        waypoints.push_back({99999, 99999});
+        ways.push_back(waypoints);
+        waypoints.clear();
+    }
+    else if(m_level == 4){
+        // 一號路線
+        waypoints.push_back({3, 0});
+        waypoints.push_back({3, 13});
+        waypoints.push_back({1, 13});
+        waypoints.push_back({1, 19});
+        waypoints.push_back({99999, 99999});
+        ways.push_back(waypoints);
+        waypoints.clear();
+        // 二號路線
+        waypoints.push_back({7, 17});
+        waypoints.push_back({7, 9});
+        waypoints.push_back({3, 9});
+        waypoints.push_back({3, 13});
+        waypoints.push_back({1, 13});
+        waypoints.push_back({1, 19});
+        waypoints.push_back({99999, 99999});
+        ways.push_back(waypoints);
+        waypoints.clear();
+    }
+    // 放入路線
+    m_readenemy = std::make_shared<ReadEnemy>(ways, m_level);
+    // ----------怪物路線設置結束-----------
 
 
     // 開始遊戲倒數
     // ---倒數的數字---
     m_countdown_number = std::make_shared<Util::GameObject>();
     m_countdown_number->SetZIndex(5);
-    // m_countdown_text->m_Transform.translation = {0.0f, 0.0f};
-    // LOG_INFO("Test");
     m_countdown_text = std::make_shared<Util::Text>(
         RESOURCE_DIR"/Font/Inter.ttf",
         200, std::to_string(5),
@@ -198,7 +297,7 @@ void Level::Update(){
         if(!gameLose && !gameWin && !pop_scene_next_frame){
             
             // call 自己special Update
-            Update_for_speccial_Level();
+            // Update_for_speccial_Level();
 
             // 購買Guard的部分 更新
             if(buying){
@@ -323,7 +422,7 @@ void Level::Update(){
 void Level::Draw(){
 
     // call 自己special Draw
-    Draw_for_speccial_Level();
+    // Draw_for_speccial_Level();
 
     // 繪製地圖、路徑
     m_groundset->Draw();

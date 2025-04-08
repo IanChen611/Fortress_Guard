@@ -17,8 +17,8 @@ Enemy::Enemy(const std::string& ImagePath, const std::vector<glm::vec2> waypoint
 
     // Enemy's health bar
     m_healthbar = std::make_shared<Util::GameObject>();
-    m_healthbar->SetZIndex(5);
-    m_healthbar->m_Transform.scale = {1.0f, 1.0f};
+    m_healthbar->SetZIndex(11);
+    m_healthbar->m_Transform.scale = {1.0f, 0.5f};
     m_healthbar->SetPivot({-24.0f, 0});
     m_healthbar->SetDrawable(std::make_shared<Util::Image>(RESOURCE_DIR"/Image/UI/bar.png"));
 }
@@ -80,7 +80,7 @@ void Enemy::Move(){
 
 void Enemy::GetHurt(int damage){
     m_health_now -= damage;
-    m_healthbar->m_Transform.scale = {float(m_health_now) / float(m_health_ori), 1.0f};
+    m_healthbar->m_Transform.scale = {float(m_health_now) / float(m_health_ori), m_healthbar->m_Transform.scale.y};
     m_healthbar->Draw();
     // LOG_INFO(m_health_now);
     // LOG_INFO(m_healthbar->m_Transform.scale);

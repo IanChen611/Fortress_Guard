@@ -4,9 +4,6 @@ set(SRC_FILES
     ChooseLevelScene.cpp
     Enemy.cpp
     Level1.cpp
-    Level2.cpp
-    Level3.cpp
-    Level4.cpp
     main.cpp
     SceneManager.cpp
     StartScene.cpp
