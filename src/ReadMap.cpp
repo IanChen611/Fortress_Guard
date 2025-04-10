@@ -52,7 +52,17 @@ ReadMap::ReadMap(int level){
     W8 => 水 + 右下一點島嶼
     W9 => 水 + 左下一點島嶼
     WI => 水上面有島 
-
+    PU => 木棧板上方銜接陸地
+    PD => 木棧板下方銜接陸地
+    PR => 木棧板右方銜接陸地
+    PL => 木棧板左方銜接陸地
+    PH => 木棧板水平直走
+    PV => 木棧板垂直直走
+    PA => 木棧板十字路口
+    P1 => 沒有向左的三岔木棧板
+    P2 => 沒有向右的三岔木棧板
+    P3 => 沒有向上的三岔木棧板
+    P4 => 沒有向下的三岔木棧板
     */
     std::string line;
     int i = -1;
@@ -67,7 +77,7 @@ ReadMap::ReadMap(int level){
             j++;
             //  Work!!
             // LOG_INFO(std::to_string(i) + ", " + std::to_string(j)+ ": " + cell);
-            if(cell == "N"){
+            if(cell[0] == 'N'){
                 temp = "";
             }
             // LOG_INFO(cell);
@@ -218,6 +228,52 @@ ReadMap::ReadMap(int level){
                 // 水 + 島
                 if(cell[1] == 'I'){
                     temp = RESOURCE_DIR"/output_images/Tiles/tile_14_5.png";
+                }
+            }
+            // 木棧板系列
+            else if(cell[0] == 'P'){
+                // PU => 木棧板上方銜接陸地
+                if(cell[1] == 'U'){
+                    temp = RESOURCE_DIR"/output_images/Tiles/tile_30_10.png";
+                }
+                // PD => 木棧板下方銜接陸地
+                if(cell[1] == 'D'){
+                    temp = RESOURCE_DIR"/output_images/Tiles/tile_32_10.png";
+                }
+                // PR => 木棧板右方銜接陸地
+                if(cell[1] == 'R'){
+                    temp = RESOURCE_DIR"/output_images/Tiles/tile_32_13.png";
+                }
+                // PL => 木棧板左方銜接陸地
+                if(cell[1] == 'L'){
+                    temp = RESOURCE_DIR"/output_images/Tiles/tile_32_11.png";
+                }
+                // PH => 木棧板水平直走
+                if(cell[1] == 'H'){
+                    temp = RESOURCE_DIR"/output_images/Tiles/tile_32_12.png";
+                }
+                // PV => 木棧板垂直直走
+                if(cell[1] == 'V'){
+                    temp = RESOURCE_DIR"/output_images/Tiles/tile_31_10.png";
+                }
+                if(cell[1] == 'A'){
+                    temp = RESOURCE_DIR"/output_images/Tiles/tile_27_23.png";
+                }
+                // P1 => 沒有向左的三岔木棧板
+                if(cell[1] == '1'){
+                    temp = RESOURCE_DIR"/output_images/Tiles/tile_27_23.png";
+                }
+                // P2 => 沒有向右的三岔木棧板
+                if(cell[1] == '2'){
+                    temp = RESOURCE_DIR"/output_images/Tiles/tile_27_25.png";
+                }
+                // P3 => 沒有向上的三岔木棧板
+                if(cell[1] == '3'){
+                    temp = RESOURCE_DIR"/output_images/Tiles/tile_26_23.png";
+                }
+                // P4 => 沒有向下的三岔木棧板
+                if(cell[1] == '3'){
+                    temp = RESOURCE_DIR"/output_images/Tiles/tile_28_23.png";
                 }
             }
             row.push_back(temp);
