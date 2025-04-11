@@ -8,7 +8,7 @@
 
 class Enemy : public Util::GameObject {
 public:
-    Enemy(const std::string& ImagePath, const std::vector<glm::vec2> waypoints, const int health, const float moveSpeed);
+    Enemy(const std::string& ImagePath, const std::vector<glm::vec2> waypoints, const float health, const float moveSpeed);
 
     // ~Enemy() = default;
 
@@ -18,7 +18,7 @@ public:
 
     void SetPosition(const glm::vec2& Position) { m_Transform.translation = Position; }
 
-    void SetHealth(const int health) {m_health_ori = health;m_health_now = health;}
+    void SetHealth(const float health) {m_health_ori = health;m_health_now = health;}
 
     void setMoveSpeed(const float moveSpeed) {m_moveSpeed = moveSpeed;}
 
@@ -28,16 +28,16 @@ public:
 
     int GiveMoney(){return enemyDropMoneyAmount;}
 
-    void GetHurt(int damage);
+    void GetHurt(float damage);
 
-    int GetHealth(){return m_health_now;}
+    float GetHealth(){return m_health_now;}
 
 private:
     std::string m_ImagePath;
     std::vector<glm::vec2> m_waypoints;
     std::shared_ptr<Util::GameObject> m_healthbar;
-    int m_health_ori;
-    int m_health_now;
+    float m_health_ori;
+    float m_health_now;
     float m_moveSpeed;
     bool m_isDead = false;
     int enemyDropMoneyAmount = 10;

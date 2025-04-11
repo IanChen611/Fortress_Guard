@@ -4,7 +4,7 @@
 #include "Util/Logger.hpp"
 #include "Util/GameObject.hpp"
 
-Enemy::Enemy(const std::string& ImagePath, const std::vector<glm::vec2> waypoints, const int health, const float moveSpeed) {
+Enemy::Enemy(const std::string& ImagePath, const std::vector<glm::vec2> waypoints, const float health, const float moveSpeed) {
     SetImage(ImagePath);
     SetHealth(health);
     setMoveSpeed(moveSpeed);
@@ -78,7 +78,7 @@ void Enemy::Move(){
     }
 }
 
-void Enemy::GetHurt(int damage){
+void Enemy::GetHurt(float damage){
     m_health_now -= damage;
     m_healthbar->m_Transform.scale = {float(m_health_now) / float(m_health_ori), m_healthbar->m_Transform.scale.y};
     m_healthbar->Draw();

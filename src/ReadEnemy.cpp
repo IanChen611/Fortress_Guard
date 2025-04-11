@@ -34,15 +34,15 @@ ReadEnemy::ReadEnemy(std::vector<std::vector<glm::vec2>> ways, int level){
                 // 史萊姆
                 if(cell[0] == 'S'){
                     int num = cell[1] - '0';
-                    tem_enemy = std::make_shared<Enemy>(RESOURCE_DIR"/output_images/Slime/tile_0_0.png", m_ways[num-1], 8, 1);
+                    tem_enemy = std::make_shared<Enemy>(RESOURCE_DIR"/output_images/Slime/tile_0_0.png", m_ways[num-1], 8.0f, 1.0f);
                 }
                 else if(cell[0] == 'O'){
                     int num  = cell[1] - '0';
-                    tem_enemy = std::make_shared<Enemy>(RESOURCE_DIR"/output_images/Orc/tile_0_0.png", m_ways[num-1], 50, 0.5);
+                    tem_enemy = std::make_shared<Enemy>(RESOURCE_DIR"/output_images/Orc/tile_0_0.png", m_ways[num-1], 50.0f, 0.5f);
                 }
                 else if(cell[0] == 'M'){
                     int num  = cell[1] - '0';
-                    tem_enemy = std::make_shared<Enemy>(RESOURCE_DIR"/output_images/Mammoth/tile_0_0.png", m_ways[num-1], 30, 2);
+                    tem_enemy = std::make_shared<Enemy>(RESOURCE_DIR"/output_images/Mammoth/tile_0_0.png", m_ways[num-1], 30.0f, 2.0f);
                 }
                 else{
                     LOG_INFO("Enemy type error");

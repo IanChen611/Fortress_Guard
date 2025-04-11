@@ -8,8 +8,8 @@ Musketeer::Musketeer(){
     m_Transform.scale = {3, 3};
     SetZIndex(10);
     m_rangeImagePath = RESOURCE_DIR"/output_images/Tiles/tile_5_21.png";
-    m_damage = 6;
-    m_attackSpeed = 2;
+    m_damage = 0.5f;
+    m_attackSpeed = 18;
     m_cost = 17;
     m_rangeCoordinate.push_back({0, 96});
     m_rangeCoordinate.push_back({-48, 48});
@@ -133,7 +133,7 @@ void Musketeer::Update_for_speccial_guard(){
 
 void Musketeer::Upgrade(){
     if(m_rank < 3 && m_canUpgrade){
-        m_damage += 2;
+        m_damage += 0.5;
         m_attackSpeed *= 1.2;
         m_rank += 1;
         LOG_INFO("Musketeer upgraded");

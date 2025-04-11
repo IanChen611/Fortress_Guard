@@ -80,7 +80,7 @@ protected:
 
 
     // 攻擊相關
-    int m_damage;
+    float m_damage;
     float m_attackTime = 100;
     float m_attackSpeed;
     bool m_attackable = false;
