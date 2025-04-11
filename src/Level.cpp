@@ -385,7 +385,78 @@ Level::Level(int level){
         ways.push_back(waypoints);
         waypoints.clear();
     }
-    else if(m_level == 10){}
+    else if(m_level == 10){
+        waypoints.push_back({4, 0});
+        waypoints.push_back({4, 2});
+        waypoints.push_back({0, 2});
+        waypoints.push_back({0, 9});
+        waypoints.push_back({7, 9});
+        waypoints.push_back({7, 19});
+        waypoints.push_back({5, 19});
+        waypoints.push_back({99999, 99999});
+        ways.push_back(waypoints);
+        waypoints.clear();
+
+        waypoints.push_back({4, 0});
+        waypoints.push_back({4, 2});
+        waypoints.push_back({9, 2});
+        waypoints.push_back({9, 9});
+        waypoints.push_back({2, 9});
+        waypoints.push_back({2, 19});
+        waypoints.push_back({5, 19});
+        waypoints.push_back({99999, 99999});
+        ways.push_back(waypoints);
+        waypoints.clear();
+
+        waypoints.push_back({4, 0});
+        waypoints.push_back({4, 2});
+        waypoints.push_back({0, 2});
+        waypoints.push_back({0, 9});
+        waypoints.push_back({9, 9});
+        waypoints.push_back({9, 2});
+        waypoints.push_back({0, 2});
+        waypoints.push_back({0, 9});
+        waypoints.push_back({2, 9});
+        waypoints.push_back({2, 19});
+        waypoints.push_back({5, 19});
+        waypoints.push_back({99999, 99999});
+        ways.push_back(waypoints);
+        waypoints.clear();
+
+        waypoints.push_back({4, 0});
+        waypoints.push_back({4, 2});
+        waypoints.push_back({9, 2});
+        waypoints.push_back({9, 9});
+        waypoints.push_back({0, 9});
+        waypoints.push_back({0, 2});
+        waypoints.push_back({9, 2});
+        waypoints.push_back({9, 9});
+        waypoints.push_back({7, 9});
+        waypoints.push_back({7, 19});
+        waypoints.push_back({5, 19});
+        waypoints.push_back({99999, 99999});
+        ways.push_back(waypoints);
+        waypoints.clear();
+
+        waypoints.push_back({4, 0});
+        waypoints.push_back({4, 2});
+        waypoints.push_back({0, 2});
+        waypoints.push_back({0, 9});
+        waypoints.push_back({9, 9});
+        waypoints.push_back({9, 2});
+        waypoints.push_back({0, 2});
+        waypoints.push_back({0, 9});
+        waypoints.push_back({9, 9});
+        waypoints.push_back({9, 2});
+        waypoints.push_back({0, 2});
+        waypoints.push_back({0, 9});
+        waypoints.push_back({2, 9});
+        waypoints.push_back({2, 19});
+        waypoints.push_back({5, 19});
+        waypoints.push_back({99999, 99999});
+        ways.push_back(waypoints);
+        waypoints.clear();
+    }
     else if(m_level == 11){}
     else if(m_level == 12){}
     else if(m_level == 13){}
