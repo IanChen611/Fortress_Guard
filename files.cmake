@@ -18,6 +18,7 @@ set(SRC_FILES
     Musketeer.cpp
     ReadMap.cpp
     ReadEnemy.cpp
+    Market.cpp
 )
 
 set(INCLUDE_FILES
@@ -39,6 +40,7 @@ set(INCLUDE_FILES
     Musketeer.hpp
     ReadMap.hpp
     ReadEnemy.hpp
+    Market.hpp
 )
 
 set(TEST_FILES
