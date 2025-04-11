@@ -48,8 +48,8 @@ ReadMap::ReadMap(int level){
     W4 => 水 + 下面右邊邊界 
     W5 => 水 + 下面左邊邊界 
     W6 => 水 + 右上一點島嶼
-    W7 => 水 + 左上一點島嶼
-    W8 => 水 + 右下一點島嶼
+    W8 => 水 + 左上一點島嶼
+    W7 => 水 + 右下一點島嶼
     W9 => 水 + 左下一點島嶼
     WI => 水上面有島 
     PU => 木棧板上方銜接陸地
@@ -73,10 +73,10 @@ ReadMap::ReadMap(int level){
         int j = -1;
         i++;
         while(getline(lineStream, cell, ',')){
-            std::string temp;
+            std::string temp = "";
             j++;
             //  Work!!
-            // LOG_INFO(std::to_string(i) + ", " + std::to_string(j)+ ": " + cell);
+            LOG_INFO(std::to_string(i) + ", " + std::to_string(j)+ ": " + cell);
             if(cell[0] == 'N'){
                 temp = "";
             }
@@ -261,18 +261,18 @@ ReadMap::ReadMap(int level){
                 }
                 // P1 => 沒有向左的三岔木棧板
                 if(cell[1] == '1'){
-                    temp = RESOURCE_DIR"/output_images/Tiles/tile_27_23.png";
+                    temp = RESOURCE_DIR"/output_images/Tiles/tile_27_22.png";
                 }
                 // P2 => 沒有向右的三岔木棧板
                 if(cell[1] == '2'){
-                    temp = RESOURCE_DIR"/output_images/Tiles/tile_27_25.png";
+                    temp = RESOURCE_DIR"/output_images/Tiles/tile_27_24.png";
                 }
                 // P3 => 沒有向上的三岔木棧板
                 if(cell[1] == '3'){
                     temp = RESOURCE_DIR"/output_images/Tiles/tile_26_23.png";
                 }
                 // P4 => 沒有向下的三岔木棧板
-                if(cell[1] == '3'){
+                if(cell[1] == '4'){
                     temp = RESOURCE_DIR"/output_images/Tiles/tile_28_23.png";
                 }
             }
