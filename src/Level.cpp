@@ -12,6 +12,7 @@
 #include "Guard.hpp"
 #include "Swordsman.hpp"
 #include "Mage.hpp"
+#include "Market.hpp"
 
 #include "ReadMap.hpp"
 
@@ -22,6 +23,11 @@
 class Swordsman;
 
 class Mage;
+
+class Musketeer;
+
+class Market;
+
 
 Level::Level(int level){
     m_level = level;
@@ -92,6 +98,7 @@ Level::Level(int level){
         Util::Color(254, 254, 0));
         number_money_Mage->SetDrawable(number_money_text_Mage);
     UI.push_back(number_money_Mage);
+
     // Musketeer的按鈕
     UI.push_back(std::make_shared<Button>(RESOURCE_DIR"/output_images/Musketeer/tile_0_0.png",
         -296, -288, 16, 16, 3.0f, 3.0f,
@@ -107,6 +114,23 @@ Level::Level(int level){
         Util::Color(254, 254, 0));
         number_money_Musketeer->SetDrawable(number_money_text_Musketeer);
     UI.push_back(number_money_Musketeer);
+
+    // Market的按鈕
+    UI.push_back(std::make_shared<Button>(RESOURCE_DIR"/output_images/Market/tile_2_2.png",
+        -228, -288, 16, 16, 3.0f, 3.0f,
+        [this]() { 
+            this->OnClickBuyGuard("Market");
+        }));
+    // Market的錢幣顯示
+    std::shared_ptr<Ui> number_money_Market = std::make_shared<Ui>();
+    number_money_Market->m_Transform.translation = {-221, -240};
+    std::shared_ptr<Util::Text> number_money_text_Market = std::make_shared<Util::Text>(
+        RESOURCE_DIR"/Font/Inter.ttf",
+        30, std::to_string(30),
+        Util::Color(254, 254, 0));
+    number_money_Market->SetDrawable(number_money_text_Market);
+    UI.push_back(number_money_Market);
+
     // ----------------------------------------------------------------------------------
     
     // -----------地圖載入------------
@@ -375,6 +399,9 @@ void Level::OnClickBuyGuard(std::string characterName){
     }
     if(characterName == "Musketeer"){
         tem = std::make_shared<Musketeer>();
+    }
+    if(characterName == "Market"){
+        tem = std::make_shared<Market>();
     }
 
 }
