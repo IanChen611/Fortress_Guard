@@ -13,7 +13,7 @@ Swordsman::Swordsman() {
     SetZIndex(10);
     m_rangeImagePath = RESOURCE_DIR"/output_images/Tiles/tile_5_21.png";
     m_damage = 10;
-    m_attackSpeed = 1;
+    m_attackSpeed = 2;
     m_cost = 15;
     m_rangeCoordinate.push_back({0, 48});
     m_rangeCoordinate.push_back({0, -48});
