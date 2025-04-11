@@ -531,12 +531,20 @@ void Level::Update(){
 
             //Guard 更新
             for(auto guard : GuardList){
-                for(auto enemy : enemyList){
-                    if(guard->IsEnemyInRange(enemy) && !guard->IsEnemyInEnemyInRange(enemy)){
-                        guard->SetEnemyInRange(enemy);
+                if(guard->IsAttacker()){
+                    for(auto enemy : enemyList){
+                        if(guard->IsEnemyInRange(enemy) && !guard->IsEnemyInEnemyInRange(enemy)){
+                            guard->SetEnemyInRange(enemy);
+                        }
+                        else if(!guard->IsEnemyInRange(enemy) && guard->IsEnemyInEnemyInRange(enemy)){
+                            guard->PopFrontEnemyInRange();
+                        }
                     }
-                    else if(!guard->IsEnemyInRange(enemy) && guard->IsEnemyInEnemyInRange(enemy)){
-                        guard->PopFrontEnemyInRange();
+                }
+                else{
+                    if(guard->IsAttackable()){
+                        m_player_money_now += guard->GetDamage();
+                        guard->SetAttackable(false);
                     }
                 }
                 if(m_player_money_now - 10*(guard->GetRank()) >= 0){

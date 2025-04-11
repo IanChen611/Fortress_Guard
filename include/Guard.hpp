@@ -49,6 +49,14 @@ public:
 
     void SetCanUpgrade(bool canUpgrade){m_canUpgrade = canUpgrade;}
 
+    bool IsAttacker(){return m_isAttacker;}
+
+    float GetDamage(){return m_damage;}
+
+    bool IsAttackable(){return m_attackable;}
+
+    void SetAttackable(bool attackable){m_attackable = attackable;}
+
 protected:
     std::string m_myselfImagePath;
     std::string m_rangeImagePath;
@@ -58,6 +66,7 @@ protected:
     bool m_clickMe_RB = false;
     bool m_canDeployed = false;
     int m_cost;
+    bool m_isAttacker = true;
     std::vector<glm::vec2> m_rangeCoordinate;
     std::vector<std::shared_ptr<Tile>> m_rangeTile;
     std::vector<std::shared_ptr<Enemy>> m_enemyInRange;
