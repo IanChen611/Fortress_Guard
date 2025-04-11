@@ -20,7 +20,8 @@ ReadMap::ReadMap(int level){
         LOG_INFO("The file Level" + std::to_string(level) + ".csv is opened.");
     }
     /*
-    G1 => 草地
+    N、G1 => 草地
+    T1 => 單棵樹
     E1 => 敵人城堡
     C1 => 自家城堡
     T1 => 左到下的轉彎
@@ -99,8 +100,12 @@ ReadMap::ReadMap(int level){
                     temp = RESOURCE_DIR"/output_images/Tiles/tile_26_14.png";
                 }
             }
-            // 轉彎
+            // 轉彎 + 樹
             else if(cell[0] == 'T'){
+                // 樹
+                if(cell[1] == 'R'){
+                    temp = RESOURCE_DIR"/output_images/Tiles/tile_9_8.png";
+                }
                 // 左到下的轉彎
                 if(cell[1] == '1'){
                     temp = RESOURCE_DIR"/output_images/Tiles/tile_0_6.png";
