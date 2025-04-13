@@ -457,10 +457,337 @@ Level::Level(int level){
         ways.push_back(waypoints);
         waypoints.clear();
     }
-    else if(m_level == 11){}
-    else if(m_level == 12){}
-    else if(m_level == 13){}
-    else if(m_level == 14){}
+    else if(m_level == 11){
+        // 右側出發的那個 繞最大圈
+        waypoints.push_back({6, 18});
+        waypoints.push_back({1, 18});
+        waypoints.push_back({1, 3});
+        waypoints.push_back({8, 3});
+        waypoints.push_back({8, 16});
+        waypoints.push_back({3, 16});
+        waypoints.push_back({3, 5});
+        waypoints.push_back({6, 5});
+        waypoints.push_back({6, 14});
+        waypoints.push_back({4, 14});
+        waypoints.push_back({99999, 99999});
+        ways.push_back(waypoints);
+        waypoints.clear();
+
+        // 左上出發的怪物
+        waypoints.push_back({1, 0});
+        waypoints.push_back({1, 3});
+        waypoints.push_back({8, 3});
+        waypoints.push_back({8, 16});
+        waypoints.push_back({3, 16});
+        waypoints.push_back({3, 5});
+        waypoints.push_back({6, 5});
+        waypoints.push_back({6, 14});
+        waypoints.push_back({4, 14});
+        waypoints.push_back({99999, 99999});
+        ways.push_back(waypoints);
+        waypoints.clear();
+
+        // 左下出發的怪物
+        waypoints.push_back({8, 0});
+        waypoints.push_back({8, 3});
+        waypoints.push_back({8, 16});
+        waypoints.push_back({3, 16});
+        waypoints.push_back({3, 5});
+        waypoints.push_back({6, 5});
+        waypoints.push_back({6, 14});
+        waypoints.push_back({4, 14});
+        waypoints.push_back({99999, 99999});
+        ways.push_back(waypoints);
+        waypoints.clear();
+    }
+    else if(m_level == 12){
+        // 左上出發 繞下半圓
+        waypoints.push_back({0, 1});
+        waypoints.push_back({4, 1});
+        waypoints.push_back({4, 4});
+        waypoints.push_back({1, 4});
+        waypoints.push_back({1, 7});
+        waypoints.push_back({6, 7});
+        waypoints.push_back({6, 11});
+        waypoints.push_back({9, 11});
+        waypoints.push_back({9, 16});
+        waypoints.push_back({3, 16});
+        waypoints.push_back({3, 18});
+        waypoints.push_back({8, 18});
+        waypoints.push_back({99999, 99999});
+        ways.push_back(waypoints);
+        waypoints.clear();
+
+        // 左下出發 繞下半圓
+        waypoints.push_back({8, 1});
+        waypoints.push_back({4, 1});
+        waypoints.push_back({4, 4});
+        waypoints.push_back({1, 4});
+        waypoints.push_back({1, 7});
+        waypoints.push_back({6, 7});
+        waypoints.push_back({6, 11});
+        waypoints.push_back({9, 11});
+        waypoints.push_back({9, 16});
+        waypoints.push_back({3, 16});
+        waypoints.push_back({3, 18});
+        waypoints.push_back({8, 18});
+        waypoints.push_back({99999, 99999});
+        ways.push_back(waypoints);
+        waypoints.clear();
+
+        // 左上出發 繞上半圓
+        waypoints.push_back({0, 1});
+        waypoints.push_back({4, 1});
+        waypoints.push_back({4, 4});
+        waypoints.push_back({1, 4});
+        waypoints.push_back({1, 7});
+        waypoints.push_back({6, 7});
+        waypoints.push_back({6, 11});
+        waypoints.push_back({1, 11});
+        waypoints.push_back({1, 16});
+        waypoints.push_back({3, 16});
+        waypoints.push_back({3, 18});
+        waypoints.push_back({8, 18});
+        waypoints.push_back({99999, 99999});
+        ways.push_back(waypoints);
+        waypoints.clear();
+
+        // 左下出發 繞上半圓
+        waypoints.push_back({8, 1});
+        waypoints.push_back({4, 1});
+        waypoints.push_back({4, 4});
+        waypoints.push_back({1, 4});
+        waypoints.push_back({1, 7});
+        waypoints.push_back({6, 7});
+        waypoints.push_back({6, 11});
+        waypoints.push_back({1, 11});
+        waypoints.push_back({1, 16});
+        waypoints.push_back({3, 16});
+        waypoints.push_back({3, 18});
+        waypoints.push_back({8, 18});
+        waypoints.push_back({99999, 99999});
+        ways.push_back(waypoints);
+        waypoints.clear();
+
+        // 右上出發 繞一圈
+        waypoints.push_back({1, 19});
+        waypoints.push_back({1, 11});
+        waypoints.push_back({9, 11});
+        waypoints.push_back({9, 16});
+        waypoints.push_back({3, 16});
+        waypoints.push_back({3, 18});
+        waypoints.push_back({8, 18});
+        waypoints.push_back({99999, 99999});
+        ways.push_back(waypoints);
+        waypoints.clear();
+
+        // 右上出發 繞兩圈
+        waypoints.push_back({1, 19});
+        waypoints.push_back({1, 11});
+        waypoints.push_back({9, 11});
+        waypoints.push_back({9, 16});
+        waypoints.push_back({1, 16});
+        waypoints.push_back({1, 11});
+        waypoints.push_back({9, 11});
+        waypoints.push_back({9, 16});
+        waypoints.push_back({3, 16});
+        waypoints.push_back({3, 18});
+        waypoints.push_back({8, 18});
+        waypoints.push_back({99999, 99999});
+        ways.push_back(waypoints);
+        waypoints.clear();
+    }
+    else if(m_level == 13){
+        // 左上出發 繞上半部分
+        waypoints.push_back({0, 0});
+        waypoints.push_back({4, 0});
+        waypoints.push_back({4, 5});
+        waypoints.push_back({1, 5});
+        waypoints.push_back({1, 11});
+        waypoints.push_back({5, 11});
+        waypoints.push_back({5, 13});
+        waypoints.push_back({1, 13});
+        waypoints.push_back({1, 18});
+        waypoints.push_back({8, 18});
+        waypoints.push_back({99999, 99999});
+        ways.push_back(waypoints);
+        waypoints.clear();
+        // 左上出發 繞下半部分
+        waypoints.push_back({0, 0});
+        waypoints.push_back({5, 0});
+        waypoints.push_back({5, 5});
+        waypoints.push_back({8, 5});
+        waypoints.push_back({8, 7});
+        waypoints.push_back({3, 7});
+        waypoints.push_back({3, 9});
+        waypoints.push_back({7, 9});
+        waypoints.push_back({7, 15});
+        waypoints.push_back({3, 15});
+        waypoints.push_back({3, 18});
+        waypoints.push_back({8, 18});
+        waypoints.push_back({99999, 99999});
+        ways.push_back(waypoints);
+        waypoints.clear();
+        // 左上出發 先繞上半 再繞下半部分
+        waypoints.push_back({0, 0});
+        waypoints.push_back({4, 0});
+        waypoints.push_back({4, 5});
+        waypoints.push_back({1, 5});
+        waypoints.push_back({1, 11});
+        waypoints.push_back({3, 11});
+        waypoints.push_back({3, 9});
+        waypoints.push_back({7, 9});
+        waypoints.push_back({7, 15});
+        waypoints.push_back({3, 15});
+        waypoints.push_back({3, 18});
+        waypoints.push_back({8, 18});
+        waypoints.push_back({99999, 99999});
+        ways.push_back(waypoints);
+        waypoints.clear();
+        // 左上出發 先繞下半 再繞上半部分
+        waypoints.push_back({0, 0});
+        waypoints.push_back({5, 0});
+        waypoints.push_back({5, 5});
+        waypoints.push_back({8, 5});
+        waypoints.push_back({8, 7});
+        waypoints.push_back({3, 7});
+        waypoints.push_back({3, 11});
+        waypoints.push_back({5, 11});
+        waypoints.push_back({5, 13});
+        waypoints.push_back({1, 13});
+        waypoints.push_back({1, 18});
+        waypoints.push_back({8, 18});
+        waypoints.push_back({99999, 99999});
+        ways.push_back(waypoints);
+        waypoints.clear();
+
+        // 左下出發 繞上半部分
+        waypoints.push_back({9, 0});
+        waypoints.push_back({4, 0});
+        waypoints.push_back({4, 5});
+        waypoints.push_back({1, 5});
+        waypoints.push_back({1, 11});
+        waypoints.push_back({5, 11});
+        waypoints.push_back({5, 13});
+        waypoints.push_back({1, 13});
+        waypoints.push_back({1, 18});
+        waypoints.push_back({8, 18});
+        waypoints.push_back({99999, 99999});
+        ways.push_back(waypoints);
+        waypoints.clear();
+        // 左下出發 繞下半部分  
+        waypoints.push_back({9, 0});
+        waypoints.push_back({5, 0});
+        waypoints.push_back({5, 5});
+        waypoints.push_back({8, 5});
+        waypoints.push_back({8, 7});
+        waypoints.push_back({3, 7});
+        waypoints.push_back({3, 9});
+        waypoints.push_back({7, 9});
+        waypoints.push_back({7, 15});
+        waypoints.push_back({3, 15});
+        waypoints.push_back({3, 18});
+        waypoints.push_back({8, 18});
+        waypoints.push_back({99999, 99999});
+        ways.push_back(waypoints);
+        waypoints.clear();
+
+        // 左下出發 先繞上半 再繞下半部分
+        waypoints.push_back({9, 0});
+        waypoints.push_back({4, 0});
+        waypoints.push_back({4, 5});
+        waypoints.push_back({1, 5});
+        waypoints.push_back({1, 11});
+        waypoints.push_back({3, 11});
+        waypoints.push_back({3, 9});
+        waypoints.push_back({7, 9});
+        waypoints.push_back({7, 15});
+        waypoints.push_back({3, 15});
+        waypoints.push_back({3, 18});
+        waypoints.push_back({8, 18});
+        waypoints.push_back({99999, 99999});
+        ways.push_back(waypoints);
+        waypoints.clear();
+        // 左下出發 先繞下半 再繞上半部分
+        waypoints.push_back({9, 0});
+        waypoints.push_back({5, 0});
+        waypoints.push_back({5, 5});
+        waypoints.push_back({8, 5});
+        waypoints.push_back({8, 7});
+        waypoints.push_back({3, 7});
+        waypoints.push_back({3, 11});
+        waypoints.push_back({5, 11});
+        waypoints.push_back({5, 13});
+        waypoints.push_back({1, 13});
+        waypoints.push_back({1, 18});
+        waypoints.push_back({8, 18});
+        waypoints.push_back({99999, 99999});
+        ways.push_back(waypoints);
+        waypoints.clear();
+
+    }
+    else if(m_level == 14){
+        // 左邊出發 繞下半圈
+        waypoints.push_back({4, 0});
+        waypoints.push_back({4, 3});
+        waypoints.push_back({8, 3});
+        waypoints.push_back({8, 16});
+        waypoints.push_back({1, 16});
+        waypoints.push_back({1, 9});
+        waypoints.push_back({3, 9});
+        waypoints.push_back({3, 7});
+        waypoints.push_back({5, 7});
+        waypoints.push_back({5, 10});
+        waypoints.push_back({99999, 99999});
+        ways.push_back(waypoints);
+        waypoints.clear();
+        // 左邊出發 繞一圈後繞上半圈
+        waypoints.push_back({4, 0});
+        waypoints.push_back({4, 3});
+        waypoints.push_back({1, 3});
+        waypoints.push_back({1, 16});
+        waypoints.push_back({8, 16});
+        waypoints.push_back({8, 3});
+        waypoints.push_back({1, 3});
+        waypoints.push_back({1, 9});
+        waypoints.push_back({3, 9});
+        waypoints.push_back({3, 7});
+        waypoints.push_back({5, 7});
+        waypoints.push_back({5, 10});
+        waypoints.push_back({99999, 99999});
+        ways.push_back(waypoints);
+        waypoints.clear();
+
+        // 右邊出發 繞下半圈
+        waypoints.push_back({4, 19});
+        waypoints.push_back({4, 16});
+        waypoints.push_back({8, 16});
+        waypoints.push_back({8, 3});
+        waypoints.push_back({1, 3});
+        waypoints.push_back({1, 10});
+        waypoints.push_back({3, 12});
+        waypoints.push_back({5, 12});
+        waypoints.push_back({5, 10});
+        waypoints.push_back({99999, 99999});
+        ways.push_back(waypoints);
+        waypoints.clear();
+        // 右邊出發 繞一圈後繞上半圈
+        waypoints.push_back({4, 19});
+        waypoints.push_back({4, 16});
+        waypoints.push_back({1, 16});
+        waypoints.push_back({1, 3});
+        waypoints.push_back({8, 3});
+        waypoints.push_back({8, 16});
+        waypoints.push_back({1, 16});
+        waypoints.push_back({1, 10});
+        waypoints.push_back({3, 10});
+        waypoints.push_back({3, 12});
+        waypoints.push_back({5, 12});
+        waypoints.push_back({5, 10});
+        waypoints.push_back({99999, 99999});
+        ways.push_back(waypoints);
+        waypoints.clear();
+    }
     else if(m_level == 15){}
     // 放入路線
     m_readenemy = std::make_shared<ReadEnemy>(ways, m_level);
