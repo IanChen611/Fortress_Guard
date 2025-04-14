@@ -384,6 +384,40 @@ Level::Level(int level){
         waypoints.push_back({99999, 99999});
         ways.push_back(waypoints);
         waypoints.clear();
+
+        waypoints.push_back({8, 3});
+        waypoints.push_back({5, 3});
+        waypoints.push_back({5, 6});
+        waypoints.push_back({1, 6});
+        waypoints.push_back({1, 14});
+        waypoints.push_back({8, 14});
+        waypoints.push_back({8, 10});
+        waypoints.push_back({4, 10});
+        waypoints.push_back({99999, 99999});
+        ways.push_back(waypoints);
+        waypoints.clear();
+
+        waypoints.push_back({5, 17});
+        waypoints.push_back({1, 17});
+        waypoints.push_back({1, 14});
+        waypoints.push_back({8, 14});
+        waypoints.push_back({8, 10});
+        waypoints.push_back({4, 10});
+        waypoints.push_back({99999, 99999});
+        ways.push_back(waypoints);
+        waypoints.clear();
+
+        waypoints.push_back({5, 17});
+        waypoints.push_back({8, 17});
+        waypoints.push_back({8, 6});
+        waypoints.push_back({1, 6});
+        waypoints.push_back({1, 14});
+        waypoints.push_back({8, 14});
+        waypoints.push_back({8, 10});
+        waypoints.push_back({4, 10});
+        waypoints.push_back({99999, 99999});
+        ways.push_back(waypoints);
+        waypoints.clear();
     }
     else if(m_level == 10){
         waypoints.push_back({4, 0});
