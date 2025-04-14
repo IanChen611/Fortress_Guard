@@ -1008,26 +1008,45 @@ void Level::Update(){
                 }
                 //enemy update
                 for(int i=0; i<enemyCounter; i++){
+                    //enemy died
                     enemyList[i]->Update();
                     enemyList[i]->Draw();
-                    //enemy died
                     if(enemyList[i]->IsDead()){
-                        if(enemyList[i]->GetHealth() > 0){
-                            EnemyHitCastle();
-                            if(!gameLose && !gameWin && m_castlehealth_now == 0) gameLose = true;
+                        // if(enemyList[i]->GetHealth() > 0){
+                        //     EnemyHitCastle();
+                        //     if(!gameLose && !gameWin && m_castlehealth_now == 0) gameLose = true;
+                        // }
+                        // m_player_money_now += enemyList[i]->GiveMoney();
+                        // LOG_INFO("get money");
+                        if(enemyList[i]->GetImagePath() != RESOURCE_DIR"/output_images/Slimeking/tile_0_0.png" && enemyList[i]->GetImagePath() != RESOURCE_DIR"/output_images/MegaSlime/tile_0_0.png"){
+                            if(enemyList[i]->GetHealth() > 0){
+                                EnemyHitCastle();
+                                if(!gameLose && !gameWin && m_castlehealth_now == 0) gameLose = true;
+                            }
+                            m_player_money_now += enemyList[i]->GiveMoney();
+                            LOG_INFO("get money");
+                            enemyList.erase(enemyList.begin()+i);
+                            i -= 1;
+                            enemyCounter -= 1;
                         }
-                        m_player_money_now += enemyList[i]->GiveMoney();
-                        enemyList.erase(enemyList.begin()+i);
-                        i -= 1;
-                        enemyCounter -= 1;
+                        else{
+                            if(!enemyList[i]->IsWaiting()){
+                                if(enemyList[i]->GetHealth() > 0){
+                                    EnemyHitCastle();
+                                    if(!gameLose && !gameWin && m_castlehealth_now == 0) gameLose = true;
+                                }
+                                m_player_money_now += enemyList[i]->GiveMoney();
+                                LOG_INFO("get money");
+                            }
+                        }
                     }
                 }
                 // 判斷是不是全部敵人都是dead
-                bool allDead = true;
-                for(auto enemy : enemyList){
-                    allDead = enemy->IsDead();
-                }
-                if(allDead && int(enemyPerWave.size()) == 0){
+                // bool allDead = true;
+                // for(auto enemy : enemyList){
+                //     allDead = enemy->IsDead();
+                // }
+                if(int(enemyList.size()) == 0 && int(enemyPerWave.size()) == 0 && m_castlehealth_now > 0){
                     gameWin = true;
                 }
             }

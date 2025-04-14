@@ -77,7 +77,7 @@ ReadMap::ReadMap(int level){
             std::string temp = "";
             j++;
             //  Work!!
-            LOG_INFO(std::to_string(i) + ", " + std::to_string(j)+ ": " + cell);
+            // LOG_INFO(std::to_string(i) + ", " + std::to_string(j)+ ": " + cell);
             if(cell[0] == 'N'){
                 temp = "";
             }
