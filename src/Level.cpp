@@ -55,6 +55,17 @@ Level::Level(int level){
     UI.push_back(m_money);
     //----------------
 
+    // -----波數顯示------
+    std::shared_ptr<Ui> enemy_wave_ui = std::make_shared<Ui>();
+    enemy_wave_ui->m_Transform.translation = {-250, 298};
+    m_current_enemy_wave_text = std::make_shared<Util::Text>(
+        RESOURCE_DIR"/Font/Inter.ttf",
+        35, "Wave : " + std::to_string(current_enemy_wave),
+        Util::Color(254, 0, 0));
+    enemy_wave_ui->SetDrawable(m_current_enemy_wave_text);
+    UI.push_back(enemy_wave_ui);
+    // -------------------
+
 
 
 
@@ -994,14 +1005,22 @@ void Level::Update(){
 
             // 倒數結束後
             if(gameStart){
-                if(int(enemyPerWave.size()) == 0){
-                    enemyPerWave = m_readenemy->GetEnemy();
+                if(int(enemyPerWave.size()) == 0){ // 目前這波敵人出完時
+                    enemyPerWave = m_readenemy->GetEnemy(); //
+                    ready_to_next_wave = true;
                 }
                 if(intervalCounter <= 0 && int(enemyPerWave.size()) != 0){
                     intervalCounter = enemyPerWave[0].second;
                     enemyCounter += 1;
                     enemyList.push_back(enemyPerWave[0].first);
                     enemyPerWave.erase(enemyPerWave.begin());
+                    if(ready_to_next_wave){
+                        ready_to_next_wave = false;
+                        // 敵人波數加一
+                        current_enemy_wave += 1; 
+                        // 更新波數之text
+                        m_current_enemy_wave_text->SetText("Wave : " + std::to_string(current_enemy_wave));
+                    }
                 }
                 else if(intervalCounter > 0){
                     intervalCounter -= 1;
