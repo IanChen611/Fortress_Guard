@@ -82,6 +82,10 @@ protected:
     std::vector<std::shared_ptr<Enemy>> enemyList;
     std::vector<std::pair<std::shared_ptr<Enemy>, int>> enemyPerWave;
 
+    // 敵人波數
+    int current_enemy_wave = 0;
+    std::shared_ptr<Util::Text> m_current_enemy_wave_text;
+    bool ready_to_next_wave = false;
 
     // --倒數的部分--
     int startGameCounter = 0;
