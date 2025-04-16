@@ -884,7 +884,6 @@ void Level::OnClickCancelBuy(){
 }
 
 void Level::Update(){
-
     if(pop_scene_next_frame){
         LOG_INFO("pop_scene_next_frame changes false");
         pop_scene_next_frame = false;
@@ -1012,33 +1011,55 @@ void Level::Update(){
                     enemyList[i]->Update();
                     enemyList[i]->Draw();
                     if(enemyList[i]->IsDead()){
-                        // if(enemyList[i]->GetHealth() > 0){
-                        //     EnemyHitCastle();
-                        //     if(!gameLose && !gameWin && m_castlehealth_now == 0) gameLose = true;
-                        // }
-                        // m_player_money_now += enemyList[i]->GiveMoney();
-                        // LOG_INFO("get money");
-                        if(enemyList[i]->GetImagePath() != RESOURCE_DIR"/output_images/Slimeking/tile_0_0.png" && enemyList[i]->GetImagePath() != RESOURCE_DIR"/output_images/MegaSlime/tile_0_0.png"){
-                            if(enemyList[i]->GetHealth() > 0){
-                                EnemyHitCastle();
-                                if(!gameLose && !gameWin && m_castlehealth_now == 0) gameLose = true;
-                            }
-                            m_player_money_now += enemyList[i]->GiveMoney();
-                            LOG_INFO("get money");
-                            enemyList.erase(enemyList.begin()+i);
-                            i -= 1;
-                            enemyCounter -= 1;
-                        }
-                        else{
-                            if(!enemyList[i]->IsWaiting()){
-                                if(enemyList[i]->GetHealth() > 0){
-                                    EnemyHitCastle();
-                                    if(!gameLose && !gameWin && m_castlehealth_now == 0) gameLose = true;
+                        std::vector<glm::vec2> tem_waypoints = enemyList[i]->GetWaypoints();
+                        std::vector<glm::vec2> insert_waypoints = tem_waypoints;
+                        std::string tem_imagepath = enemyList[i]->GetImagePath();
+                        glm::vec2 tem_position = enemyList[i]->m_Transform.translation;
+                        float y = ((int)tem_position.x+480+24)/48;
+                        float x = -(((int)tem_position.y+240+24)/48-10);
+                        tem_position = {x, y};
+                        //slimeking or megaslime
+                        if(enemyList[i]->GetImagePath() == RESOURCE_DIR"/output_images/Slimeking/tile_0_0.png" || enemyList[i]->GetImagePath() == RESOURCE_DIR"/output_images/MegaSlime/tile_0_0.png"){
+                            //分裂3隻(原本就有1隻)
+                            for(int j = 0; j < 4; j++){
+                                //change position
+                                if(tem_position.x == tem_waypoints[0].x){
+                                    if(tem_position.y < tem_waypoints[0].y){
+                                        insert_waypoints.insert(insert_waypoints.begin(), {tem_position.x, tem_position.y-0.5*j});
+                                    }
+                                    else if(tem_position.y > tem_waypoints[0].y){
+                                        insert_waypoints.insert(insert_waypoints.begin(), {tem_position.x, tem_position.y+0.5*j});
+                                    }
                                 }
-                                m_player_money_now += enemyList[i]->GiveMoney();
-                                LOG_INFO("get money");
+                                else if(tem_position.y == tem_waypoints[0].y){
+                                    if(tem_position.x < tem_waypoints[0].x){
+                                        insert_waypoints.insert(insert_waypoints.begin(), {tem_position.x-0.5*j, tem_position.y});
+                                    }
+                                    else if(tem_position.x > tem_waypoints[0].x){
+                                        insert_waypoints.insert(insert_waypoints.begin(), {tem_position.x+0.5*j, tem_position.y});
+                                    }
+                                }
+                                LOG_INFO(insert_waypoints[0]);
+                                //build enemy
+                                if(tem_imagepath == RESOURCE_DIR"/output_images/Slimeking/tile_0_0.png"){
+                                    enemyList.push_back(std::make_shared<Enemy>(RESOURCE_DIR"/output_images/MegaSlime/tile_0_0.png", insert_waypoints, 32.0f, 0.5f));
+                                }
+                                else if(tem_imagepath == RESOURCE_DIR"/output_images/MegaSlime/tile_0_0.png"){
+                                    enemyList.push_back(std::make_shared<Enemy>(RESOURCE_DIR"/output_images/Slime/tile_0_0.png", insert_waypoints, 8.0f, 1.0f));
+                                }
                             }
+                            enemyCounter += 4;
                         }
+                        //normal enemy
+                        if(enemyList[i]->GetHealth() > 0){
+                            EnemyHitCastle();
+                            if(!gameLose && !gameWin && m_castlehealth_now == 0) gameLose = true;
+                        }
+                        m_player_money_now += enemyList[i]->GiveMoney();
+                        LOG_INFO("get money");
+                        enemyList.erase(enemyList.begin()+i);
+                        i -= 1;
+                        enemyCounter -= 1;
                     }
                 }
                 // 判斷是不是全部敵人都是dead

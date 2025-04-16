@@ -34,7 +34,7 @@ public:
 
     std::string GetImagePath(){return m_ImagePath;}
 
-    bool IsWaiting(){return wait;}
+    std::vector<glm::vec2> GetWaypoints(){return m_waypoints;}
 
 private:
     std::string m_ImagePath;
@@ -44,7 +44,6 @@ private:
     float m_health_now;
     float m_moveSpeed;
     bool m_isDead = false;
-    bool wait = true;
     int enemyDropMoneyAmount = 10;
     int coordinate1 = 1;
     int coordinate2 = 1;

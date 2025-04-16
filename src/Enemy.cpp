@@ -29,30 +29,7 @@ void Enemy::Update(){
     // m_healthbar->m_Transform.scale = {float(m_health_now / m_health_ori), 1.0f};
     m_healthbar->Draw();
     if(m_isDead){
-        if(m_ImagePath == RESOURCE_DIR"/output_images/Slimeking/tile_0_0.png" && !wait){
-            SetVisible(true);
-            m_health_ori = 16.0f;
-            m_health_now = m_health_ori;
-            m_healthbar->m_Transform.scale = {1.0f, 0.5f};
-            m_moveSpeed = 0.5f;
-            SetImage(RESOURCE_DIR"/output_images/MegaSlime/tile_0_0.png");
-            m_isDead = false;
-            wait = true;
-        }
-        else if(m_ImagePath == RESOURCE_DIR"/output_images/MegaSlime/tile_0_0.png" && !wait){
-            SetVisible(true);
-            m_health_ori = 8.0f;
-            m_health_now = m_health_ori;
-            m_healthbar->m_Transform.scale = {1.0f, 0.5f};
-            m_moveSpeed = 1.0f;
-            SetImage(RESOURCE_DIR"/output_images/Slime/tile_0_0.png");
-            m_isDead = false;
-            wait = true;
-        }
-        else{
-            SetVisible(false);
-        }
-        wait = false;
+        SetVisible(false);
         // m_healthbar->SetVisible(false);
     }
 
@@ -98,7 +75,7 @@ void Enemy::Move(){
                 m_Transform.translation.y = 240.0f-48*m_waypoints[0].x;
             }
         }
-        else{
+        else if(m_Transform.translation.y == 240.0f-48*m_waypoints[0].x){
             if(m_Transform.translation.x < -480.0f+48*m_waypoints[0].y){
                 m_Transform.translation.x += 1*m_moveSpeed;
                 coordinate1 = -1;
