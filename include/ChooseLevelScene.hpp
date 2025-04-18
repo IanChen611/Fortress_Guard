@@ -11,7 +11,8 @@
 
 #include "Util/Logger.hpp"
 #include "Util/Input.hpp"
-
+#include "Util/GameObject.hpp"
+#include "Util/Image.hpp"
 
 class ChooseLevelScene : public Scene {
 public:
@@ -35,6 +36,7 @@ public:
 private:
     SceneManager *m_SceneManager;
     std::vector<std::shared_ptr<Button>> vec_Button;
+    std::vector<std::shared_ptr<Util::GameObject>> vec_Image;
 
 };
 

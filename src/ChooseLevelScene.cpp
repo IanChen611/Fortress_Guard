@@ -12,6 +12,15 @@ ChooseLevelScene::ChooseLevelScene() {
             ((((i - 1) % 5)*4)+2)*48 - 480, 240 - 48 * (3 * int(((i-1)/5)) + 2), 110, 110, 0.6f, 0.6f,
             [this, i]() { this->OnClickLevelButton(i); });
         vec_Button.push_back(tem);
+
+        std::shared_ptr<Util::GameObject> tem1 = std::make_shared<Util::GameObject>();
+        std::shared_ptr<Util::Image> tem_img = std::make_shared<Util::Image>(RESOURCE_DIR"/Image/UI/chose_level_back.png");
+        tem1->SetDrawable(tem_img);
+        tem1->m_Transform.translation = {((((i - 1) % 5)*4)+2)*48 - 480, 240 - 48 * (3 * int(((i-1)/5)) + 2) + 6};
+        tem1->m_Transform.scale = {0.5f, 0.5f};
+        tem1->SetVisible(false);
+        tem1->SetZIndex(-5);
+        vec_Image.push_back(tem1);
     }
 
     vec_Button.push_back(std::make_shared<Button>(RESOURCE_DIR"/Image/UI/back.png",
@@ -73,11 +82,29 @@ void ChooseLevelScene::Update(){
     for(auto button : vec_Button){
         button->Update();
     }
+    glm::vec2 mouse_pos = Util::Input::GetCursorPosition();
+    float img_Width = 182.0f / 2;
+    float img_Height = 182.0f / 2;
+    for(auto img : vec_Image){
+        glm::vec2 m_Position = img->m_Transform.translation;
+        if(mouse_pos.x >= (m_Position.x - img_Width/2) &&
+            mouse_pos.x <= (m_Position.x + img_Width/2) &&
+             mouse_pos.y >= (m_Position.y - img_Height/2) &&
+            mouse_pos.y <= (m_Position.y + img_Height/2)){
+                img->SetVisible(true);
+            }
+            else{
+                img->SetVisible(false);
+            }
+    }
 }
 
 void ChooseLevelScene::Draw(){
     for(auto button : vec_Button){
         button->Draw();
+    }
+    for(auto img : vec_Image){
+        img->Draw();
     }
 }
 
