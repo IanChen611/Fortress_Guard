@@ -39,6 +39,7 @@ private:
     std::shared_ptr<Util::GameObject> m_tutorial_1;
     std::shared_ptr<Util::GameObject> m_tutorial_2;
     std::shared_ptr<Util::GameObject> m_tutorial_3;
+    std::shared_ptr<Util::GameObject> m_tutorial_4;
 };
 
 #endif // TUTORIALSCENE_HPP

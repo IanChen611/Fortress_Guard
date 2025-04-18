@@ -15,7 +15,7 @@ TutorialScene::TutorialScene(){
         [this]() { 
             LOG_INFO("Clicked next_page Button in TutorialPage");
             now_page -= 1;
-            if(now_page < 1) now_page = 3;
+            if(now_page < 1) now_page = 4;
     });
 
     next_page = std::make_shared<Button>(RESOURCE_DIR"/Image/UI/back.png",
@@ -23,7 +23,7 @@ TutorialScene::TutorialScene(){
         [this]() { 
             LOG_INFO("Clicked pre_page Button in TutorialPage");
             now_page += 1;
-            if(now_page > 3) now_page = 1;
+            if(now_page > 4) now_page = 1;
     });
     next_page->m_Transform.rotation = 3.1415926f;
     
@@ -53,6 +53,15 @@ TutorialScene::TutorialScene(){
     vec_tutorial.push_back(m_tutorial_3);
 
 
+    m_tutorial_4 = std::make_shared<Util::GameObject>();
+    std::shared_ptr<Util::Image> m_tutorial_4_img = std::make_shared<Util::Image>(RESOURCE_DIR"/Image/UI/Tutorial_4.png");
+    m_tutorial_4->SetDrawable(m_tutorial_4_img);
+    m_tutorial_4->m_Transform.translation = {0, 0};
+    m_tutorial_4->m_Transform.scale = {0.55f, 0.55f};
+    m_tutorial_4->SetVisible(false);
+    vec_tutorial.push_back(m_tutorial_4);
+
+
 }
 
 void TutorialScene::OnClickBackPreScene(){
@@ -67,17 +76,27 @@ void TutorialScene::Update(){
         m_tutorial_1->SetVisible(true);
         m_tutorial_2->SetVisible(false);
         m_tutorial_3->SetVisible(false);
+        m_tutorial_4->SetVisible(false);
     }
     else if(now_page == 2){
         m_tutorial_1->SetVisible(false);
         m_tutorial_2->SetVisible(true);
         m_tutorial_3->SetVisible(false);
+        m_tutorial_4->SetVisible(false);
     }
     else if(now_page == 3){
         m_tutorial_1->SetVisible(false);
         m_tutorial_2->SetVisible(false);
         m_tutorial_3->SetVisible(true);
+        m_tutorial_4->SetVisible(false);
     }
+    else if(now_page == 4){
+        m_tutorial_1->SetVisible(false);
+        m_tutorial_2->SetVisible(false);
+        m_tutorial_3->SetVisible(false);
+        m_tutorial_4->SetVisible(true);
+    }
+
 }
 
 void TutorialScene::Draw(){
