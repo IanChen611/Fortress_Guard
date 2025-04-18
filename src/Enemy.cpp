@@ -95,7 +95,10 @@ void Enemy::Move(){
 
 void Enemy::GetHurt(float damage){
     m_health_now -= damage;
-    m_healthbar->m_Transform.scale = {float(m_health_now) / float(m_health_ori), m_healthbar->m_Transform.scale.y};
+    if(m_health_now <= 0) m_healthbar->m_Transform.scale = {0, m_healthbar->m_Transform.scale.y};
+    else{
+        m_healthbar->m_Transform.scale = {float(m_health_now) / float(m_health_ori), m_healthbar->m_Transform.scale.y};
+    }
     m_healthbar->Draw();
     // LOG_INFO(m_health_now);
     // LOG_INFO(m_healthbar->m_Transform.scale);
