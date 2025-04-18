@@ -1,13 +1,13 @@
-#ifndef MAGE_HPP
-#define MAGE_HPP
+#ifndef DRAGON_HPP
+#define DRAGON_HPP
 
 #include <string>
 
 #include "Guard.hpp"
 
-class Mage : public Guard {
+class Dragon : public Guard {
 public:
-    Mage();
+    Dragon();
 
     void Update_for_speccial_guard() override;
 

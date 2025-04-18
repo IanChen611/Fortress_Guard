@@ -139,7 +139,6 @@ void Mage::Update_for_speccial_guard(){
             }
             bullet_flying = false;
         }
-        
     }
 }
 

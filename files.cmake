@@ -16,6 +16,7 @@ set(SRC_FILES
     Swordsman.cpp
     Mage.cpp
     Musketeer.cpp
+    Dragon.cpp
     ReadMap.cpp
     ReadEnemy.cpp
     Market.cpp
@@ -39,6 +40,7 @@ set(INCLUDE_FILES
     Swordsman.hpp
     Mage.hpp
     Musketeer.hpp
+    Dragon.hpp
     ReadMap.hpp
     ReadEnemy.hpp
     Market.hpp

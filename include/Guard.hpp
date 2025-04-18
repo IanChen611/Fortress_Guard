@@ -93,9 +93,11 @@ protected:
     float m_attackTime = 100;
     float m_attackSpeed;
     bool m_attackable = false;
+    bool m_isRange = false;
     std::shared_ptr<Util::GameObject> m_cooldown_bar;
     std::shared_ptr<Util::Image> m_cooldown_bar_IMG;
     float cooldown_bar_scale;
+    int m_attackRange;
     // 子彈
     std::shared_ptr<Util::GameObject> bullet;
     bool bullet_flying = false;
