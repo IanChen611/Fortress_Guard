@@ -26,7 +26,7 @@ ChooseLevelScene::ChooseLevelScene() {
     vec_Button.push_back(std::make_shared<Button>(RESOURCE_DIR"/Image/UI/back.png",
         -437, 298, 170, 116, 0.5f, 0.5f,
         [this]() { 
-            LOG_INFO("Clicked Back Button in Level1");
+            LOG_INFO("Clicked Back Button in ChoseLevelScene");
             this->OnClickBackPreScene();
     }));
 }

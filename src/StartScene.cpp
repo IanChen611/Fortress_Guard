@@ -2,6 +2,7 @@
 #include "Tile.hpp"
 #include "Button.hpp"
 #include "ChooseLevelScene.hpp"
+#include "TutorialScene.hpp"
 
 #include "Util/Logger.hpp"
 #include "Util/Input.hpp"
@@ -13,6 +14,9 @@ StartScene::StartScene() {
     m_StartButton = std::make_shared<Button>(RESOURCE_DIR"/Image/UI/Button_StartGame.png",
                 0, -150, 236, 88, 1, 1,
                 [this]() { this->OnClickStartGame(); });
+    m_TutorialButton = std::make_shared<Button>(RESOURCE_DIR"/Image/UI/Button_Tutorial.png",
+                0, -245, 276, 120, 0.4f, 0.4f,
+                [this]() { this->OnClickTutorial(); });
 }
 
 void StartScene::SetSceneManager(SceneManager *m_SceneManager){
@@ -30,6 +34,13 @@ void StartScene::OnClickStartGame() {
     m_SceneManager->PushScene(std::move(tem));
 }
 
+void StartScene::OnClickTutorial() {
+    LOG_INFO("Clicked Tutorial");
+    std::unique_ptr<TutorialScene> tem = std::make_unique<TutorialScene>();
+    tem->SetSceneManager(m_SceneManager);
+    m_SceneManager->PushScene(std::move(tem));
+}
+
 
 
 // void StartScene::Start(){
@@ -39,10 +50,13 @@ void StartScene::OnClickStartGame() {
 
 void StartScene::Update(){
     m_StartButton->Update();
+    m_TutorialButton->Update();
 }
 
 void StartScene::Draw() {
     m_StartButton->Draw();
+    m_TutorialButton->Draw();
+
     // LOG_INFO("StartScene Drawed");
 }
 

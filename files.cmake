@@ -19,6 +19,7 @@ set(SRC_FILES
     ReadMap.cpp
     ReadEnemy.cpp
     Market.cpp
+    TutorialScene.cpp
 )
 
 set(INCLUDE_FILES
@@ -41,6 +42,7 @@ set(INCLUDE_FILES
     ReadMap.hpp
     ReadEnemy.hpp
     Market.hpp
+    TutorialScene.hpp
 )
 
 set(TEST_FILES
