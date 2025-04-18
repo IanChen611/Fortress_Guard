@@ -48,11 +48,11 @@ ReadEnemy::ReadEnemy(std::vector<std::vector<glm::vec2>> ways, int level){
                 }
                 else if(cell[0] == 'O'){
                     int num  = cell[1] - '0';
-                    tem_enemy = std::make_shared<Enemy>(RESOURCE_DIR"/output_images/Orc/tile_0_0.png", m_ways[num-1], 50.0f, 0.5f);
+                    tem_enemy = std::make_shared<Enemy>(RESOURCE_DIR"/output_images/Orc/tile_0_0.png", m_ways[num-1], 120.0f, 0.4f);
                 }
                 else if(cell[0] == 'M'){
                     int num  = cell[1] - '0';
-                    tem_enemy = std::make_shared<Enemy>(RESOURCE_DIR"/output_images/Mammoth/tile_0_0.png", m_ways[num-1], 30.0f, 2.0f);
+                    tem_enemy = std::make_shared<Enemy>(RESOURCE_DIR"/output_images/Mammoth/tile_0_0.png", m_ways[num-1], 50.0f, 2.5f);
                 }
                 else{
                     LOG_INFO("Enemy type error");

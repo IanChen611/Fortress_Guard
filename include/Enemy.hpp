@@ -44,7 +44,7 @@ private:
     float m_health_now;
     float m_moveSpeed;
     bool m_isDead = false;
-    int enemyDropMoneyAmount = 10;
+    int enemyDropMoneyAmount = 5;
     int coordinate1 = 1;
     int coordinate2 = 1;
 };

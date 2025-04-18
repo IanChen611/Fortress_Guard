@@ -12,8 +12,8 @@ Swordsman::Swordsman() {
     m_Transform.scale = {3, 3};
     SetZIndex(10);
     m_rangeImagePath = RESOURCE_DIR"/output_images/Tiles/tile_5_21.png";
-    m_damage = 10;
-    m_attackSpeed = 2;
+    m_damage = 18;
+    m_attackSpeed = 1.5;
     m_cost = 15;
     m_rangeCoordinate.push_back({0, 48});
     m_rangeCoordinate.push_back({0, -48});
@@ -82,7 +82,7 @@ void Swordsman::Update_for_speccial_guard(){
 
 void Swordsman::Upgrade(){
     if(m_rank < 3 && m_canUpgrade){
-        m_damage += 2;
+        m_damage += 5;
         m_attackSpeed *= 1.2;
         m_rank += 1;
         LOG_INFO("Swordsman upgraded");
