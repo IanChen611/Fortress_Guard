@@ -35,11 +35,11 @@ ReadEnemy::ReadEnemy(std::vector<std::vector<glm::vec2>> ways, int level){
                 if(cell[0] == 'S'){
                     if(cell[1] == 'K'){
                         int num = cell[2] - '0';
-                        tem_enemy = std::make_shared<Enemy>(RESOURCE_DIR"/output_images/Slimeking/tile_0_0.png", m_ways[num-1], 128.0f, 0.25f);
+                        tem_enemy = std::make_shared<Enemy>(RESOURCE_DIR"/output_images/Slimeking/tile_0_0.png", m_ways[num-1], 2048.0f, 0.25f);
                     }
                     else if(cell[1] == 'M'){
                         int num = cell[2] - '0';
-                        tem_enemy = std::make_shared<Enemy>(RESOURCE_DIR"/output_images/MegaSlime/tile_0_0.png", m_ways[num-1], 32.0f, 0.5f);
+                        tem_enemy = std::make_shared<Enemy>(RESOURCE_DIR"/output_images/MegaSlime/tile_0_0.png", m_ways[num-1], 128.0f, 0.5f);
                     }
                     else{
                         int num = cell[1] - '0';

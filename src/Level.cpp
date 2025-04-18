@@ -1040,7 +1040,7 @@ void Level::Update(){
                         //slimeking or megaslime
                         if(enemyList[i]->GetImagePath() == RESOURCE_DIR"/output_images/Slimeking/tile_0_0.png" || enemyList[i]->GetImagePath() == RESOURCE_DIR"/output_images/MegaSlime/tile_0_0.png"){
                             //分裂3隻(原本就有1隻)
-                            for(int j = 0; j < 4; j++){
+                            for(int j = 0; j < 1; j++){
                                 //change position
                                 if(tem_position.x == tem_waypoints[0].x){
                                     if(tem_position.y < tem_waypoints[0].y){
@@ -1058,16 +1058,19 @@ void Level::Update(){
                                         insert_waypoints.insert(insert_waypoints.begin(), {tem_position.x+0.5*j, tem_position.y});
                                     }
                                 }
-                                LOG_INFO(insert_waypoints[0]);
+                                else{
+                                    insert_waypoints.push_back({99999,99999});
+                                }
+                                // LOG_INFO(insert_waypoints[0]);
                                 //build enemy
                                 if(tem_imagepath == RESOURCE_DIR"/output_images/Slimeking/tile_0_0.png"){
-                                    enemyList.push_back(std::make_shared<Enemy>(RESOURCE_DIR"/output_images/MegaSlime/tile_0_0.png", insert_waypoints, 32.0f, 0.5f));
+                                    enemyList.push_back(std::make_shared<Enemy>(RESOURCE_DIR"/output_images/MegaSlime/tile_0_0.png", insert_waypoints, 128.0f, 0.5f));
                                 }
                                 else if(tem_imagepath == RESOURCE_DIR"/output_images/MegaSlime/tile_0_0.png"){
                                     enemyList.push_back(std::make_shared<Enemy>(RESOURCE_DIR"/output_images/Slime/tile_0_0.png", insert_waypoints, 8.0f, 1.0f));
                                 }
                             }
-                            enemyCounter += 4;
+                            enemyCounter += 1;
                         }
                         //normal enemy
                         if(enemyList[i]->GetHealth() > 0){
