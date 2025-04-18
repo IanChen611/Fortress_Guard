@@ -1040,7 +1040,7 @@ void Level::Update(){
                         //slimeking or megaslime
                         if(enemyList[i]->GetImagePath() == RESOURCE_DIR"/output_images/Slimeking/tile_0_0.png" || enemyList[i]->GetImagePath() == RESOURCE_DIR"/output_images/MegaSlime/tile_0_0.png"){
                             //分裂3隻(原本就有1隻)
-                            for(int j = 0; j < 1; j++){
+                            for(int j = 0; j < 4; j++){
                                 //change position
                                 if(tem_position.x == tem_waypoints[0].x){
                                     if(tem_position.y < tem_waypoints[0].y){
@@ -1070,7 +1070,7 @@ void Level::Update(){
                                     enemyList.push_back(std::make_shared<Enemy>(RESOURCE_DIR"/output_images/Slime/tile_0_0.png", insert_waypoints, 8.0f, 1.0f));
                                 }
                             }
-                            enemyCounter += 1;
+                            enemyCounter += 4;
                         }
                         //normal enemy
                         if(enemyList[i]->GetHealth() > 0){
