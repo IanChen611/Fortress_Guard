@@ -36,7 +36,7 @@ Level::Level(int level){
 
     // 返回前頁之按鈕
     UI.push_back(std::make_shared<Button>(RESOURCE_DIR"/Image/UI/back.png",
-    -437, 298, 170, 116, 0.5f, 0.5f,
+    -545, 310, 170, 116, 0.5f, 0.5f,
     [this]() { 
         this->OnClickBackPreScene();
     }));
