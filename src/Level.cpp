@@ -146,7 +146,7 @@ Level::Level(int level){
 
     // Dragon的按鈕
     UI.push_back(std::make_shared<Button>(RESOURCE_DIR"/output_images/Dragon/tile_0_0.png",
-        -160, -288, 16, 16, 3.0f, 3.0f,
+        -160, -288, 16, 16, 2.0f, 2.0f,
         [this]() { 
             this->OnClickBuyGuard("Dragon");
         }));
