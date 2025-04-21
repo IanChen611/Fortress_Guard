@@ -13,6 +13,7 @@
 #include "Swordsman.hpp"
 #include "Mage.hpp"
 #include "Market.hpp"
+#include "Dragon.hpp"
 
 #include "ReadMap.hpp"
 
@@ -141,6 +142,23 @@ Level::Level(int level){
         Util::Color(254, 254, 0));
     number_money_Market->SetDrawable(number_money_text_Market);
     UI.push_back(number_money_Market);
+
+
+    // Dragon的按鈕
+    UI.push_back(std::make_shared<Button>(RESOURCE_DIR"/output_images/Dragon/tile_0_0.png",
+        -160, -288, 16, 16, 3.0f, 3.0f,
+        [this]() { 
+            this->OnClickBuyGuard("Dragon");
+        }));
+    // Dragon的錢幣顯示
+    std::shared_ptr<Ui> number_money_Dragon = std::make_shared<Ui>();
+    number_money_Dragon->m_Transform.translation = {-153, -240};
+    std::shared_ptr<Util::Text> number_money_text_Dragon = std::make_shared<Util::Text>(
+        RESOURCE_DIR"/Font/Inter.ttf",
+        30, std::to_string(30),
+        Util::Color(254, 254, 0));
+    number_money_Dragon->SetDrawable(number_money_text_Dragon);
+    UI.push_back(number_money_Dragon);
 
     // ----------------------------------------------------------------------------------
     
@@ -885,6 +903,9 @@ void Level::OnClickBuyGuard(std::string characterName){
     }
     if(characterName == "Market"){
         tem = std::make_shared<Market>();
+    }
+    if(characterName == "Dragon"){
+        tem = std::make_shared<Dragon>();
     }
 
 }
