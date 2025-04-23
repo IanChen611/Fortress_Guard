@@ -828,6 +828,7 @@ Level::Level(int level){
         waypoints.push_back({8, 3});
         waypoints.push_back({1, 3});
         waypoints.push_back({1, 10});
+        waypoints.push_back({3, 10});
         waypoints.push_back({3, 12});
         waypoints.push_back({5, 12});
         waypoints.push_back({5, 10});
