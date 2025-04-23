@@ -90,6 +90,7 @@ protected:
     // --倒數的部分--
     int startGameCounter = 0;
     bool gameStart = false;
+    int timerForNecromancer = 0;
     std::shared_ptr<Util::GameObject> m_countdown_number; 
     std::shared_ptr<Util::Text> m_countdown_text; 
     

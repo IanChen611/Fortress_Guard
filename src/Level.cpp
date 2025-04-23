@@ -1089,6 +1089,20 @@ void Level::Update(){
                     //enemy died
                     enemyList[i]->Update();
                     enemyList[i]->Draw();
+                    if(enemyList[i]->GetImagePath() == RESOURCE_DIR"/output_images/Necromancer/tile_0_0.png"){
+                        timerForNecromancer += 1;
+                        if(timerForNecromancer / 1000 > 0){
+                            timerForNecromancer = 0;
+                            std::vector<glm::vec2> tem_waypoints = enemyList[i]->GetWaypoints();
+                            glm::vec2 tem_position = enemyList[i]->m_Transform.translation;
+                            float y = ((int)tem_position.x+480+24)/48;
+                            float x = -(((int)tem_position.y+240+24)/48-10);
+                            tem_position = {x, y};
+                            tem_waypoints.insert(tem_waypoints.begin(), {tem_position.x, tem_position.y});
+                            enemyList.push_back(std::make_shared<Enemy>(RESOURCE_DIR"/output_images/MegaSlime/tile_0_0.png", tem_waypoints, 128.0f, 0.5f));
+                            enemyCounter += 1;
+                        }
+                    }
                     if(enemyList[i]->IsDead()){
                         std::vector<glm::vec2> tem_waypoints = enemyList[i]->GetWaypoints();
                         std::vector<glm::vec2> insert_waypoints = tem_waypoints;
