@@ -55,7 +55,7 @@ protected:
     SceneManager *m_SceneManager;
     int m_castlehealth_ori = 5;
     int m_castlehealth_now;
-    int m_player_money_ori = 50;
+    int m_player_money_ori = 100;
     int m_player_money_now;
     // 自身是第幾關
     int m_level;
