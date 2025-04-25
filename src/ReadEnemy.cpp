@@ -33,14 +33,17 @@ ReadEnemy::ReadEnemy(std::vector<std::vector<glm::vec2>> ways, int level){
             if(Now_is_detect_Enemy){
                 // 史萊姆
                 if(cell[0] == 'S'){
+                    // 大史萊姆
                     if(cell[1] == 'K'){
                         int num = cell[2] - '0';
                         tem_enemy = std::make_shared<Enemy>(RESOURCE_DIR"/output_images/Slimeking/tile_0_0.png", m_ways[num-1], 2048.0f, 0.25f);
                     }
+                    // 中史萊姆
                     else if(cell[1] == 'M'){
                         int num = cell[2] - '0';
                         tem_enemy = std::make_shared<Enemy>(RESOURCE_DIR"/output_images/MegaSlime/tile_0_0.png", m_ways[num-1], 128.0f, 0.5f);
                     }
+                    // 小史萊姆
                     else{
                         int num = cell[1] - '0';
                         tem_enemy = std::make_shared<Enemy>(RESOURCE_DIR"/output_images/Slime/tile_0_0.png", m_ways[num-1], 8.0f, 1.0f);
