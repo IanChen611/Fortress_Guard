@@ -1077,7 +1077,9 @@ void Level::Update(){
                         ready_to_next_wave = false;
                         // 敵人波數加一
                         current_enemy_wave += 1;
-                        m_player_money_now += 30;
+                        if(current_enemy_wave != 1){
+                            m_player_money_now += 30;
+                        }
                         // 更新波數之text
                         m_current_enemy_wave_text->SetText("Wave : " + std::to_string(current_enemy_wave));
                     }
