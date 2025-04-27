@@ -98,9 +98,21 @@ protected:
     std::shared_ptr<Util::Image> m_cooldown_bar_IMG;
     float cooldown_bar_scale;
     int m_attackRange;
+
     // 子彈
     std::shared_ptr<Util::GameObject> bullet;
     bool bullet_flying = false;
+
+
+    // 攻擊動畫
+    bool attacking = false;
+    int now_picture = 0;
+    int picture_interval = 0;
+    std::string attack_direction;
+    std::vector<std::string> attackdown;
+    std::vector<std::string> attackup;
+    std::vector<std::string> attackleft;
+    std::vector<std::string> attackright;
 };
 
 #endif

@@ -55,7 +55,23 @@ Swordsman::Swordsman() {
     //     16, std::to_string(m_rank),
     //     Util::Color(0, 0, 0));
     // m_ranknumber->SetDrawable(m_ranknumber_text);
+    
+    // 讀取動畫圖
+    for(int i=0;i<=3;i++){
+        attackdown.push_back(RESOURCE_DIR"/output_images/Swordsman/tile_4_" + std::to_string(i) +".png");
+    }
+    for(int i=0;i<=3;i++){
+        attackup.push_back(RESOURCE_DIR"/output_images/Swordsman/tile_5_" + std::to_string(i) +".png");
+    }
+    for(int i=0;i<=3;i++){
+        attackright.push_back(RESOURCE_DIR"/output_images/Swordsman/tile_6_" + std::to_string(i) +".png");
+    }
+    for(int i=0;i<=3;i++){
+        attackleft.push_back(RESOURCE_DIR"/output_images/Swordsman/tile_7_" + std::to_string(i) +".png");
+    }
 
+
+    
     LOG_INFO("Swordsman built");
 }
 
@@ -68,16 +84,66 @@ bool Swordsman::IsEnemyInRange(const std::shared_ptr<Enemy> enemy){
 }
 
 void Swordsman::Update_for_speccial_guard(){
-    if(m_attackable && static_cast<int>(m_enemyInRange.size()) >= 1){
+    if(m_attackable && static_cast<int>(m_enemyInRange.size() && !attacking) >= 1){
+        // 動畫開始
+        attacking = true;
         // 為了怕同時造成傷害時，第二次傷害對nullptr造成傷害
         if(m_enemyInRange[0]->GetHealth() > 0){
             m_enemyInRange[0]->GetHurt(m_damage);
+            // 找動畫方向
+            glm::vec2 enemy_pos = m_enemyInRange[0]->GetTransform().translation;
+            float delta_x = enemy_pos.x - this->m_Transform.translation.x;
+            float delta_y = enemy_pos.y - this->m_Transform.translation.y;
+            if(abs(delta_x) >= 48){
+                if(delta_x > 0){
+                    attack_direction = "right";
+                }
+                else if(delta_x < 0){
+                    attack_direction = "left";
+                }
+            }
+            else if(abs(delta_y) >= 48){
+                if(delta_y > 0){
+                    attack_direction = "up";
+                }
+                else if(delta_y < 0){
+                    attack_direction = "down";
+                }
+            }
+            // LOG_INFO("attack_direction is " + attack_direction);
         }
         if(m_enemyInRange[0]->IsDead()){
             PopFrontEnemyInRange();
         }
         m_attackable = false;
     }
+    // 動畫更新
+    if(attacking){
+        // LOG_INFO("Now Pictuce is " + std::to_string(now_picture));
+        if(attack_direction == "right"){
+            SetImage(attackright[now_picture]);
+        }
+        else if(attack_direction == "left"){
+            SetImage(attackleft[now_picture]);
+        }
+        else if(attack_direction == "up"){
+            SetImage(attackup[now_picture]);
+        }
+        else if(attack_direction == "down"){
+            SetImage(attackdown[now_picture]);
+        }
+        picture_interval += 1;
+        if(picture_interval > 3){
+            now_picture += 1;
+            picture_interval = 0;
+        }
+        if(now_picture >= 4){
+            attacking = false;
+            now_picture = 0;
+            SetImage(RESOURCE_DIR"/output_images/Swordsman/tile_0_0.png");
+            // LOG_INFO("Set origin picture");
+        }
+    } 
 }
 
 void Swordsman::Upgrade(){
