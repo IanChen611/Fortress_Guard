@@ -1035,11 +1035,21 @@ void Level::Update(){
             for(auto guard : GuardList){
                 if(guard->IsAttacker()){
                     for(auto enemy : enemyList){
+                        // enemy in attack range
                         if(guard->IsEnemyInRange(enemy) && !guard->IsEnemyInEnemyInRange(enemy)){
                             guard->SetEnemyInRange(enemy);
                         }
                         else if(!guard->IsEnemyInRange(enemy) && guard->IsEnemyInEnemyInRange(enemy)){
                             guard->PopFrontEnemyInRange();
+                        }
+                        // enemy in hidden range
+                        if(guard->IsEnemyInHiddenRange(enemy) && !guard->IsEnemyInEnemyInHiddenRange(enemy)){
+                            LOG_INFO("set");
+                            guard->SetEnemyInHiddenRange(enemy);
+                        }
+                        else if(!guard->IsEnemyInHiddenRange(enemy) && guard->IsEnemyInEnemyInHiddenRange(enemy)){
+                            LOG_INFO("pop");
+                            guard->PopFrontEnemyInHiddenRange();
                         }
                     }
                 }

@@ -27,15 +27,23 @@ public:
 
     virtual bool IsEnemyInRange(const std::shared_ptr<Enemy> enemy) = 0;
 
+    virtual bool IsEnemyInHiddenRange(const std::shared_ptr<Enemy> enemy) = 0;
+
     void SetDeployed(bool isDeployed){m_isDeployed = isDeployed;}
 
     int GetCost(){return m_cost;}
 
     void SetEnemyInRange(std::shared_ptr<Enemy> enemy);
 
-    bool IsEnemyInEnemyInRange(std::shared_ptr<Enemy> enemy){return std::find(m_enemyInRange.begin(), m_enemyInRange.end(), enemy) != m_enemyInRange.end();};
+    void SetEnemyInHiddenRange(std::shared_ptr<Enemy> enemy);
+
+    bool IsEnemyInEnemyInRange(std::shared_ptr<Enemy> enemy){return std::find(m_enemyInRange.begin(), m_enemyInRange.end(), enemy) != m_enemyInRange.end();}
+
+    bool IsEnemyInEnemyInHiddenRange(std::shared_ptr<Enemy> enemy){return std::find(m_enemyInHiddenRange.begin(), m_enemyInHiddenRange.end(), enemy) != m_enemyInHiddenRange.end();}
 
     void PopFrontEnemyInRange();
+
+    void PopFrontEnemyInHiddenRange();
 
     void SetCanDeployed(bool canDeployed){m_canDeployed = canDeployed;}
 
@@ -70,8 +78,10 @@ protected:
     int m_cost;
     bool m_isAttacker = true;
     std::vector<glm::vec2> m_rangeCoordinate;
+    std::vector<glm::vec2> m_hiddenRangeCoordinate;
     std::vector<std::shared_ptr<Tile>> m_rangeTile;
     std::vector<std::shared_ptr<Enemy>> m_enemyInRange;
+    std::vector<std::shared_ptr<Enemy>> m_enemyInHiddenRange;
 
     // ------升級相關-------
     bool eliminated_deployed_problem = false;

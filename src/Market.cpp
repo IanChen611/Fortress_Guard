@@ -16,6 +16,8 @@ Market::Market() {
 
 bool Market::IsEnemyInRange(const std::shared_ptr<Enemy> enemy){}
 
+bool Market::IsEnemyInHiddenRange(const std::shared_ptr<Enemy> enemy){}
+
 void Market::Update_for_speccial_guard(){}
 
 void Market::Upgrade(){

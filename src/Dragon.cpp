@@ -26,6 +26,31 @@ Dragon::Dragon(){
     m_rangeCoordinate.push_back({0, -48});
     m_rangeCoordinate.push_back({48, -48});
     m_rangeCoordinate.push_back({0, -96});
+
+    // m_hiddenRangeCoordinate.push_back({0, 144});
+    // m_hiddenRangeCoordinate.push_back({-48, 96});
+    // m_hiddenRangeCoordinate.push_back({0, 96});
+    // m_hiddenRangeCoordinate.push_back({48, 96});
+    // m_hiddenRangeCoordinate.push_back({-96, 48});
+    // m_hiddenRangeCoordinate.push_back({-48, 48});
+    // m_hiddenRangeCoordinate.push_back({0, 48});
+    // m_hiddenRangeCoordinate.push_back({48, 48});
+    // m_hiddenRangeCoordinate.push_back({96, 48});
+    // m_hiddenRangeCoordinate.push_back({-144, 0});
+    // m_hiddenRangeCoordinate.push_back({-96, 0});
+    // m_hiddenRangeCoordinate.push_back({-48, 0});
+    // m_hiddenRangeCoordinate.push_back({48, 0});
+    // m_hiddenRangeCoordinate.push_back({96, 0});
+    // m_hiddenRangeCoordinate.push_back({144, 0});
+    // m_hiddenRangeCoordinate.push_back({-96, -48});
+    // m_hiddenRangeCoordinate.push_back({-48, -48});
+    // m_hiddenRangeCoordinate.push_back({0, -48});
+    // m_hiddenRangeCoordinate.push_back({48, -48});
+    // m_hiddenRangeCoordinate.push_back({96, -48});
+    // m_hiddenRangeCoordinate.push_back({-48, -96});
+    // m_hiddenRangeCoordinate.push_back({0, -96});
+    // m_hiddenRangeCoordinate.push_back({48, -96});
+    // m_hiddenRangeCoordinate.push_back({0, -144});
     for(int _=0; _<12; _++){
         m_rangeTile.push_back(std::make_shared<Tile>(m_rangeImagePath));
     }
@@ -66,6 +91,14 @@ bool Dragon::IsEnemyInRange(const std::shared_ptr<Enemy> enemy){
     int m_x = -(((int)m_coordinate.y+240+24)/48-10);
     int m_y = (((int)m_coordinate.x+480+24)/48);
     return abs(x-m_x) + abs(y-m_y) <= 2;
+}
+
+bool Dragon::IsEnemyInHiddenRange(const std::shared_ptr<Enemy> enemy){
+    int x = -(((int)enemy->m_Transform.translation.y+240+24)/48-10);
+    int y = (((int)enemy->m_Transform.translation.x+480+24)/48);
+    int m_x = -(((int)m_coordinate.y+240+24)/48-10);
+    int m_y = (((int)m_coordinate.x+480+24)/48);
+    return abs(x-m_x) + abs(y-m_y) <= 3;
 }
 
 void Dragon::Update_for_speccial_guard(){
@@ -125,7 +158,7 @@ void Dragon::Update_for_speccial_guard(){
             // 為了怕同時造成傷害時，第二次傷害對nullptr造成傷害
             // for 迴圈遍歷 m_enemyInRange
             // enemy is the iterator
-            for(auto enemy : m_enemyInRange){
+            for(auto enemy : m_enemyInHiddenRange){
                 if(enemy->GetHealth() > 0){
                     int x = -(((int)enemy->m_Transform.translation.y+240+24)/48-10);
                     int y = (((int)enemy->m_Transform.translation.x+480+24)/48);
@@ -138,6 +171,9 @@ void Dragon::Update_for_speccial_guard(){
             }
             if(m_enemyInRange[0]->IsDead()){
                 PopFrontEnemyInRange();
+            }
+            if(m_enemyInHiddenRange[0]->IsDead()){
+                PopFrontEnemyInHiddenRange();
             }
             bullet_flying = false;
         }

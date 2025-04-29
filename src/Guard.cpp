@@ -55,8 +55,16 @@ void Guard::SetEnemyInRange(std::shared_ptr<Enemy> enemy){
     m_enemyInRange.push_back(enemy);
 }
 
+void Guard::SetEnemyInHiddenRange(std::shared_ptr<Enemy> enemy){
+    m_enemyInHiddenRange.push_back(enemy);
+}
+
 void Guard::PopFrontEnemyInRange(){
     m_enemyInRange.erase(m_enemyInRange.begin());
+}
+
+void Guard::PopFrontEnemyInHiddenRange(){
+    m_enemyInHiddenRange.erase(m_enemyInHiddenRange.begin());
 }
 
 void Guard::SetPosition(const glm::vec2& Position) {
