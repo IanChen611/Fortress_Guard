@@ -191,3 +191,26 @@ void Guard::Update(){
         // --------------------
     }
 }
+
+
+std::string Guard::FindDirectionofFirstEnemy(std::shared_ptr<Enemy> first_enemy){
+    glm::vec2 enemy_pos = first_enemy->GetTransform().translation;
+    float delta_x = enemy_pos.x - this->m_Transform.translation.x;
+    float delta_y = enemy_pos.y - this->m_Transform.translation.y;
+    if(abs(delta_x) >= abs(delta_y)){
+        if(delta_x > 0){
+            return "right";
+        }
+        else if(delta_x < 0){
+            return "left";
+        }
+    }
+    else if(abs(delta_x) < abs(delta_y)){
+        if(delta_y > 0){
+            return "up";
+        }
+        else if(delta_y < 0){
+            return "down";
+        }
+    }
+}

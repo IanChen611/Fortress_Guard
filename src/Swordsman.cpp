@@ -91,26 +91,7 @@ void Swordsman::Update_for_speccial_guard(){
         if(m_enemyInRange[0]->GetHealth() > 0){
             m_enemyInRange[0]->GetHurt(m_damage);
             // 找動畫方向
-            glm::vec2 enemy_pos = m_enemyInRange[0]->GetTransform().translation;
-            float delta_x = enemy_pos.x - this->m_Transform.translation.x;
-            float delta_y = enemy_pos.y - this->m_Transform.translation.y;
-            if(abs(delta_x) >= 48){
-                if(delta_x > 0){
-                    attack_direction = "right";
-                }
-                else if(delta_x < 0){
-                    attack_direction = "left";
-                }
-            }
-            else if(abs(delta_y) >= 48){
-                if(delta_y > 0){
-                    attack_direction = "up";
-                }
-                else if(delta_y < 0){
-                    attack_direction = "down";
-                }
-            }
-            // LOG_INFO("attack_direction is " + attack_direction);
+            attack_direction = FindDirectionofFirstEnemy(m_enemyInRange[0]);
         }
         if(m_enemyInRange[0]->IsDead()){
             PopFrontEnemyInRange();

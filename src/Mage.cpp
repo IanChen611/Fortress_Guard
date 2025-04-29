@@ -125,25 +125,7 @@ void Mage::Update_for_speccial_guard(){
         bullet->m_Transform.translation.x = m_coordinate.x;
         bullet->m_Transform.translation.y = m_coordinate.y;
         // 找動畫方向
-        glm::vec2 enemy_pos = m_enemyInRange[0]->GetTransform().translation;
-        float delta_x = enemy_pos.x - this->m_Transform.translation.x;
-        float delta_y = enemy_pos.y - this->m_Transform.translation.y;
-        if(abs(delta_x) >= abs(delta_y)){
-            if(delta_x > 0){
-                attack_direction = "right";
-            }
-            else if(delta_x < 0){
-                attack_direction = "left";
-            }
-        }
-        else if(abs(delta_x) < abs(delta_y)){
-            if(delta_y > 0){
-                attack_direction = "up";
-            }
-            else if(delta_y < 0){
-                attack_direction = "down";
-            }
-        }
+        attack_direction = FindDirectionofFirstEnemy(m_enemyInRange[0]);
     }
     // 動畫更新
     if(attacking){

@@ -40,6 +40,23 @@ Dragon::Dragon(){
     bullet->m_Transform.scale = {2.0f, 2.0f};
     bullet->SetVisible(false);
 
+
+    // 龍的動畫預設先下
+    attack_direction = "down";
+    // 讀取動畫圖
+    for(int i=0;i<=3;i++){
+        attackdown.push_back(RESOURCE_DIR"/output_images/Dragon/tile_0_" + std::to_string(i) +".png");
+    }
+    for(int i=0;i<=3;i++){
+        attackup.push_back(RESOURCE_DIR"/output_images/Dragon/tile_1_" + std::to_string(i) +".png");
+    }
+    for(int i=0;i<=3;i++){
+        attackleft.push_back(RESOURCE_DIR"/output_images/Dragon/tile_2_" + std::to_string(i) +".png");
+    }
+    for(int i=0;i<=3;i++){
+        attackright.push_back(RESOURCE_DIR"/output_images/Dragon/tile_3_" + std::to_string(i) +".png");
+    }
+
     LOG_INFO("Dragon built finish");
 }
 
@@ -54,6 +71,25 @@ bool Dragon::IsEnemyInRange(const std::shared_ptr<Enemy> enemy){
 void Dragon::Update_for_speccial_guard(){
     // 畫子彈
     bullet->Draw();
+    if((int)(m_enemyInRange.size()) >= 1) attack_direction = FindDirectionofFirstEnemy(m_enemyInRange[0]);
+    // 動畫 => 面向第一個敵人
+    picture_interval += 1;
+    if(picture_interval >= 10){
+        now_picture = (now_picture + 1) % 4;
+        if(attack_direction == "down"){
+            SetImage(attackdown[now_picture]);
+        }
+        else if(attack_direction == "up"){
+            SetImage(attackup[now_picture]);
+        }
+        else if(attack_direction == "left"){
+            SetImage(attackleft[now_picture]);
+        }
+        else if(attack_direction == "right"){
+            SetImage(attackright[now_picture]);
+        }
+        picture_interval = 0;
+    }
 
     // Dragon 攻擊
     if(m_attackable && static_cast<int>(m_enemyInRange.size()) >= 1){
@@ -63,6 +99,7 @@ void Dragon::Update_for_speccial_guard(){
         bullet->m_Transform.translation.x = m_coordinate.x;
         bullet->m_Transform.translation.y = m_coordinate.y;
     }
+
     if(bullet_flying){
         if(int(m_enemyInRange.size()) == 0){
             bullet->SetVisible(false);

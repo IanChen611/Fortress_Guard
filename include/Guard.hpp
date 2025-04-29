@@ -57,6 +57,8 @@ public:
 
     void SetAttackable(bool attackable){m_attackable = attackable;}
 
+    std::string FindDirectionofFirstEnemy(std::shared_ptr<Enemy> enemy);
+
 protected:
     std::string m_myselfImagePath;
     std::string m_rangeImagePath;
