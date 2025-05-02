@@ -891,6 +891,18 @@ Level::Level(int level){
         ways.push_back(waypoints);
         waypoints.clear();
     }
+    else if(m_level == 999){
+        waypoints.push_back({4, 2});
+        waypoints.push_back({4, 12});
+        waypoints.push_back({7, 12});
+        waypoints.push_back({7, 16});
+        waypoints.push_back({1, 16});
+        waypoints.push_back({1, 7});
+        waypoints.push_back({8, 7});
+        waypoints.push_back({99999, 99999});
+        ways.push_back(waypoints);
+        waypoints.clear();
+    }
     // 放入路線
     m_readenemy = std::make_shared<ReadEnemy>(ways, m_level);
     // ----------怪物路線設置結束-----------

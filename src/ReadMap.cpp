@@ -21,7 +21,7 @@ ReadMap::ReadMap(int level){
     }
     /*
     N、G1 => 草地
-    T1 => 單棵樹
+    TR => 單棵樹
     E1 => 敵人城堡
     C1 => 自家城堡
     T1 => 左下的轉彎

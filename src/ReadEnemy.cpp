@@ -8,83 +8,116 @@
 
 ReadEnemy::ReadEnemy(std::vector<std::vector<glm::vec2>> ways, int level){
     m_ways = ways;
+    m_level = level;
     
-    std::string fileName = RESOURCE_DIR"/Enemy_Wave/Level" + std::to_string(level) + ".csv";
-    file.open(fileName);
-    if (!file.is_open()) {
-        LOG_INFO("The file Enemy_Wave's Level" + std::to_string(level) + ".csv cannot be opened.");
-        return;
-    }
-    if(file.is_open()){
-        LOG_INFO("The file Enemy_Wave's Level" + std::to_string(level) + ".csv is opened.");
-    }
-
-    std::string line;
-    int frame;
-    std::shared_ptr<Enemy> tem_enemy;
-    std::vector<std::pair<std::shared_ptr<Enemy>, int>> enemy_list;
-
-    while(getline(file, line)){
-        std::stringstream lineStream(line);
-        std::string cell;
-        bool Now_is_detect_Enemy = true;
-        while(getline(lineStream, cell, ',')){
-            // 現在偵測是敵人資料
-            if(Now_is_detect_Enemy){
-                // 史萊姆
-                if(cell[0] == 'S'){
-                    // 大史萊姆
-                    if(cell[1] == 'K'){
-                        int num = cell[2] - '0';
-                        tem_enemy = std::make_shared<Enemy>(RESOURCE_DIR"/output_images/Slimeking/tile_0_0.png", m_ways[num-1], 2048.0f, 0.25f);
-                    }
-                    // 中史萊姆
-                    else if(cell[1] == 'M'){
-                        int num = cell[2] - '0';
-                        tem_enemy = std::make_shared<Enemy>(RESOURCE_DIR"/output_images/MegaSlime/tile_0_0.png", m_ways[num-1], 128.0f, 0.5f);
-                    }
-                    // 小史萊姆
-                    else{
-                        int num = cell[1] - '0';
-                        tem_enemy = std::make_shared<Enemy>(RESOURCE_DIR"/output_images/Slime/tile_0_0.png", m_ways[num-1], 8.0f, 1.0f);
-                    }
-                }
-                else if(cell[0] == 'O'){
-                    int num  = cell[1] - '0';
-                    tem_enemy = std::make_shared<Enemy>(RESOURCE_DIR"/output_images/Orc/tile_0_0.png", m_ways[num-1], 120.0f, 0.4f);
-                }
-                else if(cell[0] == 'M'){
-                    int num  = cell[1] - '0';
-                    tem_enemy = std::make_shared<Enemy>(RESOURCE_DIR"/output_images/Mammoth/tile_0_0.png", m_ways[num-1], 50.0f, 2.5f);
-                }
-                else if(cell[0] == 'N'){
-                    int num  = cell[1] - '0';
-                    tem_enemy = std::make_shared<Enemy>(RESOURCE_DIR"/output_images/Necromancer/tile_0_0.png", m_ways[num-1], 5000.0f, 0.2f);
-                }
-                else{
-                    LOG_INFO("Enemy type error");
-                }
-            }
-            else if(!Now_is_detect_Enemy){
-                frame = std::stoi(cell);
-                enemy_list.push_back(std::make_pair(tem_enemy, frame));
-            }
-            Now_is_detect_Enemy = !Now_is_detect_Enemy;
+    if(level != 999){
+        std::string fileName = RESOURCE_DIR"/Enemy_Wave/Level" + std::to_string(level) + ".csv";
+        file.open(fileName);
+        if (!file.is_open()) {
+            LOG_INFO("The file Enemy_Wave's Level" + std::to_string(level) + ".csv cannot be opened.");
+            return;
         }
-        EnemyList.push_back(enemy_list);
-        enemy_list.clear();
+        if(file.is_open()){
+            LOG_INFO("The file Enemy_Wave's Level" + std::to_string(level) + ".csv is opened.");
+        }
+
+        std::string line;
+        int frame;
+        std::shared_ptr<Enemy> tem_enemy;
+        std::vector<std::pair<std::shared_ptr<Enemy>, int>> enemy_list;
+
+        while(getline(file, line)){
+            std::stringstream lineStream(line);
+            std::string cell;
+            bool Now_is_detect_Enemy = true;
+            while(getline(lineStream, cell, ',')){
+                // 現在偵測是敵人資料
+                if(Now_is_detect_Enemy){
+                    // 史萊姆
+                    if(cell[0] == 'S'){
+                        // 大史萊姆
+                        if(cell[1] == 'K'){
+                            int num = cell[2] - '0';
+                            tem_enemy = std::make_shared<Enemy>(RESOURCE_DIR"/output_images/Slimeking/tile_0_0.png", m_ways[num-1], 2048.0f, 0.25f);
+                        }
+                        // 中史萊姆
+                        else if(cell[1] == 'M'){
+                            int num = cell[2] - '0';
+                            tem_enemy = std::make_shared<Enemy>(RESOURCE_DIR"/output_images/MegaSlime/tile_0_0.png", m_ways[num-1], 128.0f, 0.5f);
+                        }
+                        // 小史萊姆
+                        else{
+                            int num = cell[1] - '0';
+                            tem_enemy = std::make_shared<Enemy>(RESOURCE_DIR"/output_images/Slime/tile_0_0.png", m_ways[num-1], 8.0f, 1.0f);
+                        }
+                    }
+                    else if(cell[0] == 'O'){
+                        int num  = cell[1] - '0';
+                        tem_enemy = std::make_shared<Enemy>(RESOURCE_DIR"/output_images/Orc/tile_0_0.png", m_ways[num-1], 120.0f, 0.4f);
+                    }
+                    else if(cell[0] == 'M'){
+                        int num  = cell[1] - '0';
+                        tem_enemy = std::make_shared<Enemy>(RESOURCE_DIR"/output_images/Mammoth/tile_0_0.png", m_ways[num-1], 50.0f, 2.5f);
+                    }
+                    else if(cell[0] == 'N'){
+                        int num  = cell[1] - '0';
+                        tem_enemy = std::make_shared<Enemy>(RESOURCE_DIR"/output_images/Necromancer/tile_0_0.png", m_ways[num-1], 5000.0f, 0.2f);
+                    }
+                    else{
+                        LOG_INFO("Enemy type error");
+                    }
+                }
+                else if(!Now_is_detect_Enemy){
+                    frame = std::stoi(cell);
+                    enemy_list.push_back(std::make_pair(tem_enemy, frame));
+                }
+                Now_is_detect_Enemy = !Now_is_detect_Enemy;
+            }
+            EnemyList.push_back(enemy_list);
+            enemy_list.clear();
+        }
     }
 }
 
 
 std::vector<std::pair<std::shared_ptr<Enemy>, int>> ReadEnemy::GetEnemy(){
-    if (wave >= int(EnemyList.size())) {
+    if(m_level == 999){
+        CreateEndlessEnemy();
+    }
+    if (wave >= int(EnemyList.size()) && m_level != 999) {
         // size 為 0
         std::vector<std::pair<std::shared_ptr<Enemy>, int>> a;
         return a;
     }
     wave += 1;
     return EnemyList[wave-1];
+}
+
+void ReadEnemy::CreateEndlessEnemy(){
+    if(wave == 5){
+        enemyTypeAmount += 1;
+    }
+    std::vector<std::pair<std::shared_ptr<Enemy>, int>> WaveEnemyList;
+    srand(time(NULL));
+    int interval = 50 - wave;
+    if(interval < 10){
+        interval = 10;
+    }
+    for(int _=0; _<3*wave; _++){
+        int x = rand() % enemyTypeAmount;
+        if(x == 0){
+            WaveEnemyList.push_back(std::make_pair(std::make_shared<Enemy>(RESOURCE_DIR"/output_images/Slime/tile_0_0.png", m_ways[1], 8.0f, 1.0f), interval));
+        }
+        else if(x == 1){
+            WaveEnemyList.push_back(std::make_pair(std::make_shared<Enemy>(RESOURCE_DIR"/output_images/Orc/tile_0_0.png", m_ways[1], 120.0f, 0.4f), interval));
+        }
+        else if(x == 2){
+            WaveEnemyList.push_back(std::make_pair(std::make_shared<Enemy>(RESOURCE_DIR"/output_images/Mammoth/tile_0_0.png", m_ways[1], 50.0f, 2.5f), interval));
+        }
+        else if(x == 3){
+            WaveEnemyList.push_back(std::make_pair(std::make_shared<Enemy>(RESOURCE_DIR"/output_images/Slime/tile_0_0.png", m_ways[1], 8.0f, 1.0f), interval));
+        }
+    }
 }
 
 // void ReadEnemy::SetWayPoint(int number, std::vector<glm::vec2> waypoints){

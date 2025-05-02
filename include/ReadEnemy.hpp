@@ -13,16 +13,22 @@ public:
 
     std::vector<std::pair<std::shared_ptr<Enemy>, int>> GetEnemy();
 
+    void CreateEndlessEnemy();
+
     // void SetWayPoint(int number, std::vector<glm::vec2> waypoint);
 
 private:
+    int m_level;
+
     std::ifstream file;
     
     int wave = 0;
+
     std::vector<std::vector<std::pair<std::shared_ptr<Enemy>, int>>> EnemyList;
 
     std::vector<std::vector<glm::vec2>> m_ways;
     
+    int enemyTypeAmount = 3;
 };
 
 
