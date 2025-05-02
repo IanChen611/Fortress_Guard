@@ -24,8 +24,8 @@ ChooseLevelScene::ChooseLevelScene() {
     }
 
     //endless mode
-    vec_Button.push_back(std::make_shared<Button>(RESOURCE_DIR"/Image/UI/test.png",
-        0, -288, 16, 80, 5, 2,
+    vec_Button.push_back(std::make_shared<Button>(RESOURCE_DIR"/Image/UI/endless.png",
+        0, -270, 280, 108, 0.75f, 0.75f,
         [this]() {this->OnClickLevelButton(999); })
     );
 
