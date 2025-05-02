@@ -100,6 +100,16 @@
 - [x] 追蹤並顯示目前是第幾波，波與波之間隔時間大，可給玩家準備或升級時間。
 - [x] `Guard`的攻擊冷卻
 - [x] 關卡選單多滑鼠觸碰會有不一樣效果
+- [x] 加上攻擊動畫
+  - [x] Swordsman
+  - [x] Mage
+  - [x] Musketeer
+  - [x] Dragon
+- [x] 加上怪物移動動畫
+  - [x] Slime、king_slime、mega_slime
+  - [x] Mamooth
+  - [x] Necromancer
+  - [x] Orc
 > **產出**：玩家更看得出來的遊戲玩法及詳細數據
 
 
