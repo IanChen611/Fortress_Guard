@@ -33,7 +33,7 @@ Guard::Guard(){
     m_ranknumber_text = std::make_shared<Util::Text>(
         RESOURCE_DIR"/Font/Inter.ttf",
         16, std::to_string(m_rank),
-        Util::Color(0, 0, 0));
+        Util::Color(255, 255, 255));
     m_ranknumber->SetDrawable(m_ranknumber_text);
 
     // 攻擊冷卻UI
