@@ -47,6 +47,17 @@ private:
     int enemyDropMoneyAmount = 3;
     int coordinate1 = 1;
     int coordinate2 = 1;
+
+    // 移動動畫
+    std::string move_direction;
+    int now_picture = 0;
+    int num_picture = 5;
+    int past_time = 0;
+    int time_gap = 0;
+    std::vector<std::string> move_right;
+    std::vector<std::string> move_left;
+    std::vector<std::string> move_up;
+    std::vector<std::string> move_down;
 };
 
 #endif

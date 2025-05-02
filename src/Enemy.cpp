@@ -21,6 +21,102 @@ Enemy::Enemy(const std::string& ImagePath, const std::vector<glm::vec2> waypoint
     m_healthbar->m_Transform.scale = {1.0f, 0.5f};
     m_healthbar->SetPivot({-24.0f, 0});
     m_healthbar->SetDrawable(std::make_shared<Util::Image>(RESOURCE_DIR"/Image/UI/bar.png"));
+
+    // 動畫預設先下
+    move_direction = "right";
+    // 讀取動畫圖
+    if(ImagePath == RESOURCE_DIR"/output_images/Slimeking/tile_0_0.png"){
+        for(int i=0;i<=5;i++){
+            move_down.push_back(RESOURCE_DIR"/output_images/Slimeking/tile_0_" + std::to_string(i) +".png");
+        }
+        for(int i=0;i<=5;i++){
+            move_left.push_back(RESOURCE_DIR"/output_images/Slimeking/tile_1_" + std::to_string(i) +".png");
+        }
+        for(int i=0;i<=5;i++){
+            move_right.push_back(RESOURCE_DIR"/output_images/Slimeking/tile_2_" + std::to_string(i) +".png");
+        }
+        for(int i=0;i<=5;i++){
+            move_up.push_back(RESOURCE_DIR"/output_images/Slimeking/tile_3_" + std::to_string(i) +".png");
+        }
+        time_gap = 20;
+    }
+    else if(ImagePath == RESOURCE_DIR"/output_images/MegaSlime/tile_0_0.png"){
+        for(int i=0;i<=5;i++){
+            move_down.push_back(RESOURCE_DIR"/output_images/MegaSlime/tile_0_" + std::to_string(i) +".png");
+        }
+        for(int i=0;i<=5;i++){
+            move_up.push_back(RESOURCE_DIR"/output_images/MegaSlime/tile_1_" + std::to_string(i) +".png");
+        }
+        for(int i=0;i<=5;i++){
+            move_right.push_back(RESOURCE_DIR"/output_images/MegaSlime/tile_2_" + std::to_string(i) +".png");
+        }
+        for(int i=0;i<=5;i++){
+            move_left.push_back(RESOURCE_DIR"/output_images/MegaSlime/tile_3_" + std::to_string(i) +".png");
+        }
+        time_gap = 15;
+    }
+    else if(ImagePath == RESOURCE_DIR"/output_images/Slime/tile_0_0.png"){
+        for(int i=0;i<=5;i++){
+            move_down.push_back(RESOURCE_DIR"/output_images/Slime/tile_0_" + std::to_string(i) +".png");
+        }
+        for(int i=0;i<=5;i++){
+            move_left.push_back(RESOURCE_DIR"/output_images/Slime/tile_1_" + std::to_string(i) +".png");
+        }
+        for(int i=0;i<=5;i++){
+            move_right.push_back(RESOURCE_DIR"/output_images/Slime/tile_2_" + std::to_string(i) +".png");
+        }
+        for(int i=0;i<=5;i++){
+            move_up.push_back(RESOURCE_DIR"/output_images/Slime/tile_3_" + std::to_string(i) +".png");
+        }
+        time_gap = 10;
+    }
+    else if(ImagePath == RESOURCE_DIR"/output_images/Orc/tile_0_0.png"){
+        for(int i=0;i<=5;i++){
+            move_down.push_back(RESOURCE_DIR"/output_images/Orc/tile_0_" + std::to_string(i) +".png");
+        }
+        for(int i=0;i<=5;i++){
+            move_up.push_back(RESOURCE_DIR"/output_images/Orc/tile_1_" + std::to_string(i) +".png");
+        }
+        for(int i=0;i<=5;i++){
+            move_right.push_back(RESOURCE_DIR"/output_images/Orc/tile_2_" + std::to_string(i) +".png");
+        }
+        for(int i=0;i<=5;i++){
+            move_left.push_back(RESOURCE_DIR"/output_images/Orc/tile_3_" + std::to_string(i) +".png");
+        }
+        time_gap = 18;
+    }
+    else if(ImagePath == RESOURCE_DIR"/output_images/Mammoth/tile_0_0.png"){
+        for(int i=0;i<=3;i++){
+            move_right.push_back(RESOURCE_DIR"/output_images/Mammoth/tile_0_" + std::to_string(i) +".png");
+        }
+        for(int i=0;i<=3;i++){
+            move_left.push_back(RESOURCE_DIR"/output_images/Mammoth/tile_1_" + std::to_string(i) +".png");
+        }
+        for(int i=0;i<=3;i++){
+            move_down.push_back(RESOURCE_DIR"/output_images/Mammoth/tile_2_" + std::to_string(i) +".png");
+        }
+        for(int i=0;i<=3;i++){
+            move_up.push_back(RESOURCE_DIR"/output_images/Mammoth/tile_3_" + std::to_string(i) +".png");
+        }
+        time_gap = 5;
+        num_picture = 3;
+    }
+    else if(ImagePath == RESOURCE_DIR"/output_images/Necromancer/tile_0_0.png"){
+        for(int i=0;i<=5;i++){
+            move_down.push_back(RESOURCE_DIR"/output_images/Necromancer/tile_0_" + std::to_string(i) +".png");
+        }
+        for(int i=0;i<=5;i++){
+            move_up.push_back(RESOURCE_DIR"/output_images/Necromancer/tile_1_" + std::to_string(i) +".png");
+        }
+        for(int i=0;i<=5;i++){
+            move_right.push_back(RESOURCE_DIR"/output_images/Necromancer/tile_2_" + std::to_string(i) +".png");
+        }
+        for(int i=0;i<=5;i++){
+            move_left.push_back(RESOURCE_DIR"/output_images/Necromancer/tile_3_" + std::to_string(i) +".png");
+        }
+        time_gap = 20;
+    }
+
 }
 
 void Enemy::Update(){
@@ -33,8 +129,29 @@ void Enemy::Update(){
         // m_healthbar->SetVisible(false);
     }
 
+    
+
     if(m_waypoints[0].x != 99999 && m_waypoints[0].y != 99999){
         Move();
+        // 動畫更新
+        past_time += 1;
+        if(past_time >= time_gap){
+            now_picture = (now_picture + 1)%num_picture;
+            past_time = 0;
+        }
+        if(move_direction == "right"){
+            SetImage(move_right[now_picture]);
+        }
+        if(move_direction == "left"){
+            SetImage(move_left[now_picture]);
+        }
+        if(move_direction == "up"){
+            SetImage(move_up[now_picture]);
+        }
+        if(move_direction == "down"){
+            SetImage(move_down[now_picture]);
+        }
+        
     }
     else{
         if(!m_isDead){
@@ -60,13 +177,16 @@ void Enemy::Move(){
         coordinate2 = 1;
     }
     else{
+        // 如果 自己的x 跟 目的地的x 一樣 => 移動y
         if(m_Transform.translation.x == -480.0f+48*m_waypoints[0].y){
             if(m_Transform.translation.y < 240.0f-48*m_waypoints[0].x){
                 m_Transform.translation.y += 1*m_moveSpeed;
+                move_direction = "up";
                 coordinate1 = -1;
             }
             else{
                 m_Transform.translation.y -= 1*m_moveSpeed;
+                move_direction = "down";
                 coordinate2 = -1;
             }
             if(coordinate1 + coordinate2 != 0){
@@ -78,10 +198,12 @@ void Enemy::Move(){
         else if(m_Transform.translation.y == 240.0f-48*m_waypoints[0].x){
             if(m_Transform.translation.x < -480.0f+48*m_waypoints[0].y){
                 m_Transform.translation.x += 1*m_moveSpeed;
+                move_direction = "right";
                 coordinate1 = -1;
             }
             else{
                 m_Transform.translation.x -= 1*m_moveSpeed;
+                move_direction = "left";
                 coordinate2 = -1;
             }
             if(coordinate1 + coordinate2 != 0){
