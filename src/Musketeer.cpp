@@ -180,7 +180,7 @@ void Musketeer::Update_for_speccial_guard(){
 }
 
 void Musketeer::Upgrade(){
-    if(m_rank < 3 && m_canUpgrade){
+    if(m_rank < m_maxrank && m_canUpgrade){
         m_damage += 0.5;
         m_attackSpeed *= 1.2;
         m_rank += 1;

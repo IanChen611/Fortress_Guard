@@ -1025,6 +1025,10 @@ void Level::Update(){
                             m_ground[m_ground_i][m_ground_j]->SetTouchable(false);
                             m_player_money_now -= tem->GetCost();
                             buying = false;
+                            //maxrank = 999 in endless mode
+                            if(m_level == 999){
+                                tem->SetMaxRank(999);
+                            }
                             tem->SetDeployed(true);
                             GuardList.push_back(tem);
                             tem = nullptr;

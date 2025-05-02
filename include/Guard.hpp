@@ -67,6 +67,8 @@ public:
 
     std::string FindDirectionofFirstEnemy(std::shared_ptr<Enemy> enemy);
 
+    void SetMaxRank(int rank){m_maxrank = rank;}
+
 protected:
     std::string m_myselfImagePath;
     std::string m_rangeImagePath;
@@ -89,6 +91,7 @@ protected:
     bool m_clickMe_LB = false;
     bool m_clickMe_LB_down = false;
     int m_rank = 1;
+    int m_maxrank = 3;
     bool m_isUpgraded = false;
     bool m_canUpgrade = false;
     // 升級花費

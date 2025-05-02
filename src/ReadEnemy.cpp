@@ -95,7 +95,7 @@ std::vector<std::pair<std::shared_ptr<Enemy>, int>> ReadEnemy::GetEnemy(){
 
 //spawn enemy in endless mode 
 void ReadEnemy::CreateEndlessEnemy(){
-    float healthboost = 1+wave/50;
+    healthboost *= 1.2;
     //add more enemy in some wave
     if(wave == 3 || wave == 5 || wave == 10){
         enemyTypeAmount += 1;
@@ -139,7 +139,6 @@ void ReadEnemy::CreateEndlessEnemy(){
             }
         }
         int x = rand() % enemyTypeAmount;
-        LOG_INFO(x);
         if(x == 0){
             //slime
             tem_enemy = std::make_shared<Enemy>(RESOURCE_DIR"/output_images/Slime/tile_0_0.png", m_ways[0], 8.0f * healthboost, 1.0f);

@@ -29,6 +29,8 @@ private:
     std::vector<std::vector<glm::vec2>> m_ways;
     
     int enemyTypeAmount = 1;
+
+    float healthboost = 1;
 };
 
 

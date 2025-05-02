@@ -191,7 +191,7 @@ void Mage::Update_for_speccial_guard(){
 }
 
 void Mage::Upgrade(){
-    if(m_rank < 3 && m_canUpgrade){
+    if(m_rank < m_maxrank && m_canUpgrade){
         m_damage += 15;
         m_attackSpeed *= 1.1;
         m_rank += 1;

@@ -146,7 +146,7 @@ void Guard::Update(){
         // 判定查看該位Guard
         if(m_clickMe_LB){
             // 可以升級的時候
-            if(m_rank < 3){
+            if(m_rank < m_maxrank){
                 m_ranknumber_text->SetText("Lv." + std::to_string(m_rank));
                 // 花費
                 m_upgradeCost_text->SetText(std::to_string(10*(m_rank)));
