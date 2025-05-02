@@ -1118,6 +1118,8 @@ void Level::Update(){
                     //enemy died
                     enemyList[i]->Update();
                     enemyList[i]->Draw();
+
+                    // Error 死靈法師召喚問題
                     if(enemyList[i]->GetImagePath() == RESOURCE_DIR"/output_images/Necromancer/tile_0_0.png"){
                         timerForNecromancer += 1;
                         if(timerForNecromancer / 1000 > 0){
@@ -1142,7 +1144,8 @@ void Level::Update(){
                         tem_position = {x, y};
                         //slimeking or megaslime
                         if(enemyList[i]->GetImagePath() == RESOURCE_DIR"/output_images/Slimeking/tile_0_0.png" || enemyList[i]->GetImagePath() == RESOURCE_DIR"/output_images/MegaSlime/tile_0_0.png"){
-                            //分裂3隻(原本就有1隻)
+                            // 分裂4隻
+                            // Error 史萊姆王分裂問題
                             for(int j = 0; j < 4; j++){
                                 //change position
                                 if(tem_position.x == tem_waypoints[0].x){
