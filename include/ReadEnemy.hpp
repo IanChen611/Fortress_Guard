@@ -28,7 +28,7 @@ private:
 
     std::vector<std::vector<glm::vec2>> m_ways;
     
-    int enemyTypeAmount = 3;
+    int enemyTypeAmount = 1;
 };
 
 

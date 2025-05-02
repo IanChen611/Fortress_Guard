@@ -81,20 +81,23 @@ ReadEnemy::ReadEnemy(std::vector<std::vector<glm::vec2>> ways, int level){
 
 
 std::vector<std::pair<std::shared_ptr<Enemy>, int>> ReadEnemy::GetEnemy(){
-    if(m_level == 999){
-        CreateEndlessEnemy();
-    }
     if (wave >= int(EnemyList.size()) && m_level != 999) {
         // size 為 0
         std::vector<std::pair<std::shared_ptr<Enemy>, int>> a;
         return a;
     }
     wave += 1;
+    if(m_level == 999){
+        CreateEndlessEnemy();
+    }
     return EnemyList[wave-1];
 }
 
+//spawn enemy in endless mode 
 void ReadEnemy::CreateEndlessEnemy(){
-    if(wave == 5){
+    float healthboost = 1+wave/50;
+    //add more enemy in some wave
+    if(wave == 3 || wave == 5 || wave == 10){
         enemyTypeAmount += 1;
     }
     std::vector<std::pair<std::shared_ptr<Enemy>, int>> WaveEnemyList;
@@ -103,21 +106,59 @@ void ReadEnemy::CreateEndlessEnemy(){
     if(interval < 10){
         interval = 10;
     }
-    for(int _=0; _<3*wave; _++){
-        int x = rand() % enemyTypeAmount;
-        if(x == 0){
-            WaveEnemyList.push_back(std::make_pair(std::make_shared<Enemy>(RESOURCE_DIR"/output_images/Slime/tile_0_0.png", m_ways[1], 8.0f, 1.0f), interval));
-        }
-        else if(x == 1){
-            WaveEnemyList.push_back(std::make_pair(std::make_shared<Enemy>(RESOURCE_DIR"/output_images/Orc/tile_0_0.png", m_ways[1], 120.0f, 0.4f), interval));
-        }
-        else if(x == 2){
-            WaveEnemyList.push_back(std::make_pair(std::make_shared<Enemy>(RESOURCE_DIR"/output_images/Mammoth/tile_0_0.png", m_ways[1], 50.0f, 2.5f), interval));
-        }
-        else if(x == 3){
-            WaveEnemyList.push_back(std::make_pair(std::make_shared<Enemy>(RESOURCE_DIR"/output_images/Slime/tile_0_0.png", m_ways[1], 8.0f, 1.0f), interval));
+    std::shared_ptr<Enemy> tem_enemy;
+    
+    //spawn boss
+    if(wave == 10){
+        tem_enemy = std::make_shared<Enemy>(RESOURCE_DIR"/output_images/Slimeking/tile_0_0.png", m_ways[0], 2048.0f * healthboost, 0.25f);
+        WaveEnemyList.push_back(std::make_pair(tem_enemy, 50));
+    }
+    else if(wave == 20){
+        tem_enemy = std::make_shared<Enemy>(RESOURCE_DIR"/output_images/Necromancer/tile_0_0.png", m_ways[0], 5000.0f * healthboost, 0.2f);
+        WaveEnemyList.push_back(std::make_pair(tem_enemy, 50));
+    }
+    else if(wave % 10 == 0){
+        int temp = wave / 10;
+        for(int i=0; i<temp; i++){
+            if(i%2 == 0){
+                tem_enemy = std::make_shared<Enemy>(RESOURCE_DIR"/output_images/Slimeking/tile_0_0.png", m_ways[0], 2048.0f * healthboost, 0.25f);
+            }
+            else{
+                tem_enemy = std::make_shared<Enemy>(RESOURCE_DIR"/output_images/Necromancer/tile_0_0.png", m_ways[0], 5000.0f * healthboost, 0.2f);
+            }
+            WaveEnemyList.push_back(std::make_pair(tem_enemy, 50));
         }
     }
+
+    //spawn normal enemy
+    for(int i=0; i<3*wave; i++){
+        if(i == 3 * wave - 1){
+            interval = 1500 - 20 * wave;
+            if(interval < 0){
+                interval = 0;
+            }
+        }
+        int x = rand() % enemyTypeAmount;
+        LOG_INFO(x);
+        if(x == 0){
+            //slime
+            tem_enemy = std::make_shared<Enemy>(RESOURCE_DIR"/output_images/Slime/tile_0_0.png", m_ways[0], 8.0f * healthboost, 1.0f);
+        }
+        else if(x == 1){
+            //orc
+            tem_enemy = std::make_shared<Enemy>(RESOURCE_DIR"/output_images/Orc/tile_0_0.png", m_ways[0], 120.0f * healthboost, 0.4f);
+        }
+        else if(x == 2){
+            //mammoth
+            tem_enemy = std::make_shared<Enemy>(RESOURCE_DIR"/output_images/Mammoth/tile_0_0.png", m_ways[0], 50.0f * healthboost, 2.5f);
+        }
+        else if(x == 3){
+            //megaslime
+            tem_enemy = std::make_shared<Enemy>(RESOURCE_DIR"/output_images/MegaSlime/tile_0_0.png", m_ways[0], 128.0f * healthboost, 0.5f);
+        }
+        WaveEnemyList.push_back(std::make_pair(tem_enemy, interval));
+    }
+    EnemyList.push_back(WaveEnemyList);
 }
 
 // void ReadEnemy::SetWayPoint(int number, std::vector<glm::vec2> waypoints){
