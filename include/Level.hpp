@@ -7,6 +7,7 @@
 #include "TileSet.hpp"
 #include "Button.hpp"
 #include "Enemy.hpp"
+#include "Slime.hpp"
 #include "Heart.hpp"
 #include "Ui.hpp"
 #include "Money.hpp"
@@ -39,9 +40,8 @@ public:
 
 
     void SetSceneManager(SceneManager *m_SceneManager);
+    
     void OnClickBackPreScene() override ;
-
-    void EnemyHitCastle();
     
     // virtual void GameStart() = 0;
 
@@ -50,15 +50,16 @@ public:
     void OnClickBuyGuard(std::string characterName); // 按按鈕會call購買角色
     void OnClickCancelBuy();
     
+    // 自身是第幾關
+    int m_level;
+
+    int m_castlehealth_now;
+    int m_player_money_now;
 
 protected:
     SceneManager *m_SceneManager;
     int m_castlehealth_ori = 5;
-    int m_castlehealth_now;
     int m_player_money_ori = 100;
-    int m_player_money_now;
-    // 自身是第幾關
-    int m_level;
     
     // UI介面存放的vector
     std::vector<std::shared_ptr<Ui>> UI;

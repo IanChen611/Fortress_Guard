@@ -2,7 +2,6 @@ set(SRC_FILES
     App.cpp
     Button.cpp
     ChooseLevelScene.cpp
-    Enemy.cpp
     Level1.cpp
     main.cpp
     SceneManager.cpp
@@ -21,6 +20,8 @@ set(SRC_FILES
     ReadEnemy.cpp
     Market.cpp
     TutorialScene.cpp
+    Enemy.cpp
+    Slime.cpp
 )
 
 set(INCLUDE_FILES
@@ -28,7 +29,6 @@ set(INCLUDE_FILES
     Button.hpp
     Ui.hpp
     ChooseLevelScene.hpp
-    Enemy.hpp
     Level.hpp
     SceneManager.hpp
     StartScene.hpp
@@ -45,6 +45,8 @@ set(INCLUDE_FILES
     ReadEnemy.hpp
     Market.hpp
     TutorialScene.hpp
+    Enemy.hpp
+    Slime.hpp
 )
 
 set(TEST_FILES

@@ -10,6 +10,7 @@
 #include "Enemy.hpp"
 #include "Button.hpp"
 
+// class Enemy;
 
 class Guard : public Util::GameObject {
 public:
