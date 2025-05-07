@@ -17,6 +17,35 @@ StartScene::StartScene() {
     m_TutorialButton = std::make_shared<Button>(RESOURCE_DIR"/Image/UI/Button_Tutorial.png",
                 0, -245, 276, 120, 0.4f, 0.4f,
                 [this]() { this->OnClickTutorial(); });
+
+    for(int i=0;i<4;i++){
+        // D:\OOP_Lab\Fortress_Guard\Resources\output_images\Chicken
+        // 小雞動畫
+        Chick_picture_movedown.push_back(RESOURCE_DIR"/output_images/Chick/tile_0_" + std::to_string(i) + ".png");
+        Chick_picture_moveup.push_back(RESOURCE_DIR"/output_images/Chick/tile_1_" + std::to_string(i) + ".png");
+        Chick_picture_moveright.push_back(RESOURCE_DIR"/output_images/Chick/tile_2_" + std::to_string(i) + ".png");
+        Chick_picture_moveleft.push_back(RESOURCE_DIR"/output_images/Chick/tile_3_" + std::to_string(i) + ".png");
+        // 大雞動畫
+        Chicken_picture_movedown.push_back(RESOURCE_DIR"/output_images/Chicken/tile_0_" + std::to_string(i) + ".png");
+        Chicken_picture_moveup.push_back(RESOURCE_DIR"/output_images/Chicken/tile_1_" + std::to_string(i) + ".png");
+        Chicken_picture_moveleft.push_back(RESOURCE_DIR"/output_images/Chicken/tile_2_" + std::to_string(i) + ".png");
+        Chicken_picture_moveright.push_back(RESOURCE_DIR"/output_images/Chicken/tile_3_" + std::to_string(i) + ".png");
+    }
+    LOG_INFO("file path is okay, Chick_picture_moveleft[0] => " + Chick_picture_moveleft[0]);
+    // "D:\OOP_Lab\Fortress_Guard\Resources\output_images\Chick\tile_3_0.png"
+    Chick = std::make_shared<Util::GameObject>();
+    Chicken = std::make_shared<Util::GameObject>();
+
+    std::shared_ptr<Util::Image> Chick_img = std::make_shared<Util::Image>(Chick_picture_moveleft[0]);
+    Chick->SetDrawable(Chick_img);
+    Chick->m_Transform.translation = {0.0f, 100.0f};
+    Chick->m_Transform.scale = {3.0f, 3.0f};
+    LOG_INFO("Chick built");
+
+    Chicken->SetDrawable(std::make_shared<Util::Image>(Chicken_picture_moveleft[0]));
+    Chicken->m_Transform.translation = {0.0f, 0.0f};
+    Chicken->m_Transform.scale = {3.0f, 3.0f};
+    LOG_INFO("Chicken built");
 }
 
 void StartScene::SetSceneManager(SceneManager *m_SceneManager){
@@ -51,11 +80,14 @@ void StartScene::OnClickTutorial() {
 void StartScene::Update(){
     m_StartButton->Update();
     m_TutorialButton->Update();
+
 }
 
 void StartScene::Draw() {
     m_StartButton->Draw();
     m_TutorialButton->Draw();
+    Chick->Draw();
+    Chicken->Draw();
 
     // LOG_INFO("StartScene Drawed");
 }

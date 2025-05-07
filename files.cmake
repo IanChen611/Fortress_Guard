@@ -22,6 +22,8 @@ set(SRC_FILES
     TutorialScene.cpp
     Enemy.cpp
     Slime.cpp
+    Mammoth.cpp
+    Orc.cpp
 )
 
 set(INCLUDE_FILES
@@ -47,6 +49,8 @@ set(INCLUDE_FILES
     TutorialScene.hpp
     Enemy.hpp
     Slime.hpp
+    Mammoth.hpp
+    Orc.hpp
 )
 
 set(TEST_FILES
