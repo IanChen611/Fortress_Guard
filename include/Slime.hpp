@@ -2,7 +2,6 @@
 #define SLIME_HPP
 
 #include "Enemy.hpp"
-// #include "Monster.hpp"
 
 class Slime : public Enemy {
 public:

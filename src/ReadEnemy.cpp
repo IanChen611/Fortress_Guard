@@ -55,11 +55,11 @@ ReadEnemy::ReadEnemy(std::vector<std::vector<glm::vec2>> ways, Level* level){
                     }
                     else if(cell[0] == 'O'){
                         int num  = cell[1] - '0';
-                        // tem_enemy = std::make_shared<Enemy>(RESOURCE_DIR"/output_images/Orc/tile_0_0.png", m_ways[num-1], 120.0f, 0.4f);
+                        tem_enemy = std::make_shared<Orc>(m_ways[num-1], m_level);
                     }
                     else if(cell[0] == 'M'){
                         int num  = cell[1] - '0';
-                        // tem_enemy = std::make_shared<Enemy>(RESOURCE_DIR"/output_images/Mammoth/tile_0_0.png", m_ways[num-1], 50.0f, 2.5f);
+                        tem_enemy = std::make_shared<Mammoth>(m_ways[num-1], m_level);
                     }
                     else if(cell[0] == 'N'){
                         int num  = cell[1] - '0';

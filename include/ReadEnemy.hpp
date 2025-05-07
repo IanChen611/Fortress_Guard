@@ -4,6 +4,8 @@
 // #include "Level.hpp" this can't be included
 #include "Enemy.hpp"
 #include "Slime.hpp"
+#include "Orc.hpp"
+#include "Mammoth.hpp"
 
 #include "Util/Logger.hpp"
 
