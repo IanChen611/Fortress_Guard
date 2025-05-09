@@ -22,6 +22,15 @@ ChooseLevelScene::ChooseLevelScene() {
         tem1->SetZIndex(-5);
         vec_Image.push_back(tem1);
     }
+    // 無盡關卡的背景
+    std::shared_ptr<Util::GameObject> tem1 = std::make_shared<Util::GameObject>();
+    std::shared_ptr<Util::Image> tem_img = std::make_shared<Util::Image>(RESOURCE_DIR"/Image/UI/chose_level_back.png");
+    tem1->SetDrawable(tem_img);
+    tem1->m_Transform.translation = {0.0f, -270.0f};
+    tem1->m_Transform.scale = {1.25f, 0.57f};
+    tem1->SetVisible(false);
+    tem1->SetZIndex(-5);
+    vec_Image.push_back(tem1);
 
     //endless mode
     vec_Button.push_back(std::make_shared<Button>(RESOURCE_DIR"/Image/UI/endless.png",
@@ -89,13 +98,14 @@ void ChooseLevelScene::Update(){
         button->Update();
     }
     glm::vec2 mouse_pos = Util::Input::GetCursorPosition();
-    float img_Width = 182.0f / 2;
-    float img_Height = 182.0f / 2;
     for(auto img : vec_Image){
+        // LOG_INFO("img->GetScaledSize(。).x = " + std::to_string(img->GetScaledSize().x));
+        float img_Width = img->GetScaledSize().x - 25;
+        float img_Height = img->GetScaledSize().y - 25;
         glm::vec2 m_Position = img->m_Transform.translation;
         if(mouse_pos.x >= (m_Position.x - img_Width/2) &&
             mouse_pos.x <= (m_Position.x + img_Width/2) &&
-             mouse_pos.y >= (m_Position.y - img_Height/2) &&
+            mouse_pos.y >= (m_Position.y - img_Height/2) &&
             mouse_pos.y <= (m_Position.y + img_Height/2)){
                 img->SetVisible(true);
             }

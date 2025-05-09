@@ -59,9 +59,25 @@ StartScene::StartScene() {
     chicken_to_y = rand() % 960 - 480;
     LOG_INFO("Chicken built");
 
+    // 按鈕背景
+    std::shared_ptr<Util::GameObject> tem1 = std::make_shared<Util::GameObject>();
+    std::shared_ptr<Util::Image> tem1_img = std::make_shared<Util::Image>(RESOURCE_DIR"/Image/UI/chose_level_back.png");
+    tem1->SetDrawable(tem1_img);
+    tem1->m_Transform.translation = {0.0f, -150.0f};
+    tem1->m_Transform.scale = {1.4f, 0.55f};
+    tem1->SetVisible(false);
+    tem1->SetZIndex(-5);
+    vec_Img.push_back(tem1);
 
-    LOG_INFO("chick_to_x" + std::to_string(chick_to_x));
-    LOG_INFO("chick_to_y" + std::to_string(chick_to_y));
+    // 按鈕背景
+    std::shared_ptr<Util::GameObject> tem2 = std::make_shared<Util::GameObject>();
+    std::shared_ptr<Util::Image> tem2_img = std::make_shared<Util::Image>(RESOURCE_DIR"/Image/UI/chose_level_back.png");
+    tem2->SetDrawable(tem2_img);
+    tem2->m_Transform.translation = {0.0f, -245.0f};
+    tem2->m_Transform.scale = {0.65f, 0.3f};
+    tem2->SetVisible(false);
+    tem2->SetZIndex(-5);
+    vec_Img.push_back(tem2);
 }
 
 void StartScene::SetSceneManager(SceneManager *m_SceneManager){
@@ -102,6 +118,23 @@ void StartScene::Update(){
     // ----大雞行走----
     Chicken_move();
     //-----------
+
+    // 按鈕背景
+    glm::vec2 mouse_pos = Util::Input::GetCursorPosition();
+    for(auto img : vec_Img){
+        float img_Width = img->GetScaledSize().x;
+        float img_Height = img->GetScaledSize().y;
+        glm::vec2 m_Position = img->m_Transform.translation;
+        if(mouse_pos.x >= (m_Position.x - img_Width/2) &&
+            mouse_pos.x <= (m_Position.x + img_Width/2) &&
+            mouse_pos.y >= (m_Position.y - img_Height/2) &&
+            mouse_pos.y <= (m_Position.y + img_Height/2)){
+            img->SetVisible(true);
+        }
+        else{
+            img->SetVisible(false);
+        }
+    }
 }
 
 void StartScene::Draw() {
@@ -109,7 +142,9 @@ void StartScene::Draw() {
     m_TutorialButton->Draw();
     Chick->Draw();
     Chicken->Draw();
-
+    for(auto img : vec_Img){
+        img->Draw();    
+    }
     // LOG_INFO("StartScene Drawed");
 }
 

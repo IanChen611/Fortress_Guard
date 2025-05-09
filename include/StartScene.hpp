@@ -33,6 +33,9 @@ private:
     SceneManager *m_SceneManager;
     std::shared_ptr<Button> m_StartButton;
     std::shared_ptr<Button> m_TutorialButton;
+    std::vector<std::shared_ptr<Util::GameObject>> vec_Img;
+
+
     // ------角色 and 動畫------
     // 小雞
     float chick_to_x;
