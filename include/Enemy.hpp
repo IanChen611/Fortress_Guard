@@ -32,10 +32,6 @@ public:
 
     float GetHealth(){return m_health_now;} // wait for deleted?
 
-    std::string GetImagePath(){return m_ImagePath;} // wait for deleted
-
-    std::vector<glm::vec2> GetWaypoints(){return m_waypoints;} // wait for deleted
-
     std::string GetType(){return m_EnemyType;}
 
 protected:
