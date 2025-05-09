@@ -27,21 +27,6 @@
 //     // 動畫預設先下
 //     move_direction = "right";
 //     // 讀取動畫圖
-//     if(ImagePath == RESOURCE_DIR"/output_images/Slimeking/tile_0_0.png"){
-//         for(int i=0;i<=5;i++){
-//             move_down.push_back(RESOURCE_DIR"/output_images/Slimeking/tile_0_" + std::to_string(i) +".png");
-//         }
-//         for(int i=0;i<=5;i++){
-//             move_left.push_back(RESOURCE_DIR"/output_images/Slimeking/tile_1_" + std::to_string(i) +".png");
-//         }
-//         for(int i=0;i<=5;i++){
-//             move_right.push_back(RESOURCE_DIR"/output_images/Slimeking/tile_2_" + std::to_string(i) +".png");
-//         }
-//         for(int i=0;i<=5;i++){
-//             move_up.push_back(RESOURCE_DIR"/output_images/Slimeking/tile_3_" + std::to_string(i) +".png");
-//         }
-//         time_gap = 20;
-//     }
 //     else if(ImagePath == RESOURCE_DIR"/output_images/Necromancer/tile_0_0.png"){
 //         for(int i=0;i<=5;i++){
 //             move_down.push_back(RESOURCE_DIR"/output_images/Necromancer/tile_0_" + std::to_string(i) +".png");
