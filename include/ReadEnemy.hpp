@@ -8,6 +8,7 @@
 #include "Mammoth.hpp"
 #include "MegaSlime.hpp"
 #include "SlimeKing.hpp"
+#include "Necromancer.hpp"
 
 #include "Util/Logger.hpp"
 

@@ -63,7 +63,7 @@ ReadEnemy::ReadEnemy(std::vector<std::vector<glm::vec2>> ways, Level* level){
                     }
                     else if(cell[0] == 'N'){
                         int num  = cell[1] - '0';
-                        // tem_enemy = std::make_shared<Enemy>(RESOURCE_DIR"/output_images/Necromancer/tile_0_0.png", m_ways[num-1], 5000.0f, 0.2f);
+                        tem_enemy = std::make_shared<Necromancer>(m_ways[num-1], m_level);
                     }
                     else{
                         LOG_INFO("Enemy type error");

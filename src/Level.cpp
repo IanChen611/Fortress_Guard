@@ -1111,70 +1111,8 @@ void Level::Update(){
                     //enemy died
                     enemyList[i]->Update();
                     enemyList[i]->Draw();
-
-                    // Error 死靈法師召喚問題
-                    if(enemyList[i]->GetImagePath() == RESOURCE_DIR"/output_images/Necromancer/tile_0_0.png"){
-                        timerForNecromancer += 1;
-                        if(timerForNecromancer / 1000 > 0){
-                            timerForNecromancer = 0;
-                            std::vector<glm::vec2> tem_waypoints = enemyList[i]->GetWaypoints();
-                            glm::vec2 tem_position = enemyList[i]->m_Transform.translation;
-                            float y = ((int)tem_position.x+480+24)/48;
-                            float x = -(((int)tem_position.y+240+24)/48-10);
-                            tem_position = {x, y};
-                            tem_waypoints.insert(tem_waypoints.begin(), {tem_position.x, tem_position.y});
-                            // enemyList.push_back(std::make_shared<Enemy>(RESOURCE_DIR"/output_images/MegaSlime/tile_0_0.png", tem_waypoints, 128.0f, 0.5f));
-                        }
-                    }
-
                     // after enemy died
                     if(enemyList[i]->IsDead()){
-                        // std::vector<glm::vec2> tem_waypoints = enemyList[i]->GetWaypoints();
-                        // std::vector<glm::vec2> insert_waypoints = tem_waypoints;
-                        // std::string tem_imagepath = enemyList[i]->GetImagePath();
-                        // glm::vec2 tem_position = enemyList[i]->m_Transform.translation;
-                        // float y = ((int)tem_position.x+480+24)/48;
-                        // float x = -(((int)tem_position.y+240+24)/48-10);
-                        // tem_position = {x, y};
-                        // //slimeking or megaslime
-                        // if(enemyList[i]->GetImagePath() == RESOURCE_DIR"/output_images/Slimeking/tile_0_0.png" || enemyList[i]->GetImagePath() == RESOURCE_DIR"/output_images/MegaSlime/tile_0_0.png"){
-                        //     // 分裂4隻
-                        //     // Error 史萊姆王分裂問題
-                        //     for(int j = 0; j < 4; j++){
-                        //         //change position
-                        //         if(tem_position.x == tem_waypoints[0].x){
-                        //             if(tem_position.y < tem_waypoints[0].y){
-                        //                 insert_waypoints.insert(insert_waypoints.begin(), {tem_position.x, tem_position.y-0.5*j});
-                        //             }
-                        //             else if(tem_position.y > tem_waypoints[0].y){
-                        //                 insert_waypoints.insert(insert_waypoints.begin(), {tem_position.x, tem_position.y+0.5*j});
-                        //             }
-                        //         }
-                        //         else if(tem_position.y == tem_waypoints[0].y){
-                        //             if(tem_position.x < tem_waypoints[0].x){
-                        //                 insert_waypoints.insert(insert_waypoints.begin(), {tem_position.x-0.5*j, tem_position.y});
-                        //             }
-                        //             else if(tem_position.x > tem_waypoints[0].x){
-                        //                 insert_waypoints.insert(insert_waypoints.begin(), {tem_position.x+0.5*j, tem_position.y});
-                        //             }
-                        //         }
-                        //         else{
-                        //             insert_waypoints.push_back({99999,99999});
-                        //         }
-                        //         // LOG_INFO(insert_waypoints[0]);
-                        //         //build enemy
-                        //         if(tem_imagepath == RESOURCE_DIR"/output_images/Slimeking/tile_0_0.png"){
-                        //             // enemyList.push_back(std::make_shared<Enemy>(RESOURCE_DIR"/output_images/MegaSlime/tile_0_0.png", insert_waypoints, 128.0f, 0.5f));
-                        //         }
-                        //         else if(tem_imagepath == RESOURCE_DIR"/output_images/MegaSlime/tile_0_0.png"){
-                        //             // enemyList.push_back(std::make_shared<Enemy>(RESOURCE_DIR"/output_images/Slime/tile_0_0.png", insert_waypoints, 8.0f, 1.0f));
-                        //         }
-                        //     }
-                        //     enemyCounter += 4;
-                        // }
-                        // if(enemyList[i]->GetType() == "MegaSlime" || enemyList[i]->GetType() == "SlimeKing"){
-                        //     enemyCounter += 4;
-                        // }
                         if(!gameLose && !gameWin && m_castlehealth_now == 0) gameLose = true;
                         enemyList.erase(enemyList.begin()+i);
                         i -= 1;
