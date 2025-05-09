@@ -90,8 +90,11 @@ public:
 
     std::vector<glm::vec2> GetWaypoints(){return m_waypoints;} // wait for deleted
 
+    std::string GetType(){return m_EnemyType;}
+
 protected:
     std::string m_ImagePath;
+    std::string m_EnemyType;
     std::vector<glm::vec2> m_waypoints;
     std::shared_ptr<Util::GameObject> m_healthbar;
     float m_health_ori;

@@ -4,6 +4,7 @@
 Slime::Slime(const std::vector<glm::vec2> waypoints, Level* level){
     m_waypoints = waypoints;
     m_level = level;
+    m_EnemyType = "Slime";
     SetImage(RESOURCE_DIR"/output_images/Slime/tile_0_0.png");
     SetHealth(8.0f);
     setMoveSpeed(1.0f);

@@ -4,6 +4,7 @@
 Mammoth::Mammoth(const std::vector<glm::vec2> waypoints, Level* level){
     m_waypoints = waypoints;
     m_level = level;
+    m_EnemyType = "Mammoth";
     SetImage(RESOURCE_DIR"/output_images/Mammoth/tile_0_0.png");
     SetHealth(50.0f);
     setMoveSpeed(2.5f);

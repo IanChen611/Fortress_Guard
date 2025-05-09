@@ -56,6 +56,8 @@ public:
     int m_castlehealth_now;
     int m_player_money_now;
 
+    std::vector<std::shared_ptr<Enemy>> enemyList;
+
 protected:
     SceneManager *m_SceneManager;
     int m_castlehealth_ori = 5;
@@ -80,7 +82,6 @@ protected:
     std::shared_ptr<ReadEnemy> m_readenemy;
 
     // 敵人清單
-    std::vector<std::shared_ptr<Enemy>> enemyList;
     std::vector<std::pair<std::shared_ptr<Enemy>, int>> enemyPerWave;
 
     // 敵人波數
@@ -97,7 +98,6 @@ protected:
     
     // --生成敵人的計時器--
     int intervalCounter = 0;
-    int enemyCounter = 0;
 
     // 遊戲結束的部分
     bool gameLose = false;

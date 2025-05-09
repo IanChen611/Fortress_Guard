@@ -24,6 +24,7 @@ set(SRC_FILES
     Slime.cpp
     Mammoth.cpp
     Orc.cpp
+    MegaSlime.cpp
 )
 
 set(INCLUDE_FILES
@@ -51,6 +52,7 @@ set(INCLUDE_FILES
     Slime.hpp
     Mammoth.hpp
     Orc.hpp
+    MegaSlime.hpp
 )
 
 set(TEST_FILES

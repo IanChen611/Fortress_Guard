@@ -6,6 +6,7 @@
 #include "Slime.hpp"
 #include "Orc.hpp"
 #include "Mammoth.hpp"
+#include "MegaSlime.hpp"
 
 #include "Util/Logger.hpp"
 

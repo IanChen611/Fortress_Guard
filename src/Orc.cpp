@@ -4,6 +4,7 @@
 Orc::Orc(const std::vector<glm::vec2> waypoints, Level* level){
     m_waypoints = waypoints;
     m_level = level;
+    m_EnemyType = "Orc";
     SetImage(RESOURCE_DIR"/output_images/Orc/tile_0_0.png");
     SetHealth(120.0f);
     setMoveSpeed(0.4f);

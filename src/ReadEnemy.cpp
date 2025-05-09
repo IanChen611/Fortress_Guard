@@ -45,7 +45,7 @@ ReadEnemy::ReadEnemy(std::vector<std::vector<glm::vec2>> ways, Level* level){
                         // 中史萊姆
                         else if(cell[1] == 'M'){
                             int num = cell[2] - '0';
-                            // tem_enemy = std::make_shared<Enemy>(RESOURCE_DIR"/output_images/MegaSlime/tile_0_0.png", m_ways[num-1], 128.0f, 0.5f);
+                            tem_enemy = std::make_shared<MegaSlime>(m_ways[num-1], m_level);
                         }
                         // 小史萊姆
                         else{
