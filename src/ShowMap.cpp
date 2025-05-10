@@ -13,9 +13,7 @@ ShowMap::ShowMap(std::vector<glm::vec2> waypoints){
     SetZIndex(100);
     setMoveSpeed(10);
     SetPosition({-480.0f+48*m_waypoints[0].y, 240.0f-48*m_waypoints[0].x});
-    m_waypoints.erase(m_waypoints.begin());
     LOG_INFO("ShowMap built");
-
 }
 
 void ShowMap::SetImage(const std::string& ImagePath) {
