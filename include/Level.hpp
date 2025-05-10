@@ -15,8 +15,10 @@
 #include "Swordsman.hpp"
 #include "Mage.hpp"
 #include "Musketeer.hpp"
+
 #include "ReadMap.hpp"
 #include "ReadEnemy.hpp"
+#include "ShowMap.hpp"
 
 #include "Util/Logger.hpp"
 #include "Util/Input.hpp"
@@ -62,6 +64,10 @@ protected:
     SceneManager *m_SceneManager;
     int m_castlehealth_ori = 5;
     int m_player_money_ori = 100;
+
+    // ShowMap
+    bool all_showmap_finish = false;
+    std::vector<std::shared_ptr<ShowMap>> m_showmap;
     
     // UI介面存放的vector
     std::vector<std::shared_ptr<Ui>> UI;

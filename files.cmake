@@ -27,6 +27,7 @@ set(SRC_FILES
     MegaSlime.cpp
     SlimeKing.cpp
     Necromancer.cpp
+    ShowMap.cpp
 )
 
 set(INCLUDE_FILES
@@ -57,6 +58,7 @@ set(INCLUDE_FILES
     MegaSlime.hpp
     SlimeKing.hpp
     Necromancer.hpp
+    ShowMap.hpp
 )
 
 set(TEST_FILES

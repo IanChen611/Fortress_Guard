@@ -16,6 +16,7 @@
 #include "Dragon.hpp"
 
 #include "ReadMap.hpp"
+#include "ShowMap.hpp"
 
 
 #include "Util/Logger.hpp"
@@ -905,6 +906,11 @@ Level::Level(int level){
     }
     // 放入路線
     m_readenemy = std::make_shared<ReadEnemy>(ways, this);
+    // 生成展示路線
+    for(int i=0;i<(int)ways.size();i++){
+        m_showmap.push_back(std::make_shared<ShowMap>(ways[i]));
+    }
+
     // ----------怪物路線設置結束-----------
 
 
@@ -961,6 +967,14 @@ void Level::OnClickCancelBuy(){
 }
 
 void Level::Update(){
+    if(!all_showmap_finish){
+        bool tem = true;
+        for(auto showmap : m_showmap){
+            showmap->Update();
+            if(!showmap->IsArrived()) tem = false;
+        }
+        if(tem) all_showmap_finish = true;
+    }
     if(pop_scene_next_frame){
         LOG_INFO("pop_scene_next_frame changes false");
         pop_scene_next_frame = false;
