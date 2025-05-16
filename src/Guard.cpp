@@ -178,7 +178,8 @@ void Guard::Update(){
         }
         // 不能攻擊，冷卻中
         if(m_attackTime > 0 && !m_attackable){
-            m_attackTime -= m_attackSpeed/2;
+            if(m_attackTime - m_attackSpeed/2 <= 0) m_attackTime = 0;
+            else m_attackTime -= m_attackSpeed/2;
             // LOG_INFO(m_attackTime);
         }
         //detect enemy is dead or not
