@@ -331,7 +331,7 @@ void Level::Update(){
                             buying = false;
                             //maxrank = 999 in endless mode
                             if(m_level == 999){
-                                tem->SetMaxRank(20);
+                                tem->SetMaxRank(999);
                             }
                             tem->SetDeployed(true);
                             GuardList.push_back(tem);
