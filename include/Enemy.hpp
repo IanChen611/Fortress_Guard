@@ -30,7 +30,9 @@ public:
 
     void GetHurt(float damage);
 
-    float GetHealth(){return m_health_now;} // wait for deleted?
+    float GetHealth(){return m_health_now;}
+
+    float GetMoveSpeed(){return m_moveSpeed;}
 
     std::string GetType(){return m_EnemyType;}
 

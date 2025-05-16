@@ -21,9 +21,7 @@ public:
 
     std::vector<std::pair<std::shared_ptr<Enemy>, int>> GetEnemy();
 
-    // void CreateEndlessEnemy();
-
-    // void SetWayPoint(int number, std::vector<glm::vec2> waypoint);
+    void CreateEndlessEnemy();
 
 private:
     Level* m_level;
@@ -41,6 +39,7 @@ private:
     int enemyTypeAmount = 1;
 
     float healthboost = 1;
+    float speedboost = 1;
 };
 
 

@@ -90,86 +90,85 @@ std::vector<std::pair<std::shared_ptr<Enemy>, int>> ReadEnemy::GetEnemy(){
     }
     wave += 1;
     if(level_num == 999){
-        // CreateEndlessEnemy();
+        CreateEndlessEnemy();
     }
     return EnemyList[wave-1];
 }
 
 //spawn enemy in endless mode 
-// void ReadEnemy::CreateEndlessEnemy(){
-//     healthboost *= 1.2;
-//     //add more enemy in some wave
-//     if(wave == 3 || wave == 5 || wave == 10){
-//         enemyTypeAmount += 1;
-//     }
-//     std::vector<std::pair<std::shared_ptr<Enemy>, int>> WaveEnemyList;
-//     srand(time(NULL));
-//     int interval = 50 - wave;
-//     if(interval < 10){
-//         interval = 10;
-//     }
-//     std::shared_ptr<Enemy> tem_enemy;
+void ReadEnemy::CreateEndlessEnemy(){
+    healthboost *= 1.2;
+    speedboost *= 1.1;
+    //add more enemy in some wave
+    if(wave == 3 || wave == 5 || wave == 10){
+        enemyTypeAmount += 1;
+    }
+    std::vector<std::pair<std::shared_ptr<Enemy>, int>> WaveEnemyList;
+    srand(time(NULL));
+    int interval = 50 - wave;
+    if(interval < 10){
+        interval = 10;
+    }
+    std::shared_ptr<Enemy> tem_enemy;
     
-//     //spawn boss
-//     if(wave == 10){
-//         tem_enemy = std::make_shared<Enemy>(RESOURCE_DIR"/output_images/Slimeking/tile_0_0.png", m_ways[0], 2048.0f * healthboost, 0.25f);
-//         WaveEnemyList.push_back(std::make_pair(tem_enemy, 50));
-//     }
-//     else if(wave == 20){
-//         tem_enemy = std::make_shared<Enemy>(RESOURCE_DIR"/output_images/Necromancer/tile_0_0.png", m_ways[0], 5000.0f * healthboost, 0.2f);
-//         WaveEnemyList.push_back(std::make_pair(tem_enemy, 50));
-//     }
-//     else if(wave % 10 == 0){
-//         int temp = wave / 10;
-//         for(int i=0; i<temp; i++){
-//             if(i%2 == 0){
-//                 tem_enemy = std::make_shared<Enemy>(RESOURCE_DIR"/output_images/Slimeking/tile_0_0.png", m_ways[0], 2048.0f * healthboost, 0.25f);
-//             }
-//             else{
-//                 tem_enemy = std::make_shared<Enemy>(RESOURCE_DIR"/output_images/Necromancer/tile_0_0.png", m_ways[0], 5000.0f * healthboost, 0.2f);
-//             }
-//             WaveEnemyList.push_back(std::make_pair(tem_enemy, 50));
-//         }
-//     }
+    //spawn boss
+    // slimeking
+    if(wave == 10){
+        tem_enemy = std::make_shared<SlimeKing>(m_ways[0], m_level);
+        tem_enemy->SetHealth(tem_enemy->GetHealth()*healthboost);
+        tem_enemy->setMoveSpeed(tem_enemy->GetMoveSpeed()*speedboost);
+        WaveEnemyList.push_back(std::make_pair(tem_enemy, 50));
+    }
+    // necromancer
+    else if(wave == 20){
+        tem_enemy = std::make_shared<Necromancer>(m_ways[0], m_level);
+        tem_enemy->SetHealth(tem_enemy->GetHealth()*healthboost);
+        tem_enemy->setMoveSpeed(tem_enemy->GetMoveSpeed()*speedboost);
+        WaveEnemyList.push_back(std::make_pair(tem_enemy, 50));
+    }
+    else if(wave % 10 == 0){
+        int temp = wave / 10;
+        for(int i=0; i<temp; i++){
+            if(i%2 == 0){
+                tem_enemy = std::make_shared<SlimeKing>(m_ways[0], m_level);
+            }
+            else{
+                tem_enemy = std::make_shared<Necromancer>(m_ways[0], m_level);
+            }
+            tem_enemy->SetHealth(tem_enemy->GetHealth()*healthboost);
+            tem_enemy->setMoveSpeed(tem_enemy->GetMoveSpeed()*speedboost);
+            WaveEnemyList.push_back(std::make_pair(tem_enemy, 50));
+        }
+    }
 
-//     //spawn normal enemy
-//     for(int i=0; i<3*wave; i++){
-//         if(i == 3 * wave - 1){
-//             interval = 1500 - 20 * wave;
-//             if(interval < 0){
-//                 interval = 0;
-//             }
-//         }
-//         int x = rand() % enemyTypeAmount;
-//         if(x == 0){
-//             //slime
-//             tem_enemy = std::make_shared<Enemy>(RESOURCE_DIR"/output_images/Slime/tile_0_0.png", m_ways[0], 8.0f * healthboost, 1.0f);
-//         }
-//         else if(x == 1){
-//             //orc
-//             tem_enemy = std::make_shared<Enemy>(RESOURCE_DIR"/output_images/Orc/tile_0_0.png", m_ways[0], 120.0f * healthboost, 0.4f);
-//         }
-//         else if(x == 2){
-//             //mammoth
-//             tem_enemy = std::make_shared<Enemy>(RESOURCE_DIR"/output_images/Mammoth/tile_0_0.png", m_ways[0], 50.0f * healthboost, 2.5f);
-//         }
-//         else if(x == 3){
-//             //megaslime
-//             tem_enemy = std::make_shared<Enemy>(RESOURCE_DIR"/output_images/MegaSlime/tile_0_0.png", m_ways[0], 128.0f * healthboost, 0.5f);
-//         }
-//         WaveEnemyList.push_back(std::make_pair(tem_enemy, interval));
-//     }
-//     EnemyList.push_back(WaveEnemyList);
-// }
-
-// void ReadEnemy::SetWayPoint(int number, std::vector<glm::vec2> waypoints){
-//     if(number == 1){
-//         waypoint1 = waypoints;
-//     }
-//     else if(number == 2){
-//         waypoint2 = waypoints;
-//     }
-//     else if(number == 3){
-//         waypoint3 = waypoints;
-//     }
-// }
+    //spawn normal enemy
+    for(int i=0; i<3*wave; i++){
+        if(i == 3 * wave - 1){
+            interval = 1500 - 20 * wave;
+            if(interval < 0){
+                interval = 0;
+            }
+        }
+        int x = rand() % enemyTypeAmount;
+        if(x == 0){
+            //slime
+            tem_enemy = std::make_shared<Slime>(m_ways[0], m_level);
+        }
+        else if(x == 1){
+            //orc
+            tem_enemy = std::make_shared<Orc>(m_ways[0], m_level);
+        }
+        else if(x == 2){
+            //mammoth
+            tem_enemy = std::make_shared<Mammoth>(m_ways[0], m_level);
+        }
+        else if(x == 3){
+            //megaslime
+            tem_enemy = std::make_shared<MegaSlime>(m_ways[0], m_level);
+        }
+        tem_enemy->SetHealth(tem_enemy->GetHealth()*healthboost);
+        tem_enemy->setMoveSpeed(tem_enemy->GetMoveSpeed()*speedboost);
+        WaveEnemyList.push_back(std::make_pair(tem_enemy, interval));
+    }
+    EnemyList.push_back(WaveEnemyList);
+}
