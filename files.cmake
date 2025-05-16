@@ -28,6 +28,7 @@ set(SRC_FILES
     SlimeKing.cpp
     Necromancer.cpp
     ShowMap.cpp
+    ReadWayPoint.cpp
 )
 
 set(INCLUDE_FILES
@@ -59,6 +60,7 @@ set(INCLUDE_FILES
     SlimeKing.hpp
     Necromancer.hpp
     ShowMap.hpp
+    ReadWayPoint.hpp
 )
 
 set(TEST_FILES

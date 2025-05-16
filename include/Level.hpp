@@ -19,6 +19,7 @@
 #include "ReadMap.hpp"
 #include "ReadEnemy.hpp"
 #include "ShowMap.hpp"
+#include "ReadWayPoint.hpp"
 
 #include "Util/Logger.hpp"
 #include "Util/Input.hpp"
@@ -83,6 +84,7 @@ protected:
 
 
     // 敵人路線
+    std::shared_ptr<ReadWayPoint> m_readwaypoint;
     std::vector<glm::vec2> waypoints;
     std::vector<std::vector<glm::vec2>> ways;
     std::shared_ptr<ReadEnemy> m_readenemy;

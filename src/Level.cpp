@@ -17,6 +17,7 @@
 
 #include "ReadMap.hpp"
 #include "ShowMap.hpp"
+#include "ReadWayPoint.hpp"
 
 
 #include "Util/Logger.hpp"
@@ -194,17 +195,22 @@ Level::Level(int level){
     LOG_INFO("Level" + std::to_string(m_level) + " built");
     // -----------地圖載入結束----------------
 
+    
     // ----------怪物路線---------------
+    m_readwaypoint = std::make_shared<ReadWayPoint>(this);
+    ways = m_readwaypoint->GetWayPoint();
+    /*
     if(m_level == 1){
-        waypoints.push_back({2, 2});
-        waypoints.push_back({2, 7});
-        waypoints.push_back({7, 7});
-        waypoints.push_back({7, 13});
-        waypoints.push_back({4, 13});
-        waypoints.push_back({4, 17});
-        waypoints.push_back({99999, 99999});
-        ways.push_back(waypoints);
-        waypoints.clear();
+        ways = m_readwaypoint->GetWayPoint();
+        // waypoints.push_back({2, 2});
+        // waypoints.push_back({2, 7});
+        // waypoints.push_back({7, 7});
+        // waypoints.push_back({7, 13});
+        // waypoints.push_back({4, 13});
+        // waypoints.push_back({4, 17});
+        // waypoints.push_back({99999, 99999});
+        // ways.push_back(waypoints);
+        // waypoints.clear();
     }
     else if(m_level == 2){
         waypoints.push_back({6, 2});
@@ -904,6 +910,8 @@ Level::Level(int level){
         ways.push_back(waypoints);
         waypoints.clear();
     }
+    */
+    
     // 放入路線
     m_readenemy = std::make_shared<ReadEnemy>(ways, this);
     // 生成展示路線
