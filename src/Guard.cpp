@@ -149,7 +149,7 @@ void Guard::Update(){
             if(m_rank < m_maxrank){
                 m_ranknumber_text->SetText("Lv." + std::to_string(m_rank));
                 // 花費
-                m_upgradeCost_text->SetText(std::to_string(10*(m_rank)));
+                m_upgradeCost_text->SetText(std::to_string(10*(m_rank) + (m_rank - 3)*(m_rank - 2)*(m_rank - 1)));
                 m_upgradeCost->Draw();
                 // 升級按鈕
                 m_upgradeButton->Draw();

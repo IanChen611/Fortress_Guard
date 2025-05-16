@@ -58,7 +58,12 @@ void MegaSlime::Update_for_speccial_enemy() {
                 tem_waypoints.push_back({99999,99999});
             }
             // spawn slime
-            m_level->enemyList.push_back(std::make_shared<Slime>(tem_waypoints, m_level));
+            std::shared_ptr<Enemy> tem_enemy = std::make_shared<Slime>(tem_waypoints, m_level);
+            if(m_level->m_level == 999){
+                tem_enemy->SetHealth(tem_enemy->GetHealth()*m_health_ori/128);
+                tem_enemy->setMoveSpeed(tem_enemy->GetMoveSpeed()*m_moveSpeed/0.5);
+            }
+            m_level->enemyList.push_back(tem_enemy);
         }
     }
 }

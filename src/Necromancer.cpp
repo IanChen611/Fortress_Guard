@@ -38,6 +38,11 @@ void Necromancer::Update_for_speccial_enemy() {
         float x = -(((int)tem_position.y+240+24)/48-10);
         tem_position = {x, y};
         tem_waypoints.insert(tem_waypoints.begin(), {tem_position.x, tem_position.y});
-        m_level->enemyList.push_back(std::make_shared<MegaSlime>(tem_waypoints, m_level));
+        std::shared_ptr<Enemy> tem_enemy = std::make_shared<MegaSlime>(tem_waypoints, m_level);
+        if(m_level->m_level == 999){
+            tem_enemy->SetHealth(tem_enemy->GetHealth()*m_health_ori/5000);
+            tem_enemy->setMoveSpeed(tem_enemy->GetMoveSpeed()*m_moveSpeed/0.2);
+        }
+        m_level->enemyList.push_back(tem_enemy);
     }
 }
