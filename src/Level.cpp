@@ -379,7 +379,7 @@ void Level::Update(){
                         guard->SetAttackable(false);
                     }
                 }
-                if(m_player_money_now - 10*(guard->GetRank()) - (guard->GetRank() - 4)*(guard->GetRank() - 3)*(guard->GetRank() - 2) >= 0){
+                if(m_player_money_now - 10*(guard->GetRank()) - (guard->GetRank() - 3)*(guard->GetRank() - 2)*(guard->GetRank() - 1) >= 0){
                     guard->SetCanUpgrade(true);
                 }
                 else{
