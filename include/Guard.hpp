@@ -116,8 +116,10 @@ protected:
     int m_attackRange;
 
     // 子彈
-    std::shared_ptr<Util::GameObject> bullet;
-    bool bullet_flying = false;
+    std::shared_ptr<Util::GameObject> tem_bullet;
+    std::shared_ptr<Util::Image> bulletImage;
+    std::vector<std::pair<std::shared_ptr<Util::GameObject>, bool>> vec_bullet;
+    // bool bullet_flying = false;
 
 
     // 攻擊動畫

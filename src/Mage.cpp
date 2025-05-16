@@ -10,7 +10,7 @@ Mage::Mage(){
     SetZIndex(10);
     m_rangeImagePath = RESOURCE_DIR"/output_images/Tiles/tile_5_21.png";
     m_damage = 25;
-    m_attackSpeed = 0.5;
+    m_attackSpeed = 15;
     m_cost = 20;
     m_rangeCoordinate.push_back({0, 144});
     m_rangeCoordinate.push_back({-48, 96});
@@ -42,13 +42,8 @@ Mage::Mage(){
 
     // 子彈
     // image = RESOURCE_DIR"/output_images/Mage/fireball_0_3.png"
-    std::shared_ptr<Util::Image> bulletImage = std::make_shared<Util::Image>(RESOURCE_DIR"/output_images/Mage/fireball_0_3.png");
+    bulletImage = std::make_shared<Util::Image>(RESOURCE_DIR"/output_images/Mage/fireball_0_3.png");
     LOG_INFO("Image loaded");
-    bullet = std::make_shared<Util::GameObject>(); 
-    bullet->SetDrawable(bulletImage);
-    bullet->SetZIndex(5);
-    bullet->m_Transform.scale = {1.5f, 1.5f};
-    bullet->SetVisible(false);
 
     // // 升級按鈕
     // m_upgradeButton = std::make_shared<Button>(
@@ -109,24 +104,25 @@ bool Mage::IsEnemyInRange(const std::shared_ptr<Enemy> enemy){
 }
 
 void Mage::Update_for_speccial_guard(){
-    // 畫子彈
-    bullet->Draw();
-
-    // Mage 攻擊
+    // Mage 攻擊(創造子彈)
     if(m_attackable && static_cast<int>(m_enemyInRange.size()) >= 1){
-
-        bullet_flying = true;
         m_attackable = false;
-        bullet->SetVisible(true);
+        // 創造tem_bullet，放進vec_bullet
+        tem_bullet = std::make_shared<Util::GameObject>();
+        tem_bullet->SetDrawable(bulletImage);
+        tem_bullet->SetZIndex(5);
+        tem_bullet->m_Transform.scale = {2.0f, 2.0f};
+        tem_bullet->SetVisible(true);
+        tem_bullet->m_Transform.translation.x = m_coordinate.x;
+        tem_bullet->m_Transform.translation.y = m_coordinate.y;
+        vec_bullet.push_back(std::make_pair(tem_bullet, true));
 
         // 動畫開始
         attacking = true;
-
-        bullet->m_Transform.translation.x = m_coordinate.x;
-        bullet->m_Transform.translation.y = m_coordinate.y;
         // 找動畫方向
         attack_direction = FindDirectionofFirstEnemy(m_enemyInRange[0]);
     }
+
     // 動畫更新
     if(attacking){
         // LOG_INFO("Now Pictuce is " + std::to_string(now_picture));
@@ -154,38 +150,60 @@ void Mage::Update_for_speccial_guard(){
             // LOG_INFO("Set origin picture");
         }
     } 
-    if(bullet_flying){
-        if(int(m_enemyInRange.size()) == 0){
-            bullet->SetVisible(false);
-            return;
-        }
+
+    // ----讀敵人資料----
+    if((int)m_enemyInRange.size() != 0){
         std::shared_ptr<Enemy> firstenemy = m_enemyInRange[0];
         float firstenmy_x = firstenemy->GetTransform().translation.x;
         float firstenmy_y = firstenemy->GetTransform().translation.y;
-        float bullet_x = bullet->GetTransform().translation.x;
-        float bullet_y = bullet->GetTransform().translation.y;
-        // LOG_INFO("bullet_x = " + std::to_string(bullet_x));
-        // LOG_INFO("bullet_y = " + std::to_string(bullet_y));
-        float delta_x = firstenmy_x - bullet_x;
-        float delta_y = firstenmy_y - bullet_y;
-        float bullet_velocity = 10;
-        bullet->m_Transform.translation.x += (bullet_velocity * delta_x) / sqrt(delta_x * delta_x + delta_y * delta_y);
-        bullet->m_Transform.translation.y += (bullet_velocity * delta_y) / sqrt(delta_x * delta_x + delta_y * delta_y);
-        float now_dx = bullet->m_Transform.translation.x - firstenmy_x;
-        float now_dy = bullet->m_Transform.translation.y - firstenmy_y;
-        
-        // LOG_INFO(now_dx);
-        // LOG_INFO(now_dy);
-        if(now_dx * now_dx + now_dy * now_dy <= 150){
-            bullet->SetVisible(false);
-            // 為了怕同時造成傷害時，第二次傷害對nullptr造成傷害
-            if(m_enemyInRange[0]->GetHealth() > 0){
-                m_enemyInRange[0]->GetHurt(m_damage);
+        // ----------------
+        for(int i=0;i<(int)vec_bullet.size();i++){
+            auto bullet_pair = vec_bullet[i];
+            if(int(m_enemyInRange.size()) == 0){
+                vec_bullet.clear();
+                return;
             }
-            if(m_enemyInRange[0]->IsDead()){
-                PopFrontEnemyInRange();
+            // ---從vector中取資料----
+            std::shared_ptr<Util::GameObject> bullet = bullet_pair.first;
+            bool bullet_flying = bullet_pair.second;
+            // -------------
+            // ----畫子彈------
+            bullet->Draw();
+            // ----------------
+            if(bullet_flying){
+                if(int(m_enemyInRange.size()) == 0){
+                    bullet->SetVisible(false);
+                    return;
+                }
+                float bullet_x = bullet->GetTransform().translation.x;
+                float bullet_y = bullet->GetTransform().translation.y;
+                // LOG_INFO("bullet_x = " + std::to_string(bullet_x));
+                // LOG_INFO("bullet_y = " + std::to_string(bullet_y));
+                float delta_x = firstenmy_x - bullet_x;
+                float delta_y = firstenmy_y - bullet_y;
+                float bullet_velocity = 10;
+                bullet->m_Transform.translation.x += (bullet_velocity * delta_x) / sqrt(delta_x * delta_x + delta_y * delta_y);
+                bullet->m_Transform.translation.y += (bullet_velocity * delta_y) / sqrt(delta_x * delta_x + delta_y * delta_y);
+                float now_dx = bullet->m_Transform.translation.x - firstenmy_x;
+                float now_dy = bullet->m_Transform.translation.y - firstenmy_y;
+                
+                // LOG_INFO(now_dx);
+                // LOG_INFO(now_dy);
+                if(now_dx * now_dx + now_dy * now_dy <= 150){
+                    bullet->SetVisible(false);
+                    bullet_pair.second = false;
+                    vec_bullet.erase(vec_bullet.begin() + i);
+                    i--;
+                    // 為了怕同時造成傷害時，第二次傷害對nullptr造成傷害
+                    if(m_enemyInRange[0]->GetHealth() > 0){
+                        m_enemyInRange[0]->GetHurt(m_damage);
+                    }
+                    if(m_enemyInRange[0]->IsDead()){
+                        PopFrontEnemyInRange();
+                    }
+                }
+                
             }
-            bullet_flying = false;
         }
     }
 }

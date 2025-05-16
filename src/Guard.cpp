@@ -77,7 +77,7 @@ void Guard::SetPosition(const glm::vec2& Position) {
 
 void Guard::Update(){
     //something special
-    Update_for_speccial_guard();
+    // LOG_INFO("Updating Guard");
     if(!m_isDeployed){
         //change myself coordinates and range coordinates
         glm::vec2 mouse_pos = Util::Input::GetCursorPosition();
@@ -95,6 +95,7 @@ void Guard::Update(){
         }
     }
     else if(m_isDeployed){
+        Update_for_speccial_guard();
         //show range
         glm::vec2 mouse_pos = Util::Input::GetCursorPosition();
         mouse_pos.x = (((int)mouse_pos.x+480+24)/48-10)*48;
