@@ -163,7 +163,16 @@ Level::Level(int level){
     UI.push_back(number_money_Dragon);
 
     // ----------------------------------------------------------------------------------
-    
+    // ----時間加速按鈕-----
+    m_TimeSpeed_Button = std::make_shared<Button>(RESOURCE_DIR"/Image/UI/TimeSpeed_1.png",
+    520, 250, 432, 372, 0.2f, 0.2f,
+    [this]() { 
+        this->OnClickChangeGameSpeed();
+    });
+    UI.push_back(m_TimeSpeed_Button);
+    // ------------------------------------
+
+
     // -----------地圖載入------------
     // --取草地--
     for(int i=0; i<10; i++){
@@ -474,15 +483,15 @@ void Level::Draw(){
 
 void Level::OnClickChangeGameSpeed(){
     if(gameSpeed == 1){
+        m_TimeSpeed_Button->SetImage(RESOURCE_DIR"/Image/UI/TimeSpeed_2.png");
         gameSpeed = 2;
     }
     else if(gameSpeed ==2){
         gameSpeed = 1;
+        m_TimeSpeed_Button->SetImage(RESOURCE_DIR"/Image/UI/TimeSpeed_1.png");
     }
     else{
         LOG_INFO("wrong game speed");
         return;
     }
-    for(auto guard : GuardList){}
-    for(auto enemy : enemyList){}
 }

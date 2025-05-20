@@ -53,7 +53,8 @@ public:
     int m_player_money_now;
 
     std::vector<std::shared_ptr<Enemy>> enemyList;
-
+    
+    // 時間加速之記錄變數
     int gameSpeed = 1;
 
 protected:
@@ -68,6 +69,9 @@ protected:
     // UI介面存放的vector
     std::vector<std::shared_ptr<Ui>> UI;
     bool pop_scene_next_frame = false;
+
+    // 時間加速的按鈕
+    std::shared_ptr<Button> m_TimeSpeed_Button;
     
     // 買角色跟角色vector
     std::shared_ptr<Button> bt_cancelBuy;
