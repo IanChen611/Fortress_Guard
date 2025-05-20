@@ -10,7 +10,7 @@ Mage::Mage(){
     SetZIndex(10);
     m_rangeImagePath = RESOURCE_DIR"/output_images/Tiles/tile_5_21.png";
     m_damage = 25;
-    m_attackSpeed = 15;
+    m_attackSpeed = 0.5;
     m_cost = 20;
     m_rangeCoordinate.push_back({0, 144});
     m_rangeCoordinate.push_back({-48, 96});
@@ -106,16 +106,13 @@ bool Mage::IsEnemyInRange(const std::shared_ptr<Enemy> enemy){
 void Mage::Update_for_speccial_guard(){
     // Mage 攻擊(創造子彈)
     if(m_attackable && static_cast<int>(m_enemyInRange.size()) >= 1){
+
         m_attackable = false;
-        // 創造tem_bullet，放進vec_bullet
-        tem_bullet = std::make_shared<Util::GameObject>();
-        tem_bullet->SetDrawable(bulletImage);
-        tem_bullet->SetZIndex(5);
-        tem_bullet->m_Transform.scale = {2.0f, 2.0f};
-        tem_bullet->SetVisible(true);
-        tem_bullet->m_Transform.translation.x = m_coordinate.x;
-        tem_bullet->m_Transform.translation.y = m_coordinate.y;
-        vec_bullet.push_back(std::make_pair(tem_bullet, true));
+
+        // 創造子彈、放進vec_Bullet
+        std::shared_ptr<Util::GameObject> tem_bullet = Guard::CreatBullet();
+        vec_bullet.push_back(tem_bullet);
+        LOG_INFO("built tem_bullet");
 
         // 動畫開始
         attacking = true;
@@ -164,46 +161,34 @@ void Mage::Update_for_speccial_guard(){
                 return;
             }
             // ---從vector中取資料----
-            std::shared_ptr<Util::GameObject> bullet = bullet_pair.first;
-            bool bullet_flying = bullet_pair.second;
+            auto bullet = vec_bullet[i];
             // -------------
             // ----畫子彈------
             bullet->Draw();
-            // ----------------
-            if(bullet_flying){
-                if(int(m_enemyInRange.size()) == 0){
-                    bullet->SetVisible(false);
-                    return;
-                }
-                float bullet_x = bullet->GetTransform().translation.x;
-                float bullet_y = bullet->GetTransform().translation.y;
-                // LOG_INFO("bullet_x = " + std::to_string(bullet_x));
-                // LOG_INFO("bullet_y = " + std::to_string(bullet_y));
-                float delta_x = firstenmy_x - bullet_x;
-                float delta_y = firstenmy_y - bullet_y;
-                float bullet_velocity = 10;
-                bullet->m_Transform.translation.x += (bullet_velocity * delta_x) / sqrt(delta_x * delta_x + delta_y * delta_y);
-                bullet->m_Transform.translation.y += (bullet_velocity * delta_y) / sqrt(delta_x * delta_x + delta_y * delta_y);
-                float now_dx = bullet->m_Transform.translation.x - firstenmy_x;
-                float now_dy = bullet->m_Transform.translation.y - firstenmy_y;
-                
-                // LOG_INFO(now_dx);
-                // LOG_INFO(now_dy);
-                if(now_dx * now_dx + now_dy * now_dy <= 150){
-                    bullet->SetVisible(false);
-                    bullet_pair.second = false;
-                    vec_bullet.erase(vec_bullet.begin() + i);
-                    i--;
-                    // 為了怕同時造成傷害時，第二次傷害對nullptr造成傷害
+            // ----子彈移動-----
+            BulletMove(bullet, firstenmy_x, firstenmy_y);
+            //----------------
+            float delta_x = bullet->m_Transform.translation.x - firstenmy_x;
+            float delta_y = bullet->m_Transform.translation.y - firstenmy_y;
+            
+            // LOG_INFO(now_dx);
+            // LOG_INFO(now_dy);
+            if(delta_x * delta_x + delta_y * delta_y <= 150){
+                vec_bullet.erase(vec_bullet.begin() + i);
+                i--;
+                // 為了怕同時造成傷害時，第二次傷害對nullptr造成傷害
+                if((int) m_enemyInRange.size() != 0){
                     if(m_enemyInRange[0]->GetHealth() > 0){
                         m_enemyInRange[0]->GetHurt(m_damage);
                     }
                     if(m_enemyInRange[0]->IsDead()){
+                        // 打死敵人就清空vec_bullet
+                        vec_bullet.clear();
                         PopFrontEnemyInRange();
                     }
                 }
-                
             }
+                
         }
     }
 }

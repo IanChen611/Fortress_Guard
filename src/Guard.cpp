@@ -224,3 +224,26 @@ std::string Guard::FindDirectionofFirstEnemy(std::shared_ptr<Enemy> first_enemy)
         }
     }
 }
+
+
+std::shared_ptr<Util::GameObject> Guard::CreatBullet(){
+    std::shared_ptr<Util::GameObject> tem_bullet = std::make_shared<Util::GameObject>();
+    tem_bullet->SetDrawable(bulletImage);
+    tem_bullet->SetZIndex(5);
+    tem_bullet->m_Transform.scale = {2.0f, 2.0f};
+    tem_bullet->m_Transform.translation.x = m_coordinate.x;
+    tem_bullet->m_Transform.translation.y = m_coordinate.y;
+    return tem_bullet;
+}
+
+void Guard::BulletMove(std::shared_ptr<Util::GameObject> bullet, float dest_x, float dest_y){
+    float bullet_x = bullet->GetTransform().translation.x;
+    float bullet_y = bullet->GetTransform().translation.y;
+    // LOG_INFO("bullet_x = " + std::to_string(bullet_x));
+    // LOG_INFO("bullet_y = " + std::to_string(bullet_y));
+    float delta_x = dest_x - bullet_x;
+    float delta_y = dest_y - bullet_y;
+    float bullet_velocity = 10;
+    bullet->m_Transform.translation.x += (bullet_velocity * delta_x) / sqrt(delta_x * delta_x + delta_y * delta_y);
+    bullet->m_Transform.translation.y += (bullet_velocity * delta_y) / sqrt(delta_x * delta_x + delta_y * delta_y);
+}

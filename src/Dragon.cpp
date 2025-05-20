@@ -122,87 +122,63 @@ void Dragon::Update_for_speccial_guard(){
     // Dragon 攻擊(創造子彈)
     if(m_attackable && static_cast<int>(m_enemyInRange.size()) >= 1){
         m_attackable = false;
-        // 創造tem_bullet，放進vec_bullet
-        tem_bullet = std::make_shared<Util::GameObject>();
-        tem_bullet->SetDrawable(bulletImage);
-        tem_bullet->SetZIndex(5);
-        tem_bullet->m_Transform.scale = {2.0f, 2.0f};
-        tem_bullet->SetVisible(true);
-        tem_bullet->m_Transform.translation.x = m_coordinate.x;
-        tem_bullet->m_Transform.translation.y = m_coordinate.y;
-        vec_bullet.push_back(std::make_pair(tem_bullet, true));
+
+        // 創造子彈、放進vec_Bullet
+        std::shared_ptr<Util::GameObject> tem_bullet = Guard::CreatBullet();
+        vec_bullet.push_back(tem_bullet);
+        LOG_INFO("built tem_bullet");
     }
-    // ----讀敵人資料----
     if((int)m_enemyInRange.size() != 0){
+        // ----讀敵人資料----
         std::shared_ptr<Enemy> firstenemy = m_enemyInRange[0];
         float firstenmy_x = firstenemy->GetTransform().translation.x;
         float firstenmy_y = firstenemy->GetTransform().translation.y;
         // ----------------
         for(int i=0;i<(int)vec_bullet.size();i++){
-            auto bullet_pair = vec_bullet[i];
             if(int(m_enemyInRange.size()) == 0){
                 vec_bullet.clear();
                 return;
             }
-            // ---從vector中取資料----
-            std::shared_ptr<Util::GameObject> bullet = bullet_pair.first;
-            bool bullet_flying = bullet_pair.second;
-            // -------------
+            auto bullet = vec_bullet[i];
             // ----畫子彈---
             bullet->Draw();
             // -------------
-            if(bullet_flying){
-                float bullet_x = bullet->GetTransform().translation.x;
-                float bullet_y = bullet->GetTransform().translation.y;
-                // LOG_INFO("bullet_x = " + std::to_string(bullet_x));
-                // LOG_INFO("bullet_y = " + std::to_string(bullet_y));
-                float delta_x = firstenmy_x - bullet_x;
-                float delta_y = firstenmy_y - bullet_y;
-                float bullet_velocity = 10;
-                bullet->m_Transform.translation.x += (bullet_velocity * delta_x) / sqrt(delta_x * delta_x + delta_y * delta_y);
-                bullet->m_Transform.translation.y += (bullet_velocity * delta_y) / sqrt(delta_x * delta_x + delta_y * delta_y);
-                float now_dx = bullet->m_Transform.translation.x - firstenmy_x;
-                float now_dy = bullet->m_Transform.translation.y - firstenmy_y;
-                if(now_dx * now_dx + now_dy * now_dy <= 150){
-                    LOG_INFO("Dragon bullet hit enemy.");
-                    bullet->SetVisible(false);
-                    // 為了怕同時造成傷害時，第二次傷害對nullptr造成傷害
-                    // for 迴圈遍歷 m_enemyInRange
-                    // enemy is the iterator
-                    for(auto enemy : m_enemyInHiddenRange){
-                        if(enemy->GetHealth() > 0){
-                            int x = -(((int)enemy->m_Transform.translation.y+240+24)/48-10);
-                            int y = (((int)enemy->m_Transform.translation.x+480+24)/48);
-                            int m_x = -(((int)m_enemyInRange[0]->m_Transform.translation.y+240+24)/48-10);
-                            int m_y = (((int)m_enemyInRange[0]->m_Transform.translation.x+480+24)/48);
-                            if(abs(x-m_x) + abs(y-m_y) <= 1 && enemy != nullptr && enemy->GetHealth() > 0){
-                                enemy->GetHurt(m_damage);
-                            }
+             // ----子彈移動-----
+            BulletMove(bullet, firstenmy_x, firstenmy_y);
+
+            //----檢測距離-----
+            float delta_x = bullet->m_Transform.translation.x - firstenmy_x;
+            float delta_y = bullet->m_Transform.translation.y - firstenmy_y;
+            if(delta_x * delta_x + delta_y * delta_y <= 150){
+                LOG_INFO("Dragon bullet hit enemy.");
+                vec_bullet.erase(vec_bullet.begin() + i);
+                i--;
+                // 為了怕同時造成傷害時，第二次傷害對nullptr造成傷害
+                // for 迴圈遍歷 m_enemyInRange
+                // enemy is the iterator
+                for(auto enemy : m_enemyInHiddenRange){
+                    if(enemy->GetHealth() > 0){
+                        int x = -(((int)enemy->m_Transform.translation.y+240+24)/48-10);
+                        int y = (((int)enemy->m_Transform.translation.x+480+24)/48);
+                        int m_x = -(((int)m_enemyInRange[0]->m_Transform.translation.y+240+24)/48-10);
+                        int m_y = (((int)m_enemyInRange[0]->m_Transform.translation.x+480+24)/48);
+                        if(abs(x-m_x) + abs(y-m_y) <= 1 && enemy != nullptr && enemy->GetHealth() > 0){
+                            enemy->GetHurt(m_damage);
                         }
                     }
-                    if(m_enemyInRange[0]->IsDead()){
-                        PopFrontEnemyInRange();
-                        vec_bullet.clear();
-                        return;
-                    }
-                    if(m_enemyInHiddenRange[0]->IsDead()){
-                        PopFrontEnemyInHiddenRange();
-                    }
-                    bullet_pair.second = false;
+                }
+                if(m_enemyInRange[0]->IsDead()){
+                    PopFrontEnemyInRange();
+                    // 打死敵人就清空vec_bullet
+                    vec_bullet.clear();
+                    return;
+                }
+                if(m_enemyInHiddenRange[0]->IsDead()){
+                    PopFrontEnemyInHiddenRange();
                 }
             }
         }
     }
-    // 刪除已經碰到敵人的子彈
-    for (auto it = vec_bullet.begin(); it != vec_bullet.end(); ) {
-        if (it->second == false) {
-            it = vec_bullet.erase(it);   // erase 會回傳下一個有效 iterator
-        } else {
-            ++it;                         // 確定沒刪才 ++
-        }
-    }
-
-
     // -------------------------
     
 }

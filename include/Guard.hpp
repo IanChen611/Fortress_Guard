@@ -70,6 +70,11 @@ public:
 
     void SetMaxRank(int rank){m_maxrank = rank;}
 
+    // 單純創造一個新的bullet
+    std::shared_ptr<Util::GameObject> CreatBullet();
+
+    void BulletMove(std::shared_ptr<Util::GameObject> bullet, float dest_x, float dest_y);
+
 protected:
     std::string m_myselfImagePath;
     std::string m_rangeImagePath;
@@ -116,9 +121,8 @@ protected:
     int m_attackRange;
 
     // 子彈
-    std::shared_ptr<Util::GameObject> tem_bullet;
     std::shared_ptr<Util::Image> bulletImage;
-    std::vector<std::pair<std::shared_ptr<Util::GameObject>, bool>> vec_bullet;
+    std::vector<std::shared_ptr<Util::GameObject>> vec_bullet;
     // bool bullet_flying = false;
 
 
