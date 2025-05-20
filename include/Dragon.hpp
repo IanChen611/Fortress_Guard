@@ -7,7 +7,7 @@
 
 class Dragon : public Guard {
 public:
-    Dragon();
+    Dragon(Level* level);
 
     void Update_for_speccial_guard() override;
 

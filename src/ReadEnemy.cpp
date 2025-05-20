@@ -144,9 +144,9 @@ void ReadEnemy::CreateEndlessEnemy(){
     //spawn normal enemy
     for(int i=0; i<3*wave; i++){
         if(i == 3 * wave - 1){
-            interval = 1500 - 20 * wave;
-            if(interval < 0){
-                interval = 0;
+            interval = 1200 - 20 * wave;
+            if(interval < 500){
+                interval = 500;
             }
         }
         int x = rand() % enemyTypeAmount;

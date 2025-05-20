@@ -7,7 +7,7 @@
 
 class Swordsman : public Guard {
 public:
-    Swordsman();
+    Swordsman(Level* level);
 
     void Update_for_speccial_guard() override;
 

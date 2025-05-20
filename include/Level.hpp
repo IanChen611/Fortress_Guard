@@ -24,6 +24,8 @@
 #include "Util/Logger.hpp"
 #include "Util/Input.hpp"
 
+class Guard;
+
 class Level : public Scene{
 public:
     Level(int level);

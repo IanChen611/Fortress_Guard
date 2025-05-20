@@ -1,12 +1,10 @@
 #include "Swordsman.hpp"
-#include "Button.hpp"
+#include "Level.hpp"
 
-#include "Util/Image.hpp"
 #include "Util/Logger.hpp"
-#include "Util/Input.hpp"
-#include "Util/Text.hpp"
 
-Swordsman::Swordsman() {
+Swordsman::Swordsman(Level* level) {
+    m_level = level;
     // m_myselfImagePath = RESOURCE_DIR"/output_images/Swordsman/tile_0_0.png";
     SetImage(RESOURCE_DIR"/output_images/Swordsman/tile_0_0.png");
     m_Transform.scale = {3, 3};
@@ -128,12 +126,12 @@ void Swordsman::Update_for_speccial_guard(){
 }
 
 void Swordsman::Upgrade(){
-    if(m_rank < m_maxrank && m_canUpgrade){
+    if(m_rank < m_maxrank && m_level->m_player_money_now >= 10*m_rank + (m_rank - 3)*(m_rank - 2)*(m_rank - 1)){
         m_damage += 5;
         m_attackSpeed *= 1.2;
+        m_level->m_player_money_now -= 10*m_rank + (m_rank - 3)*(m_rank - 2)*(m_rank - 1);
         m_rank += 1;
         LOG_INFO("Swordsman upgraded");
-        m_isUpgraded = true;
     }
     else{
         LOG_INFO("upgrade fail");

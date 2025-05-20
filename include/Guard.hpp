@@ -11,6 +11,7 @@
 #include "Button.hpp"
 
 // class Enemy;
+class Level;
 
 class Guard : public Util::GameObject {
 public:
@@ -50,13 +51,7 @@ public:
 
     virtual void Upgrade() = 0;
 
-    bool IsUpgraded(){return m_isUpgraded;}
-
-    void SetIsUpgraded(bool isUpgraded){m_isUpgraded = isUpgraded;}
-
     int GetRank(){return m_rank;}
-
-    void SetCanUpgrade(bool canUpgrade){m_canUpgrade = canUpgrade;}
 
     bool IsAttacker(){return m_isAttacker;}
 
@@ -98,8 +93,6 @@ protected:
     bool m_clickMe_LB_down = false;
     int m_rank = 1;
     int m_maxrank = 3;
-    bool m_isUpgraded = false;
-    bool m_canUpgrade = false;
     // 升級花費
     std::shared_ptr<Util::GameObject> m_upgradeCost;
     std::shared_ptr<Util::Text> m_upgradeCost_text;
@@ -135,6 +128,9 @@ protected:
     std::vector<std::string> attackup;
     std::vector<std::string> attackleft;
     std::vector<std::string> attackright;
+
+    // level
+    Level* m_level;
 };
 
 #endif

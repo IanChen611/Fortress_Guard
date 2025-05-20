@@ -7,7 +7,7 @@
 
 class Musketeer : public Guard {
 public:
-    Musketeer();
+    Musketeer(Level* level);
 
     void Update_for_speccial_guard() override;
 

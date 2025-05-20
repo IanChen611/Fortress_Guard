@@ -7,7 +7,7 @@
 
 class Mage : public Guard {
 public:
-    Mage();
+    Mage(Level* level);
 
     void Update_for_speccial_guard() override;
 

@@ -1,10 +1,12 @@
 #include "Dragon.hpp"
-#include "Enemy.hpp"
+#include "Level.hpp"
+
 #include "Util/Image.hpp"
 #include "Util/Logger.hpp"
 #include "Util/Input.hpp"
 
-Dragon::Dragon(){
+Dragon::Dragon(Level* level){
+    m_level = level;
     SetImage(RESOURCE_DIR"/output_images/Dragon/tile_0_0.png");
     m_Transform.scale = {1.5, 1.5};
     SetZIndex(10);
@@ -184,12 +186,11 @@ void Dragon::Update_for_speccial_guard(){
 }
 
 void Dragon::Upgrade(){
-    if(m_rank < m_maxrank && m_canUpgrade){
+    if(m_rank < m_maxrank && m_level->m_player_money_now >= 10*m_rank + (m_rank - 3)*(m_rank - 2)*(m_rank - 1)){
         m_damage += 5;
         m_attackSpeed *= 1.5;
         m_rank += 1;
         LOG_INFO("Dragon upgraded");
-        m_isUpgraded = true;
     }
     else{
         LOG_INFO("upgrade fail");

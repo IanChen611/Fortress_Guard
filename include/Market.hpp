@@ -5,7 +5,7 @@
 
 class Market : public Guard {
     public:
-        Market();
+        Market(Level* level);
     
         void Update_for_speccial_guard() override;
     

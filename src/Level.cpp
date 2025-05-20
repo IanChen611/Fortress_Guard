@@ -240,19 +240,19 @@ void Level::OnClickBuyGuard(std::string characterName){
     cancelBuy = false;
     bt_cancelBuy->SetVisible(true);
     if(characterName == "Swordsman"){
-        tem = std::make_shared<Swordsman>();
+        tem = std::make_shared<Swordsman>(this);
     }
     if(characterName == "Mage"){
-        tem = std::make_shared<Mage>();
+        tem = std::make_shared<Mage>(this);
     }
     if(characterName == "Musketeer"){
-        tem = std::make_shared<Musketeer>();
+        tem = std::make_shared<Musketeer>(this);
     }
     if(characterName == "Market"){
-        tem = std::make_shared<Market>();
+        tem = std::make_shared<Market>(this);
     }
     if(characterName == "Dragon"){
-        tem = std::make_shared<Dragon>();
+        tem = std::make_shared<Dragon>(this);
     }
 
 }
@@ -378,16 +378,6 @@ void Level::Update(){
                         m_player_money_now += guard->GetDamage();
                         guard->SetAttackable(false);
                     }
-                }
-                if(m_player_money_now - 10*(guard->GetRank()) - (guard->GetRank() - 3)*(guard->GetRank() - 2)*(guard->GetRank() - 1) >= 0){
-                    guard->SetCanUpgrade(true);
-                }
-                else{
-                    guard->SetCanUpgrade(false);
-                }
-                if(guard->IsUpgraded()){
-                    guard->SetIsUpgraded(false);
-                    m_player_money_now -= 10*(guard->GetRank() - 1) + (guard->GetRank() - 4)*(guard->GetRank() - 3)*(guard->GetRank() - 2);
                 }
                 guard->Update();
             }

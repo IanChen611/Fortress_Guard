@@ -1,4 +1,5 @@
 #include "Guard.hpp"
+#include "Level.hpp"
 #include "Util/Image.hpp"
 #include "Util/Logger.hpp"
 
@@ -224,7 +225,6 @@ std::string Guard::FindDirectionofFirstEnemy(std::shared_ptr<Enemy> first_enemy)
         }
     }
 }
-
 
 std::shared_ptr<Util::GameObject> Guard::CreatBullet(){
     std::shared_ptr<Util::GameObject> tem_bullet = std::make_shared<Util::GameObject>();

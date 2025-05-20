@@ -1,8 +1,10 @@
 #include "Market.hpp"
+#include "Level.hpp"
 
 #include "Util/Logger.hpp"
 
-Market::Market() {
+Market::Market(Level* level) {
+    m_level = level;
     SetImage(RESOURCE_DIR"/output_images/Market/tile_2_2.png");
     m_Transform.scale = {3, 3};
     SetZIndex(10);
@@ -21,12 +23,11 @@ bool Market::IsEnemyInHiddenRange(const std::shared_ptr<Enemy> enemy){}
 void Market::Update_for_speccial_guard(){}
 
 void Market::Upgrade(){
-    if(m_rank < m_maxrank && m_canUpgrade){
+    if(m_rank < m_maxrank && m_level->m_player_money_now >= 10*m_rank + (m_rank - 3)*(m_rank - 2)*(m_rank - 1)){
         m_damage += 5;
         m_attackSpeed *= 1.2;
         m_rank += 1;
         LOG_INFO("Market upgraded");
-        m_isUpgraded = true;
     }
     else{
         LOG_INFO("upgrade fail");
