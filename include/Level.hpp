@@ -30,30 +30,21 @@ class Level : public Scene{
 public:
     Level(int level);
     ~Level() = default;
-    // virtual void Start() = 0; // 初始化
     
     // 處理每關通用邏輯
     void Update() override; 
-    // 處理特別需要的邏輯
-    // virtual void Update_for_speccial_Level() = 0;
     // 處理每關通用畫面
     void Draw() override; 
-    // 處理個別需要之畫面
-    // virtual void Draw_for_speccial_Level() = 0;
-
-    // virtual void End() = 0;
-
 
     void SetSceneManager(SceneManager *m_SceneManager);
     
     void OnClickBackPreScene() override ;
-    
-    // virtual void GameStart() = 0;
 
     //按按鈕->角色跟著滑鼠動 1.->再按在地圖上一下放置角色(+扣錢)
     //                      2.->按取消按紐消失
     void OnClickBuyGuard(std::string characterName); // 按按鈕會call購買角色
     void OnClickCancelBuy();
+    void OnClickChangeGameSpeed();
     
     // 自身是第幾關
     int m_level;
@@ -62,6 +53,8 @@ public:
     int m_player_money_now;
 
     std::vector<std::shared_ptr<Enemy>> enemyList;
+
+    int gameSpeed = 1;
 
 protected:
     SceneManager *m_SceneManager;

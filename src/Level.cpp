@@ -404,7 +404,7 @@ void Level::Update(){
                     }
                 }
                 else if(intervalCounter > 0){
-                    intervalCounter -= 1;
+                    intervalCounter -= gameSpeed;
                 }
                 //enemy update
                 for(int i=0; i<int(enemyList.size()); i++){
@@ -418,11 +418,6 @@ void Level::Update(){
                         i -= 1;
                     }
                 }
-                // 判斷是不是全部敵人都是dead
-                // bool allDead = true;
-                // for(auto enemy : enemyList){
-                //     allDead = enemy->IsDead();
-                // }
                 if(int(enemyList.size()) == 0 && int(enemyPerWave.size()) == 0 && m_castlehealth_now > 0){
                     gameWin = true;
                 }
@@ -475,4 +470,19 @@ void Level::Draw(){
     if(img_gameFinish != nullptr){
         img_gameFinish->Draw();
     }
+}
+
+void Level::OnClickChangeGameSpeed(){
+    if(gameSpeed == 1){
+        gameSpeed = 2;
+    }
+    else if(gameSpeed ==2){
+        gameSpeed = 1;
+    }
+    else{
+        LOG_INFO("wrong game speed");
+        return;
+    }
+    for(auto guard : GuardList){}
+    for(auto enemy : enemyList){}
 }

@@ -29,7 +29,7 @@ Necromancer::Necromancer(const std::vector<glm::vec2> waypoints, Level* level){
 }
 
 void Necromancer::Update_for_speccial_enemy() {
-    timerForSpawnEnemy += 1;
+    timerForSpawnEnemy += 1*m_level->gameSpeed;
     if(timerForSpawnEnemy / 1000 > 0){
         timerForSpawnEnemy = 0;
         std::vector<glm::vec2> tem_waypoints = m_waypoints;

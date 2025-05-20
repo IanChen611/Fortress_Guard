@@ -126,7 +126,7 @@ void Musketeer::Update_for_speccial_guard(){
         else if(attack_direction == "down"){
             SetImage(attackdown[now_picture]);
         }
-        picture_interval += 1;
+        picture_interval += 1*m_level->gameSpeed;
         if(picture_interval > 3){
             now_picture += 1;
             picture_interval = 0;
@@ -195,6 +195,7 @@ void Musketeer::Upgrade(){
     if(m_rank < m_maxrank && m_level->m_player_money_now >= 10*m_rank + (m_rank - 3)*(m_rank - 2)*(m_rank - 1)){
         m_damage += 0.5;
         m_attackSpeed *= 1.2;
+        m_level->m_player_money_now -= 10*m_rank + (m_rank - 3)*(m_rank - 2)*(m_rank - 1);
         m_rank += 1;
         LOG_INFO("Musketeer upgraded");
     }

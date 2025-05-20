@@ -29,30 +29,6 @@ Dragon::Dragon(Level* level){
     m_rangeCoordinate.push_back({48, -48});
     m_rangeCoordinate.push_back({0, -96});
 
-    // m_hiddenRangeCoordinate.push_back({0, 144});
-    // m_hiddenRangeCoordinate.push_back({-48, 96});
-    // m_hiddenRangeCoordinate.push_back({0, 96});
-    // m_hiddenRangeCoordinate.push_back({48, 96});
-    // m_hiddenRangeCoordinate.push_back({-96, 48});
-    // m_hiddenRangeCoordinate.push_back({-48, 48});
-    // m_hiddenRangeCoordinate.push_back({0, 48});
-    // m_hiddenRangeCoordinate.push_back({48, 48});
-    // m_hiddenRangeCoordinate.push_back({96, 48});
-    // m_hiddenRangeCoordinate.push_back({-144, 0});
-    // m_hiddenRangeCoordinate.push_back({-96, 0});
-    // m_hiddenRangeCoordinate.push_back({-48, 0});
-    // m_hiddenRangeCoordinate.push_back({48, 0});
-    // m_hiddenRangeCoordinate.push_back({96, 0});
-    // m_hiddenRangeCoordinate.push_back({144, 0});
-    // m_hiddenRangeCoordinate.push_back({-96, -48});
-    // m_hiddenRangeCoordinate.push_back({-48, -48});
-    // m_hiddenRangeCoordinate.push_back({0, -48});
-    // m_hiddenRangeCoordinate.push_back({48, -48});
-    // m_hiddenRangeCoordinate.push_back({96, -48});
-    // m_hiddenRangeCoordinate.push_back({-48, -96});
-    // m_hiddenRangeCoordinate.push_back({0, -96});
-    // m_hiddenRangeCoordinate.push_back({48, -96});
-    // m_hiddenRangeCoordinate.push_back({0, -144});
     for(int _=0; _<12; _++){
         m_rangeTile.push_back(std::make_shared<Tile>(m_rangeImagePath));
     }
@@ -103,7 +79,7 @@ void Dragon::Update_for_speccial_guard(){
     
     if((int)(m_enemyInRange.size()) >= 1) attack_direction = FindDirectionofFirstEnemy(m_enemyInRange[0]);
     // 動畫 => 面向第一個敵人
-    picture_interval += 1;
+    picture_interval += 1*m_level->gameSpeed;
     if(picture_interval >= 10){
         now_picture = (now_picture + 1) % 4;
         if(attack_direction == "down"){

@@ -45,39 +45,6 @@ Mage::Mage(Level* level){
     bulletImage = std::make_shared<Util::Image>(RESOURCE_DIR"/output_images/Mage/fireball_0_3.png");
     LOG_INFO("Image loaded");
 
-    // // 升級按鈕
-    // m_upgradeButton = std::make_shared<Button>(
-    //     RESOURCE_DIR"/Image/UI/upgrade_button.png",
-    //     this->m_Transform.translation.x,
-    //     this->m_Transform.translation.y,
-    //     32, 32,
-    //     1.0f, 1.0f,
-    //     [this]() { 
-    //         this->Upgrade();
-    //     }
-    // );
-    // m_upgradeButton->SetZIndex(15);
-    // m_upgradeButton->SetVisible(false);
-    
-    // 升級花費
-    // m_upgradeCost = std::make_shared<Util::GameObject>();
-    // m_upgradeCost->SetZIndex(15);
-    // m_upgradeCost_text = std::make_shared<Util::Text>(
-    //     RESOURCE_DIR"/Font/Inter.ttf",
-    //     15, std::to_string(10),
-    //     Util::Color(254, 254, 0));
-    // m_upgradeCost->SetDrawable(m_upgradeCost_text);
-    
-    //等級UI
-    // m_ranknumber = std::make_shared<Util::GameObject>();
-    // m_ranknumber->SetZIndex(15);
-    // m_ranknumber->SetVisible(false);
-    // m_ranknumber_text = std::make_shared<Util::Text>(
-    //     RESOURCE_DIR"/Font/Inter.ttf",
-    //     16, std::to_string(m_rank),
-    //     Util::Color(0, 0, 0));
-    // m_ranknumber->SetDrawable(m_ranknumber_text);
-
     // 讀取動畫圖
     for(int i=0;i<=3;i++){
         attackdown.push_back(RESOURCE_DIR"/output_images/Mage/tile_4_" + std::to_string(i) +".png");
@@ -135,7 +102,7 @@ void Mage::Update_for_speccial_guard(){
         else if(attack_direction == "down"){
             SetImage(attackdown[now_picture]);
         }
-        picture_interval += 1;
+        picture_interval += 1*m_level->gameSpeed;
         if(picture_interval > 3){
             now_picture += 1;
             picture_interval = 0;
@@ -197,6 +164,7 @@ void Mage::Upgrade(){
     if(m_rank < m_maxrank && m_level->m_player_money_now >= 10*m_rank + (m_rank - 3)*(m_rank - 2)*(m_rank - 1)){
         m_damage += 15;
         m_attackSpeed *= 1.1;
+        m_level->m_player_money_now -= 10*m_rank + (m_rank - 3)*(m_rank - 2)*(m_rank - 1);
         m_rank += 1;
         LOG_INFO("Mage upgraded");
     }

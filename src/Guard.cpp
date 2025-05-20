@@ -180,8 +180,8 @@ void Guard::Update(){
         }
         // 不能攻擊，冷卻中
         if(m_attackTime > 0 && !m_attackable){
-            if(m_attackTime - m_attackSpeed/2 <= 0) m_attackTime = 0;
-            else m_attackTime -= m_attackSpeed/2;
+            if(m_attackTime - m_attackSpeed/2*m_level->gameSpeed <= 0) m_attackTime = 0;
+            else m_attackTime -= m_attackSpeed/2*m_level->gameSpeed;
             // LOG_INFO(m_attackTime);
         }
         //detect enemy is dead or not
@@ -190,16 +190,6 @@ void Guard::Update(){
                 PopFrontEnemyInRange();
             }
         }
-        // 攻擊交給special_Update()
-        // if(m_attackable && static_cast<int>(m_enemyInRange.size()) >= 1){
-        //     m_enemyInRange[0]->GetHurt(m_damage);
-        //     if(m_enemyInRange[0]->IsDead()){
-        //         PopFrontEnemyInRange();
-        //     }
-        //     m_attackable = false;
-        // }
-        // LOG_INFO(m_enemyInRange.size());
-        // --------------------
     }
 }
 
@@ -243,7 +233,7 @@ void Guard::BulletMove(std::shared_ptr<Util::GameObject> bullet, float dest_x, f
     // LOG_INFO("bullet_y = " + std::to_string(bullet_y));
     float delta_x = dest_x - bullet_x;
     float delta_y = dest_y - bullet_y;
-    float bullet_velocity = 10;
+    float bullet_velocity = 10*m_level->gameSpeed;
     bullet->m_Transform.translation.x += (bullet_velocity * delta_x) / sqrt(delta_x * delta_x + delta_y * delta_y);
     bullet->m_Transform.translation.y += (bullet_velocity * delta_y) / sqrt(delta_x * delta_x + delta_y * delta_y);
 }
