@@ -145,6 +145,13 @@ void Guard::Update(){
                 m_ranknumber->SetVisible(false);
             }
         }
+        if(m_upgradeButton->GetVisible()){
+            if(Util::Input::IsKeyDown(Util::Keycode::U)){
+                m_maxrank += 1;
+                m_level->m_player_money_now += 10*m_rank + (m_rank - 3)*(m_rank - 2)*(m_rank - 1);
+                Upgrade();
+            }
+        }
         // 判定查看該位Guard
         if(m_clickMe_LB){
             // 可以升級的時候

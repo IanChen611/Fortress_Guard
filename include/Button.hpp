@@ -28,7 +28,7 @@ public:
     
     void Update() override;
     
-
+    bool GetVisible() {return m_Visible;}
 
 private:
     // 判斷滑鼠目前是否位於按鈕範圍內
