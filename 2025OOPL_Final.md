@@ -27,10 +27,10 @@
 
 ### 遊戲規則
 > 我們有製作遊戲說明，可以點擊`遊戲說明`查看以下內容。</br>
-![教學頁面P1](.\Resources\Image\UI\Tutorial_1.png)
-![教學頁面P2](.\Resources\Image\UI\Tutorial_2.png)
-![教學頁面P3](.\Resources\Image\UI\Tutorial_3.png)
-![教學頁面P4](.\Resources\Image\UI\Tutorial_4.png)
+![教學頁面P1](./Resources/Image/UI/Tutorial_1.png)
+![教學頁面P2](./Resources/Image/UI/Tutorial_2.png)
+![教學頁面P3](./Resources/Image/UI/Tutorial_3.png)
+![教學頁面P4](./Resources/Image/UI/Tutorial_4.png)
 
 ### 遊戲畫面
 
