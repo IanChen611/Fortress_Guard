@@ -16,7 +16,7 @@
 | 工作項目 | 112820003 辛政隆 | 112820025 陳翊揚|
 |----------|------------------------------|----------------------------------|
 | 地圖製作 | 研究如何使用Tiled、利用製作Tile、收集圖片檔案 | 設計地圖、轉換成地圖代碼           |
-| 物件製作 | 製作 Guard、Enemy             | 製作 SceneManager、UI 類別          |
+| 物件製作 | 製作 Guard、Enemy             | 製作 SceneManager、UI 類別(Button、Heart)      |
 | 讀檔製作 | 設計 ReadEnemy、ReadWaypoint  | 製作 Read 相關架構                |
 | 關卡製作 | 設計敵人種類及波數             | 製作關卡 UI                       |
 | 動畫製作 | 整理並切割找到的素材圖片        | 製作子彈及角色動畫                 |
@@ -26,7 +26,7 @@
 ## 遊戲介紹
 
 ### 遊戲規則
-> 我們有製作遊戲說明，可以點擊`遊戲說明`查看以下內容。</br>
+我們有製作遊戲說明，可以點擊`遊戲說明`查看以下內容。</br>
 ![教學頁面P1](./Resources/Image/UI/Tutorial_1.png)
 ![教學頁面P2](./Resources/Image/UI/Tutorial_2.png)
 ![教學頁面P3](./Resources/Image/UI/Tutorial_3.png)
