@@ -47,18 +47,43 @@
 ### 程式架構
 ```mermaid
 graph TD
+
+
   GameObject --> Guard
   GameObject --> Enemy
   GameObject --> TileSet
   GameObject --> Tile
+  GameObject --> Ui
+
+  Ui --> Button
+  Ui --> Heart
+  Ui --> Money
+
+  Scene --> ChooseLevelScene
+  Scene --> Level
+  Scene --> TutorialScene
+  Scene --> StartScene
+
+  SceneManager
+  ReadWayPoint
+  ReadMap
+  ReadEnemy
+  
 
   Guard --> Swordsman
   Guard --> Mage
   Guard --> Musketeer
+  Guard --> Dragon
+  Guard --> Market["Market<br>(can't attack)"]
 
-  Enemy --> Slime["Slime<br>(normal)"]
+
+  Enemy --> Slime["Slime<br>(easy quickly)"]
+  Enemy --> MegaSlime["MegaSlime<br>(normal slow split)"]
+  Enemy --> KingSlime["KingSlime<br>(strong very  slow split)"]
   Enemy --> Orc["Orc<br>(strong)"]
   Enemy --> Mammoth["Mammoth<br>(fast)"]
+  Enemy --> Necromancer["Necromancer<br>(very slow, summon)"]
+
 ```
 
 ### 程式技術
