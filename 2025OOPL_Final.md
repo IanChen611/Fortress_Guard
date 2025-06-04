@@ -33,6 +33,14 @@
 ![教學頁面P4](./Resources/Image/UI/Tutorial_4.png)
 
 ### 遊戲畫面
+> **遊戲首頁**，點擊`開始遊戲`進入關卡選擇畫面，點擊`遊戲說明`可以進入教學說明。
+![首頁](./Resources/Image/UI/gamingPage1.png)
+
+> **選擇關卡畫面**，有1~15關以及無盡模式，共16種關卡
+![關卡畫面](./Resources/Image/UI/gamingPage2.png)
+
+> **這是遊戲畫面(以第二關舉例)**
+![關卡畫面](./Resources/Image/UI/gamingPage3.png)
 
 ## 程式設計
 
