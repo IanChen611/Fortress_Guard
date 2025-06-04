@@ -45,6 +45,22 @@
 ## 程式設計
 
 ### 程式架構
+```mermaid
+graph TD
+  GameObject --> Guard
+  GameObject --> Enemy
+  GameObject --> TileSet
+  GameObject --> Tile
+
+  Guard --> Swordsman
+  Guard --> Mage
+  Guard --> Musketeer
+
+  Enemy --> Slime["Slime<br>(normal)"]
+  Enemy --> Orc["Orc<br>(strong)"]
+  Enemy --> Mammoth["Mammoth<br>(fast)"]
+```
+
 ### 程式技術
 
 ## 結語
