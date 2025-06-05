@@ -26,8 +26,8 @@ void Market::Upgrade(){
     if(m_rank < m_maxrank && m_level->m_player_money_now >= 10*m_rank + (m_rank - 3)*(m_rank - 2)*(m_rank - 1)){
         m_damage += 5;
         m_attackSpeed *= 1.2;
-        m_rank += 1;
         m_level->m_player_money_now -= 10*m_rank + (m_rank - 3)*(m_rank - 2)*(m_rank - 1);
+        m_rank += 1;
         LOG_INFO("Market upgraded");
     }
     else{
