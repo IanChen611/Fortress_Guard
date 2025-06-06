@@ -73,8 +73,6 @@ void Enemy::SetImage(const std::string& ImagePath) {
 void Enemy::Move(){
     if(m_Transform.translation.x == -480.0f+48*m_waypoints[0].y && m_Transform.translation.y == 240.0f-48*m_waypoints[0].x){
         m_waypoints.erase(m_waypoints.begin());
-        coordinate1 = 1;
-        coordinate2 = 1;
     }
     else{
         // 如果 自己的x 跟 目的地的x 一樣 => 移動y
@@ -82,34 +80,36 @@ void Enemy::Move(){
             if(m_Transform.translation.y < 240.0f-48*m_waypoints[0].x){
                 m_Transform.translation.y += 1*m_moveSpeed*m_level->gameSpeed;
                 move_direction = "up";
-                coordinate1 = -1;
+                if(m_Transform.translation.y > 240.0f-48*m_waypoints[0].x){
+                    m_waypoints.erase(m_waypoints.begin());
+                    m_Transform.translation.y = 240.0f-48*m_waypoints[0].x;
+                }
             }
             else{
                 m_Transform.translation.y -= 1*m_moveSpeed*m_level->gameSpeed;
                 move_direction = "down";
-                coordinate2 = -1;
-            }
-            if(coordinate1 + coordinate2 != 0){
-                coordinate1 = 1;
-                coordinate2 = 1;
-                m_Transform.translation.y = 240.0f-48*m_waypoints[0].x;
+                if(m_Transform.translation.y < 240.0f-48*m_waypoints[0].x){
+                    m_waypoints.erase(m_waypoints.begin());
+                    m_Transform.translation.y = 240.0f-48*m_waypoints[0].x;
+                }
             }
         }
         else if(m_Transform.translation.y == 240.0f-48*m_waypoints[0].x){
             if(m_Transform.translation.x < -480.0f+48*m_waypoints[0].y){
                 m_Transform.translation.x += 1*m_moveSpeed*m_level->gameSpeed;
                 move_direction = "right";
-                coordinate1 = -1;
+                if(m_Transform.translation.x > -480.0f+48*m_waypoints[0].y){
+                    m_waypoints.erase(m_waypoints.begin());
+                    m_Transform.translation.x = -480.0f+48*m_waypoints[0].y;
+                }
             }
             else{
                 m_Transform.translation.x -= 1*m_moveSpeed*m_level->gameSpeed;
                 move_direction = "left";
-                coordinate2 = -1;
-            }
-            if(coordinate1 + coordinate2 != 0){
-                coordinate1 = 1;
-                coordinate2 = 1;
-                m_Transform.translation.x = -480.0f+48*m_waypoints[0].y;
+                if(m_Transform.translation.x < -480.0f+48*m_waypoints[0].y){
+                    m_waypoints.erase(m_waypoints.begin());
+                    m_Transform.translation.x = -480.0f+48*m_waypoints[0].y;
+                }
             }
         }
     }

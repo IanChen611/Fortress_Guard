@@ -46,8 +46,6 @@ protected:
     float m_moveSpeed;
     bool m_isDead = false;
     int enemyDropMoneyAmount = 3;
-    int coordinate1 = 1;
-    int coordinate2 = 1;
 
     // 移動動畫
     std::string move_direction;
