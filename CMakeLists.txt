@@ -51,13 +51,19 @@ if(MSVC)
     target_compile_options(${PROJECT_NAME} PRIVATE /W4)
 else()
     target_compile_options(${PROJECT_NAME} PRIVATE -Wall -Wextra -pedantic)
+    if(CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
+        # 靜態連結 MinGW (GCC) 運行時庫
+        set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -static-libgcc -static-libstdc++ -static")
+    elseif(CMAKE_CXX_COMPILER_ID STREQUAL "Clang")
+        # 靜態連結 llvm-mingw (Clang) 運行時庫
+        set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -static -lc++ -lunwind")
+    endif()
 endif()
 
 if(CMAKE_BUILD_TYPE STREQUAL "Debug")
     target_compile_definitions(${PROJECT_NAME} PRIVATE RESOURCE_DIR="${CMAKE_CURRENT_SOURCE_DIR}/Resources")
 else()
-    message(FATAL_ERROR "relative RESOURCE_DIR is WIP, Please use -DCMAKE_BUILD_TYPE=Debug build for now.")
-    # target_compile_definitions(${PROJECT_NAME} PRIVATE RESOURCE_DIR="${CMAKE_INSTALL_PREFIX}/Resources")
+    target_compile_definitions(${PROJECT_NAME} PRIVATE RESOURCE_DIR="./Resources")
 endif()
 
 target_include_directories(${PROJECT_NAME} SYSTEM PRIVATE ${DEPENDENCY_INCLUDE_DIRS})
@@ -68,3 +74,35 @@ target_link_libraries(${PROJECT_NAME}
     SDL2::SDL2main
     PTSD
 )
+
+# Install the executable
+install(TARGETS ${PROJECT_NAME}
+    RUNTIME DESTINATION "."
+)
+
+# Install Resources directory
+install(DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/Resources"
+    DESTINATION "."
+)
+
+# Install required runtime DLLs (only for non-static builds)
+if(MINGW AND CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
+    get_filename_component(MINGW_DLL_DIR ${CMAKE_CXX_COMPILER} PATH)
+    install(FILES
+        "${MINGW_DLL_DIR}/libgcc_s_seh-1.dll"
+        "${MINGW_DLL_DIR}/libwinpthread-1.dll"
+        "${MINGW_DLL_DIR}/libstdc++-6.dll"
+        DESTINATION "."
+    )
+endif()
+
+# CPack configuration
+set(CPACK_PACKAGE_NAME "FortressGuard")
+set(CPACK_PACKAGE_VERSION "1.0.0")
+set(CPACK_PACKAGE_VENDOR "IanChen611")
+set(CPACK_PACKAGE_DESCRIPTION_SUMMARY "Fortress Guard - A Tower Defense Game")
+set(CPACK_PACKAGE_INSTALL_DIRECTORY "FortressGuard")
+set(CPACK_GENERATOR "ZIP")
+set(CPACK_MONOLITHIC_INSTALL TRUE)
+
+include(CPack)
